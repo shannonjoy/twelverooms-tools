@@ -11,6 +11,7 @@ STUDIO="$HOME/orchestrator/apps/twelve-rooms-studio"
 
 mkdir -p "$DEST"
 for f in "$FACTSHEET/compute_factsheet.py" "$FACTSHEET/gen_wheel.py" \
+         "$FACTSHEET/saturn_return.py" \
          "$LUNA/compute_sky.py" \
          "$STUDIO/synastry.py" "$STUDIO/electional.py"; do
   base="$(basename "$f")"

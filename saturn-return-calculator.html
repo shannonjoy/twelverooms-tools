@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturn Return Calculator: Your Exact Saturn Return Dates · The Twelve Rooms</title>
+<meta name="description" content="Free Saturn return calculator: your exact Saturn return dates computed with the Swiss Ephemeris, every pass, from your birth date, time, and place. When is your first Saturn return? Find out to the day. No account, nothing stored.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Saturn Return Calculator","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"When is my Saturn return?","acceptedAnswer":{"@type":"Answer","text":"Your first Saturn return happens around ages 27 to 30, when transiting Saturn comes back to the exact spot it held at your birth. Because Saturn takes about 29.5 years to orbit, the second return falls in your late 50s and a third, if reached, in the mid 80s. This calculator computes your exact dates from your birth data."}},
+{"@type":"Question","name":"Why does my Saturn return have three dates?","acceptedAnswer":{"@type":"Answer","text":"Saturn spends part of most years in retrograde. If it reaches your natal degree, stations, and reverses back over it, then turns direct and crosses a third time, your return has three exact passes spread across roughly a year. Other years it makes a single clean pass. Both are normal; the whole window matters more than any single date."}},
+{"@type":"Question","name":"Do I need my birth time for a Saturn return?","acceptedAnswer":{"@type":"Answer","text":"For the dates, no: they depend on Saturn's sign position, which a birth date alone pins down closely. For the house your return lands in (career, home, relationships) you need an accurate birth time, because houses are set by your rising sign. Enter a time for the full picture."}},
+{"@type":"Question","name":"What does a Saturn return mean?","acceptedAnswer":{"@type":"Answer","text":"It is the chart's audit and graduation, not a curse. Saturn is the planet of structure, time, and commitment, and when it returns it tests what you have built: what is truly yours is confirmed, what was scaffolding tends to fall away. It is the astrology of growing into the next version of adulthood."}}
+]}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Saturn return calculator</h1>
+  <p class="lede">Around age 29, Saturn comes home to where it sat when you were born, and again near 58. This finds your exact dates, every pass, computed with the Swiss Ephemeris. Not doom: the audit and the graduation. No account, nothing stored.</p>
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (for the house it lands in)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Chicago" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="41.8781"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-87.6298"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+    <button class="go" type="submit">Find my Saturn return</button>
+  </form>
+  <div id="out" class="result"></div>
+
+  <section class="prose">
+    <h2>What a Saturn return actually is</h2>
+    <p>Saturn takes about twenty-nine and a half years to circle the zodiac, so a little before you turn thirty it arrives back at the exact degree it occupied on the day you were born. That homecoming is your <strong>Saturn return</strong>, and the tradition treats it as the true threshold into adulthood: the moment the life you assembled in your twenties gets its first honest audit.</p>
+    <p>Saturn is the planet of structure, time, commitment, and consequence. When it returns, it asks a plain question about everything you have built, the career, the relationship, the city, the self: is this actually yours, or is it scaffolding? What is real gets confirmed and reinforced. What was borrowed or provisional tends to come loose. It can feel heavy while it happens, and it is almost always, in hindsight, the making of the next version of you.</p>
+    <p>The second return, near fifty-eight, audits the legacy rather than the launch; a third, in the mid-eighties, blesses the whole house. This calculator shows every return your dates reach, with all the exact passes.</p>
+    <h2>Why the dates come in ones and threes</h2>
+    <p>Saturn spends months of each year in apparent retrograde. If it reaches your natal degree, stops, slips back over it, then turns forward and crosses a third time, your return is three exact passes stretched across roughly a year. In other years it makes one clean pass. Neither is better or worse. The honest way to hold it is as a <strong>window</strong>, the whole stretch Saturn spends on and around your natal degree, rather than a single day to circle.</p>
+  </section>
+
+  <div class="cta">
+    <h2>The dates are free. The meaning is the reading.</h2>
+    <p>The Twelve Rooms Saturn Return report reads your natal Saturn in full, the room the return lands in, and what this season is here to confirm, honestly and without doom. Your dates, made meaningful.</p>
+    <a href="/reports">Explore the Saturn return reading</a>
+  </div>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>When is my Saturn return?</h3><p>Your first is around ages 27 to 30, the second in your late 50s, a third (if reached) in the mid 80s. Enter your birth details above for the exact dates.</p></div>
+    <div class="qa"><h3>Why does mine have three dates?</h3><p>Saturn retrograded back over your natal degree, so it crossed three times across about a year. Some returns make a single pass instead. Both are normal; the window matters more than any one date.</p></div>
+    <div class="qa"><h3>Do I need my birth time?</h3><p>Not for the dates, which follow Saturn's sign position. You need it for the house the return falls in, which is where the season actually plays out. Add a time for the full picture.</p></div>
+    <div class="qa"><h3>Is a Saturn return bad?</h3><p>No. It is demanding, not cursed. Saturn confirms what is real and lets go of what was not, which is how the next chapter of adulthood begins. It rewards honest work more than any other transit.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, each pass refined to the minute, from your exact birth data. Your details are computed in memory and never stored, logged, or shared.</p></div>
+  </section>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null;
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  });
+});
+
+const MONTHS = ["January","February","March","April","May","June","July",
+  "August","September","October","November","December"];
+function niceDate(iso) {
+  const d = new Date(iso);
+  return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+}
+function niceDay(ymd) {
+  const [y, m, d] = ymd.split("-").map(Number);
+  return `${MONTHS[m - 1]} ${d}, ${y}`;
+}
+
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!f.tz.value || !f.lat.value) { out.innerHTML = `<div class="error">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Tracing Saturn around your chart…</p></div>`;
+  const body = { date: f.date.value, time: f.time.value || null, tz: f.tz.value.trim(),
+                 lat: f.lat.value, lon: f.lon.value, place: PLACE ? `${PLACE.name}, ${PLACE.admin1}` : "" };
+  try {
+    const r = await fetch("/api/saturn", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    render(d);
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+
+function highlight(returns) {
+  // the one to lead with: current, else next, else most recent past
+  return returns.find(r => r.status === "underway")
+      || returns.find(r => r.status === "next")
+      || returns.slice().reverse().find(r => r.status === "past")
+      || returns[0];
+}
+
+function passesLine(r) {
+  if (r.pass_count === 1) return `One exact pass: <strong>${niceDate(r.passes[0])}</strong>.`;
+  return `${r.pass_count === 3 ? "Three" : r.pass_count} exact passes: `
+    + r.passes.map(p => `<strong>${niceDate(p)}</strong>`).join(", ") + ".";
+}
+
+function render(d) {
+  const out = document.getElementById("out");
+  const returns = d.returns || [];
+  if (!returns.length) { out.innerHTML = `<div class="card"><p class="hint">No Saturn return found in range. Double-check the birth date.</p></div>`; return; }
+  const hi = highlight(returns);
+  const verb = hi.status === "underway" ? "is happening now"
+             : hi.status === "next" ? "is coming" : "was";
+  const win = hi.sign_window && hi.sign_window[0];
+  const sat = d.natal_saturn || {};
+  const houseText = (d.timed && sat.house)
+    ? ` in your <strong>${ordinalHouse(sat.house)}</strong>`
+    : "";
+
+  out.innerHTML = `
+    <div class="glance">
+      <h2>Your ${esc(hi.return_name.replace(" Saturn return",""))} Saturn return</h2>
+      <p>Your ${esc(hi.return_name.replace(" Saturn return",""))} Saturn return ${verb}${hi.age_at_first_pass ? `, around age <strong>${hi.age_at_first_pass}</strong>` : ""}. ${passesLine(hi)}</p>
+      ${win ? `<p style="margin-top:10px">Saturn is on and around your natal degree from <strong>${niceDay(win.from)}</strong> to <strong>${niceDay(win.to)}</strong>: that whole window is the season, not just the exact days.</p>` : ""}
+    </div>
+    <div class="card">
+      <div class="places">
+        <div class="place"><div class="place-glyph">♄</div><div>
+          <div class="place-head">Your natal Saturn · ${esc(sat.pretty || sat.sign || "")}${houseText}</div>
+          <div class="place-mean">${esc(sat.sect_role || "")}. This is the degree Saturn returns to: the assignment written into your chart at birth, come back to check its work.</div>
+        </div></div>
+      </div>
+      ${!d.timed ? `<p class="hint" style="margin-top:12px">Computed without a birth time, so these are your dates and Saturn sign, which are solid. The <strong>house</strong> your return lands in (career, home, relationships) needs an accurate birth time. Add one above for the room it happens in.</p>` : ""}
+      ${returns.length > 1 ? `
+        <h3 style="font-family:var(--serif);font-weight:400;color:var(--navy);font-size:16px;margin:18px 0 8px">Every return in view</h3>
+        <table>
+          <tr><th>Return</th><th>Age</th><th>Exact passes</th><th></th></tr>
+          ${returns.map(r => `<tr>
+            <td>${esc(r.return_name.replace(" Saturn return",""))}</td>
+            <td>${r.age_at_first_pass}</td>
+            <td>${r.passes.map(p => niceDate(p)).join("<br>")}</td>
+            <td style="color:var(--gold)">${r.status === "past" ? "past" : r.status === "underway" ? "now" : "ahead"}</td>
+          </tr>`).join("")}
+        </table>` : ""}
+      <p class="hint" style="margin-top:14px">Want the meaning, not just the dates? <a href="/reports" style="color:var(--gold)">The Saturn return reading</a> reads your natal Saturn in full and the room this season lands in, without the doom.</p>
+    </div>`;
+  out.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+const HOUSE_ORD = ["","first","second","third","fourth","fifth","sixth","seventh",
+  "eighth","ninth","tenth","eleventh","twelfth"];
+function ordinalHouse(h) { return (HOUSE_ORD[h] || h) + " house"; }
+</script>
+</body>
+</html>

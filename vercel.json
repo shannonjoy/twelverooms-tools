@@ -9,9 +9,9 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.thetwelverooms.com" }],
-      "destination": "https://thetwelverooms.com/:path*",
+      "destination": "https://thetwelverooms.com/$1",
       "permanent": true
     }
   ],

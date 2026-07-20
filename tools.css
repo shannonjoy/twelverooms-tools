@@ -42,7 +42,59 @@ body { font-family: var(--body); color: var(--ink); background: var(--cream); li
 .masthead nav a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
   color: #b9c2da; text-decoration: none; padding: 4px 2px; }
 .masthead nav a:hover, .masthead nav a[aria-current] { color: var(--gold-hi); }
-.spark { position: absolute; fill: var(--gold-soft); pointer-events: none; z-index: 1; }
+.masthead nav a { transition: color 0.2s ease; }
+.spark { position: absolute; fill: var(--gold-soft); pointer-events: none; z-index: 1;
+  animation: spark-breathe 7s ease-in-out infinite; }
+
+/* ---- the night sky: twinkling stars, a slow medallion, a rare shooting star.
+   Brand law: if you notice the sparkle before the words, there is too much sparkle.
+   Everything is transform/opacity only (paint-cheap, zero CLS). ---- */
+.stars { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.star-dot { position: absolute; border-radius: 50%; background: var(--gold-hi);
+  opacity: 0.15; animation: twinkle var(--tw, 5s) ease-in-out var(--twd, 0s) infinite; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.75); }
+  50%      { opacity: var(--o-max, 0.7); transform: scale(1); }
+}
+@keyframes spark-breathe {
+  0%, 100% { transform: scale(0.92) rotate(-4deg); }
+  50%      { transform: scale(1.06) rotate(4deg); }
+}
+.shooting { position: absolute; z-index: 1; width: 74px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(230,207,150,0), rgba(230,207,150,0.75));
+  border-radius: 1px; opacity: 0; animation: shoot 1.7s ease-out forwards; }
+@keyframes shoot {
+  0%   { opacity: 0; transform: rotate(-16deg) translateX(0); }
+  10%  { opacity: 0.65; }
+  100% { opacity: 0; transform: rotate(-16deg) translateX(-230px) translateY(0); }
+}
+.medallion .ticks { transform-origin: 75px 75px; animation: turn 180s linear infinite; }
+@keyframes turn { to { transform: rotate(360deg); } }
+.rule::before, .rule::after { background-size: 220% 100%;
+  animation: shimmer 8s ease-in-out infinite; }
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 0; }
+  50%      { background-position: 100% 0; }
+}
+.masthead-inner > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.masthead-inner > *:nth-child(2) { animation-delay: 0.08s; }
+.masthead-inner > *:nth-child(3) { animation-delay: 0.16s; }
+.masthead-inner > *:nth-child(4) { animation-delay: 0.24s; }
+.masthead-inner > *:nth-child(5) { animation-delay: 0.32s; }
+.masthead-inner > *:nth-child(6) { animation-delay: 0.40s; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* scroll-in reveal (class applied by JS only, so no-JS visitors see everything) */
+.reveal { opacity: 0; transform: translateY(14px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spark, .star-dot, .shooting, .medallion .ticks, .rule::before, .rule::after,
+  .masthead-inner > * { animation: none !important; }
+  .star-dot { opacity: 0.4; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 
 /* ---- body ---- */
 .wrap { max-width: 720px; margin: 0 auto; padding: 30px 16px 64px; }
@@ -97,13 +149,23 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 .cta p { font-size: 14px; color: #c4cbe0; margin-bottom: 14px; max-width: 46ch; margin-left: auto; margin-right: auto; }
 .cta a { display: inline-block; text-decoration: none; padding: 11px 22px; border-radius: 10px;
   font: 600 14px var(--body); letter-spacing: 0.02em; color: var(--midnight-2);
-  background: linear-gradient(135deg, #e3c98b, #b18b45); }
+  background: linear-gradient(135deg, #e3c98b, #b18b45);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.cta a:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,176,106,0.35); }
+.cta a::after { content: ""; position: absolute; top: 0; bottom: 0; left: -80%; width: 55%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.42), transparent);
+  transform: skewX(-18deg); transition: left 0.55s ease; }
+.cta a:hover::after { left: 130%; }
+@media (prefers-reduced-motion: reduce) { .cta a::after { display: none; } }
 
 /* tool index cards */
 .toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .toolgrid a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
-  padding: 18px; text-decoration: none; color: var(--ink); transition: border-color 0.15s; }
-.toolgrid a:hover { border-color: var(--gold); }
+  padding: 18px; text-decoration: none; color: var(--ink);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.toolgrid a:hover { border-color: var(--gold); transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(38,53,94,0.08), 0 2px 8px rgba(168,134,61,0.10); }
 .toolgrid h2 { font-size: 17px; margin-bottom: 5px; }
 .toolgrid p { font-size: 13px; color: var(--soft); }
 
@@ -162,6 +224,29 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 .almanac-card h3 { font-family: var(--serif); font-weight: 400; font-size: 17px; color: var(--navy); margin: 0 0 5px; }
 .almanac-card p { font-size: 13.5px; line-height: 1.5; color: var(--soft); margin: 0; }
 
+/* readings (product bridge) cards */
+.readings { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 10px; }
+@media (max-width: 620px) { .readings { grid-template-columns: 1fr; } }
+.reading-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+  display: flex; flex-direction: column; transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.reading-card:hover { border-color: var(--gold); transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(38,53,94,0.08), 0 2px 8px rgba(168,134,61,0.10); }
+.reading-card.flagship { grid-column: 1 / -1; background:
+  radial-gradient(130% 160% at 50% 0%, var(--midnight-1), var(--midnight-2));
+  border: 1px solid rgba(201,165,92,0.45); color: var(--cream); }
+.reading-card.flagship h3, .reading-card.flagship .price { color: var(--gold-hi); }
+.reading-card.flagship p { color: #c4cbe0; }
+.reading-card h3 { font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--navy); margin: 0 0 2px; }
+.reading-card .price { font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.reading-card p { font-size: 14px; line-height: 1.55; color: #33384a; margin: 0 0 14px; }
+.reading-card a { margin-top: auto; align-self: flex-start; text-decoration: none;
+  font: 600 13.5px var(--body); color: var(--navy); padding: 9px 16px; border-radius: 9px;
+  border: 1px solid var(--gold-soft); transition: background 0.2s ease, color 0.2s ease; }
+.reading-card a:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+.reading-card.flagship a { color: var(--midnight-2); border: 0;
+  background: linear-gradient(135deg, #e3c98b, #b18b45); }
+
 /* prominent disclaimer notice */
 .disclaimer { border: 1px solid #d9c9a3; background: #fbf6ea; border-radius: 12px;
   padding: 14px 16px; margin: 6px 0 18px; font-size: 13.5px; line-height: 1.5; color: #5a4e33; }
@@ -179,5 +264,7 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 .faq .qa p { font-size: 14.5px; line-height: 1.6; color: #33384a; margin: 0; }
 
 footer.site { margin-top: 34px; font-size: 12.5px; color: var(--soft); border-top: 1px solid var(--line); padding-top: 16px; text-align: center; }
+footer.site a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); transition: color 0.2s ease, border-color 0.2s ease; }
+footer.site a:hover { color: var(--gold); border-color: var(--gold); }
 footer.site .seal { color: var(--gold); font-family: var(--serif); font-style: italic; }
 footer.site .privacy { margin-top: 8px; }

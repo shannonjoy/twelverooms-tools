@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big 3 Calculator: Find Your Sun, Moon, and Rising Sign · The Twelve Rooms</title>
+<meta name="description" content="Free big 3 calculator: your Sun, Moon, and rising sign computed precisely with the Swiss Ephemeris from your birth date, time, and place. No account, no tracking, your birth data is never stored.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Big 3 Calculator","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is your big 3 in astrology?","acceptedAnswer":{"@type":"Answer","text":"Your big 3 are your Sun sign, Moon sign, and rising sign (Ascendant). The Sun is your core, what you are here to become. The Moon is your inner life, what you need and what settles you. The rising sign is how you meet the world, the door people come through first. Read together, they are the short version of your whole chart."}},
+{"@type":"Question","name":"Do I need my birth time to find my big 3?","acceptedAnswer":{"@type":"Answer","text":"For your Sun, no. For your rising sign, yes: the Ascendant changes sign roughly every two hours, so it cannot be computed without an accurate birth time. The Moon usually stays in one sign all day, but on some days she changes signs, so a time makes the Moon certain too. Birth certificates usually list the time."}},
+{"@type":"Question","name":"What order do you read the big 3 in?","acceptedAnswer":{"@type":"Answer","text":"Read them as one voice in three registers rather than three separate facts: the rising sign is how you arrive, the Sun is what you are becoming, and the Moon is what you need underneath it all. Most people recognize their rising sign first, because it is the version of them the world meets."}},
+{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same astronomical engine professional software uses, in whole-sign houses. Your birth details are computed in memory and never stored, logged, or shared."}}
+]}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Big 3 calculator</h1>
+  <p class="lede">Your Sun, your Moon, and your rising sign: the short version of your whole chart, computed precisely from your birth details. The Sun is your core, the Moon is your inner life, the rising is the door you meet the world through. No account, nothing stored.</p>
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (for your rising sign)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Chicago" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="41.8781"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-87.6298"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+    <button class="go" type="submit">Find my big 3</button>
+  </form>
+  <div id="out" class="result"></div>
+
+  <section class="prose">
+    <h2>How to read your big 3</h2>
+    <p>Read them as one voice in three registers, never as a list. Your <strong>rising sign</strong> is how you arrive: the first impression, the instinctive style, the room's first read of you. Your <strong>Sun</strong> is what you are becoming: the core project of the life, the thing that feels like purpose when you are doing it. Your <strong>Moon</strong> is what you need underneath both: how you feel, what restores you, what home means to your body.</p>
+    <p>Most people recognize their rising sign before anything else, because it is the version of them the world already knows. The Sun tends to be something you grow into across a whole life. The Moon is the one only your closest people could describe. When the three sit in very different signs, that is not a contradiction: it is dimension. The chart is a house with many rooms, and these are the first three doors.</p>
+    <p>One honest note: your rising sign needs an accurate <strong>birth time</strong>, because the Ascendant changes sign about every two hours. Without a time you still get your Sun and Moon truthfully computed, and we will say so plainly rather than guess.</p>
+  </section>
+
+  <div class="cta">
+    <h2>The big 3 are the doorway. The chart is the house.</h2>
+    <p>The Twelve Rooms writes deep natal readings from this exact math: every planet, all twelve houses, one cohesive reading. I read every line myself.</p>
+    <a href="/reports">Explore the readings</a>
+  </div>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What is your big 3?</h3><p>Your Sun sign, Moon sign, and rising sign (the Ascendant). Together they are the short version of your natal chart: the core, the inner life, and the way you meet the world.</p></div>
+    <div class="qa"><h3>Do I need my birth time?</h3><p>For the Sun, no. For the rising sign, yes: it changes about every two hours. The Moon usually holds one sign all day, but on some days she changes signs partway through, so a time makes her certain too. Your birth certificate usually has the time.</p></div>
+    <div class="qa"><h3>Why is my rising sign different from other sites?</h3><p>If a birth time is off by even a few minutes near a sign change, the rising sign can differ. We compute from the Swiss Ephemeris with your exact time, place, and timezone, so a mismatch usually traces back to the time entered elsewhere.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, exact coordinates and timezone from your birthplace. Your details are computed in memory and never stored, logged, or shared.</p></div>
+  </section>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null;
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  });
+});
+
+const SIGN_GLYPH = { Aries:"♈", Taurus:"♉", Gemini:"♊", Cancer:"♋", Leo:"♌", Virgo:"♍",
+  Libra:"♎", Scorpio:"♏", Sagittarius:"♐", Capricorn:"♑", Aquarius:"♒", Pisces:"♓" };
+
+const SUN = {
+  Aries: "a life lit by beginnings: you are here to go first, and courage is the craft you are perfecting.",
+  Taurus: "you are here to build what lasts, and to prove that steadiness is its own kind of genius.",
+  Gemini: "you are here to learn everything twice and say it better: curiosity is the calling itself.",
+  Cancer: "you are here to protect what matters. Care, taken seriously, is your life's work.",
+  Leo: "you are here to shine warmly and be seen doing it: the open heart is the work, not the reward.",
+  Virgo: "you are here to perfect a craft. Your devotion lives in the details no one else would notice.",
+  Libra: "you are here to make things fair and beautiful, and to master the art of the other person.",
+  Scorpio: "you are here to go all the way down: truth matters more to you than comfort, and it shows.",
+  Sagittarius: "you are here for the far horizon. Meaning is your fuel, and honesty is how you travel.",
+  Capricorn: "you are here to climb something worth climbing: time is your ally and mastery is the point.",
+  Aquarius: "you are here to see the circle clearly from just outside it, and then to improve it.",
+  Pisces: "you are here to feel everything and turn it into compassion, or art, or both at once."
+};
+const MOON = {
+  Aries: "you feel fast and first. You settle by acting, not by waiting, and you recover quickly.",
+  Taurus: "you settle through comfort, routine, and things you can touch: peace, for you, is physical.",
+  Gemini: "you process by talking it through. A good conversation is genuine rest.",
+  Cancer: "the Moon is at home here: you need belonging, you remember everything, and you give care back doubled.",
+  Leo: "you need to be met warmly. Being celebrated a little is not vanity: it is how your heart refuels.",
+  Virgo: "order soothes you. A tended list is a tended heart, and being useful is how you love.",
+  Libra: "you settle in balance and lovely surroundings. Conflict costs you more than most people guess.",
+  Scorpio: "you feel in full depth or not at all. Trust is your currency, and you never spend it lightly.",
+  Sagittarius: "you need room to roam, even indoors. Hope is your home base and humor is the door to it.",
+  Capricorn: "you steady yourself by being useful. Feelings arrive on a small delay, and then completely.",
+  Aquarius: "you need air and a little distance to know what you feel. Clarity is your comfort.",
+  Pisces: "you absorb the weather of every room you enter. Solitude and beauty are how you come back to yourself."
+};
+const RISING = {
+  Aries: "you arrive like a headline: people meet your momentum before anything else.",
+  Taurus: "you arrive calm. People read steadiness in you before you have said a word.",
+  Gemini: "you arrive curious and quick: the first thing people meet is the question.",
+  Cancer: "you arrive gently, reading the tide of the room before you fully enter it.",
+  Leo: "you arrive warm and unmistakable. Rooms tilt toward you, and you let them.",
+  Virgo: "you arrive precise and observant. People trust you early, and they are right to.",
+  Libra: "you arrive gracious: ease is the first thing people feel around you.",
+  Scorpio: "you arrive composed, with weather behind the eyes. People sense the depth immediately.",
+  Sagittarius: "you arrive mid-story, candid and warm: people meet your honesty first.",
+  Capricorn: "you arrive credible. People hand you responsibility on sight, and you take it.",
+  Aquarius: "you arrive one clean step outside expectation, and it suits you.",
+  Pisces: "you arrive soft-focus and open. People confide in you within minutes and are never sure why."
+};
+
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!f.tz.value || !f.lat.value) { out.innerHTML = `<div class="error">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Computing the sky…</p></div>`;
+  const body = { date: f.date.value, time: f.time.value || null, tz: f.tz.value.trim(),
+                 lat: f.lat.value, lon: f.lon.value, place: PLACE ? `${PLACE.name}, ${PLACE.admin1}` : "" };
+  try {
+    const r = await fetch("/api/natal", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    render(d);
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+
+function render(d) {
+  const out = document.getElementById("out");
+  const find = b => (d.positions || []).find(p => p.body === b) || {};
+  const sun = find("Sun").sign, moon = find("Moon").sign, rising = d.rising_sign;
+  const box = (label, sign) => sign
+    ? `<div><span class="tg">${SIGN_GLYPH[sign] || ""}</span><b>${esc(sign)}</b><span>${label}</span></div>`
+    : `<div><span class="tg">·</span><b>—</b><span>${label}</span></div>`;
+  const row = (glyph, head, text) => text ? `
+    <div class="place"><div class="place-glyph">${glyph}</div>
+      <div><div class="place-head">${head}</div><div class="place-mean">${esc(text)}</div></div></div>` : "";
+  const moonNote = d.timed ? "" : `<p class="hint" style="margin-top:10px">Computed without a birth time. The Moon usually holds one sign all day, but on some days she changes signs partway through: an exact time makes her certain, and it is the only way to compute your rising sign.</p>`;
+  out.innerHTML = `
+    <div class="glance">
+      <h2>Your big 3</h2>
+      <div class="triad">
+        ${box("Rising", rising)}${box("Sun", sun)}${box("Moon", moon)}
+      </div>
+    </div>
+    <div class="card">
+      <div class="places">
+        ${rising ? row(SIGN_GLYPH[rising], `${esc(rising)} rising · how you arrive`, RISING[rising]) :
+          row("☗", "Rising sign · needs a birth time", "The Ascendant changes sign about every two hours, so it cannot be computed without your birth time. Add the time above (birth certificates usually have it) and we will find the door you meet the world through.")}
+        ${row(SIGN_GLYPH[sun], `${esc(sun)} Sun · what you are becoming`, SUN[sun])}
+        ${row(SIGN_GLYPH[moon], `${esc(moon)} Moon · what settles you`, MOON[moon])}
+      </div>
+      ${moonNote}
+      <p class="hint" style="margin-top:10px">Want the whole picture these three open onto? <a href="/natal-chart" style="color:var(--gold)">Cast your full natal chart</a>: every planet, aspect, and pattern, free.</p>
+    </div>`;
+  out.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+</script>
+</body>
+</html>
