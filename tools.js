@@ -38,7 +38,7 @@ window.TR = (function () {
         <a href="/" aria-label="The Twelve Rooms home">${MEDALLION}</a>
         <div class="wordmark"><a href="/">THE TWELVE ROOMS</a></div>
         <div class="rule"><span class="dot"></span></div>
-        <div class="tagline">A lifetime of becoming, written in the stars.</div>
+        <div class="tagline">The whole sky, written for you.</div>
         <div class="productline">Natal Deep-Dives · Year-Ahead Readings · Chart Art</div>
         <nav>${nav}</nav>
       </div>
@@ -51,7 +51,7 @@ window.TR = (function () {
   }
 
   const FOOTER = `<footer class="site">
-    <span class="seal">The seed is in the chart. The becoming is yours.</span>
+    <span class="seal">A map of the life you were born to.</span>
     <div>Positions computed with the Swiss Ephemeris, whole-sign houses.</div>
     <div class="privacy">Your birth details are computed in memory and never stored, logged, or shared. No cookies, no analytics.</div>
     <div class="privacy">Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>. Brand and readings © The Twelve Rooms.</div>
