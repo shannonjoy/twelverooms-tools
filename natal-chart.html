@@ -7,6 +7,7 @@
 <meta name="description" content="Cast a free, precise natal chart: a clean chart wheel, exact planetary positions, tight aspects, and chart patterns, computed with the Swiss Ephemeris using whole-sign houses. Your birth data is never stored.">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
+<script src="/interpret.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is a natal chart?","acceptedAnswer":{"@type":"Answer","text":"A natal chart is the sky at the exact moment and place you were born, drawn as a wheel. It maps where every planet sat by sign and house. It is a map of placements to read and grow into, not a fortune."}},
@@ -91,19 +92,95 @@ f.addEventListener("submit", async e => {
     const r = await fetch("/api/natal", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
-    const rows = d.positions.map(p => `<tr><td>${esc(p.body)}</td><td>${esc(p.position)}${p.retrograde ? " Rx" : ""}</td><td>${p.house ?? ""}</td></tr>`).join("");
-    const asps = d.tight_aspects.map(a => `<li>${esc(a.a)} ${esc(a.aspect)} ${esc(a.b)} (orb ${a.orb}°)</li>`).join("");
-    out.innerHTML = `
-      <div class="card">${d.wheel_svg}</div>
-      <div class="card">
-        ${d.rising ? `<p><strong>Rising</strong> ${esc(d.rising)} · <strong>MC</strong> ${esc(d.mc)} · ${esc(d.sect)} chart</p>` : `<p class="hint">Untimed chart: no rising sign or houses.</p>`}
-        <table><tr><th>Body</th><th>Position</th><th>House</th></tr>${rows}</table>
-      </div>
-      <div class="card"><strong>Tightest aspects</strong><ul class="facts">${asps}</ul></div>`;
+    renderChart(d);
   } catch (err) {
     out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
   }
 });
+
+const GLYPH = { Sun:"☉", Moon:"☽", Mercury:"☿", Venus:"♀", Mars:"♂", Jupiter:"♃",
+  Saturn:"♄", Uranus:"♅", Neptune:"♆", Pluto:"♇", "North Node":"☊", "South Node":"☋", Chiron:"⚷" };
+const CORE = ["Sun","Moon","Mercury","Venus","Mars"];
+
+function signOf(pos) { return (pos.sign) || (pos.position || "").split(" ").pop(); }
+
+function renderChart(d) {
+  const out = document.getElementById("out");
+  const bySign = {};
+  d.positions.forEach(p => bySign[p.body] = signOf(p));
+  const sun = bySign["Sun"], moon = bySign["Moon"], rising = d.rising_sign;
+
+  // 1. Chart at a glance
+  let glance = "";
+  if (sun && moon) {
+    glance = `<div class="glance">
+      <h2>Your chart at a glance</h2>
+      <p>${TRI.bigThree(sun, moon, rising)}</p>
+      <div class="triad">
+        <div><span class="tg">${GLYPH.Sun}</span><b>${esc(sun)}</b><span>Sun</span></div>
+        <div><span class="tg">${GLYPH.Moon}</span><b>${esc(moon)}</b><span>Moon</span></div>
+        ${rising ? `<div><span class="tg">↑</span><b>${esc(rising)}</b><span>Rising</span></div>` : ""}
+      </div>
+    </div>`;
+  }
+
+  // 2. Wheel
+  const wheel = `<div class="card"><div class="wheel-hint">Your chart wheel, drawn to the exact degree. Every symbol below is explained in plain language.</div>${d.wheel_svg}</div>`;
+
+  // 3. Placements, each explained
+  const order = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","North Node","Chiron"];
+  const placeCards = order.filter(b => d.positions.some(p => p.body === b)).map(b => {
+    const p = d.positions.find(x => x.body === b);
+    const meaning = TRI.el(b, signOf(p), p.house);
+    if (!meaning) return "";
+    return `<div class="place">
+      <div class="place-glyph">${GLYPH[b] || ""}</div>
+      <div class="place-body">
+        <div class="place-head">${esc(b)} in ${esc(signOf(p))}${p.house ? ` · House ${p.house}` : ""}${p.retrograde && b!=="North Node" ? ` · retrograde` : ""}</div>
+        <div class="place-mean">${esc(meaning)}</div>
+      </div>
+    </div>`;
+  }).join("");
+  const placements = `<div class="card"><h2>What each part of you means</h2><div class="places">${placeCards}</div></div>`;
+
+  // 4. Aspects split into flow / grow
+  const aspects = d.tight_aspects.map(a => {
+    const info = TRI.aspect(a.a, a.aspect, a.b);
+    return info ? { ...info, orb: a.orb } : null;
+  }).filter(Boolean);
+  const flow = aspects.filter(a => a.flow === "flow" || a.flow === "blend");
+  const grow = aspects.filter(a => a.flow === "grow");
+  const aspCol = (title, sub, list) => list.length ? `
+    <div class="asp-col">
+      <h3>${title}</h3><p class="asp-sub">${sub}</p>
+      ${list.map(a => `<div class="asp-item"><div class="asp-label">${esc(a.label)}</div><div class="asp-plain">${a.plain}</div></div>`).join("")}
+    </div>` : "";
+  const aspectsBlock = (flow.length || grow.length) ? `<div class="card">
+    <h2>How your parts talk to each other</h2>
+    <div class="asp-grid">
+      ${aspCol("Where you flow", "Natural gifts, easy currents you can lean on.", flow)}
+      ${aspCol("Where you grow", "Friction that builds real strength once you work with it.", grow)}
+    </div></div>` : "";
+
+  // 5. Patterns
+  let patterns = "";
+  if (d.patterns && d.patterns.length) {
+    const items = d.patterns.map(p => {
+      let label, mean;
+      if (p.type === "stellium") { label = `Stellium in ${p.sign}`; mean = `Three or more planets crowded into ${p.sign} (${p.planets.join(", ")}). A concentrated force in one area of life, a place you cannot help but focus.`; }
+      else if (p.type === "t-square") { label = "T-square"; mean = `${p.opposition.join(" opposite ")}, both squaring ${p.apex}. A dynamic tension that drives you, with ${p.apex} as the release valve.`; }
+      else if (p.type === "grand trine") { label = `Grand trine in ${p.element || "one element"}`; mean = `${(p.planets||[]).join(", ")} in easy flow. A natural, effortless talent, so smooth it can be taken for granted.`; }
+      else { label = p.type; mean = (p.planets||[]).join(", "); }
+      return `<div class="asp-item"><div class="asp-label">${esc(label)}</div><div class="asp-plain">${esc(mean)}</div></div>`;
+    }).join("");
+    patterns = `<div class="card"><h2>The big shapes in your chart</h2>${items}</div>`;
+  }
+
+  const untimed = !d.timed ? `<div class="disclaimer">This is an untimed chart, so it shows your planets in their signs but not your rising sign or houses (those need an exact birth time). Everything below is still true; the house layer is simply missing.</div>` : "";
+
+  out.innerHTML = untimed + glance + wheel + placements + aspectsBlock + patterns;
+  out.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 </script>
 </body>
 </html>

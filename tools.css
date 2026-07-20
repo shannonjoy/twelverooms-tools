@@ -107,6 +107,41 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 .toolgrid h2 { font-size: 17px; margin-bottom: 5px; }
 .toolgrid p { font-size: 13px; color: var(--soft); }
 
+/* ---- 10x result UX: glance, placements, aspects ---- */
+.glance { background: radial-gradient(130% 150% at 50% 0%, var(--midnight-1), var(--midnight-2));
+  color: var(--cream); border: 1px solid rgba(201,165,92,0.4); border-radius: 16px;
+  padding: 24px 22px; margin-bottom: 16px; }
+.glance h2 { font-family: var(--serif); color: var(--gold-hi); font-size: 15px; letter-spacing: 0.08em;
+  text-transform: uppercase; margin: 0 0 10px; }
+.glance p { font-size: 16px; line-height: 1.6; color: #e8ebf4; }
+.glance strong { color: var(--gold-hi); font-weight: 600; }
+.triad { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+.triad div { flex: 1; min-width: 92px; text-align: center; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,165,92,0.25); border-radius: 12px; padding: 12px 8px; }
+.triad .tg { display: block; font-size: 24px; color: var(--gold); }
+.triad b { display: block; font-family: var(--serif); font-size: 17px; color: var(--cream); margin: 3px 0 1px; }
+.triad span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9aa5c2; }
+
+.wheel-hint { font-size: 13px; color: var(--soft); text-align: center; margin-bottom: 10px; }
+.moon-mood { font-size: 15px; line-height: 1.55; color: #33384a; margin: 8px 0 4px; padding: 12px 14px;
+  background: var(--wash); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; }
+
+.places { display: flex; flex-direction: column; gap: 2px; }
+.place { display: flex; gap: 14px; padding: 13px 4px; border-bottom: 1px solid var(--cream); }
+.place:last-child { border-bottom: 0; }
+.place-glyph { flex: 0 0 34px; height: 34px; border-radius: 50%; background: var(--wash-gold, #f4eee1);
+  display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--gold); }
+.place-head { font-family: var(--serif); font-size: 15.5px; color: var(--navy); margin-bottom: 3px; }
+.place-mean { font-size: 14px; line-height: 1.5; color: #33384a; }
+
+.asp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 620px) { .asp-grid { grid-template-columns: 1fr; } }
+.asp-col h3 { font-family: var(--serif); font-weight: 400; font-size: 17px; color: var(--navy); margin: 0 0 2px; }
+.asp-sub { font-size: 12.5px; color: var(--soft); margin: 0 0 12px; }
+.asp-item { padding: 10px 0; border-top: 1px solid var(--cream); }
+.asp-label { font-size: 12px; letter-spacing: 0.03em; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+.asp-plain { font-size: 13.5px; line-height: 1.5; color: #33384a; }
+
 /* prominent disclaimer notice */
 .disclaimer { border: 1px solid #d9c9a3; background: #fbf6ea; border-radius: 12px;
   padding: 14px 16px; margin: 6px 0 18px; font-size: 13.5px; line-height: 1.5; color: #5a4e33; }

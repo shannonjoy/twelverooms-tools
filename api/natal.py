@@ -26,18 +26,20 @@ class handler(BaseHTTPRequestHandler):
                 if e is None:
                     continue
                 positions.append({"body": p, "position": e["pretty"],
+                                  "sign": e.get("sign"), "degree": e.get("degree"),
                                   "house": e.get("house"),
                                   "retrograde": e.get("retrograde", False)})
             out = {
                 "wheel_svg": engines.gen_wheel.build(fs),
                 "timed": natal["timed"],
                 "rising": natal["asc"]["pretty"] if natal.get("asc") else None,
+                "rising_sign": natal["asc"]["sign"] if natal.get("asc") else None,
                 "mc": natal["mc"]["pretty"] if natal.get("mc") else None,
                 "sect": natal["sect"]["sect"] if natal.get("sect") else None,
                 "positions": positions,
                 "tight_aspects": [
                     {"a": a["a"], "b": a["b"], "aspect": a["aspect"], "orb": a["orb"]}
-                    for a in natal["aspects"] if a["tight"]][:12],
+                    for a in natal["aspects"] if a["tight"]][:14],
                 "patterns": natal["patterns"],
                 "method": "Swiss Ephemeris (Moshier), whole-sign houses",
             }

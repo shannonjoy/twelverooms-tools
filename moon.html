@@ -7,6 +7,7 @@
 <meta name="description" content="The Moon's sign, phase, and void-of-course status right now, computed live with the Swiss Ephemeris. See her next ingress and next exact aspect, in your timezone.">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
+<script src="/interpret.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What sign is the Moon in today?","acceptedAnswer":{"@type":"Answer","text":"The Moon changes sign every two to three days, touring all twelve signs in about a month. The reading at the top of this page shows her sign, degree, and phase right now, computed live with the Swiss Ephemeris in your own timezone."}},
@@ -53,9 +54,11 @@
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Chicago";
 fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(r => r.json()).then(d => {
   const esc = TR.esc;
+  const mood = (window.TRI && d.sign) ? TRI.moonMood(d.sign, d.phase) : "";
   document.getElementById("out").innerHTML = d.error ? `<div class="error">${esc(d.error)}</div>` : `
     <div class="big">☽ ${esc(d.moon)}</div>
     <p><strong>${esc(d.phase)}</strong>${d.void_of_course ? ` · <strong style="color:#9c4460">void-of-course until ${esc(d.voc_until)}</strong>` : " · not void-of-course"}</p>
+    ${mood ? `<p class="moon-mood">${esc(mood)}</p>` : ""}
     <ul class="facts">
       ${d.next_ingress ? `<li>Enters ${esc(d.next_ingress.sign)}: ${esc(d.next_ingress.at)}</li>` : ""}
       ${d.last_aspect ? `<li>Last exact aspect: ${esc(d.last_aspect.what)}, ${esc(d.last_aspect.at)}</li>` : ""}

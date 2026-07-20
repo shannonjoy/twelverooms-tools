@@ -7,6 +7,7 @@
 <meta name="description" content="A free synastry compatibility grid: exact cross-aspects between two birth charts with orbs, house overlays, and harmony vs friction counts, computed with the Swiss Ephemeris. Nothing stored.">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
+<script src="/interpret.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is synastry?","acceptedAnswer":{"@type":"Answer","text":"Synastry lays two birth charts over each other and reads the angles between them: every planet of one against every planet of the other. It shows where two people flow together and where they do their work, in real degrees rather than sun-sign generalities."}},
@@ -97,12 +98,21 @@ f.addEventListener("submit", async e => {
       body: JSON.stringify({ a: person("a","an","ad","at"), b: person("b","bn","bd","bt") }) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
-    const asps = d.aspects.map(x => `<li>${esc(x.a)} ${esc(x.aspect)} ${esc(x.b)} (orb ${x.orb}°) · ${esc(x.harmony)}</li>`).join("");
+    const aName = esc(d.a.name), bName = esc(d.b.name);
+    const asps = d.aspects.map(x => {
+      const info = window.TRI ? TRI.aspect(x.a, x.aspect, x.b) : null;
+      const plain = info ? info.plain
+        .replace(/^Your /, `${aName}'s `)
+        .replace(/ your /, ` ${bName}'s `) : "";
+      const tone = x.harmony === "friction" ? "rust" : "";
+      return `<div class="asp-item"><div class="asp-label">${esc(x.a)} ${esc(x.aspect)} ${esc(x.b)} (orb ${x.orb}°) <span class="tag ${tone}">${esc(x.harmony)}</span></div>${plain ? `<div class="asp-plain">${esc(plain)}</div>` : ""}</div>`;
+    }).join("");
     out.innerHTML = `
-      <div class="card"><p><strong>${d.counts.harmonious}</strong> harmonious · <strong>${d.counts.friction}</strong> friction · <strong>${d.counts.conjunction}</strong> conjunctions</p>
+      <div class="card"><p><strong>${d.counts.harmonious}</strong> flowing · <strong>${d.counts.friction}</strong> friction · <strong>${d.counts.conjunction}</strong> fused</p>
+      <p class="hint">Flowing contacts are where you move together without trying. Friction is where the relationship does its growing, not where it fails.</p>
       ${(d.notes || []).map(n => `<p class="hint">${esc(n)}</p>`).join("")}</div>
-      <div class="card">${d.grid_svg}</div>
-      <div class="card"><strong>Tightest contacts</strong><ul class="facts">${asps}</ul></div>`;
+      <div class="card svg-fit">${d.grid_svg}</div>
+      <div class="card"><h2 style="margin-top:0">What connects you, in plain terms</h2>${asps}</div>`;
   } catch (err) {
     out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
   }
