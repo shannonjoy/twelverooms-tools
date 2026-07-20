@@ -27,6 +27,7 @@ window.TR = (function () {
   const NAV = [
     ["/moon", "Moon now"], ["/natal-chart", "Natal chart"],
     ["/synastry", "Synastry"], ["/electional", "Timing"],
+    ["/almanac", "Almanac"],
   ];
 
   function mast(current) {

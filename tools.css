@@ -153,6 +153,15 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 .asp-label { font-size: 12px; letter-spacing: 0.03em; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
 .asp-plain { font-size: 13.5px; line-height: 1.5; color: #33384a; }
 
+/* almanac index cards */
+.almanac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 8px; }
+@media (max-width: 620px) { .almanac-grid { grid-template-columns: 1fr; } }
+.almanac-card { display: block; text-decoration: none; border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 18px; background: #fff; transition: border-color .15s, transform .15s; }
+.almanac-card:hover { border-color: var(--gold); transform: translateY(-1px); }
+.almanac-card h3 { font-family: var(--serif); font-weight: 400; font-size: 17px; color: var(--navy); margin: 0 0 5px; }
+.almanac-card p { font-size: 13.5px; line-height: 1.5; color: var(--soft); margin: 0; }
+
 /* prominent disclaimer notice */
 .disclaimer { border: 1px solid #d9c9a3; background: #fbf6ea; border-radius: 12px;
   padding: 14px 16px; margin: 6px 0 18px; font-size: 13.5px; line-height: 1.5; color: #5a4e33; }

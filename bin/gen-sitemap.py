@@ -15,8 +15,11 @@ STATIC = [
     ("/natal-chart", "monthly", "0.9"),
     ("/synastry", "monthly", "0.8"),
     ("/electional", "monthly", "0.8"),
+    ("/almanac", "weekly", "0.7"),
     ("/mercury-retrograde", "monthly", "0.7"),
     ("/best-wedding-dates-2027", "monthly", "0.8"),
+    ("/best-wedding-dates-2028", "monthly", "0.7"),
+    ("/best-days-to-start-a-business-2027", "monthly", "0.7"),
     ("/best-days-to-invest-2027", "monthly", "0.6"),
 ]
 
