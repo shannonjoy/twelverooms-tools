@@ -108,6 +108,11 @@ RECIPES = [
     _r("investment", "Investment / opening an account", "Work",
        ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Venus"], "waxing",
        angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+    # Private (studio-only, never in PUBLIC_KEYS): traditional financial-venture
+    # timing. Reflective astrology, NOT a market forecast or trading advice.
+    _r("financial_venture", "Financial venture / speculation", "Work",
+       ["Jupiter", "Venus", "Mercury"], ["Mars", "Saturn"], ["Mercury", "Jupiter"], "waxing",
+       angular=("Jupiter", "Venus"), retro=["Mercury"], avoid_w=-4),
     _r("publishing", "Publishing / book launch", "Work",
        ["Jupiter", "Mercury", "Sun"], ["Saturn", "Mars"], ["Mercury", "Jupiter", "Sun"], "waxing",
        angular=("Jupiter", "Sun"), retro=["Mercury"]),
