@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Sign Is the Moon in Right Now? Void-of-Course Moon Today — The Twelve Rooms</title>
+<meta name="description" content="The Moon's sign, phase, and void-of-course status right now, computed live with the Swiss Ephemeris. See her next ingress and next exact aspect, in your timezone.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>The Moon right now</h1>
+  <p class="lede">The Moon is the fastest hand on the sky's clock: she changes sign every two to three days and goes void-of-course (making no more exact aspects before leaving her sign) in between. Void Moon is classically a poor time to launch or sign anything.</p>
+  <div class="card" id="out"><p class="hint">Reading the sky…</p></div>
+  <div class="cta">
+    <h2>What is this Moon doing to your chart?</h2>
+    <p>The Twelve Rooms writes personal, human-written readings from your exact birth chart: the seed, and the seasons calling it up.</p>
+    <a href="https://thetwelverooms.etsy.com" rel="noopener">Visit The Twelve Rooms on Etsy</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Chicago";
+fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(r => r.json()).then(d => {
+  const esc = TR.esc;
+  document.getElementById("out").innerHTML = d.error ? `<div class="error">${esc(d.error)}</div>` : `
+    <div class="big">☽ ${esc(d.moon)}</div>
+    <p><strong>${esc(d.phase)}</strong>${d.void_of_course ? ` · <strong style="color:#9c4460">void-of-course until ${esc(d.voc_until)}</strong>` : " · not void-of-course"}</p>
+    <ul class="facts">
+      ${d.next_ingress ? `<li>Enters ${esc(d.next_ingress.sign)}: ${esc(d.next_ingress.at)}</li>` : ""}
+      ${d.last_aspect ? `<li>Last exact aspect: ${esc(d.last_aspect.what)}, ${esc(d.last_aspect.at)}</li>` : ""}
+      ${d.next_aspect ? `<li>Next exact aspect: ${esc(d.next_aspect.what)}, ${esc(d.next_aspect.at)}</li>` : ""}
+      <li class="hint">Times shown in ${esc(d.tz)}</li>
+    </ul>`;
+}).catch(() => document.getElementById("out").innerHTML = `<div class="error">Could not reach the ephemeris. Try again in a moment.</div>`);
+</script>
+</body>
+</html>

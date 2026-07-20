@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Synastry Calculator: Compatibility Aspect Grid — The Twelve Rooms</title>
+<meta name="description" content="A free synastry compatibility grid: exact cross-aspects between two birth charts with orbs, house overlays, and harmony vs friction counts, computed with the Swiss Ephemeris. Nothing stored.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Synastry grid</h1>
+  <p class="lede">Synastry lays two charts over each other: every planet of one against every planet of the other. Trines and sextiles are where you flow; squares and oppositions are where the relationship does its work. Real synastry runs on exact degrees, not sun signs.</p>
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div>
+        <h2>Person A</h2>
+        <label>Name</label><input name="an" placeholder="A">
+        <label>Birth date</label><input name="ad" type="date" required>
+        <label>Time (optional)</label><input name="at" type="time">
+        <div class="loc"><label>Birthplace</label>
+          <input id="acity" placeholder="Type a city" autocomplete="off"><div id="ares" class="typeahead"></div></div>
+        <div class="picked" id="apicked"></div>
+      </div>
+      <div>
+        <h2>Person B</h2>
+        <label>Name</label><input name="bn" placeholder="B">
+        <label>Birth date</label><input name="bd" type="date" required>
+        <label>Time (optional)</label><input name="bt" type="time">
+        <div class="loc"><label>Birthplace</label>
+          <input id="bcity" placeholder="Type a city" autocomplete="off"><div id="bres" class="typeahead"></div></div>
+        <div class="picked" id="bpicked"></div>
+      </div>
+    </div>
+    <button class="go" type="submit">Compare charts</button>
+  </form>
+  <div id="out" class="result"></div>
+  <div class="cta">
+    <h2>The grid shows where. A reading shows how.</h2>
+    <p>The Twelve Rooms writes human readings of what these exact contacts feel like from inside the relationship.</p>
+    <a href="https://thetwelverooms.etsy.com" rel="noopener">Visit The Twelve Rooms on Etsy</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+const P = { a: null, b: null };
+window.addEventListener("DOMContentLoaded", () => {
+  const wire = (side, cityId, resId, pickedId) => TR.attachCity(
+    document.getElementById(cityId), document.getElementById(resId), r => {
+      P[side] = r;
+      document.getElementById(pickedId).innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
+    });
+  wire("a", "acity", "ares", "apicked");
+  wire("b", "bcity", "bres", "bpicked");
+});
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!P.a || !P.b) { out.innerHTML = `<div class="error">Pick a birthplace for both people from the city list.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Comparing charts…</p></div>`;
+  const person = (side, n, d, t) => ({ name: f[n].value || null, date: f[d].value, time: f[t].value || null,
+    lat: P[side].lat, lon: P[side].lon, tz: P[side].tz });
+  try {
+    const r = await fetch("/api/synastry", { method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ a: person("a","an","ad","at"), b: person("b","bn","bd","bt") }) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    const asps = d.aspects.map(x => `<li>${esc(x.a)} ${esc(x.aspect)} ${esc(x.b)} (orb ${x.orb}°) · ${esc(x.harmony)}</li>`).join("");
+    out.innerHTML = `
+      <div class="card"><p><strong>${d.counts.harmonious}</strong> harmonious · <strong>${d.counts.friction}</strong> friction · <strong>${d.counts.conjunction}</strong> conjunctions</p>
+      ${(d.notes || []).map(n => `<p class="hint">${esc(n)}</p>`).join("")}</div>
+      <div class="card">${d.grid_svg}</div>
+      <div class="card"><strong>Tightest contacts</strong><ul class="facts">${asps}</ul></div>`;
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+</script>
+</body>
+</html>

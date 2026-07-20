@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electional Astrology Calculator: Find the Best Time to Start — The Twelve Rooms</title>
+<meta name="description" content="A free electional astrology timing finder: scan the coming weeks for the best windows to launch, sign, or have the conversation. Void-of-course Moon excluded, applying aspects scored, computed with the Swiss Ephemeris.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Pick your moment</h1>
+  <p class="lede">Electional astrology chooses the birth chart of a beginning. This tool scans a date range: it drops void-of-course Moon, scores the Moon's applying aspects, and avoids the hard contacts, then hands you the best windows with receipts. Most apps don't do this at all.</p>
+  <form class="card" id="f" autocomplete="off">
+    <label>What are you starting?</label>
+    <select name="intention">
+      <option value="launch">Launching something</option>
+      <option value="contract">Signing a contract</option>
+      <option value="conversation">A difficult conversation</option>
+    </select>
+    <div class="grid2">
+      <div><label>From</label><input name="start" type="date" required></div>
+      <div><label>To (max 21 days)</label><input name="end" type="date" required></div>
+    </div>
+    <div class="loc"><label>Where</label>
+      <input id="city" placeholder="Type a city, e.g. Jefferson City" autocomplete="off"><div id="cityres" class="typeahead"></div></div>
+    <div class="picked" id="picked"></div>
+    <button class="go" type="submit">Find my windows</button>
+  </form>
+  <div id="out" class="result"></div>
+  <div class="cta">
+    <h2>Choosing a wedding date? A launch that matters?</h2>
+    <p>The Twelve Rooms does full electional work against your own natal chart, not just the sky.</p>
+    <a href="https://thetwelverooms.etsy.com" rel="noopener">Visit The Twelve Rooms on Etsy</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null;
+f.start.value = new Date().toISOString().slice(0,10);
+f.end.value = new Date(Date.now() + 13 * 864e5).toISOString().slice(0,10);
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
+  });
+});
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!PLACE) { out.innerHTML = `<div class="error">Pick a location from the city list first.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Scanning the range…</p></div>`;
+  try {
+    const r = await fetch("/api/windows", { method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ intention: f.intention.value, start: f.start.value, end: f.end.value,
+        lat: PLACE.lat, lon: PLACE.lon, tz: PLACE.tz }) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    out.innerHTML = d.windows.map(w => `
+      <div class="card">
+        <p><strong>${esc(w.start_pretty)} → ${esc(w.end_pretty)}</strong> · score ${w.peak_score} · Moon ${esc(w.receipts.moon_sign)}, ${esc(w.receipts.moon_phase)}</p>
+        <ul class="facts">${(w.receipts.peak_notes || []).map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+        <p class="hint">Best moment: around ${esc(w.peak_at)}</p>
+      </div>`).join("") || `<div class="card"><p>No clean windows in that range. Widen the dates.</p></div>`;
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+</script>
+</body>
+</html>

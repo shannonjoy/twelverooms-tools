@@ -1,0 +1,112 @@
+/* The Twelve Rooms — tools. Brand: gold + navy, vintage-feminine, Apple-minimal.
+   Never dark-mode-dark, never beige, never woo. Palette locked Jul 17 2026. */
+:root {
+  --midnight-1: #1f2b4e; --midnight-2: #101830;
+  --navy: #26355e;          /* type on light */
+  --gold: #a8863d;          /* flat gold on light */
+  --gold-hi: #e6cf96;       /* highlight gold */
+  --gold-soft: #c9a55c;
+  --ink: #1d1d1f; --dove: #f2f2f5; --cream: #fbfaf7;
+  --berry: #9c4460;         /* micro-accent only */
+  --line: #e4ddcf;          /* warm hairline on cream */
+  --soft: #6f7690;
+  --serif: "Didot", "Bodoni 72", "Hoefler Text", Georgia, serif;
+  --sans: Optima, "Helvetica Neue", -apple-system, Arial, sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { font-family: var(--body); color: var(--ink); background: var(--cream); line-height: 1.55; }
+
+/* ---- masthead (navy field, gold medallion + wordmark) ---- */
+.masthead {
+  background: radial-gradient(120% 140% at 50% 30%, var(--midnight-1), var(--midnight-2));
+  color: var(--cream); position: relative; overflow: hidden;
+  border-bottom: 1px solid rgba(201,165,92,0.5);
+}
+.masthead-inner { max-width: 860px; margin: 0 auto; padding: 22px 16px 18px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2; }
+.medallion { width: 62px; height: 62px; display: block; }
+.wordmark { font-family: var(--serif); font-size: clamp(21px, 5vw, 30px); letter-spacing: 0.16em;
+  color: #f3ecdd; margin-top: 8px; font-weight: 400; }
+.wordmark a { color: inherit; text-decoration: none; }
+.rule { display: flex; align-items: center; gap: 9px; margin: 9px 0 6px; width: min(360px, 80%); }
+.rule::before, .rule::after { content: ""; height: 1px; flex: 1;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent); }
+.rule .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-soft); }
+.tagline { font-family: var(--serif); font-style: italic; font-size: clamp(13px, 3.4vw, 17px);
+  color: var(--gold); }
+.productline { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.28em;
+  color: #9aa5c2; margin-top: 8px; text-transform: uppercase; }
+.masthead nav { margin-top: 15px; display: flex; gap: 6px 18px; flex-wrap: wrap; justify-content: center; }
+.masthead nav a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #b9c2da; text-decoration: none; padding: 4px 2px; }
+.masthead nav a:hover, .masthead nav a[aria-current] { color: var(--gold-hi); }
+.spark { position: absolute; fill: var(--gold-soft); pointer-events: none; z-index: 1; }
+
+/* ---- body ---- */
+.wrap { max-width: 720px; margin: 0 auto; padding: 30px 16px 64px; }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 6vw, 30px); color: var(--navy); margin-bottom: 8px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: 19px; color: var(--navy); margin: 6px 0 8px; }
+.lede { color: var(--soft); font-size: 15px; margin-bottom: 22px; max-width: 58ch; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+  margin-bottom: 16px; box-shadow: 0 1px 2px rgba(38,53,94,0.04); }
+label { display: block; font-family: var(--sans); font-size: 12px; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--soft); margin: 12px 0 3px; }
+input, select { width: 100%; padding: 10px 12px; min-height: 44px; font: 400 15px var(--body);
+  color: var(--ink); border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+input:focus, select:focus { outline: 2px solid var(--gold); outline-offset: 0; border-color: transparent; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+@media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+button.go { margin-top: 18px; background: var(--navy); color: var(--cream); border: 0; padding: 12px 26px;
+  border-radius: 10px; min-height: 46px; font: 600 15px var(--body); letter-spacing: 0.02em; cursor: pointer; }
+button.go:hover { background: #2f4173; }
+button.go:disabled { opacity: 0.5; }
+.hint { font-size: 12.5px; color: var(--soft); margin-top: 4px; }
+details { margin-top: 10px; }
+summary { cursor: pointer; font-size: 12.5px; color: var(--gold); min-height: 30px; }
+.picked { font-size: 13px; color: var(--navy); margin-top: 8px; }
+.picked b { color: var(--gold); }
+
+/* typeahead */
+.loc { position: relative; }
+.typeahead { position: absolute; z-index: 30; left: 0; right: 0; background: #fff;
+  border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 28px rgba(38,53,94,0.12);
+  overflow: hidden; display: none; }
+.typeahead.open { display: block; }
+.typeahead button { display: block; width: 100%; text-align: left; border: 0; background: none;
+  padding: 11px 14px; font: 400 14px var(--body); cursor: pointer; min-height: 44px; color: var(--ink); }
+.typeahead button:hover { background: var(--cream); }
+.typeahead .sub { color: var(--soft); font-size: 12px; }
+
+/* results */
+.result svg { width: 100%; height: auto; }
+.big { font-family: var(--serif); font-size: 30px; color: var(--navy); margin: 6px 0; }
+.facts { font-size: 14.5px; margin: 8px 0 8px 18px; }
+.facts li { margin: 5px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--cream); }
+th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--soft); }
+.error { background: #fbf1f3; border: 1px solid #e6c4cf; color: var(--berry); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+
+/* seed-to-season CTA (gold seal on navy) */
+.cta { background: radial-gradient(120% 160% at 50% 0%, var(--midnight-1), var(--midnight-2));
+  color: var(--cream); border-radius: 16px; padding: 24px 22px; margin: 26px 0 8px; text-align: center;
+  border: 1px solid rgba(201,165,92,0.4); }
+.cta h2 { font-family: var(--serif); color: var(--gold-hi); font-size: 19px; margin-bottom: 8px; }
+.cta p { font-size: 14px; color: #c4cbe0; margin-bottom: 14px; max-width: 46ch; margin-left: auto; margin-right: auto; }
+.cta a { display: inline-block; text-decoration: none; padding: 11px 22px; border-radius: 10px;
+  font: 600 14px var(--body); letter-spacing: 0.02em; color: var(--midnight-2);
+  background: linear-gradient(135deg, #e3c98b, #b18b45); }
+
+/* tool index cards */
+.toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.toolgrid a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px; text-decoration: none; color: var(--ink); transition: border-color 0.15s; }
+.toolgrid a:hover { border-color: var(--gold); }
+.toolgrid h2 { font-size: 17px; margin-bottom: 5px; }
+.toolgrid p { font-size: 13px; color: var(--soft); }
+
+footer.site { margin-top: 34px; font-size: 12.5px; color: var(--soft); border-top: 1px solid var(--line); padding-top: 16px; text-align: center; }
+footer.site .seal { color: var(--gold); font-family: var(--serif); font-style: italic; }
+footer.site .privacy { margin-top: 8px; }

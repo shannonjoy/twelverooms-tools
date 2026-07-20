@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Natal Chart Calculator with Whole-Sign Houses — The Twelve Rooms</title>
+<meta name="description" content="Cast a free, precise natal chart: a clean chart wheel, exact planetary positions, tight aspects, and chart patterns, computed with the Swiss Ephemeris using whole-sign houses. Your birth data is never stored.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Free natal chart</h1>
+  <p class="lede">Enter your birth details and get a precise chart wheel with exact degrees, whole-sign houses, tight aspects, and patterns. Don't know your birth time? Leave it blank: you'll get an honest untimed chart (no rising sign or houses) instead of a guessed one.</p>
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (optional)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Jefferson City" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="38.5767"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-92.1735"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+    <button class="go" type="submit">Cast my chart</button>
+  </form>
+  <div id="out" class="result"></div>
+  <div class="cta">
+    <h2>The wheel is free. The reading is the craft.</h2>
+    <p>The Twelve Rooms writes deep, human-written natal readings from this exact math: every claim hangs on a degree you can see. The whole chart, read together.</p>
+    <a href="https://thetwelverooms.etsy.com" rel="noopener">Get a full reading on Etsy</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null;
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  });
+});
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!f.tz.value || !f.lat.value) { out.innerHTML = `<div class="error">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Computing the sky…</p></div>`;
+  const body = { date: f.date.value, time: f.time.value || null, tz: f.tz.value.trim(),
+                 lat: f.lat.value, lon: f.lon.value, place: PLACE ? `${PLACE.name}, ${PLACE.admin1}` : "" };
+  try {
+    const r = await fetch("/api/natal", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    const rows = d.positions.map(p => `<tr><td>${esc(p.body)}</td><td>${esc(p.position)}${p.retrograde ? " Rx" : ""}</td><td>${p.house ?? ""}</td></tr>`).join("");
+    const asps = d.tight_aspects.map(a => `<li>${esc(a.a)} ${esc(a.aspect)} ${esc(a.b)} (orb ${a.orb}°)</li>`).join("");
+    out.innerHTML = `
+      <div class="card">${d.wheel_svg}</div>
+      <div class="card">
+        ${d.rising ? `<p><strong>Rising</strong> ${esc(d.rising)} · <strong>MC</strong> ${esc(d.mc)} · ${esc(d.sect)} chart</p>` : `<p class="hint">Untimed chart: no rising sign or houses.</p>`}
+        <table><tr><th>Body</th><th>Position</th><th>House</th></tr>${rows}</table>
+      </div>
+      <div class="card"><strong>Tightest aspects</strong><ul class="facts">${asps}</ul></div>`;
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+</script>
+</body>
+</html>
