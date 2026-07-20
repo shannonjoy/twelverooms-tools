@@ -10,6 +10,7 @@ boundary (VoC start, ingress, hour change) when one binds.
 
 User-agnostic: charts arrive as order dicts, location as lat/lon/tz.
 """
+import calendar
 import swisseph as swe
 from datetime import datetime, timedelta, timezone, date as date_cls
 from zoneinfo import ZoneInfo
@@ -571,3 +572,83 @@ def scan(criteria, get_chart=None):
                 {"from": v0.astimezone(tz).strftime("%a %b %-d %-I:%M %p"),
                  "to": v1.astimezone(tz).strftime("%a %b %-d %-I:%M %p")}
                 for v0, v1 in vocs if v1 > start_utc]}
+
+
+# ---------- annual "best dates of the year" ----------
+
+SIGN_THE = {"ASC": "Ascendant", "MC": "Midheaven"}
+
+
+def explain(window):
+    """One-sentence rationale for a chosen window, built from its receipts.
+    Note strings come from scan() in known formats, so parsing is safe."""
+    r = window["receipts"]
+    asp = None
+    angles = []
+    hour = None
+    natal = []
+    for n in r.get("peak_notes", []):
+        if n.startswith("Moon applying (avoid)"):
+            continue
+        if n.startswith("Moon applying "):
+            body = n[len("Moon applying "):].split(", exact")[0].split()
+            if len(body) >= 2:
+                asp = f"a {body[0]} to {body[1]}"
+        elif n.endswith("hour"):
+            hour = n[:-5].strip()  # "Jupiter"
+        elif " on ASC" in n or " on MC" in n:
+            planet, _, rest = n.partition(" on ")
+            ang = rest.split(" (")[0]
+            angles.append(f"{planet} on the {SIGN_THE.get(ang, ang)}")
+        elif "natal" in n:
+            natal.append(n.split(" (")[0])
+    lead = f"The {r['moon_phase']} Moon in {r['moon_sign']}"
+    if asp:
+        sentence = f"{lead} applies to {asp}"
+    else:
+        sentence = f"{lead} holds clear of the hard aspects and is not void"
+    tail = []
+    tail += [f"with {a}" for a in angles]
+    if hour:
+        tail.append(f"in a {hour} hour")
+    tail += natal
+    if tail:
+        sentence += ", " + ", ".join(tail)
+    return sentence + "."
+
+
+def scan_year(recipe, location, hours=None, asof=None, months=12,
+              extra_soft=None, get_chart=None):
+    """Best window in each of the next `months` calendar months.
+    Returns [{month, ...window fields, why}] with None-window months flagged."""
+    asof = asof or date_cls.today()
+    out = []
+    y, m = asof.year, asof.month
+    for _ in range(months):
+        last = calendar.monthrange(y, m)[1]
+        start = f"{y:04d}-{m:02d}-01"
+        end = f"{y:04d}-{m:02d}-{last:02d}"
+        crit = {
+            "range": {"start": start, "end": end},
+            "location": location,
+            "hours": hours or {"earliest": "07:00", "latest": "21:00"},
+            "step_minutes": 15, "top_n": 1,
+            "hard": [dict(x) for x in recipe["hard"]],
+            "soft": [dict(x) for x in recipe["soft"]] + (extra_soft or []),
+        }
+        res = scan(crit, get_chart=get_chart)
+        label = datetime(y, m, 1).strftime("%B %Y")
+        if res["windows"]:
+            w = res["windows"][0]
+            w["month"] = label
+            w["why"] = explain(w)
+            out.append(w)
+        else:
+            out.append({"month": label, "none": True,
+                        "why": "No window this month clears the requirements; "
+                               "widen the hours or consider the neighboring months."})
+        m += 1
+        if m > 12:
+            m = 1
+            y += 1
+    return out
