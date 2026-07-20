@@ -24,10 +24,8 @@
   <p class="lede">Electional astrology chooses the birth chart of a beginning. This tool scans a date range: it drops void-of-course Moon, scores the Moon's applying aspects, and avoids the hard contacts, then hands you the best windows with receipts. Most apps don't do this at all.</p>
   <form class="card" id="f" autocomplete="off">
     <label>What are you starting?</label>
-    <select name="intention">
-      <option value="launch">Launching something</option>
-      <option value="contract">Signing a contract</option>
-      <option value="conversation">A difficult conversation</option>
+    <select name="intention" id="intention">
+      <option value="wedding">Wedding / marriage</option>
     </select>
     <div class="grid2">
       <div><label>From</label><input name="start" type="date" required></div>
@@ -76,6 +74,12 @@ window.addEventListener("DOMContentLoaded", () => {
     PLACE = r;
     document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
   });
+  fetch("/api/windows").then(r => r.json()).then(d => {
+    if (d.public && d.public.length) {
+      document.getElementById("intention").innerHTML = d.public.map(p =>
+        `<option value="${esc(p.key)}">${esc(p.label)}</option>`).join("");
+    }
+  }).catch(() => {});
 });
 f.addEventListener("submit", async e => {
   e.preventDefault();

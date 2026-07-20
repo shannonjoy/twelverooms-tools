@@ -31,6 +31,112 @@ DAY_RULER = {0: "Moon", 1: "Mars", 2: "Mercury", 3: "Jupiter", 4: "Venus",
 MAX_DAYS = 92
 APPLYING_HOURS = 13  # Moon orb ~6 deg at ~0.5 deg/h
 
+# ---- Election recipe library (single source of truth; see
+# ventures/astrology-storefront/electional-methodology.md for the doctrine).
+# Traditional scoring: Moon applies to the benefic of the matter, avoids
+# the malefic that spoils it, in a friendly hour with a benefic angular,
+# under the right light. moon_not_voc is prepended to every recipe.
+SOFT_ASP = ["trine", "sextile", "conjunction"]
+HARD_ASP = ["square", "opposition", "conjunction"]
+ANG = ["ASC", "MC"]
+
+
+def _r(key, label, category, applies, avoid, hours, phase,
+       angular=("Venus", "Jupiter"), retro=None, moon_in=None,
+       moon_avoid_signs=None, moon_bonus=None, avoid_asp=None,
+       apply_w=3, avoid_w=-3):
+    hard = [{"rule": "moon_not_voc"}]
+    if retro:
+        hard.append({"rule": "planet_not_retrograde", "planets": retro})
+    if moon_in:
+        hard.append({"rule": "moon_sign_in", "signs": moon_in})
+    if moon_avoid_signs:
+        hard.append({"rule": "moon_sign_avoid", "signs": moon_avoid_signs})
+    soft = [
+        {"rule": "moon_applying_aspect", "to": applies, "aspects": SOFT_ASP, "weight": apply_w},
+        {"rule": "moon_avoid_aspect", "to": avoid, "aspects": avoid_asp or HARD_ASP, "weight": avoid_w},
+        {"rule": "planetary_hour_ruler", "rulers": hours, "weight": 2},
+    ]
+    if angular:
+        soft.append({"rule": "benefic_on_angle", "planets": list(angular), "angles": ANG, "orb": 5, "weight": 2})
+    if phase == "waxing":
+        soft.append({"rule": "moon_waxing", "weight": 2})
+    elif phase == "waning":
+        soft.append({"rule": "moon_waning", "weight": 2})
+    if moon_bonus:
+        soft.append({"rule": "moon_sign_bonus", "signs": moon_bonus, "weight": 1})
+    return {"key": key, "label": label, "category": category, "hard": hard, "soft": soft}
+
+
+RECIPES = [
+    # Love, union, family
+    _r("wedding", "Wedding / marriage", "Love",
+       ["Venus", "Jupiter"], ["Mars", "Saturn"], ["Venus", "Jupiter"], "waxing",
+       retro=["Venus", "Mercury"], moon_bonus=["Taurus"], avoid_w=-4),
+    _r("engagement", "Engagement / proposal", "Love",
+       ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus"], "waxing",
+       angular=("Venus",), retro=["Venus"]),
+    _r("first_date", "First date / new relationship", "Love",
+       ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus"], "waxing",
+       angular=("Venus",), retro=["Venus"]),
+    _r("reconciliation", "Reconciliation / mending", "Love",
+       ["Venus", "Jupiter", "Mercury"], ["Mars", "Saturn"], ["Venus", "Mercury"], "waxing",
+       angular=("Venus",), avoid_w=-4),
+    _r("conception", "Trying to conceive", "Love",
+       ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus", "Jupiter"], "waxing",
+       moon_in=["Cancer", "Scorpio", "Pisces"]),
+    # Money, work, enterprise
+    _r("business", "Starting a business", "Work",
+       ["Jupiter", "Mercury", "Sun"], ["Saturn", "Mars"], ["Jupiter", "Mercury", "Sun"], "waxing",
+       angular=("Jupiter",), retro=["Mercury"]),
+    _r("contract", "Signing a contract", "Work",
+       ["Mercury", "Jupiter"], ["Mars", "Saturn"], ["Mercury", "Jupiter"], "waxing",
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+    _r("launch", "Product launch / going live", "Work",
+       ["Jupiter", "Sun"], ["Saturn", "Mars"], ["Sun", "Jupiter"], "waxing",
+       angular=("Sun", "Jupiter")),
+    _r("job", "Job interview / new job", "Work",
+       ["Sun", "Jupiter", "Mercury"], ["Saturn", "Mars"], ["Sun", "Jupiter", "Mercury"], "waxing",
+       angular=("Jupiter",), retro=["Mercury"]),
+    _r("raise", "Raise / salary negotiation", "Work",
+       ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Venus"], "waxing",
+       angular=("Jupiter",), avoid_w=-4),
+    _r("shop", "Opening a shop / restaurant", "Work",
+       ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus", "Jupiter"], "waxing",
+       retro=["Mercury"]),
+    _r("investment", "Investment / opening an account", "Work",
+       ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Venus"], "waxing",
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+    _r("publishing", "Publishing / book launch", "Work",
+       ["Jupiter", "Mercury", "Sun"], ["Saturn", "Mars"], ["Mercury", "Jupiter", "Sun"], "waxing",
+       angular=("Jupiter", "Sun"), retro=["Mercury"]),
+    # Home, movement, property
+    _r("home", "Buying / moving into a home", "Home",
+       ["Venus", "Jupiter"], ["Mars", "Saturn"], ["Venus", "Moon"], "waxing",
+       moon_bonus=["Taurus", "Leo", "Scorpio", "Aquarius"]),
+    _r("relocation", "Relocation / new city", "Home",
+       ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Moon"], "waxing",
+       moon_bonus=["Aries", "Cancer", "Libra", "Capricorn", "Gemini", "Virgo", "Sagittarius", "Pisces"]),
+    _r("car", "Buying a car / major purchase", "Home",
+       ["Venus", "Jupiter"], ["Mars", "Saturn"], ["Mercury", "Venus"], "waxing",
+       retro=["Mercury"], apply_w=2),
+    # Body, health, self
+    _r("surgery", "Surgery / operation", "Health",
+       ["Jupiter", "Venus"], ["Mars", "Saturn"], ["Sun", "Jupiter"], "waning",
+       angular=("Jupiter", "Venus"), avoid_w=-4, apply_w=2),
+    _r("diet", "Diet / breaking a habit", "Health",
+       ["Saturn", "Sun"], ["Jupiter", "Venus"], ["Saturn", "Sun"], "waning",
+       angular=None, apply_w=2, avoid_w=-1),
+    _r("haircut", "Haircut (grow)", "Health",
+       ["Venus", "Jupiter"], ["Mars", "Saturn"], ["Venus", "Moon"], "waxing",
+       angular=("Venus",), apply_w=2, avoid_w=-2),
+    # Conflict
+    _r("lawsuit", "Lawsuit / legal action", "Conflict",
+       ["Jupiter", "Sun"], ["Saturn", "Mars"], ["Jupiter", "Sun"], "waxing",
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+]
+RECIPES_BY_KEY = {r["key"]: r for r in RECIPES}
+
 jd_ut = engines.cs.jd_ut
 body_lonspeed = engines.cs.body_lonspeed
 signed_delta = engines.cs.signed_delta
@@ -284,6 +390,9 @@ def scan(criteria, get_chart=None):
             elif r == "moon_sign_in":
                 if moon_sign not in rule["signs"]:
                     return False, 0, []
+            elif r == "moon_sign_avoid":
+                if moon_sign in rule["signs"]:
+                    return False, 0, []
             elif r == "planet_not_retrograde":
                 flags = retro_by_day.get(day_iso, {})
                 if any(flags.get(p) for p in rule["planets"]):
@@ -344,6 +453,14 @@ def scan(criteria, get_chart=None):
                 if waxing:
                     score += w
                     notes.append("Moon waxing")
+            elif r == "moon_waning":
+                if not waxing:
+                    score += w
+                    notes.append("Moon waning")
+            elif r == "moon_sign_bonus":
+                if moon_sign in rule["signs"]:
+                    score += w
+                    notes.append(f"Moon in {moon_sign}")
             else:
                 raise ValueError(f"unknown soft rule {r}")
 
