@@ -6,5 +6,16 @@
       "includeFiles": "api/_*/**"
     }
   },
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.thetwelverooms.com" }],
+      "destination": "https://thetwelverooms.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/moon/:date", "destination": "/api/moon_day?date=:date" }
+  ]
 }

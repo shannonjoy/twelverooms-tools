@@ -25,6 +25,8 @@
   <p class="lede">The Moon is the fastest hand on the sky's clock: she changes sign every two to three days and goes void-of-course (making no more exact aspects before leaving her sign) in between. Void Moon is classically a poor time to launch or sign anything.</p>
   <div class="card" id="out"><p class="hint">Reading the sky…</p></div>
 
+  <div class="datebrowse" id="datebrowse"></div>
+
   <section class="prose">
     <h2>How to read the Moon's day</h2>
     <p>The Moon is the quick hand on the sky's clock. She moves about thirteen degrees a day and changes sign every two to three days, so where she sits is the emotional weather of the moment, the mood underneath the hours. Every timing tradition starts with her for exactly this reason: she is the fastest thing moving, and she touches everything.</p>
@@ -66,6 +68,20 @@ fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(r => r.json()).then(d => {
       <li class="hint">Times shown in ${esc(d.tz)}</li>
     </ul>`;
 }).catch(() => document.getElementById("out").innerHTML = `<div class="error">Could not reach the ephemeris. Try again in a moment.</div>`);
+
+// Browse the Moon by date (per-date pages are server-rendered and accurate forever)
+(function () {
+  const box = document.getElementById("datebrowse");
+  if (!box) return;
+  const iso = d => d.toISOString().slice(0, 10);
+  const label = d => d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  const today = new Date();
+  const days = [];
+  for (let i = 0; i <= 9; i++) { const dd = new Date(today); dd.setDate(today.getDate() + i); days.push(dd); }
+  box.innerHTML = `<h3>Browse the Moon by date</h3><div class="chips">` +
+    days.map((dd, i) => `<a href="/moon/${iso(dd)}">${i === 0 ? "Today" : label(dd)}</a>`).join("") +
+    `</div>`;
+})();
 </script>
 </body>
 </html>
