@@ -75,6 +75,7 @@
 const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 const f = document.getElementById("f");
 let PLACE = null;
+let CARD = null;
 window.addEventListener("DOMContentLoaded", () => {
   TR.rememberBirth({
     form: f, city: "city", results: "cityres",
@@ -128,7 +129,9 @@ function renderChart(d) {
   }
 
   // 2. Wheel
-  const wheel = `<div class="card"><div class="wheel-hint">Your chart wheel, drawn to the exact degree. Every symbol below is explained in plain language.</div>${d.wheel_svg}</div>`;
+  CARD = { wheel: d.wheel_svg, sun, moon, rising };
+  const wheel = `<div class="card"><div class="wheel-hint">Your chart wheel, drawn to the exact degree. Every symbol below is explained in plain language.</div>${d.wheel_svg}
+    <div class="dl-row"><button type="button" class="dl-card" onclick="downloadCard()">Download your chart card</button><span class="dl-note">A shareable image of your wheel.</span></div></div>`;
 
   // 3. Placements, each explained
   const order = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","North Node","Chiron"];
@@ -184,6 +187,60 @@ function renderChart(d) {
   out.innerHTML = untimed + glance + wheel + placements + aspectsBlock + patterns;
   out.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+/* ---- Shareable chart card (#10): compose the wheel into a branded navy
+   and gold image, rasterize client-side, download as PNG. ---- */
+function escX(s) { return String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+function buildCardSvg() {
+  const w = (CARD && CARD.wheel) || "";
+  // strip the wheel's outer <svg> wrapper so it can nest inside the card
+  const inner = w.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+  const cap = `Sun in ${CARD.sun}  ·  Moon in ${CARD.moon}` + (CARD.rising ? `  ·  ${CARD.rising} Rising` : "");
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <rect width="1080" height="1350" fill="#16233f"/>
+  <g transform="translate(540,120)">
+    <circle r="60" fill="none" stroke="#c9a55c" stroke-width="1.3"/>
+    <circle r="50" fill="none" stroke="#c9a55c" stroke-width="0.5"/>
+    <text y="15" text-anchor="middle" font-family="Didot,Georgia,serif" font-size="40" fill="#e6cf96" letter-spacing="2">XII</text>
+  </g>
+  <text x="540" y="250" text-anchor="middle" font-family="Didot,Georgia,serif" font-size="50" fill="#e6cf96" letter-spacing="5">THE TWELVE ROOMS</text>
+  <text x="540" y="294" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="22" fill="#c9a55c" letter-spacing="1">The whole sky, written for you.</text>
+  <rect x="90" y="332" width="900" height="858" rx="26" fill="#faf7f0"/>
+  <svg x="150" y="372" width="780" height="780" viewBox="0 0 560 560" font-family="-apple-system,Helvetica,Arial,sans-serif">${inner}</svg>
+  <text x="540" y="1258" text-anchor="middle" font-family="Didot,Georgia,serif" font-size="30" fill="#e6cf96" letter-spacing="1">${escX(cap)}</text>
+  <text x="540" y="1312" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#9fb0c9" letter-spacing="2">thetwelverooms.com</text>
+</svg>`;
+}
+
+function downloadCard() {
+  if (!CARD || !CARD.wheel) return;
+  const svg = buildCardSvg();
+  const url = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement("canvas");
+    c.width = 1080; c.height = 1350;
+    const ctx = c.getContext("2d");
+    ctx.drawImage(img, 0, 0, 1080, 1350);
+    c.toBlob(blob => {
+      if (!blob) return;
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "twelve-rooms-chart.png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    }, "image/png");
+  };
+  img.onerror = () => { const o = document.getElementById("out"); if (o) o.insertAdjacentHTML("beforeend", `<p class="hint">Could not build the image on this browser. The wheel above still saves with a right-click.</p>`); };
+  img.src = url;
+}
 </script>
+<style>
+  .dl-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .dl-card { font-family: inherit; font-size: 14px; padding: 9px 18px; border-radius: 999px; border: 1px solid var(--gold, #b18b45); background: transparent; color: var(--gold, #b18b45); cursor: pointer; letter-spacing: .3px; }
+  .dl-card:hover { background: var(--gold, #b18b45); color: #fff; }
+  .dl-note { font-size: 13px; color: var(--muted, #6b6b6b); }
+</style>
 </body>
 </html>
