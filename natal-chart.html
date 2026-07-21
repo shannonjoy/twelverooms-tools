@@ -130,8 +130,19 @@ function renderChart(d) {
 
   // 2. Wheel
   CARD = { wheel: d.wheel_svg, sun, moon, rising };
-  const wheel = `<div class="card"><div class="wheel-hint">Your chart wheel, drawn to the exact degree. Every symbol below is explained in plain language.</div>${d.wheel_svg}
-    <div class="dl-row"><button type="button" class="dl-card" onclick="downloadCard()">Download your chart card</button><span class="dl-note">A shareable image of your wheel.</span></div></div>`;
+  const t3 = `My Big Three: Sun in ${sun}, Moon in ${moon}` + (rising ? `, ${rising} Rising` : "");
+  const sU = "https://thetwelverooms.com/natal-chart";
+  const T = encodeURIComponent(t3 + " ✨ Cast yours free"), U = encodeURIComponent(sU);
+  const shareRow = `<div class="share-row">
+    <span class="share-lead">Share your top 3</span>
+    <a class="sb sb-fb" href="https://www.facebook.com/sharer/sharer.php?u=${U}" target="_blank" rel="noopener">Facebook</a>
+    <a class="sb sb-x" href="https://twitter.com/intent/tweet?text=${T}&url=${U}" target="_blank" rel="noopener">X</a>
+    <a class="sb sb-pin" href="https://www.pinterest.com/pin/create/button/?url=${U}&description=${T}" target="_blank" rel="noopener">Pinterest</a>
+    <a class="sb sb-wa" href="https://wa.me/?text=${encodeURIComponent(t3 + " " + sU)}" target="_blank" rel="noopener">WhatsApp</a>
+    <button type="button" class="sb sb-ig" onclick="shareCard()" title="Share the image to Instagram">Instagram</button>
+    <button type="button" class="sb sb-dl" onclick="downloadCard()">Save image</button>
+  </div>`;
+  const wheel = `<div class="card"><div class="wheel-hint">Your chart wheel, drawn to the exact degree. Every symbol below is explained in plain language.</div>${d.wheel_svg}${shareRow}</div>`;
 
   // 3. Placements, each explained
   const order = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","North Node","Chiron"];
@@ -213,34 +224,73 @@ function buildCardSvg() {
 </svg>`;
 }
 
+function renderCardBlob() {
+  return new Promise((resolve, reject) => {
+    if (!CARD || !CARD.wheel) return reject(new Error("no card"));
+    const url = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(buildCardSvg())));
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = 1080; c.height = 1350;
+      c.getContext("2d").drawImage(img, 0, 0, 1080, 1350);
+      c.toBlob(b => b ? resolve(b) : reject(new Error("blob")), "image/png");
+    };
+    img.onerror = () => reject(new Error("img"));
+    img.src = url;
+  });
+}
+
+function saveBlob(blob) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "twelve-rooms-chart.png";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+function topThreeText() {
+  const parts = [`Sun in ${CARD.sun}`, `Moon in ${CARD.moon}`];
+  if (CARD.rising) parts.push(`${CARD.rising} Rising`);
+  return `My Big Three: ${parts.join(", ")}. Cast your free chart at thetwelverooms.com`;
+}
+
+/* One-tap native share (opens the phone's share sheet with the image and
+   the top-3 caption). Falls back to a text/URL share, then to download. */
+async function shareCard() {
+  let blob;
+  try { blob = await renderCardBlob(); } catch (e) { return; }
+  const file = new File([blob], "twelve-rooms-chart.png", { type: "image/png" });
+  const text = topThreeText();
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: "My Twelve Rooms chart", text });
+    } else if (navigator.share) {
+      await navigator.share({ title: "My Twelve Rooms chart", text, url: "https://thetwelverooms.com/natal-chart" });
+    } else {
+      saveBlob(blob);
+    }
+  } catch (e) { /* user cancelled the share sheet */ }
+}
+
 function downloadCard() {
-  if (!CARD || !CARD.wheel) return;
-  const svg = buildCardSvg();
-  const url = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
-  const img = new Image();
-  img.onload = () => {
-    const c = document.createElement("canvas");
-    c.width = 1080; c.height = 1350;
-    const ctx = c.getContext("2d");
-    ctx.drawImage(img, 0, 0, 1080, 1350);
-    c.toBlob(blob => {
-      if (!blob) return;
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "twelve-rooms-chart.png";
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-    }, "image/png");
-  };
-  img.onerror = () => { const o = document.getElementById("out"); if (o) o.insertAdjacentHTML("beforeend", `<p class="hint">Could not build the image on this browser. The wheel above still saves with a right-click.</p>`); };
-  img.src = url;
+  renderCardBlob().then(saveBlob).catch(() => {
+    const o = document.getElementById("out");
+    if (o) o.insertAdjacentHTML("beforeend", `<p class="hint">Could not build the image on this browser. The wheel above still saves with a right-click.</p>`);
+  });
 }
 </script>
 <style>
-  .dl-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-  .dl-card { font-family: inherit; font-size: 14px; padding: 9px 18px; border-radius: 999px; border: 1px solid var(--gold, #b18b45); background: transparent; color: var(--gold, #b18b45); cursor: pointer; letter-spacing: .3px; }
-  .dl-card:hover { background: var(--gold, #b18b45); color: #fff; }
-  .dl-note { font-size: 13px; color: var(--muted, #6b6b6b); }
+  .share-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .share-lead { font-size: 13px; color: var(--muted, #6b6b6b); margin-right: 2px; }
+  .sb { font-family: inherit; font-size: 13px; font-weight: 600; padding: 8px 15px; border-radius: 999px; border: none; color: #fff; cursor: pointer; text-decoration: none; display: inline-block; line-height: 1; }
+  .sb:hover { filter: brightness(1.07); }
+  .sb-fb { background: #1877f2; }
+  .sb-x { background: #111; }
+  .sb-pin { background: #e60023; }
+  .sb-wa { background: #25d366; }
+  .sb-ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .sb-dl { background: transparent; color: var(--gold, #b18b45); border: 1px solid var(--gold, #b18b45); }
+  .sb-dl:hover { background: var(--gold, #b18b45); color: #fff; filter: none; }
 </style>
 </body>
 </html>
