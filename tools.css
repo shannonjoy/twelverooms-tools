@@ -9,6 +9,7 @@
   --ink: #1d1d1f; --dove: #f2f2f5; --cream: #fbfaf7;
   --berry: #9c4460;         /* micro-accent only */
   --line: #e4ddcf;          /* warm hairline on cream */
+  --wash: #f4f0e6;          /* soft warm tint for hover/active fills */
   --soft: #6f7690;
   --serif: "Didot", "Bodoni 72", "Hoefler Text", Georgia, serif;
   --sans: Optima, "Helvetica Neue", -apple-system, Arial, sans-serif;
@@ -21,9 +22,12 @@ body { font-family: var(--body); color: var(--ink); background: var(--cream); li
 /* ---- masthead (navy field, gold medallion + wordmark) ---- */
 .masthead {
   background: radial-gradient(120% 140% at 50% 30%, var(--midnight-1), var(--midnight-2));
-  color: var(--cream); position: relative; overflow: hidden;
+  color: var(--cream); position: relative; z-index: 5; overflow: visible;
   border-bottom: 1px solid rgba(201,165,92,0.5);
 }
+/* Clips the starfield/sparks/shooting stars to the header, while leaving the
+   masthead itself overflow-visible so the nav dropdown can extend below it. */
+.masthead-sky { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
 .masthead-inner { max-width: 860px; margin: 0 auto; padding: 22px 16px 18px;
   display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2; }
 .medallion { width: 62px; height: 62px; display: block; }
@@ -43,6 +47,24 @@ body { font-family: var(--body); color: var(--ink); background: var(--cream); li
   color: #b9c2da; text-decoration: none; padding: 4px 2px; }
 .masthead nav a:hover, .masthead nav a[aria-current] { color: var(--gold-hi); }
 .masthead nav a { transition: color 0.2s ease; }
+
+/* nav dropdown (Tools) — matches the flat nav links, panel is a light card */
+.masthead nav .navgroup { position: relative; display: inline-flex; }
+.masthead nav .navtoggle { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #b9c2da; background: none; border: 0; cursor: pointer;
+  padding: 4px 2px; display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s ease; }
+.masthead nav .navtoggle:hover, .masthead nav .navgroup:hover .navtoggle,
+.masthead nav .navtoggle[aria-current], .masthead nav .navtoggle[aria-expanded="true"] { color: var(--gold-hi); }
+.masthead nav .caret { font-size: 9px; transition: transform 0.2s ease; }
+.masthead nav .navgroup:hover .caret, .navtoggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.masthead nav .navmenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(16,24,48,0.28); padding: 6px; z-index: 40; min-width: 168px; }
+.masthead nav .navgroup.open .navmenu { display: block; }
+@media (hover: hover) and (pointer: fine) { .masthead nav .navgroup:hover .navmenu { display: block; } }
+.masthead nav .navmenu a { display: block; color: var(--navy); text-transform: none; letter-spacing: 0.01em;
+  font-size: 13.5px; padding: 8px 12px; border-radius: 8px; white-space: nowrap; }
+.masthead nav .navmenu a:hover, .masthead nav .navmenu a[aria-current] { color: var(--navy); background: var(--wash); }
 .spark { position: absolute; fill: var(--gold-soft); pointer-events: none; z-index: 1;
   animation: spark-breathe 7s ease-in-out infinite; }
 

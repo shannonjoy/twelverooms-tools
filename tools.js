@@ -43,10 +43,22 @@ window.TR = (function () {
   const SPARK = (x, y, s, o) =>
     `<svg class="spark" style="left:${x};top:${y}" width="${14 * s}" height="${14 * s}" viewBox="-6 -6 12 12" opacity="${o}"><path d="M0 -6 L1.2 -1.2 L6 0 L1.2 1.2 L0 6 L-1.2 1.2 L-6 0 L-1.2 -1.2 Z"/></svg>`;
 
+  /* Nav is grouped: a plain [href, label] is a top-level link; an object with
+     { label, items } renders a dropdown. Keeps the bar to a few clear
+     destinations while every calculator stays one hover/tap away. */
   const NAV = [
-    ["/moon", "Moon now"], ["/natal-chart", "Natal chart"],
-    ["/synastry", "Synastry"], ["/electional", "Timing"],
-    ["/almanac", "Almanac"], ["/reports", "Readings"],
+    { label: "Tools", items: [
+      ["/moon", "Moon now"],
+      ["/big-3-calculator", "Big 3"],
+      ["/natal-chart", "Natal chart"],
+      ["/synastry", "Synastry"],
+      ["/saturn-return-calculator", "Saturn return"],
+      ["/electional", "Timing"],
+    ] },
+    ["/almanac", "Almanac"],
+    ["/the-twelve-houses", "The houses"],
+    ["/reports", "Readings"],
+    ["/about", "About"],
   ];
 
   /* Gold starfield: tiny twinkling dots, scattered asymmetrically, always
@@ -65,11 +77,23 @@ window.TR = (function () {
   }
 
   function mast(current) {
-    const nav = NAV.map(([href, label]) =>
-      `<a href="${href}"${location.pathname.replace(/\.html$/, "") === href ? ' aria-current="page"' : ""}>${label}</a>`).join("");
+    const path = location.pathname.replace(/\.html$/, "");
+    const link = ([href, label]) =>
+      `<a href="${href}"${path === href ? ' aria-current="page"' : ""}>${label}</a>`;
+    const nav = NAV.map(item => {
+      if (Array.isArray(item)) return link(item);
+      const active = item.items.some(([href]) => path === href);
+      const menu = item.items.map(link).join("");
+      return `<div class="navgroup">
+        <button type="button" class="navtoggle" aria-expanded="false" aria-haspopup="true"${active ? ' aria-current="page"' : ""}>${item.label}<span class="caret" aria-hidden="true">▾</span></button>
+        <div class="navmenu" role="menu">${menu}</div>
+      </div>`;
+    }).join("");
     return `<header class="masthead">
-      ${starfield(26)}
-      ${SPARK("8%", "22%", 0.7, 0.5)}${SPARK("90%", "18%", 1, 0.6)}${SPARK("84%", "70%", 0.6, 0.45)}${SPARK("14%", "74%", 0.55, 0.4)}
+      <div class="masthead-sky" aria-hidden="true">
+        ${starfield(26)}
+        ${SPARK("8%", "22%", 0.7, 0.5)}${SPARK("90%", "18%", 1, 0.6)}${SPARK("84%", "70%", 0.6, 0.45)}${SPARK("14%", "74%", 0.55, 0.4)}
+      </div>
       <div class="masthead-inner">
         <a href="/" aria-label="The Twelve Rooms home">${MEDALLION}</a>
         <div class="wordmark"><a href="/">THE TWELVE ROOMS</a></div>
@@ -84,6 +108,31 @@ window.TR = (function () {
   function injectMasthead() {
     const slot = document.getElementById("masthead");
     if (slot) slot.outerHTML = mast();
+  }
+
+  /* Nav dropdowns: hover opens them on desktop (CSS); this adds click/tap
+     toggling for touch and keyboard, with outside-click and Escape to close. */
+  function initNav() {
+    const groups = Array.from(document.querySelectorAll(".navgroup"));
+    if (!groups.length) return;
+    const closeAll = except => groups.forEach(g => {
+      if (g === except) return;
+      g.classList.remove("open");
+      const b = g.querySelector(".navtoggle");
+      if (b) b.setAttribute("aria-expanded", "false");
+    });
+    groups.forEach(g => {
+      const btn = g.querySelector(".navtoggle");
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = !g.classList.contains("open");
+        closeAll(g);
+        g.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", String(open));
+      });
+    });
+    document.addEventListener("click", () => closeAll());
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
   }
 
   const FOOTER = `<footer class="site">
@@ -219,7 +268,7 @@ window.TR = (function () {
     if (calmMotion()) return;
     setInterval(() => {
       if (Math.random() > 0.35) return;
-      const m = document.querySelector(".masthead");
+      const m = document.querySelector(".masthead-sky") || document.querySelector(".masthead");
       if (!m) return;
       const el = document.createElement("span");
       el.className = "shooting";
@@ -247,7 +296,7 @@ window.TR = (function () {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    injectMasthead(); injectFooter(); nightSky(); reveals();
+    injectMasthead(); initNav(); injectFooter(); nightSky(); reveals();
   });
   return { attachCity, rememberBirth, esc };
 })();
