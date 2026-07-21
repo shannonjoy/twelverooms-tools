@@ -85,9 +85,12 @@ const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;"
 const f = document.getElementById("f");
 let PLACE = null;
 window.addEventListener("DOMContentLoaded", () => {
-  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
-    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
-    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  TR.rememberBirth({
+    form: f, city: "city", results: "cityres",
+    onPlace(r) {
+      PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+      document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
   });
 });
 
@@ -133,25 +136,38 @@ function render(d) {
   events.forEach(e => { (byYear[yearOf(e.dates[0])] ||= []).push(e); });
   const years = Object.keys(byYear).sort();
 
+  const row = e => {
+    const tag = e.is_return ? `<span class="tag gold">Return</span>`
+              : e.tier === "major" ? `<span class="tag gold">Turning point</span>` : "";
+    return `<div class="tl-event tier-${e.tier}">
+      <div class="tl-date">${esc(datesLine(e.dates))}</div>
+      <div class="tl-body">
+        <div class="tl-head">${esc(e.headline)} ${tag}</div>
+        <div class="tl-mean">${esc(e.meaning)}</div>
+      </div>
+    </div>`;
+  };
+
   let html = `<div class="glance">
     <h2>Your next ${d.years} years</h2>
     <p>Reading from your Sun in <strong>${esc(b.sun)}</strong>, Moon in <strong>${esc(b.moon)}</strong>${risingBit}. ${events.length} slow-planet turning points ahead, earliest first.</p>
     ${untimed}
   </div>`;
 
+  // Surface the rare, heavy transits (Saturn + outer planets) so they don't
+  // get lost among the frequent Jupiter ones.
+  const majors = events.filter(e => e.tier === "major");
+  if (majors.length) {
+    html += `<div class="card">
+      <h3 style="font-family:var(--serif);font-weight:400;color:var(--navy,#26355e);font-size:18px;margin:0 0 4px">The big ones</h3>
+      <p class="hint" style="margin:0 0 10px">The rare, heavy transits that shape whole seasons: Saturn, and the outer planets Uranus, Neptune, and Pluto. Your full month-by-month timeline is below.</p>
+      ${majors.map(row).join("")}
+    </div>`;
+  }
+
   years.forEach(y => {
     html += `<h3 class="tl-year">${y}</h3>`;
-    byYear[y].forEach(e => {
-      const tag = e.is_return ? `<span class="tag gold">Return</span>`
-                : e.tier === "major" ? `<span class="tag gold">Turning point</span>` : "";
-      html += `<div class="tl-event tier-${e.tier}">
-        <div class="tl-date">${esc(datesLine(e.dates))}</div>
-        <div class="tl-body">
-          <div class="tl-head">${esc(e.headline)} ${tag}</div>
-          <div class="tl-mean">${esc(e.meaning)}</div>
-        </div>
-      </div>`;
-    });
+    byYear[y].forEach(e => { html += row(e); });
   });
 
   html += `<p class="hint" style="margin-top:16px">Want the meaning, not just the map? <a href="/reports" style="color:var(--gold)">The year-ahead reading</a> reads every turning point in full, the house it lands in, and how the seasons connect.</p>`;
