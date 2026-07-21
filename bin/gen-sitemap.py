@@ -15,6 +15,11 @@ STATIC = [
     ("/natal-chart", "monthly", "0.9"),
     ("/synastry", "monthly", "0.8"),
     ("/electional", "monthly", "0.8"),
+    ("/saturn-return-calculator", "monthly", "0.8"),
+    ("/big-3-calculator", "monthly", "0.7"),
+    ("/the-twelve-houses", "monthly", "0.6"),
+    ("/reports", "monthly", "0.7"),
+    ("/about", "yearly", "0.5"),
     ("/almanac", "weekly", "0.7"),
     ("/mercury-retrograde", "monthly", "0.7"),
     ("/best-wedding-dates-2027", "monthly", "0.8"),
@@ -22,6 +27,9 @@ STATIC = [
     ("/best-days-to-start-a-business-2027", "monthly", "0.7"),
     ("/best-days-to-invest-2027", "monthly", "0.6"),
 ]
+# Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
+# Deterministic and valid forever, like the moon-date pages.
+SATURN_YEARS = range(1960, 2006)
 
 days = int(sys.argv[1]) if len(sys.argv) > 1 else 90
 start = date.today()
@@ -31,10 +39,12 @@ rows = [f'  <url><loc>{BASE}{p}</loc><changefreq>{cf}</changefreq><priority>{pr}
 for i in range(days + 1):
     d = (start + timedelta(days=i)).isoformat()
     rows.append(f'  <url><loc>{BASE}/moon/{d}</loc><changefreq>never</changefreq><priority>0.4</priority></url>')
+for y in SATURN_YEARS:
+    rows.append(f'  <url><loc>{BASE}/saturn-return/{y}</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>')
 
 xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
        + "\n".join(rows) + "\n</urlset>\n")
 out = Path(__file__).resolve().parent.parent / "sitemap.xml"
 out.write_text(xml)
-print(f"wrote {out} with {len(STATIC)} static + {days + 1} moon-date URLs")
+print(f"wrote {out} with {len(STATIC)} static + {days + 1} moon-date + {len(SATURN_YEARS)} saturn-year URLs")

@@ -16,6 +16,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/moon/:date", "destination": "/api/moon_day?date=:date" }
+    { "source": "/moon/:date", "destination": "/api/moon_day?date=:date" },
+    { "source": "/saturn-return/:year", "destination": "/api/saturn_year?year=:year" }
   ]
 }
