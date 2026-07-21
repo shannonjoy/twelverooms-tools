@@ -108,6 +108,38 @@ const CORE = ["Sun","Moon","Mercury","Venus","Mars"];
 
 function signOf(pos) { return (pos.sign) || (pos.position || "").split(" ").pop(); }
 
+/* Element and modality balance: count the planets (plus rising when timed)
+   by element and mode, draw as bars, and name what's heavy and what's missing. */
+const _ELEM = { Aries:"Fire", Leo:"Fire", Sagittarius:"Fire", Taurus:"Earth", Virgo:"Earth", Capricorn:"Earth", Gemini:"Air", Libra:"Air", Aquarius:"Air", Cancer:"Water", Scorpio:"Water", Pisces:"Water" };
+const _MODE = { Aries:"Cardinal", Cancer:"Cardinal", Libra:"Cardinal", Capricorn:"Cardinal", Taurus:"Fixed", Leo:"Fixed", Scorpio:"Fixed", Aquarius:"Fixed", Gemini:"Mutable", Virgo:"Mutable", Sagittarius:"Mutable", Pisces:"Mutable" };
+function balanceBlock(d) {
+  const bodies = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto"];
+  const byBody = {}; d.positions.forEach(p => byBody[p.body] = signOf(p));
+  const items = bodies.map(b => byBody[b]).filter(Boolean);
+  if (d.rising_sign) items.push(d.rising_sign);
+  const eC = { Fire:0, Earth:0, Air:0, Water:0 }, mC = { Cardinal:0, Fixed:0, Mutable:0 };
+  items.forEach(s => { if (_ELEM[s]) eC[_ELEM[s]]++; if (_MODE[s]) mC[_MODE[s]]++; });
+  const total = items.length || 1;
+  const eCol = { Fire:"#c0603f", Earth:"#7a8450", Air:"#6a86a8", Water:"#4f7d8c" };
+  const mCol = { Cardinal:"#b18b45", Fixed:"#7a6a9a", Mutable:"#5a8a7a" };
+  const bar = (label, count, color) => `<div class="bal-row"><span class="bal-label">${label}</span><span class="bal-track"><span class="bal-fill" style="width:${Math.round(count / total * 100)}%;background:${color}"></span></span><span class="bal-count">${count}</span></div>`;
+  const sorted = Object.entries(eC).sort((a, b) => b[1] - a[1]);
+  const top = sorted[0], bottom = sorted[sorted.length - 1];
+  const lack = Object.entries(eC).filter(([, v]) => v === 0).map(([k]) => k);
+  let line;
+  if (lack.length) line = `Heaviest in <strong>${top[0]}</strong>, no planets in <strong>${lack.join(" or ")}</strong>.`;
+  else if (top[1] === bottom[1]) line = "An even spread across all four elements.";
+  else line = `Heaviest in <strong>${top[0]}</strong>, lightest in <strong>${bottom[0]}</strong>.`;
+  return `<div class="glance">
+    <h2>Your balance</h2>
+    <p class="hint" style="margin:-4px 0 12px">${line} Counted across your ${items.length} placements${d.rising_sign ? " and rising sign" : ""}.</p>
+    <div class="bal-grid">
+      <div><div class="bal-head">Elements</div>${["Fire","Earth","Air","Water"].map(e => bar(e, eC[e], eCol[e])).join("")}</div>
+      <div><div class="bal-head">Modes</div>${["Cardinal","Fixed","Mutable"].map(m => bar(m, mC[m], mCol[m])).join("")}</div>
+    </div>
+  </div>`;
+}
+
 function renderChart(d) {
   const out = document.getElementById("out");
   const bySign = {};
@@ -197,7 +229,7 @@ function renderChart(d) {
 
   const untimed = !d.timed ? `<div class="disclaimer">This is an untimed chart, so it shows your planets in their signs but not your rising sign or houses (those need an exact birth time). Everything below is still true; the house layer is simply missing.</div>` : "";
 
-  out.innerHTML = untimed + glance + wheel + placements + aspectsBlock + patterns;
+  out.innerHTML = untimed + glance + balanceBlock(d) + wheel + placements + aspectsBlock + patterns;
   out.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -290,6 +322,14 @@ function downloadCard() {
   .sbi-pin { color: #bd081c; }
   .sbi-fb { color: #1877f2; }
   .sbi-dl { color: var(--gold, #b18b45); }
+  .bal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+  @media (max-width: 520px) { .bal-grid { grid-template-columns: 1fr; gap: 18px; } }
+  .bal-head { font-family: var(--serif, Georgia), serif; color: var(--navy, #26355e); font-size: 15px; margin-bottom: 8px; }
+  .bal-row { display: flex; align-items: center; gap: 10px; margin: 5px 0; }
+  .bal-label { flex: 0 0 66px; font-size: 13px; color: var(--muted, #6b6b6b); }
+  .bal-track { flex: 1; height: 9px; background: rgba(0,0,0,.06); border-radius: 999px; overflow: hidden; }
+  .bal-fill { display: block; height: 100%; border-radius: 999px; transition: width .5s ease; }
+  .bal-count { flex: 0 0 16px; text-align: right; font-size: 13px; color: var(--navy, #26355e); font-weight: 600; }
 </style>
 </body>
 </html>
