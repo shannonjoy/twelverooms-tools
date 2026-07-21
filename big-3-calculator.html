@@ -84,8 +84,14 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const SIGN_GLYPH = { Aries:"♈", Taurus:"♉", Gemini:"♊", Cancer:"♋", Leo:"♌", Virgo:"♍",
+/* Render each sign as an inline SVG <text> (like the chart wheel). A plain
+   HTML span renders these zodiac symbols as a color emoji on most devices
+   even with the text-variation selector; inside SVG they stay the clean
+   monochrome astrology glyph. currentColor lets each take its container color. */
+const _SIGN = { Aries:"♈", Taurus:"♉", Gemini:"♊", Cancer:"♋", Leo:"♌", Virgo:"♍",
   Libra:"♎", Scorpio:"♏", Sagittarius:"♐", Capricorn:"♑", Aquarius:"♒", Pisces:"♓" };
+const _gsvg = ch => `<svg viewBox="0 0 24 24" width="1.05em" height="1.05em" style="vertical-align:-0.16em;overflow:visible" aria-hidden="true"><text x="12" y="13" text-anchor="middle" dominant-baseline="central" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="22" fill="currentColor">${ch}︎</text></svg>`;
+const SIGN_GLYPH = Object.fromEntries(Object.entries(_SIGN).map(([k, v]) => [k, _gsvg(v)]));
 
 const SUN = {
   Aries: "a life lit by beginnings: you are here to go first, and courage is the craft you are perfecting.",

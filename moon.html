@@ -54,11 +54,33 @@
 <script src="/tools.js"></script>
 <script>
 const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Chicago";
+
+/* Draw the Moon's exact lit shape from her elongation from the Sun (0 = new,
+   180 = full). Dark disc + lit semicircle on the lit side + a terminator
+   ellipse that is lit when gibbous, dark when crescent. Gold rim, on brand. */
+function moonSvg(elong, size) {
+  size = size || 132;
+  const R = size / 2 - 4, cx = size / 2, cy = size / 2;
+  const lit = "#f4ecd6", dark = "#26314f";
+  const p = ((Number(elong) % 360) + 360) % 360;
+  const waxing = p < 180;
+  const rx = Math.abs(Math.cos(p * Math.PI / 180)) * R;
+  const ell = (p > 90 && p < 270) ? lit : dark;   // gibbous vs crescent
+  const sweep = waxing ? 1 : 0;                    // lit side: right if waxing
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" aria-hidden="true">
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="${dark}"/>
+    <path d="M ${cx} ${cy - R} A ${R} ${R} 0 0 ${sweep} ${cx} ${cy + R} Z" fill="${lit}"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="${rx.toFixed(1)}" ry="${R}" fill="${ell}"/>
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#c9a55c" stroke-width="1.2" opacity="0.7"/>
+  </svg>`;
+}
+
 fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(r => r.json()).then(d => {
   const esc = TR.esc;
   const mood = (window.TRI && d.sign) ? TRI.moonMood(d.sign, d.phase) : "";
   document.getElementById("out").innerHTML = d.error ? `<div class="error">${esc(d.error)}</div>` : `
-    <div class="big">☽ ${esc(d.moon)}</div>
+    <div style="text-align:center;margin:4px 0 6px">${moonSvg(d.illumination_deg)}</div>
+    <div class="big" style="text-align:center">${esc(d.moon)}</div>
     <p><strong>${esc(d.phase)}</strong>${d.void_of_course ? ` · <strong style="color:#9c4460">void-of-course until ${esc(d.voc_until)}</strong>` : " · not void-of-course"}</p>
     ${mood ? `<p class="moon-mood">${esc(mood)}</p>` : ""}
     <ul class="facts">
