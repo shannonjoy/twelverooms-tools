@@ -136,10 +136,7 @@ window.TR = (function () {
   }
 
   const FOOTER = `<footer class="site">
-    <span class="seal">A map of the life you were born to.</span>
-    <div><a href="/about">About</a> · <a href="/reports">The readings</a> · <a href="/almanac">Almanac</a></div>
-    <div>Positions computed with the Swiss Ephemeris, whole-sign houses.</div>
-    <div class="privacy">Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>. Brand and readings © The Twelve Rooms.</div>
+    <div>© 2026 The Twelve Rooms · City data © GeoNames (CC BY 4.0)</div>
   </footer>`;
 
   function injectFooter() {
