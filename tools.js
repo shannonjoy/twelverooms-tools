@@ -53,6 +53,7 @@ window.TR = (function () {
       ["/natal-chart", "Natal chart"],
       ["/synastry", "Synastry"],
       ["/saturn-return-calculator", "Saturn return"],
+      ["/transit-timeline", "Transit timeline"],
       ["/electional", "Timing"],
     ] },
     ["/almanac", "Almanac"],

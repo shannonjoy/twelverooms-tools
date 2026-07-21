@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Transit Timeline: Your Next 3 Years, by Astrology · The Twelve Rooms</title>
+<meta name="description" content="A free personal transit timeline: when the slow planets (Jupiter through Pluto) make their exact aspects to your birth chart over the next three years, computed to the day with the Swiss Ephemeris. Your Saturn return, Jupiter cycles, and outer-planet turning points, dated.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Personal Transit Timeline","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a transit in astrology?","acceptedAnswer":{"@type":"Answer","text":"A transit is where the planets are now, meeting where they were when you were born. When a slow-moving planet like Saturn or Jupiter makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point. This timeline dates those meetings for the next three years."}},
+{"@type":"Question","name":"Do I need my birth time for a transit timeline?","acceptedAnswer":{"@type":"Answer","text":"For transits to your planets, no; a birth date pins those closely. For transits to your Ascendant and Midheaven, and for the most precise Moon dates, you need an accurate birth time, since those depend on the exact minute. Enter a time for the full picture."}},
+{"@type":"Question","name":"What is a Saturn or Jupiter return?","acceptedAnswer":{"@type":"Answer","text":"A return is when a planet comes all the way back to the spot it held at your birth. Jupiter returns about every 12 years and opens a new chapter of growth; Saturn returns near ages 29 and 58 and marks a threshold into a more grounded phase. Both show up on this timeline when they fall in range."}},
+{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"With the Swiss Ephemeris in whole-sign houses. The timeline scans the slow planets (Jupiter through Pluto) day by day for their exact major aspects to your natal points, including the multiple passes a retrograde can bring. Your birth details are computed in memory and never stored."}}
+]}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Your personal transit timeline</h1>
+  <p class="lede">Where the slow planets meet your birth chart over the next three years, computed to the day: your Saturn return, Jupiter's cycles of growth, and the outer-planet turning points, each one dated and named. This is the map of your seasons ahead. No account, nothing stored.</p>
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (for angles and precise Moon)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Chicago" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="41.8781"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-87.6298"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+    <div class="grid2">
+      <div><label>How far ahead</label>
+        <select name="years">
+          <option value="1">Next 1 year</option>
+          <option value="3" selected>Next 3 years</option>
+          <option value="5">Next 5 years</option>
+        </select>
+      </div>
+      <div></div>
+    </div>
+    <button class="go" type="submit">Show my transit timeline</button>
+  </form>
+  <div id="out" class="result"></div>
+
+  <section class="prose">
+    <h2>How to read your timeline</h2>
+    <p>A transit is simply where a planet is right now, meeting where it stood on the day you were born. The fast planets move too quickly to matter for long; the story is in the <strong>slow ones</strong>. Jupiter (about twelve years to circle the zodiac), Saturn (about twenty-nine), and the outer planets Uranus, Neptune, and Pluto, which can spend years on a single degree. When one of them makes an exact aspect to a planet in your chart, it opens a chapter you can feel.</p>
+    <p><strong>Jupiter</strong> brings growth and opportunity, and it comes often, so treat its aspects as favorable weather rather than landmarks. <strong>Saturn</strong> brings structure and tests; its hard aspects are the ones that ask you to grow up a little, and its return near thirty and again near sixty is a genuine threshold. <strong>Uranus, Neptune, and Pluto</strong> are rare and deep, so when one contacts your Sun, Moon, or angles, that is a multi-year turning point worth planning around. The timeline flags those.</p>
+    <p>Because a planet can retrograde back and forth over the same degree, a single transit often has two or three exact passes across a year. The whole window is the season; the dates are its high tides.</p>
+  </section>
+
+  <div class="cta">
+    <h2>The map is free. The reading is the meaning.</h2>
+    <p>The Twelve Rooms year-ahead reading takes this timeline and reads it in full: what each turning point is for, the house it lands in, and how the seasons fit together into a story. Your dates, made meaningful.</p>
+    <a href="/reports">Explore the year-ahead reading</a>
+  </div>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What is a transit?</h3><p>Where the planets are now, meeting where they were at your birth. When a slow planet makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point.</p></div>
+    <div class="qa"><h3>Do I need my birth time?</h3><p>Not for transits to your planets, which a birth date pins closely. You do need it for transits to your Ascendant and Midheaven, and for precise Moon dates, since those depend on the exact minute.</p></div>
+    <div class="qa"><h3>What is a Saturn return?</h3><p>When Saturn comes back to where it sat at your birth, near ages 29 and 58. It marks a threshold into a more grounded, self-authored chapter. Jupiter returns more often, about every 12 years, opening a new cycle of growth.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, the slow planets scanned day by day for their exact aspects to your chart, retrograde passes included. Your details are computed in memory and never stored, logged, or shared.</p></div>
+  </section>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null;
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  });
+});
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function niceDay(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${MONTHS[m - 1]} ${d}, ${y}`;
+}
+function yearOf(iso) { return iso.slice(0, 4); }
+function datesLine(dates) {
+  if (dates.length === 1) return niceDay(dates[0]);
+  return `${dates.length} passes: ` + dates.map(niceDay).join(" · ");
+}
+
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!f.tz.value || !f.lat.value) { out.innerHTML = `<div class="error">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Tracing the slow planets across your chart…</p></div>`;
+  const body = { date: f.date.value, time: f.time.value || null, tz: f.tz.value.trim(),
+                 lat: f.lat.value, lon: f.lon.value, years: f.years.value,
+                 place: PLACE ? `${PLACE.name}, ${PLACE.admin1}` : "" };
+  try {
+    const r = await fetch("/api/transits", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    render(d);
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+
+function render(d) {
+  const out = document.getElementById("out");
+  const events = d.events || [];
+  if (!events.length) { out.innerHTML = `<div class="card"><p class="hint">No slow-planet transits found in range. Double-check the birth date.</p></div>`; return; }
+  const b = d.big3 || {};
+  const risingBit = b.rising ? `, rising <strong>${esc(b.rising)}</strong>` : "";
+  const untimed = d.timed ? "" : `<p class="hint" style="margin-top:10px">Computed without a birth time, so transits to your Ascendant, Midheaven, and the exact Moon are left off (they need your birth minute). Everything else is solid. Add a time for the full map.</p>`;
+
+  // group by year
+  const byYear = {};
+  events.forEach(e => { (byYear[yearOf(e.dates[0])] ||= []).push(e); });
+  const years = Object.keys(byYear).sort();
+
+  let html = `<div class="glance">
+    <h2>Your next ${d.years} years</h2>
+    <p>Reading from your Sun in <strong>${esc(b.sun)}</strong>, Moon in <strong>${esc(b.moon)}</strong>${risingBit}. ${events.length} slow-planet turning points ahead, earliest first.</p>
+    ${untimed}
+  </div>`;
+
+  years.forEach(y => {
+    html += `<h3 class="tl-year">${y}</h3>`;
+    byYear[y].forEach(e => {
+      const tag = e.is_return ? `<span class="tag gold">Return</span>`
+                : e.tier === "major" ? `<span class="tag gold">Turning point</span>` : "";
+      html += `<div class="tl-event tier-${e.tier}">
+        <div class="tl-date">${esc(datesLine(e.dates))}</div>
+        <div class="tl-body">
+          <div class="tl-head">${esc(e.headline)} ${tag}</div>
+          <div class="tl-mean">${esc(e.meaning)}</div>
+        </div>
+      </div>`;
+    });
+  });
+
+  html += `<p class="hint" style="margin-top:16px">Want the meaning, not just the map? <a href="/reports" style="color:var(--gold)">The year-ahead reading</a> reads every turning point in full, the house it lands in, and how the seasons connect.</p>`;
+  out.innerHTML = html;
+  out.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+</script>
+<style>
+  .tl-year { font-family: var(--serif); font-weight: 400; color: var(--gold); font-size: 20px; margin: 22px 0 10px; border-bottom: 1px solid rgba(0,0,0,.08); padding-bottom: 4px; }
+  .tl-event { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1px solid rgba(0,0,0,.05); }
+  .tl-date { flex: 0 0 34%; color: var(--muted, #6b6b6b); font-size: 14px; }
+  .tl-head { font-weight: 600; color: var(--navy, #26355e); }
+  .tl-mean { font-size: 14px; color: var(--muted, #6b6b6b); margin-top: 3px; }
+  .tl-event.tier-major .tl-head { color: var(--navy, #26355e); }
+  .tl-event.tier-major { background: rgba(177,139,69,.06); border-radius: 8px; padding: 12px 12px; margin: 2px -12px; border-bottom: none; }
+  .tl-event.tier-light .tl-head { font-weight: 500; }
+  @media (max-width: 560px) { .tl-event { flex-direction: column; gap: 3px; } .tl-date { flex: none; } }
+</style>
+</body>
+</html>

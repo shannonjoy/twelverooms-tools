@@ -16,6 +16,7 @@ STATIC = [
     ("/synastry", "monthly", "0.8"),
     ("/electional", "monthly", "0.8"),
     ("/saturn-return-calculator", "monthly", "0.8"),
+    ("/transit-timeline", "monthly", "0.8"),
     ("/big-3-calculator", "monthly", "0.7"),
     ("/the-twelve-houses", "monthly", "0.6"),
     ("/reports", "monthly", "0.7"),

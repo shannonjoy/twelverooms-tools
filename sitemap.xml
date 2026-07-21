@@ -6,6 +6,7 @@
   <url><loc>https://thetwelverooms.com/synastry</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://thetwelverooms.com/electional</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://thetwelverooms.com/saturn-return-calculator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://thetwelverooms.com/transit-timeline</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://thetwelverooms.com/big-3-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://thetwelverooms.com/the-twelve-houses</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/reports</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -32,7 +33,6 @@
   <url><loc>https://thetwelverooms.com/best-days-for-a-first-date-2027</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/best-days-to-start-a-diet-2027</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/best-days-to-cut-your-hair-2027</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://thetwelverooms.com/moon/2026-07-20</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-07-21</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-07-22</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-07-23</loc><changefreq>never</changefreq><priority>0.4</priority></url>
@@ -123,6 +123,7 @@
   <url><loc>https://thetwelverooms.com/moon/2026-10-16</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-10-17</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-10-18</loc><changefreq>never</changefreq><priority>0.4</priority></url>
+  <url><loc>https://thetwelverooms.com/moon/2026-10-19</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/saturn-return/1960</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://thetwelverooms.com/saturn-return/1961</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://thetwelverooms.com/saturn-return/1962</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
