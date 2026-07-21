@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Big 3 Calculator: Find Your Sun, Moon, and Rising Sign · The Twelve Rooms</title>
-<meta name="description" content="Free big 3 calculator: your Sun, Moon, and rising sign computed precisely with the Swiss Ephemeris from your birth date, time, and place. No account, no tracking, your birth data is never stored.">
+<meta name="description" content="Free big 3 calculator: your Sun, Moon, and rising sign computed precisely with the Swiss Ephemeris from your birth date, time, and place. No account required.">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">
@@ -15,7 +15,7 @@
 {"@type":"Question","name":"What is your big 3 in astrology?","acceptedAnswer":{"@type":"Answer","text":"Your big 3 are your Sun sign, Moon sign, and rising sign (Ascendant). The Sun is your core, what you are here to become. The Moon is your inner life, what you need and what settles you. The rising sign is how you meet the world, the door people come through first. Read together, they are the short version of your whole chart."}},
 {"@type":"Question","name":"Do I need my birth time to find my big 3?","acceptedAnswer":{"@type":"Answer","text":"For your Sun, no. For your rising sign, yes: the Ascendant changes sign roughly every two hours, so it cannot be computed without an accurate birth time. The Moon usually stays in one sign all day, but on some days she changes signs, so a time makes the Moon certain too. Birth certificates usually list the time."}},
 {"@type":"Question","name":"What order do you read the big 3 in?","acceptedAnswer":{"@type":"Answer","text":"Read them as one voice in three registers rather than three separate facts: the rising sign is how you arrive, the Sun is what you are becoming, and the Moon is what you need underneath it all. Most people recognize their rising sign first, because it is the version of them the world meets."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same astronomical engine professional software uses, in whole-sign houses. Your birth details are computed in memory and never stored, logged, or shared."}}
+{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same astronomical engine professional software uses, in whole-sign houses."}}
 ]}
 </script>
 </head>
@@ -23,7 +23,7 @@
 <div id="masthead"></div>
 <main class="wrap">
   <h1>Big 3 calculator</h1>
-  <p class="lede">Your Sun, your Moon, and your rising sign: the short version of your whole chart, computed precisely from your birth details. The Sun is your core, the Moon is your inner life, the rising is the door you meet the world through. No account, nothing stored.</p>
+  <p class="lede">Your Sun, your Moon, and your rising sign: the short version of your whole chart, computed precisely from your birth details. The Sun is your core, the Moon is your inner life, the rising is the door you meet the world through. No account required.</p>
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
       <div><label>Birth date</label><input name="date" type="date" required></div>
@@ -65,7 +65,7 @@
     <div class="qa"><h3>What is your big 3?</h3><p>Your Sun sign, Moon sign, and rising sign (the Ascendant). Together they are the short version of your natal chart: the core, the inner life, and the way you meet the world.</p></div>
     <div class="qa"><h3>Do I need my birth time?</h3><p>For the Sun, no. For the rising sign, yes: it changes about every two hours. The Moon usually holds one sign all day, but on some days she changes signs partway through, so a time makes her certain too. Your birth certificate usually has the time.</p></div>
     <div class="qa"><h3>Why is my rising sign different from other sites?</h3><p>If a birth time is off by even a few minutes near a sign change, the rising sign can differ. We compute from the Swiss Ephemeris with your exact time, place, and timezone, so a mismatch usually traces back to the time entered elsewhere.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, exact coordinates and timezone from your birthplace. Your details are computed in memory and never stored, logged, or shared.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, exact coordinates and timezone from your birthplace.</p></div>
   </section>
   <div id="site-footer"></div>
 </main>
@@ -75,9 +75,12 @@ const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;"
 const f = document.getElementById("f");
 let PLACE = null;
 window.addEventListener("DOMContentLoaded", () => {
-  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
-    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
-    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  TR.rememberBirth({
+    form: f, city: "city", results: "cityres",
+    onPlace(r) {
+      PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+      document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
   });
 });
 

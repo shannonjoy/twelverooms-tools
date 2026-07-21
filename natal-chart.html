@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Natal Chart Calculator with Whole-Sign Houses · The Twelve Rooms</title>
-<meta name="description" content="Cast a free, precise natal chart: a clean chart wheel, exact planetary positions, tight aspects, and chart patterns, computed with the Swiss Ephemeris using whole-sign houses. Your birth data is never stored.">
+<meta name="description" content="Cast a free, precise natal chart: a clean chart wheel, exact planetary positions, tight aspects, and chart patterns, computed with the Swiss Ephemeris using whole-sign houses.">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script src="/interpret.js"></script>
@@ -14,7 +14,7 @@
 {"@type":"Question","name":"What are whole sign houses?","acceptedAnswer":{"@type":"Answer","text":"In the whole sign system your rising sign becomes the entire first house, and each sign after it becomes the next house in order. It is the oldest house system and the one this chart uses, cleaner than the Placidus method most apps default to."}},
 {"@type":"Question","name":"What if I do not know my birth time?","acceptedAnswer":{"@type":"Answer","text":"You still get a true chart of your planets in their signs. What you cannot get without an accurate time is your rising sign and houses, which move too fast to guess. Leave the time blank for an honest untimed chart rather than a wrong one."}},
 {"@type":"Question","name":"What is the difference between Sun, Moon, and rising?","acceptedAnswer":{"@type":"Answer","text":"Your Sun is your core, what you are becoming. Your Moon is your inner life, what you need and what soothes you. Your rising sign is how you meet the world, the door people come through first. The three are read together, not alone."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses. Your birth details are computed in memory and never stored, logged, or shared."}}
+{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses."}}
 ]}
 </script>
 </head>
@@ -60,7 +60,7 @@
     <div class="qa"><h3>What are whole sign houses?</h3><p>In the whole sign system your rising sign becomes the entire first house, and each sign after it becomes the next house in order. It is the oldest house system and the one this chart uses, cleaner than the Placidus method most apps default to.</p></div>
     <div class="qa"><h3>What if I do not know my birth time?</h3><p>You still get a true chart of your planets in their signs. What you cannot get without an accurate time is your rising sign and houses, which move too fast to guess. Leave the time blank for an honest untimed chart rather than a wrong one.</p></div>
     <div class="qa"><h3>What is the difference between Sun, Moon, and rising?</h3><p>Your Sun is your core, what you are becoming. Your Moon is your inner life, what you need and what soothes you. Your rising sign is how you meet the world, the door people come through first. The three are read together, not alone.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses. Your birth details are computed in memory and never stored, logged, or shared.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses.</p></div>
   </section>
 
   <div class="cta">
@@ -76,9 +76,12 @@ const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;"
 const f = document.getElementById("f");
 let PLACE = null;
 window.addEventListener("DOMContentLoaded", () => {
-  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
-    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
-    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  TR.rememberBirth({
+    form: f, city: "city", results: "cityres",
+    onPlace(r) {
+      PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+      document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
   });
 });
 f.addEventListener("submit", async e => {
