@@ -90,7 +90,7 @@ window.TR = (function () {
     <span class="seal">A map of the life you were born to.</span>
     <div><a href="/about">About</a> · <a href="/reports">The readings</a> · <a href="/almanac">Almanac</a></div>
     <div>Positions computed with the Swiss Ephemeris, whole-sign houses.</div>
-    <div class="privacy">Your birth details are computed in memory and never stored, logged, or shared. The site uses Google Analytics to measure overall traffic; your birth data is never part of it.</div>
+    <div class="privacy">Your birth details are computed in memory and never stored, logged, or shared on our servers. If you tick &ldquo;remember my birth details,&rdquo; they are saved only in your own browser on this device, never sent to us, and clearing them is one untick away. The site uses Google Analytics to measure overall traffic; your birth data is never part of it.</div>
     <div class="privacy">Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>. Brand and readings © The Twelve Rooms.</div>
   </footer>`;
 
@@ -124,6 +124,91 @@ window.TR = (function () {
       }, 180);
     });
     document.addEventListener("click", e => { if (!e.target.closest(".loc")) close(); });
+  }
+
+  /* ---- Remember birth details (opt-in, this device only) ----
+     Visitors told us it is tiresome to retype their birthday on every
+     calculator. This keeps their birth details in localStorage, on their own
+     device — never sent to a server — and prefills them next visit. It stays
+     off until the visitor ticks the box; unticking it forgets everything. */
+  const BIRTH_KEY = "tr.birth.v1";
+
+  function birthStore() {
+    try { return window.localStorage; } catch (e) { return null; }  /* private mode */
+  }
+  function readAll() {
+    const s = birthStore(); if (!s) return {};
+    try { return JSON.parse(s.getItem(BIRTH_KEY) || "{}"); } catch (e) { return {}; }
+  }
+  function writeAll(all) {
+    const s = birthStore(); if (!s) return;
+    try { s.setItem(BIRTH_KEY, JSON.stringify(all)); } catch (e) { /* quota/blocked */ }
+  }
+  function loadBirth(slot) { return readAll()[slot] || null; }
+  function saveBirth(slot, data) { const all = readAll(); all[slot] = data; writeAll(all); }
+  function clearBirth(slot) { const all = readAll(); delete all[slot]; writeAll(all); }
+
+  const byId = x => (typeof x === "string" ? document.getElementById(x) : x);
+
+  /* Wire a birth form to remember and restore its details. Drop-in for the
+     page's attachCity call: onPlace(r) runs on both a city pick and a restore,
+     so the page keeps setting its own PLACE, hidden lat/lon/tz, and "picked"
+     line exactly as before.
+     opts: { form, city, results, onPlace, slot="self",
+             fields=["date","time"], label } */
+  function rememberBirth(opts) {
+    const form = byId(opts.form), city = byId(opts.city), results = byId(opts.results);
+    const slot = opts.slot || "self";
+    /* Map canonical keys (date, time) to this form's input names, so a slot
+       saved on one page restores on another even when the inputs are named
+       differently (e.g. synastry's "ad"/"at"). */
+    const raw = opts.fields || ["date", "time"];
+    const fmap = Array.isArray(raw) ? raw.reduce((o, n) => (o[n] = n, o), {}) : raw;
+    const names = Object.values(fmap);
+    const onPlace = opts.onPlace || function () {};
+    let place = null;
+
+    attachCity(city, results, r => { place = r; onPlace(r); persist(); });
+
+    /* Opt-in control, inserted just above the submit button. */
+    const box = document.createElement("label");
+    box.className = "remember";
+    const cb = document.createElement("input"); cb.type = "checkbox";
+    const label = document.createElement("span");
+    label.textContent = opts.label || "Remember my birth details on this device";
+    const note = document.createElement("span"); note.className = "remember-note";
+    box.append(cb, label, note);
+    const submit = form.querySelector("button[type=submit], button.go") ||
+                   form.querySelector("button");
+    if (submit) form.insertBefore(box, submit); else form.appendChild(box);
+
+    const snapshot = () => {
+      const data = { place };
+      for (const key in fmap) { const el = form[fmap[key]]; if (el) data[key] = el.value; }
+      return data;
+    };
+    const showSaved = on => { note.textContent = on ? "Saved on this device" : ""; };
+    const persist = () => { if (cb.checked) { saveBirth(slot, snapshot()); showSaved(true); } };
+
+    cb.addEventListener("change", () => {
+      if (cb.checked) persist();
+      else { clearBirth(slot); showSaved(false); }
+    });
+    /* Capture phase so this runs regardless of the page's own submit handler. */
+    form.addEventListener("submit", persist, true);
+    names.forEach(n => { if (form[n]) form[n].addEventListener("change", persist); });
+
+    const saved = loadBirth(slot);
+    if (saved) {
+      for (const key in fmap) { const el = form[fmap[key]]; if (el && saved[key] != null) el.value = saved[key]; }
+      if (saved.place) {
+        place = saved.place;
+        city.value = `${saved.place.name}, ${saved.place.admin1}`;
+        onPlace(saved.place);
+      }
+      cb.checked = true; showSaved(true);
+    }
+    return { forget: () => { clearBirth(slot); cb.checked = false; showSaved(false); } };
   }
 
   const calmMotion = () =>
@@ -165,5 +250,5 @@ window.TR = (function () {
   document.addEventListener("DOMContentLoaded", () => {
     injectMasthead(); injectFooter(); nightSky(); reveals();
   });
-  return { attachCity, esc };
+  return { attachCity, rememberBirth, esc };
 })();

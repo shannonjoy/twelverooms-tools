@@ -78,13 +78,17 @@ const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;"
 const f = document.getElementById("f");
 const P = { a: null, b: null };
 window.addEventListener("DOMContentLoaded", () => {
-  const wire = (side, cityId, resId, pickedId) => TR.attachCity(
-    document.getElementById(cityId), document.getElementById(resId), r => {
-      P[side] = r;
-      document.getElementById(pickedId).innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
-    });
-  wire("a", "acity", "ares", "apicked");
-  wire("b", "bcity", "bres", "bpicked");
+  const paint = (pickedId, r) =>
+    document.getElementById(pickedId).innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
+  /* Person A is "you," re-entered every visit — so it remembers. */
+  TR.rememberBirth({
+    form: f, city: "acity", results: "ares",
+    fields: { date: "ad", time: "at" }, label: "Remember my details (Person A) on this device",
+    onPlace(r) { P.a = r; paint("apicked", r); }
+  });
+  TR.attachCity(document.getElementById("bcity"), document.getElementById("bres"), r => {
+    P.b = r; paint("bpicked", r);
+  });
 });
 f.addEventListener("submit", async e => {
   e.preventDefault();

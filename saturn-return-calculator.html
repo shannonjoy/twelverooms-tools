@@ -84,9 +84,12 @@ const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;"
 const f = document.getElementById("f");
 let PLACE = null;
 window.addEventListener("DOMContentLoaded", () => {
-  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
-    PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
-    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+  TR.rememberBirth({
+    form: f, city: "city", results: "cityres",
+    onPlace(r) {
+      PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+      document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
   });
 });
 
