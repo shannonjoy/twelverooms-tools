@@ -467,6 +467,410 @@ PAGES = [
              "For the most meaningful moment, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to you and your partner's charts, which is the personalized reading."),
         ],
     },
+    {
+        "slug": "best-days-to-buy-a-car-2027",
+        "title": "Best Days to Buy a Car in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to buy a car, by Western electional astrology: a waxing Moon applying to Venus or Jupiter, with Mercury direct for the paperwork. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Buy a Car in 2027",
+        "lede": "The best day in each month of 2027 to buy a car or make a major purchase, by Western electional astrology: the waxing Moon applying to Venus (value) or Jupiter (fortune), with Mercury direct for the paperwork. Computed with the Swiss Ephemeris. 2027 has no Venus retrograde, steady ground for anything you buy and keep.",
+        "rows": [
+            ("January", "Tue, Jan 19", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("February", "Mon, Feb 1", 6, "Moon in Sagittarius applying to a trine to Jupiter, Jupiter rising. Buy before the Feb 10 retrograde."),
+            ("March", "Tue, Mar 9", 8, "Waxing Moon in Aries applying to a sextile to Venus, Venus on the Midheaven."),
+            ("April", "Thu, Apr 8", 8, "Waxing Moon in Taurus, Venus-ruled, applying to a sextile to Venus, Venus on the Midheaven."),
+            ("May", "Sat, May 8", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("June", "Tue, Jun 8", 8, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter on the Midheaven, in a Venus hour."),
+            ("July", "Tue, Jul 6", 8, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Venus hour."),
+            ("August", "Wed, Aug 11", 8, "Waxing Moon in Sagittarius applying to a trine to Venus, Venus rising."),
+            ("September", "Fri, Sep 3", 8, "Waxing Moon in Libra, Venus-ruled, clear and not void, Venus and Jupiter rising, in a Venus hour."),
+            ("October", "Sat, Oct 2", 8, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter on the Midheaven. Buy before the Oct 8 retrograde."),
+            ("November", "Fri, Nov 5", 10, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising, Jupiter on the Midheaven. The year's strongest."),
+            ("December", "Sun, Dec 5", 8, "Waxing Moon in Pisces applying to a sextile to Venus, Venus rising."),
+        ],
+        "how_chosen": (
+            "<p>A car is a purchase and a possession, so it belongs to <strong>Venus</strong> (value, "
+            "what you own), with <strong>Mercury</strong> watching the paperwork. The Moon should be "
+            "<strong>waxing</strong>, <strong>not void of course</strong>, and <strong>applying to "
+            "Venus or Jupiter</strong>, away from Mars (haste, accidents). Because buying is also "
+            "signing, every date keeps <strong>Mercury direct</strong>.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, good news for anything you buy and keep. "
+            "Keep <strong>Mercury direct</strong> for the contract (avoid Feb 10 to Mar 4, Jun 11 to "
+            "Jul 5, Oct 8 to 29), and step around the <strong>eclipse seasons</strong> around Feb 6 and "
+            "20 and around Jul 18, Aug 2, and Aug 17, jangly ground for a big purchase.</p>"),
+        "cta_h2": "Buying something big?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to buy a car in 2027?",
+             "The strongest days fall on a waxing Moon applying to Venus or Jupiter, not void of course, with Mercury direct for the paperwork. The table above gives the best such day in each month of 2027."),
+            ("Why does Mercury matter for buying a car?",
+             "Because a purchase is also a signing. Mercury rules contracts and paperwork, so the dates keep it direct, avoiding the 2027 retrogrades (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29)."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-ask-for-a-raise-2027",
+        "title": "Best Days to Ask for a Raise in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to ask for a raise or negotiate salary, by Western electional astrology: a waxing Moon applying to Jupiter or Venus, the planets of increase and worth. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Ask for a Raise in 2027",
+        "lede": "The best day in each month of 2027 to ask for a raise or negotiate your salary, by Western electional astrology: the waxing Moon applying to Jupiter (increase) or Venus (worth, goodwill). Computed with the Swiss Ephemeris. A tailwind this year: 2027 has no Venus retrograde.",
+        "rows": [
+            ("January", "Sat, Jan 2", 7, "Moon in Scorpio applying to a conjunction with Venus, Jupiter rising."),
+            ("February", "Fri, Feb 12", 9, "Waxing Moon in Taurus, Venus-ruled, applying to a trine to Venus, Jupiter rising."),
+            ("March", "Tue, Mar 9", 9, "Waxing Moon in Aries applying to a sextile to Venus, Jupiter rising."),
+            ("April", "Thu, Apr 8", 9, "Waxing Moon in Taurus applying to a sextile to Venus, Jupiter rising."),
+            ("May", "Sat, May 8", 9, "Waxing Moon in Gemini applying to a sextile to Venus, Jupiter on the Midheaven."),
+            ("June", "Tue, Jun 8", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter on the Midheaven."),
+            ("July", "Tue, Jul 6", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising."),
+            ("August", "Tue, Aug 31", 9, "Waxing Moon in Virgo applying to a conjunction with Venus, Jupiter on the Midheaven."),
+            ("September", "Sun, Sep 5", 9, "Waxing Moon in Scorpio applying to a sextile to Venus, Jupiter on the Midheaven."),
+            ("October", "Sat, Oct 2", 9, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter on the Midheaven."),
+            ("November", "Wed, Nov 3", 7, "Waxing Moon in Capricorn applying to a trine to Jupiter."),
+            ("December", "Sun, Dec 5", 7, "Waxing Moon in Pisces applying to a sextile to Venus."),
+        ],
+        "how_chosen": (
+            "<p>A raise is <strong>Jupiter</strong> (increase, generosity) and <strong>Venus</strong> "
+            "(your worth, and the warmth in the room). The Moon should be <strong>waxing</strong>, "
+            "<strong>not void of course</strong>, and <strong>applying to Jupiter or Venus</strong>, "
+            "away from Saturn (not now) and Mars (friction). Ask when the sky is inclined to say yes.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, steady ground for questions of worth. It "
+            "helps to ask when <strong>Mercury is direct</strong> too (avoid Feb 10 to Mar 4, Jun 11 to "
+            "Jul 5, Oct 8 to 29), since the ask is a conversation, and to steer clear of the "
+            "<strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17, "
+            "when moods swing.</p>"),
+        "cta_h2": "Asking for what you're worth?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to ask for a raise in 2027?",
+             "The strongest days fall on a waxing Moon applying to Jupiter or Venus, the planets of increase and worth. The table above gives the best such day in each month, so you can time your ask."),
+            ("Does astrology really help with a salary negotiation?",
+             "It sets the timing, not the outcome. Electional astrology picks a moment when the sky leans toward increase and goodwill. It supports a well-prepared ask; it does not replace one."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-open-a-restaurant-2027",
+        "title": "Best Days to Open a Restaurant or Shop in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to open a restaurant, cafe, or shop, by Western electional astrology: a waxing Moon applying to Venus or Jupiter, with Mercury direct. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Open a Restaurant or Shop in 2027",
+        "lede": "The best day in each month of 2027 to open a restaurant, cafe, or shop, by Western electional astrology: the waxing Moon applying to Venus (welcome, pleasure) or Jupiter (abundance), with Mercury direct for the lease and signage. Computed with the Swiss Ephemeris. Starting a different kind of business? See <a href='/best-days-to-start-a-business-2027'>2027's business dates</a>.",
+        "rows": [
+            ("January", "Tue, Jan 19", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Venus on the Midheaven. Open before the Feb 10 retrograde."),
+            ("March", "Tue, Mar 9", 9, "Waxing Moon in Aries applying to a sextile to Venus, Jupiter rising, in a Venus hour."),
+            ("April", "Thu, Apr 8", 9, "Waxing Moon in Taurus, Venus-ruled, applying to a sextile to Venus, Jupiter rising."),
+            ("May", "Sat, May 8", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("June", "Tue, Jun 8", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter on the Midheaven."),
+            ("July", "Tue, Jul 6", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising."),
+            ("August", "Tue, Aug 31", 11, "Waxing Moon in Virgo applying to a conjunction with Venus, Venus and Jupiter on the Midheaven. The year's strongest."),
+            ("September", "Thu, Sep 9", 9, "Waxing Moon in Capricorn applying to a trine to Jupiter, Venus rising."),
+            ("October", "Sat, Oct 2", 9, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Venus rising."),
+            ("November", "Fri, Nov 5", 9, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising, Jupiter on the Midheaven."),
+            ("December", "Sun, Dec 5", 9, "Waxing Moon in Pisces applying to a sextile to Venus, Venus on the Midheaven, in a Venus hour."),
+        ],
+        "how_chosen": (
+            "<p>Hospitality and retail are <strong>Venus</strong>'s trade, warmth, welcome, and things "
+            "people enjoy, backed by <strong>Jupiter</strong> for a full house. The Moon should be "
+            "<strong>waxing</strong>, <strong>not void of course</strong>, and <strong>applying to a "
+            "benefic</strong>, away from Mars and Saturn. For the lease and the paperwork, keep "
+            "<strong>Mercury direct</strong>.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, welcome for a Venus-ruled venture. Keep "
+            "<strong>Mercury direct</strong> for signing (avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 "
+            "to 29) and mind the <strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, "
+            "Aug 2, and Aug 17.</p>"),
+        "cta_h2": "Opening your doors?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to open a restaurant in 2027?",
+             "The strongest days fall on a waxing Moon applying to Venus or Jupiter with Mercury direct. The table above gives the best such day in each month of 2027 for opening your doors."),
+            ("Is opening a shop different from starting a business?",
+             "The timing overlaps, but a shop or restaurant leans harder on Venus, the planet of welcome and pleasure, since customers come for the experience. These dates weight Venus accordingly. For a non-retail business, see the business-launch dates."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-publish-a-book-2027",
+        "title": "Best Days to Publish a Book in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to publish a book or release your writing, by Western electional astrology: a waxing Moon applying to Mercury, Jupiter, or the Sun, with Mercury direct. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Publish a Book in 2027",
+        "lede": "The best day in each month of 2027 to publish a book, release your writing, or send it into the world, by Western electional astrology: the waxing Moon applying to Mercury (the word), Jupiter (reach), or the Sun (visibility), with Mercury direct. Computed with the Swiss Ephemeris.",
+        "rows": [
+            ("January", "Thu, Jan 7", 9, "Waxing Moon in Capricorn applying to a conjunction with Mercury, Jupiter rising."),
+            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Sun on the Midheaven. Before the Feb 10 retrograde."),
+            ("March", "Wed, Mar 10", 9, "Waxing Moon in Aries applying to a trine to Jupiter, Sun rising, in a Mercury hour."),
+            ("April", "Wed, Apr 14", 9, "Waxing Moon in Leo applying to a trine to Mercury, Sun on the Midheaven, in a Sun hour."),
+            ("May", "Wed, May 12", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Sun hour."),
+            ("June", "Tue, Jun 8", 9, "Waxing Moon in Leo applying to a sextile to the Sun, Jupiter rising, in a Mercury hour."),
+            ("July", "Tue, Jul 6", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Mercury hour."),
+            ("August", "Fri, Aug 6", 9, "Waxing Moon in Libra applying to a sextile to the Sun, Sun on the Midheaven, in a Sun hour."),
+            ("September", "Sat, Sep 4", 11, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter and Sun on the Midheaven. The year's strongest."),
+            ("October", "Mon, Oct 4", 9, "Waxing Moon in Sagittarius applying to a sextile to the Sun, Sun rising, in a Mercury hour."),
+            ("November", "Mon, Nov 1", 9, "Waxing Moon in Sagittarius applying to a sextile to Mercury, Sun rising, in a Mercury hour."),
+            ("December", "Thu, Dec 2", 11, "Waxing Moon in Aquarius applying to a sextile to Mercury, Jupiter on the Midheaven, Sun rising."),
+        ],
+        "how_chosen": (
+            "<p>Publishing is <strong>Mercury</strong> (the written word) lifted by <strong>Jupiter</strong> "
+            "(a wide audience) and the <strong>Sun</strong> (recognition). The Moon should be "
+            "<strong>waxing</strong>, <strong>not void of course</strong>, and <strong>applying to one "
+            "of these</strong>, away from Mars and Saturn. Above all, <strong>Mercury direct</strong>, "
+            "so the words land as written.</p>"),
+        "avoid": (
+            "<p><strong>Mercury retrograde</strong> is the one to dodge for anything built on words: "
+            "Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29. The <strong>eclipse seasons</strong> around "
+            "Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 are loud, unpredictable ground for a "
+            "debut you want read on its merits.</p>"),
+        "cta_h2": "Sending your words out?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to publish a book in 2027?",
+             "The strongest days fall on a waxing Moon applying to Mercury, Jupiter, or the Sun, with Mercury direct. The table above gives the best such day in each month of 2027."),
+            ("Why keep Mercury direct for publishing?",
+             "Mercury rules writing, print, and the message itself. Releasing under a retrograde Mercury (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29 in 2027) invites mix-ups and revisions, so the dates keep it direct."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-move-to-a-new-city-2027",
+        "title": "Best Days to Move to a New City in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to relocate or move to a new city, by Western electional astrology: a waxing Moon applying to Jupiter or Venus. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Move to a New City in 2027",
+        "lede": "The best day in each month of 2027 to relocate, move to a new city, or start over somewhere new, by Western electional astrology: the waxing Moon applying to Jupiter (opportunity, horizons) or Venus (ease, belonging). Computed with the Swiss Ephemeris. Buying a home in place? See <a href='/best-days-to-buy-a-house-2027'>2027's home dates</a>.",
+        "rows": [
+            ("January", "Wed, Jan 27", 8, "Moon in Libra applying to a sextile to Venus, Venus on the Midheaven."),
+            ("February", "Mon, Feb 15", 10, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven."),
+            ("March", "Wed, Mar 10", 10, "Waxing Moon in Aries applying to a trine to Jupiter, Venus on the Midheaven."),
+            ("April", "Sat, Apr 10", 10, "Waxing Moon in Gemini applying to a sextile to Jupiter, Jupiter rising."),
+            ("May", "Sun, May 16", 10, "Waxing Moon in Libra applying to a sextile to Jupiter, Jupiter on the Midheaven."),
+            ("June", "Fri, Jun 4", 10, "Waxing Moon in Gemini applying to a sextile to Jupiter, Jupiter on the Midheaven."),
+            ("July", "Wed, Jul 7", 10, "Waxing Moon in Virgo applying to a sextile to Venus, Jupiter rising."),
+            ("August", "Tue, Aug 31", 12, "Waxing Moon in Virgo applying to a conjunction with Venus, Venus and Jupiter on the Midheaven. The year's strongest."),
+            ("September", "Thu, Sep 9", 10, "Waxing Moon in Capricorn applying to a trine to Jupiter, Venus rising."),
+            ("October", "Tue, Oct 5", 10, "Waxing Moon in Sagittarius applying to a sextile to Venus, Jupiter on the Midheaven."),
+            ("November", "Fri, Nov 5", 11, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising, Jupiter on the Midheaven."),
+            ("December", "Wed, Dec 1", 10, "Waxing Moon in Capricorn applying to a trine to Jupiter, Venus on the Midheaven."),
+        ],
+        "how_chosen": (
+            "<p>A move to a new city is <strong>Jupiter</strong>'s territory, horizons, travel, and luck, "
+            "with <strong>Venus</strong> for landing softly. The Moon should be <strong>waxing</strong>, "
+            "<strong>not void of course</strong>, and <strong>applying to a benefic</strong>, away from "
+            "Mars (upheaval) and Saturn (heaviness). Every date keeps the Moon clear and moving toward "
+            "fortune.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, steady for belonging and home. If you are "
+            "also signing a lease, keep <strong>Mercury direct</strong> (avoid Feb 10 to Mar 4, Jun 11 "
+            "to Jul 5, Oct 8 to 29), and give the <strong>eclipse seasons</strong> around Feb 6 and 20 "
+            "and around Jul 18, Aug 2, and Aug 17 a wide berth for a fresh start you want to hold.</p>"),
+        "cta_h2": "Starting over somewhere new?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to move to a new city in 2027?",
+             "The strongest days fall on a waxing Moon applying to Jupiter or Venus, not void of course. The table above gives the best such day in each month of 2027 for the move."),
+            ("Is relocating different from moving house?",
+             "The sky-craft is similar, but a relocation leans on Jupiter, the planet of horizons and long journeys, more than a local move does. These dates weight Jupiter for the leap. For buying or settling a home in place, see the home dates."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-reconcile-2027",
+        "title": "Best Days to Reconcile in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to reconcile or mend a rift, by Western electional astrology: a waxing Moon applying to Venus or Mercury. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Reconcile in 2027",
+        "lede": "The best day in each month of 2027 to reconcile, mend a rift, or reach out and try again, by Western electional astrology: the waxing Moon applying to Venus (love) or Mercury (the conversation). Computed with the Swiss Ephemeris. A gentle year for it: 2027 has no Venus retrograde.",
+        "rows": [
+            ("January", "Tue, Jan 19", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("February", "Fri, Feb 12", 7, "Waxing Moon in Taurus applying to a sextile to Mercury, in a Venus hour."),
+            ("March", "Tue, Mar 9", 9, "Waxing Moon in Aries applying to a sextile to Venus, Venus on the Midheaven."),
+            ("April", "Thu, Apr 8", 9, "Waxing Moon in Taurus, Venus-ruled, applying to a sextile to Venus, Venus on the Midheaven."),
+            ("May", "Thu, May 6", 9, "Waxing Moon in Taurus applying to a conjunction with Mercury, Venus on the Midheaven."),
+            ("June", "Mon, Jun 14", 9, "Waxing Moon in Scorpio applying to a trine to Mercury, Venus on the Midheaven, in a Venus hour."),
+            ("July", "Tue, Jul 6", 7, "Waxing Moon in Leo applying to a conjunction with Jupiter, in a Venus hour."),
+            ("August", "Wed, Aug 11", 9, "Waxing Moon in Sagittarius applying to a trine to Venus, Venus rising."),
+            ("September", "Wed, Sep 1", 9, "Waxing Moon in Virgo applying to a conjunction with Mercury, Venus rising."),
+            ("October", "Wed, Oct 6", 9, "Waxing Moon in Capricorn applying to a sextile to Mercury, Venus rising."),
+            ("November", "Fri, Nov 5", 9, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising."),
+            ("December", "Sun, Dec 5", 9, "Waxing Moon in Pisces applying to a sextile to Venus, Venus rising."),
+        ],
+        "how_chosen": (
+            "<p>Mending is <strong>Venus</strong> (affection, forgiveness) and <strong>Mercury</strong> "
+            "(the honest conversation). The Moon should be <strong>waxing</strong>, so warmth grows, "
+            "<strong>not void of course</strong>, and <strong>applying to Venus or Mercury</strong>, "
+            "away from Mars (old fights) and Saturn (cold shoulders). Reach out when the sky is soft.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, which the tradition reads as clear ground "
+            "for love and repair. For the conversation itself, <strong>Mercury direct</strong> helps "
+            "(avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29), and the <strong>eclipse seasons</strong> "
+            "around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 tend to stir feelings up rather "
+            "than settle them.</p>"),
+        "cta_h2": "Reaching out again?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or ask The Twelve Rooms for a full reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to reconcile with someone in 2027?",
+             "The strongest days fall on a waxing Moon applying to Venus or Mercury, the planets of love and honest words. The table above gives the best such day in each month of 2027."),
+            ("Can astrology help mend a relationship?",
+             "It chooses the timing, not the heart. Electional astrology finds a moment when Venus and Mercury lean toward warmth and clear words. The reaching out, and the honesty, are yours."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the most meaningful moment, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-for-a-first-date-2027",
+        "title": "Best Days for a First Date in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 for a first date, by Western electional astrology: a waxing Moon applying to Venus, love's own planet, direct all year. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days for a First Date in 2027",
+        "lede": "The best day in each month of 2027 for a first date or the start of something new, by Western electional astrology: the waxing Moon applying to Venus, love's own planet, direct all year in 2027. Computed with the Swiss Ephemeris.",
+        "rows": [
+            ("January", "Tue, Jan 19", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("February", "Fri, Feb 12", 7, "Waxing Moon in Taurus, Venus-ruled, applying to a trine to Venus, in a Venus hour."),
+            ("March", "Thu, Mar 4", 7, "Moon in Aquarius applying to a conjunction with Venus, Venus on the Midheaven, in a Venus hour."),
+            ("April", "Sat, Apr 3", 7, "Moon in Pisces applying to a conjunction with Venus, Venus on the Midheaven, in a Venus hour."),
+            ("May", "Sat, May 8", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("June", "Mon, Jun 7", 9, "Waxing Moon in Cancer applying to a sextile to Venus, Venus on the Midheaven, in a Venus hour."),
+            ("July", "Tue, Jul 6", 7, "Waxing Moon in Leo applying to a conjunction with Jupiter, in a Venus hour."),
+            ("August", "Wed, Aug 11", 9, "Waxing Moon in Sagittarius applying to a trine to Venus, Venus on the Midheaven, in a Venus hour."),
+            ("September", "Sat, Sep 4", 7, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Venus rising."),
+            ("October", "Sat, Oct 2", 7, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Venus rising."),
+            ("November", "Wed, Nov 3", 7, "Waxing Moon in Capricorn applying to a trine to Jupiter, in a Venus hour."),
+            ("December", "Sun, Dec 5", 9, "Waxing Moon in Pisces applying to a sextile to Venus, Venus on the Midheaven, in a Venus hour."),
+        ],
+        "how_chosen": (
+            "<p>A first meeting is pure <strong>Venus</strong>: attraction, ease, delight. The Moon "
+            "should be <strong>waxing</strong>, <strong>not void of course</strong> (so it goes "
+            "somewhere), and <strong>applying to Venus</strong>, with Venus strong and away from Mars "
+            "and Saturn. This year Venus is direct all twelve months, so love's planet is never walking "
+            "backward.</p>"),
+        "avoid": (
+            "<p>2027 has <strong>no Venus retrograde</strong>, the single best thing you can ask for in "
+            "matters of the heart. The Mercury retrogrades matter less for a date than for a contract, "
+            "but the <strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and "
+            "Aug 17 carry a charge you may prefer to skip for a soft first meeting.</p>"),
+        "cta_h2": "Starting something new?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or ask The Twelve Rooms for a full reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day for a first date in 2027?",
+             "The strongest days fall on a waxing Moon applying to Venus, love's planet, which is direct all year in 2027. The table above gives the best such day in each month."),
+            ("Why is Venus the key for a first date?",
+             "Venus rules attraction, warmth, and pleasure, everything a first meeting is made of. The strongest days have the Moon applying to a well-placed Venus, and in 2027 Venus is direct all year."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-start-a-diet-2027",
+        "title": "Best Days to Start a Diet in 2027, by Astrology · The Twelve Rooms",
+        "description": "The best day each month in 2027 to start a diet or break a habit, by Western electional astrology. Here the rule flips: a waning Moon, to diminish rather than grow. Computed with the Swiss Ephemeris.",
+        "h1": "Best Days to Start a Diet in 2027",
+        "lede": "The best day in each month of 2027 to start a diet or break a habit, by Western electional astrology. Here the usual rule flips: you want a <strong>waning</strong> Moon, to diminish rather than grow, applying to Saturn (discipline) or the Sun (vitality). Computed with the Swiss Ephemeris.",
+        "rows": [
+            ("January", "Fri, Jan 1", 6, "Waning Moon in Scorpio applying to a sextile to the Sun, in a Saturn hour."),
+            ("February", "Fri, Feb 5", 6, "Waning Moon in Aquarius applying to a sextile to Saturn, in a Sun hour."),
+            ("March", "Thu, Mar 4", 6, "Waning Moon in Aquarius applying to a sextile to Saturn."),
+            ("April", "Thu, Apr 1", 6, "Waning Moon in Aquarius applying to a sextile to the Sun."),
+            ("May", "Tue, May 4", 6, "Waning Moon in Aries applying to a conjunction with Saturn."),
+            ("June", "Fri, Jun 4", 6, "Waning Moon in Gemini applying to a conjunction with the Sun."),
+            ("July", "Fri, Jul 2", 6, "Waning Moon in Gemini applying to a sextile to Saturn."),
+            ("August", "Sat, Aug 21", 6, "Waning Moon in Aries applying to a conjunction with Saturn."),
+            ("September", "Wed, Sep 22", 6, "Waning Moon in Gemini applying to a sextile to Saturn."),
+            ("October", "Tue, Oct 19", 6, "Waning Moon in Gemini applying to a sextile to Saturn."),
+            ("November", "Fri, Nov 19", 6, "Waning Moon in Leo applying to a trine to Saturn."),
+            ("December", "Sun, Dec 26", 6, "Waning Moon in Sagittarius applying to a trine to Saturn."),
+        ],
+        "how_chosen": (
+            "<p>Most elections want a waxing Moon, but breaking a habit is the exception. To "
+            "<strong>reduce</strong> something, the tradition uses a <strong>waning</strong> Moon, "
+            "shrinking as you want the craving to shrink, applying to <strong>Saturn</strong> "
+            "(discipline, structure) or the <strong>Sun</strong> (will, vitality). Every date above "
+            "sits on a waning Moon reaching toward restraint.</p>"),
+        "avoid": (
+            "<p>Avoid starting on a <strong>waxing</strong> Moon, which the tradition says feeds what "
+            "you are trying to starve. Skip the days the Moon applies to Jupiter or Venus (indulgence), "
+            "and give the <strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, "
+            "and Aug 17 a miss, since resolve tends to wobble around them.</p>"),
+        "cta_h2": "Breaking a habit for good?",
+        "cta_p": "Find the exact best window for your city in the free timing finder, or ask The Twelve Rooms for a reading that weighs the sky against your own chart.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to start a diet in 2027?",
+             "The strongest days fall on a waning Moon applying to Saturn or the Sun, since you want the habit to shrink. The table above gives the best such day in each month of 2027."),
+            ("Why a waning Moon for a diet?",
+             "Because you want the thing to shrink, not grow. Electional astrology mirrors the intention in the sky: a waxing Moon for what you want more of, a waning Moon for what you want less of. Diets and habit-breaking take the waning Moon."),
+            ("How are these dates calculated?",
+             "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
+            ("Does my own chart matter?",
+             "For the strongest result, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
+        ],
+    },
+    {
+        "slug": "best-days-to-cut-your-hair-2027",
+        "title": "Best Days to Cut Your Hair in 2027 (for Growth), by the Moon · The Twelve Rooms",
+        "description": "The best day each month in 2027 to cut your hair for growth, by the old lunar tradition: a waxing Moon in a fruitful sign. Computed with the Swiss Ephemeris. Gentle folk astrology, lightly held.",
+        "h1": "Best Days to Cut Your Hair in 2027 (for Growth)",
+        "lede": "The best day in each month of 2027 to cut your hair for faster, fuller growth, by the old lunar tradition: a <strong>waxing</strong> Moon in a fruitful sign, applying to Venus or Jupiter. Computed with the Swiss Ephemeris. Want a trim that holds its shape instead? A waning Moon slows regrowth.",
+        "rows": [
+            ("January", "Tue, Jan 19", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("February", "Fri, Feb 12", 6, "Waxing Moon in Taurus, clear and not void, Venus on the Midheaven."),
+            ("March", "Sun, Mar 14", 8, "Waxing Moon in Gemini applying to a trine to Venus, Venus on the Midheaven."),
+            ("April", "Tue, Apr 13", 8, "Waxing Moon in Cancer, fruitful, applying to a trine to Venus, Venus on the Midheaven."),
+            ("May", "Sat, May 8", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
+            ("June", "Mon, Jun 7", 8, "Waxing Moon in Cancer, fruitful, applying to a sextile to Venus, Venus on the Midheaven, in a Venus hour."),
+            ("July", "Mon, Jul 5", 6, "Waxing Moon in Leo, clear and not void, Venus on the Midheaven, in a Venus hour."),
+            ("August", "Wed, Aug 11", 8, "Waxing Moon in Sagittarius applying to a trine to Venus, Venus on the Midheaven, in a Venus hour."),
+            ("September", "Sat, Sep 4", 8, "Waxing Moon in Scorpio, fruitful, applying to a sextile to Jupiter, Venus on the Midheaven."),
+            ("October", "Sat, Oct 2", 6, "Waxing Moon in Scorpio, fruitful, applying to a sextile to Jupiter."),
+            ("November", "Fri, Nov 5", 8, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising."),
+            ("December", "Sun, Dec 5", 8, "Waxing Moon in Pisces, fruitful, applying to a sextile to Venus, Venus on the Midheaven, in a Venus hour."),
+        ],
+        "how_chosen": (
+            "<p>The lunar hair tradition is simple. To encourage <strong>growth</strong>, cut on a "
+            "<strong>waxing</strong> Moon, ideally in a fruitful sign (the water signs, or lush Taurus), "
+            "<strong>applying to Venus</strong> (beauty) or Jupiter (abundance). The waxing Moon that "
+            "grows the hair is the opposite of the waning Moon you would use to keep a cut looking sharp "
+            "for longer.</p>"),
+        "avoid": (
+            "<p>For growth, avoid the <strong>waning</strong> Moon (it slows regrowth, which is exactly "
+            "what you want when you would like a shape to last) and the barren signs. This is folk "
+            "tradition, gentle and fun, not a promise; take it in that spirit.</p>"),
+        "cta_h2": "Curious what else the Moon times?",
+        "cta_p": "See where the Moon is right now on the free Moon page, or find the best window for anything you are timing in the electional finder.",
+        "cta_href": "/electional", "cta_label": "Open the timing finder",
+        "faq": [
+            ("What is the best day to cut your hair for growth in 2027?",
+             "By the lunar tradition, the strongest days fall on a waxing Moon in a fruitful sign applying to Venus or Jupiter. The table above gives the best such day in each month of 2027."),
+            ("Does cutting hair by the Moon actually work?",
+             "It is a centuries-old folk tradition, not a proven one. Many people enjoy timing a trim to a waxing Moon in a fruitful sign for growth, or a waning Moon to keep a cut sharp. Take it as a bit of lunar lore, lightly held."),
+            ("How are these dates calculated?",
+             "By the Moon's phase and sign, computed with the Swiss Ephemeris. The exact timing shifts a little by location, since the Moon changes sign at a set moment worldwide but the local clock differs."),
+            ("What if I want my cut to last instead?",
+             "Flip the rule: cut on a waning Moon to slow regrowth and hold the shape longer. The dates above are chosen for growth, so for a lasting cut, aim for the opposite half of the lunar month."),
+        ],
+    },
 ]
 
 if __name__ == "__main__":

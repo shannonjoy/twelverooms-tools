@@ -33,6 +33,15 @@ STATIC = [
     ("/best-days-for-a-job-interview-2027", "monthly", "0.7"),
     ("/best-days-to-launch-a-product-2027", "monthly", "0.7"),
     ("/best-days-to-propose-2027", "monthly", "0.7"),
+    ("/best-days-to-buy-a-car-2027", "monthly", "0.7"),
+    ("/best-days-to-ask-for-a-raise-2027", "monthly", "0.7"),
+    ("/best-days-to-open-a-restaurant-2027", "monthly", "0.7"),
+    ("/best-days-to-publish-a-book-2027", "monthly", "0.6"),
+    ("/best-days-to-move-to-a-new-city-2027", "monthly", "0.7"),
+    ("/best-days-to-reconcile-2027", "monthly", "0.6"),
+    ("/best-days-for-a-first-date-2027", "monthly", "0.6"),
+    ("/best-days-to-start-a-diet-2027", "monthly", "0.6"),
+    ("/best-days-to-cut-your-hair-2027", "monthly", "0.6"),
 ]
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
 # Deterministic and valid forever, like the moon-date pages.
