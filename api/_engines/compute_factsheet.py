@@ -210,15 +210,127 @@ def condition(planet, pos, rising_idx, sect):
         elif planet == malefic_contrary: c["sect_role"] = "malefic contrary to sect"
     return c
 
+# --- Timezone resolution -----------------------------------------------------
+# IANA regional zones (America/Chicago, etc.) misapply DST to historical US
+# births: before the Uniform Time Act (effective 1967) DST was local option and
+# many places, Missouri included, did not observe it. IANA still stamps CDT on a
+# 1965 date; the Shanks/ACS atlas (what astro.com uses) says CST. A one-hour
+# error moves the Ascendant ~15 degrees and invalidates every house. So: never
+# silently trust IANA for a pre-1967 US birth. Accept an explicit fixed offset
+# that overrides IANA, and warn loudly when IANA is being trusted for a
+# DST-ambiguous historical birth. See lessons.md ("Historical DST").
+DST_ATLAS_YEAR = 1967
+
+
+def _fmt_offset(td):
+    if td is None:
+        return "?"
+    total = int(td.total_seconds())
+    sign = "+" if total >= 0 else "-"
+    total = abs(total)
+    return f"UTC{sign}{total // 3600:02d}:{(total % 3600) // 60:02d}"
+
+
+def resolve_tz(order):
+    """Resolve the birth timezone, preferring an explicit fixed offset over IANA.
+
+    order may carry:
+      "utc_offset": -6         explicit fixed offset in hours; overrides IANA, no DST
+      "tz": "Etc/GMT+6"        a fixed IANA zone (no DST; trusted as given)
+      "tz": "America/Chicago"  a regional IANA zone (may misapply historical DST)
+    Returns (tzinfo, label, is_fixed).
+    """
+    off = order.get("utc_offset")
+    if off is not None:
+        off = float(off)
+        return timezone(timedelta(hours=off)), f"UTC{off:+g} (fixed offset)", True
+    tz = order.get("tz")
+    if not tz:
+        raise SystemExit("order needs either 'utc_offset' (fixed hours) or 'tz'")
+    zi = ZoneInfo(tz)
+    fixed = tz in ("UTC", "GMT") or tz.startswith(("Etc/", "GMT+", "GMT-"))
+    return zi, tz, fixed
+
+
+def dst_ambiguity_warning(order, local, label, is_fixed):
+    """Loud stderr warning when IANA is trusted for a DST-ambiguous historical
+    birth. Returns a warning dict (also embedded in the fact sheet) or None.
+
+    Fires for any pre-1967 birth on a regional zone (the atlas beats IANA there),
+    and for any pre-1970 birth where IANA is actually applying DST (the classic
+    error). Explicit fixed offsets are trusted and never warned."""
+    if is_fixed:
+        return None
+    year = local.year
+    dst_active = bool(local.dst())
+    if not (year < DST_ATLAS_YEAR or (dst_active and year < 1970)):
+        return None
+    us_zone = label.startswith(("America/", "US/", "Canada/"))
+    warn = {
+        "kind": "historical_dst_ambiguity",
+        "zone": label,
+        "birth": f"{order['date']} {order.get('time', '')}".strip(),
+        "iana_offset_at_birth": _fmt_offset(local.utcoffset()),
+        "iana_applying_dst": dst_active,
+        "action": ("verify Ascendant vs astro.com before writing; if off by ~1h "
+                   "of time (~15deg of Asc), set utc_offset (e.g. -6) or tz "
+                   "Etc/GMT+6 and regenerate everything."),
+    }
+    bar = "=" * 74
+    msg = [
+        "", bar,
+        "  WARNING  historical DST / timezone ambiguity, do NOT trust IANA blindly",
+        bar,
+        f"  Birth : {warn['birth']}   zone '{label}'",
+        f"  IANA  : offset {warn['iana_offset_at_birth']}"
+        + ("   (DST is being applied)" if dst_active else "   (standard time)"),
+    ]
+    if us_zone:
+        msg += [
+            f"  Note  : US/North-America zone before {DST_ATLAS_YEAR}. The Uniform "
+            "Time Act (effective",
+            "          1967) is when US DST became uniform; earlier dates followed "
+            "local practice,",
+            "          which IANA does not model (Missouri did not observe DST in "
+            "1965: CST).",
+        ]
+    else:
+        msg += [
+            "  Note  : pre-1970 birth on a regional zone. The Shanks/ACS atlas "
+            "(what astro.com",
+            "          uses) is the authority for historical local time and often "
+            "disagrees.",
+        ]
+    msg += [
+        "  A one-hour error moves the Ascendant ~15 degrees and invalidates every "
+        "house.",
+        "  ACTION: verify the Ascendant against astro.com BEFORE writing a word. "
+        "If it",
+        "          disagrees, set an explicit fixed offset in order.json:",
+        '             "utc_offset": -6        (e.g. CST, no DST)',
+        '          or  "tz": "Etc/GMT+6"      (same thing, an IANA fixed-offset '
+        "zone)",
+        "          then regenerate everything.",
+        bar, "",
+    ]
+    sys.stderr.write("\n".join(msg) + "\n")
+    return warn
+
+
 def build_natal(order):
-    tz = ZoneInfo(order["tz"])
+    tz, tz_label, tz_fixed = resolve_tz(order)
     timed = bool(order.get("time"))
     t = order.get("time") or "12:00"
     local = datetime.fromisoformat(f"{order['date']}T{t}:00").replace(tzinfo=tz)
     jd = jd_ut(local.astimezone(timezone.utc))
     pos = positions_at(jd)
 
-    natal = {"timed": timed, "birth_utc": local.astimezone(timezone.utc).isoformat()}
+    warn = dst_ambiguity_warning(order, local, tz_label, tz_fixed)
+    natal = {"timed": timed, "birth_utc": local.astimezone(timezone.utc).isoformat(),
+             "timezone": {"label": tz_label, "fixed_offset": tz_fixed,
+                          "offset_at_birth": _fmt_offset(local.utcoffset()),
+                          "dst_applied": bool(local.dst())},
+             "warnings": [warn] if warn else []}
     rising_idx = None; sect = None
     if timed:
         cusps, ascmc = swe.houses_ex(jd, order["lat"], order["lon"], b'W', swe.FLG_MOSEPH)
@@ -366,8 +478,10 @@ def current_transits(natal, rising_idx, asof):
                                  "retrograde": sp < 0})
     return sorted(hits, key=lambda x: x["orb"]), retro
 
-def upcoming_hits(natal, asof, months=12):
-    """Day-precision exact aspect dates, slow planets to natal points, next N months."""
+def upcoming_hits(natal, asof, months=12, outer_sextiles=True):
+    """Day-precision exact aspect dates, slow planets to natal points, next N months.
+    outer_sextiles=True includes Uranus/Neptune/Pluto sextiles (they are real,
+    multi-year contacts); set False to trim them from a shorter reading."""
     targets = {p: natal["planets"][p]["lon"] for p in PLANETS if natal["planets"].get(p)}
     if natal.get("asc"):
         targets["ASC"] = natal["asc"]["lon"]; targets["MC"] = natal["mc"]["lon"]
@@ -385,8 +499,8 @@ def upcoming_hits(natal, asof, months=12):
             for name, angle in ASPECTS.items():
                 if name not in MAJORS:
                     continue
-                if name == "sextile" and tp in ("Uranus","Neptune","Pluto"):
-                    continue  # keep the date list meaningful
+                if name == "sextile" and tp in ("Uranus","Neptune","Pluto") and not outer_sextiles:
+                    continue
                 # an aspect is exact at separation +angle OR -angle around the
                 # circle; scan both branches (0 and 180 have only one)
                 for ta in ({angle} if angle in (0, 180) else {angle, 360 - angle}):
@@ -495,6 +609,14 @@ def render_md(fs):
     n = fs["natal"]; L = []
     L.append(f"# Fact sheet: {fs['order']['name']}")
     L.append(f"{fs['order']['date']} {fs['order'].get('time') or '(no birth time)'} · {fs['order'].get('place','')} · whole-sign houses")
+    tzinfo = n.get("timezone")
+    if tzinfo:
+        src = "fixed offset" if tzinfo["fixed_offset"] else "IANA zone"
+        L.append(f"Timezone: {tzinfo['label']} ({src}), birth offset {tzinfo['offset_at_birth']}"
+                 + (", DST applied" if tzinfo["dst_applied"] else ""))
+    for w in n.get("warnings", []):
+        L.append(f"\n**WARNING ({w['kind']}):** IANA offset {w['iana_offset_at_birth']} for "
+                 f"{w['birth']} in '{w['zone']}'. {w['action']}")
     if n["timed"]:
         L.append(f"\n**{n['sect']['sect'].upper()} chart** · light: {n['sect']['light']} · benefic of sect: {n['sect']['benefic_of_sect']} · malefic contrary: {n['sect']['malefic_contrary_to_sect']}")
         L.append(f"**Rising** {n['asc']['pretty']} · **MC** {n['mc']['pretty']} (house {n['mc']['house']})")
@@ -558,6 +680,8 @@ def main():
 
     natal, pos, rising_idx, sect, jd = build_natal(order)
     fs = {"order": order, "asof": asof.isoformat(), "natal": natal}
+    if natal.get("warnings"):
+        fs["warnings"] = natal["warnings"]
     if natal["timed"]:
         fs["profection"] = profection(order, natal, asof)
     fs["transits_in_orb"], fs["current_retrogrades"] = current_transits(natal, rising_idx, asof)
