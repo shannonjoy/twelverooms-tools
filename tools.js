@@ -90,7 +90,6 @@ window.TR = (function () {
     <span class="seal">A map of the life you were born to.</span>
     <div><a href="/about">About</a> · <a href="/reports">The readings</a> · <a href="/almanac">Almanac</a></div>
     <div>Positions computed with the Swiss Ephemeris, whole-sign houses.</div>
-    <div class="privacy">Your birth details are computed in memory and never stored, logged, or shared on our servers. If you tick &ldquo;remember my birth details,&rdquo; they are saved only in your own browser on this device, never sent to us, and clearing them is one untick away. The site uses Google Analytics to measure overall traffic; your birth data is never part of it.</div>
     <div class="privacy">Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>. Brand and readings © The Twelve Rooms.</div>
   </footer>`;
 
