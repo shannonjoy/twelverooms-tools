@@ -270,6 +270,86 @@ window.TR = (function () {
     return { forget: () => { clearBirth(slot); cb.checked = false; showSaved(false); } };
   }
 
+  /* ---- Birth date field: Month / Day / Year in place of one native date
+     input. On mobile, a bare <input type="date"> hands off to the OS picker,
+     which opens on today and makes an old birth year a long scroll back (or,
+     on Android, many taps through past months). Day and Month stay short,
+     tap-once lists; Year is typed, never a picker, since a Year dropdown
+     would just recreate the same scroll it's meant to avoid.
+     The original input is kept (as a hidden field, same name) so every page
+     that reads its .value, and rememberBirth's persistence, keep working
+     unchanged. Call this AFTER rememberBirth on the same input, so it can
+     pick up whatever value rememberBirth just restored from localStorage. */
+  function birthDateField(input) {
+    input = byId(input);
+    if (!input || input.dataset.trMdy) return;
+    input.dataset.trMdy = "1";
+
+    const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+      "August", "September", "October", "November", "December"];
+
+    const wrap = document.createElement("div");
+    wrap.className = "mdy";
+
+    const mSel = document.createElement("select");
+    mSel.setAttribute("aria-label", "Birth month"); mSel.required = true;
+    mSel.innerHTML = `<option value="">Month</option>` +
+      MONTHS.map((m, i) => `<option value="${String(i + 1).padStart(2, "0")}">${m}</option>`).join("");
+
+    const dSel = document.createElement("select");
+    dSel.setAttribute("aria-label", "Birth day"); dSel.required = true;
+    dSel.innerHTML = `<option value="">Day</option>`;
+
+    const yInp = document.createElement("input");
+    yInp.setAttribute("aria-label", "Birth year"); yInp.required = true;
+    yInp.type = "text"; yInp.inputMode = "numeric"; yInp.pattern = "[0-9]*";
+    yInp.maxLength = 4; yInp.placeholder = "Year"; yInp.autocomplete = "off";
+
+    wrap.append(mSel, dSel, yInp);
+    input.before(wrap);
+    input.type = "hidden";
+    input.removeAttribute("required");
+
+    function daysInMonth(month, year) {
+      if (!month) return 31;
+      const y = year && year.length === 4 ? parseInt(year, 10) : 2001; /* non-leap fallback until year is complete */
+      return new Date(y, month, 0).getDate();
+    }
+    function rebuildDays() {
+      const month = mSel.value ? parseInt(mSel.value, 10) : 0;
+      const keep = dSel.value;
+      const max = daysInMonth(month, yInp.value);
+      let html = `<option value="">Day</option>`;
+      for (let i = 1; i <= max; i++) html += `<option value="${String(i).padStart(2, "0")}">${i}</option>`;
+      dSel.innerHTML = html;
+      if (keep && parseInt(keep, 10) <= max) dSel.value = keep;
+    }
+    function sync() {
+      rebuildDays();
+      const m = mSel.value, d = dSel.value, y = yInp.value.trim();
+      const complete = m && d && y.length === 4;
+      const iso = complete ? `${y}-${m}-${d}` : "";
+      if (input.value !== iso) {
+        input.value = iso;
+        if (complete) input.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
+    function fromValue() {
+      const v = input.value;
+      if (!v || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return;
+      const [y, m, d] = v.split("-");
+      yInp.value = y; mSel.value = m; rebuildDays(); dSel.value = d;
+    }
+
+    fromValue();
+    mSel.addEventListener("change", () => { sync(); if (!dSel.value) dSel.focus(); });
+    dSel.addEventListener("change", () => { sync(); yInp.focus(); });
+    yInp.addEventListener("input", () => {
+      yInp.value = yInp.value.replace(/[^0-9]/g, "").slice(0, 4);
+      sync();
+    });
+  }
+
   const calmMotion = () =>
     window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -309,5 +389,5 @@ window.TR = (function () {
   document.addEventListener("DOMContentLoaded", () => {
     injectMasthead(); initNav(); injectFooter(); nightSky(); reveals();
   });
-  return { attachCity, rememberBirth, esc };
+  return { attachCity, rememberBirth, birthDateField, esc };
 })();

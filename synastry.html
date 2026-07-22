@@ -86,9 +86,11 @@ window.addEventListener("DOMContentLoaded", () => {
     fields: { date: "ad", time: "at" }, label: "Remember my details (Person A) on this device",
     onPlace(r) { P.a = r; paint("apicked", r); }
   });
+  TR.birthDateField(f.ad);
   TR.attachCity(document.getElementById("bcity"), document.getElementById("bres"), r => {
     P.b = r; paint("bpicked", r);
   });
+  TR.birthDateField(f.bd);
 });
 f.addEventListener("submit", async e => {
   e.preventDefault();

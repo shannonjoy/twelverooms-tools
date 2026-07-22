@@ -132,6 +132,11 @@ input, select { width: 100%; padding: 10px 12px; min-height: 44px; font: 400 15p
 input:focus, select:focus { outline: 2px solid var(--gold); outline-offset: 0; border-color: transparent; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
 @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } }
+
+/* birth date field: Month / Day (short lists) / Year (typed, never a picker) */
+.mdy { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 0 8px; }
+.mdy select, .mdy input { text-align: center; padding-left: 6px; padding-right: 6px; }
+.mdy select { text-align: left; padding-left: 10px; }
 button.go { margin-top: 18px; background: var(--navy); color: var(--cream); border: 0; padding: 12px 26px;
   border-radius: 10px; min-height: 46px; font: 600 15px var(--body); letter-spacing: 0.02em; cursor: pointer; }
 button.go:hover { background: #2f4173; }

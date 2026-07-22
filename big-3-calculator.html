@@ -82,6 +82,7 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
     }
   });
+  TR.birthDateField(f.date);
 });
 
 /* Render each sign as an inline SVG <text> (like the chart wheel). A plain
