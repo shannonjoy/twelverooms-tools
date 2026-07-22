@@ -23,6 +23,19 @@ window.TR = (function () {
   }
   injectAnalytics();
 
+  /* Microsoft Clarity (session recordings + heatmaps). Project: The Twelve Rooms. */
+  const CLARITY_ID = "xqfhksixnt";
+
+  function injectClarity() {
+    if (!CLARITY_ID) return;
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", CLARITY_ID);
+  }
+  injectClarity();
+
   const MEDALLION = `
 <svg class="medallion" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
