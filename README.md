@@ -17,11 +17,17 @@ requires the complete source be public, which it is.
 - `/electional` + `/api/windows` — electional window finder (lite, 21-day cap)
 - `/api/geo` — offline city lookup (GeoNames, CC-BY) for the birthplace fields
 
-## Principles (the positioning IS the marketing)
-- No accounts, no paywalls, no cookies, no analytics, no dark patterns.
-- Birth data is computed in memory, never stored or logged. Say so on every page.
+## Principles (updated Jul 21 2026 — see roadmap.md for the accounts item)
+- The tools themselves stay open, ungated, and server-rendered/crawlable —
+  that's an SEO requirement, not a branding stance. No paywalls on the tools.
+- Optional accounts are roadmapped (save/sync only, never required to use a tool).
+- Analytics (GA4) is live as of Jul 20 2026 — the old "no analytics" line is stale.
+- Birth data is computed in memory, never stored or logged unless a signed-in
+  user opts in to save it. Say so on every page.
 - "Swiss Ephemeris" stated on-page for credibility.
-- Every page ends in one tasteful CTA to the Etsy shop.
+- Marketing (email capture, CTAs, incentives) should use real, tasteful growth
+  tactics — not a "no dark patterns" purity stance, not cheesy or meme-y either.
+  See marketing-reports/email-list-strategy-0721.md.
 
 ## Deploy
 1. `bin/sync-engines.sh` (after any engine change)
