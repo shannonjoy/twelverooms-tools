@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planetary Hours Today: Live Calculator by City · The Twelve Rooms</title>
+<meta name="description" content="Today's 24 planetary hours for your city, computed live with the Swiss Ephemeris: which planet rules this hour, and the full day-and-night table in the Chaldean order.">
+<link rel="canonical" href="https://thetwelverooms.com/planetary-hours">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What are planetary hours?","acceptedAnswer":{"@type":"Answer","text":"Planetary hours divide daylight into 12 equal parts and night into 12 equal parts, so each hour runs long in summer and short in winter, unlike the fixed 60-minute clock hour. Each of the 24 is ruled by one of the seven classical planets in a fixed rotation, the Chaldean order, starting with the day's own ruler at sunrise."}},
+{"@type":"Question","name":"What planet rules today?","acceptedAnswer":{"@type":"Answer","text":"Each day of the week belongs to a planet: Sunday to the Sun, Monday to the Moon, Tuesday to Mars, Wednesday to Mercury, Thursday to Jupiter, Friday to Venus, Saturday to Saturn. That planet also rules the first planetary hour after sunrise. Pick your city above to see today's full table."}},
+{"@type":"Question","name":"How do you use planetary hours for timing?","acceptedAnswer":{"@type":"Answer","text":"Traditionally you match the hour's ruler to the matter: a Venus hour for love or beauty, a Mercury hour for writing or a contract, a Jupiter hour for money or growth, a Sun hour for visibility or authority. Our electional timing finder already weighs the hour ruler into every scored window, so you rarely need to do this by hand."}},
+{"@type":"Question","name":"Why are planetary hours unequal lengths?","acceptedAnswer":{"@type":"Answer","text":"They divide the actual daylight and actual night into 12 parts each, so a summer day's 12 hours run longer than 60 minutes apiece and a winter night's do too. Only at the equinoxes do planetary hours match the clock hour closely."}},
+{"@type":"Question","name":"Is this the same everywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Sunrise and sunset are local, so the hour boundaries shift with your city and date. Pick your own city above for an accurate table; a table computed for one place will drift by minutes to hours if used somewhere else."}}
+]}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Planetary hours today</h1>
+  <p class="lede">The old clock beneath the clock: 12 hours of daylight and 12 of night, each ruled by one of the seven classical planets in a fixed rotation. Pick your city for today's table, computed live with the Swiss Ephemeris.</p>
+
+  <div class="card">
+    <div class="loc"><label>Where are you?</label>
+      <input id="city" placeholder="Type a city, e.g. Chicago" autocomplete="off"><div id="cityres" class="typeahead"></div></div>
+    <div class="picked" id="picked"></div>
+  </div>
+
+  <div id="out" class="result"></div>
+
+  <section class="prose">
+    <h2>How planetary hours work</h2>
+    <p>Divide the stretch from sunrise to sunset into <strong>12 equal parts</strong>, and sunset to the next sunrise into 12 more: that is a planetary hour, and there are 24 of them in a day. They are not 60 minutes each. A daylight hour in June runs longer than an hour on the clock; a daylight hour in December runs shorter. Only near the equinoxes do the two nearly line up.</p>
+    <p>Each of the 24 belongs to one of the seven classical planets, cycling in a fixed sequence called the <strong>Chaldean order</strong>: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, then back to Saturn. The first hour after sunrise always belongs to the day's own ruler, which is where the days of the week get their names: Sunday opens with a Sun hour, Monday with a Moon hour, Tuesday Mars, Wednesday Mercury, Thursday Jupiter, Friday Venus, Saturday Saturn.</p>
+    <p>The traditional use is to <strong>match the hour to the matter</strong>. Write under Mercury. Ask a favor under Venus or Jupiter. Begin something that needs strength and speed under Mars, sparingly. This is one of the four supports our <a href="/electional">timing finder</a> weighs into every scored window, alongside the Moon's aspect, the angles, and the light, so you are not usually reading this table by hand: the finder does it for you and shows the reasoning.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What are planetary hours?</h3><p>Planetary hours divide daylight into 12 equal parts and night into 12 equal parts, so each hour runs long in summer and short in winter, unlike the fixed 60-minute clock hour. Each of the 24 is ruled by one of the seven classical planets in a fixed rotation, the Chaldean order, starting with the day's own ruler at sunrise.</p></div>
+    <div class="qa"><h3>What planet rules today?</h3><p>Each day of the week belongs to a planet: Sunday to the Sun, Monday to the Moon, Tuesday to Mars, Wednesday to Mercury, Thursday to Jupiter, Friday to Venus, Saturday to Saturn. That planet also rules the first planetary hour after sunrise. Pick your city above to see today's full table.</p></div>
+    <div class="qa"><h3>How do you use planetary hours for timing?</h3><p>Traditionally you match the hour's ruler to the matter: a Venus hour for love or beauty, a Mercury hour for writing or a contract, a Jupiter hour for money or growth, a Sun hour for visibility or authority. Our electional timing finder already weighs the hour ruler into every scored window, so you rarely need to do this by hand.</p></div>
+    <div class="qa"><h3>Why are planetary hours unequal lengths?</h3><p>They divide the actual daylight and actual night into 12 parts each, so a summer day's 12 hours run longer than 60 minutes apiece and a winter night's do too. Only at the equinoxes do planetary hours match the clock hour closely.</p></div>
+    <div class="qa"><h3>Is this the same everywhere?</h3><p>No. Sunrise and sunset are local, so the hour boundaries shift with your city and date. Pick your own city above for an accurate table; a table computed for one place will drift by minutes to hours if used somewhere else.</p></div>
+  </section>
+
+  <div class="cta">
+    <h2>Timing something with the hours?</h2>
+    <p>The free timing finder already weighs the planetary hour into every scored window, alongside the Moon's aspect, the angles, and the light.</p>
+    <a href="/electional" rel="noopener">Open the timing finder</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const RULER_GLYPH = {Sun:"☉",Moon:"☽",Mercury:"☿",Venus:"♀",Mars:"♂",Jupiter:"♃",Saturn:"♄"};
+let PLACE = null;
+window.addEventListener("DOMContentLoaded", () => {
+  TR.attachCity(document.getElementById("city"), document.getElementById("cityres"), r => {
+    PLACE = r;
+    document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> &middot; ${esc(r.tz)}`;
+    load();
+  });
+});
+async function load() {
+  const out = document.getElementById("out");
+  if (!PLACE) return;
+  out.innerHTML = `<div class="card"><p class="hint">Computing today's hours&hellip;</p></div>`;
+  try {
+    const r = await fetch("/api/planetary-hours", { method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ lat: PLACE.lat, lon: PLACE.lon, tz: PLACE.tz }) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    const current = d.hours.find(h => h.current);
+    const rows = d.hours.map((h, i) => `<tr${h.current ? ' class="now"' : ""}><td>${i < 12 ? "Day" : "Night"} ${(i % 12) + 1}</td><td>${RULER_GLYPH[h.ruler] || ""} ${esc(h.ruler)}</td><td>${esc(h.from)} &ndash; ${esc(h.to)}</td></tr>`).join("");
+    out.innerHTML = `<div class="card">
+      <h2 style="margin-top:0">${esc(d.date_pretty)}</h2>
+      <p>Day ruler: <strong>${esc(d.day_ruler)}</strong>${current ? ` &middot; right now: <strong>${esc(current.ruler)} hour</strong> (until ${esc(current.to)})` : ""}</p>
+      <table class="year-table"><thead><tr><th>Hour</th><th>Ruler</th><th>Window</th></tr></thead><tbody>${rows}</tbody></table>
+      <p class="hint" style="margin-top:8px">Times shown in ${esc(PLACE.tz)}. The current hour, if today, is highlighted.</p>
+    </div>`;
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+}
+</script>
+</body>
+</html>

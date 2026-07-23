@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void of Course Moon: What It Means, and Is It Void Right Now? · The Twelve Rooms</title>
+<meta name="description" content="Is the Moon void of course right now? Live status computed with the Swiss Ephemeris, plus what void of course actually means, why it matters for timing, and what to do (and not do) while it lasts.">
+<link rel="canonical" href="https://thetwelverooms.com/void-of-course-moon">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What does void of course moon mean?","acceptedAnswer":{"@type":"Answer","text":"The Moon is void of course after she makes her last major (Ptolemaic) aspect to another planet while in a sign, and before she crosses into the next sign. During that gap she is forming no new connections, so beginnings started then classically tend to drift or come to nothing."}},
+{"@type":"Question","name":"Is the moon void of course right now?","acceptedAnswer":{"@type":"Answer","text":"The reading at the top of this page shows the Moon's status live, computed with the Swiss Ephemeris in your own timezone, along with when the current void period ends if one is active."}},
+{"@type":"Question","name":"Is void of course moon bad?","acceptedAnswer":{"@type":"Answer","text":"No, it is a pause, not a curse. It is a poor time to begin something you want to go somewhere: launch, sign, propose, decide. It is a good time to rest, tidy, reflect, and finish what is already underway. The old counsel is to work with the pause rather than against it."}},
+{"@type":"Question","name":"How long does void of course moon last?","acceptedAnswer":{"@type":"Answer","text":"Anywhere from a few minutes to more than a day, depending on how soon the Moon's last aspect in a sign falls before her ingress into the next one. There is no fixed length; each void period is computed, not estimated."}},
+{"@type":"Question","name":"Should I avoid signing anything during void of course moon?","acceptedAnswer":{"@type":"Answer","text":"Traditionally, yes, for anything you want to go somewhere: a contract, a launch, a big purchase, a first date. Our electional timing finder excludes void-of-course Moon from every window it scores, for exactly this reason."}}
+]}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Void of course Moon</h1>
+  <p class="lede">The Moon's coasting gap: the stretch after her last exact aspect in a sign and before she crosses into the next one, forming no new connections along the way. Read below whether she is void right now, computed live with the Swiss Ephemeris.</p>
+  <div class="card" id="out"><p class="hint">Reading the sky&hellip;</p></div>
+
+  <div class="datebrowse" id="datebrowse"></div>
+
+  <section class="prose">
+    <h2>What void of course actually means</h2>
+    <p>The Moon moves faster than any other body, roughly thirteen degrees a day, and she spends about two and a half days crossing each sign. In that time she makes a series of exact aspects, trines, sextiles, squares, oppositions, conjunctions, to the other planets, each one a fresh connection. At some point in every sign, she makes her <strong>last</strong> exact aspect before leaving it, and from that moment until she actually crosses into the next sign, she is <strong>void of course</strong>: still moving, still changing degree, but forming no new aspects at all.</p>
+    <p>The traditional reading is simple. A beginning wants connection: a new plan, a signature, a launch, a first conversation, all want the Moon actively reaching toward something. A void Moon is reaching toward nothing. Astrologers have long held that whatever starts in the void tends to drift, stall, or quietly come to nothing, not from bad luck exactly, more like starting a conversation with someone who has already left the room.</p>
+    <h2>What to do while she is void</h2>
+    <p><strong>Hold off on:</strong> signing something you want to hold, launching something you want to grow, a first date, a proposal, any decision you want to actually stick. <strong>Lean into:</strong> finishing what is already moving, tidying, resting, reflecting, routine tasks that do not need momentum behind them. The void is not empty time, it is unattached time, better suited to closing loops than opening new ones.</p>
+    <p>This is exactly why our <a href="/electional">timing finder</a> excludes void-of-course Moon from every window it scores, and why every date on our <a href="/best-wedding-dates-2027">best-dates pages</a> is checked against it first, before anything else is weighed.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What does void of course moon mean?</h3><p>The Moon is void of course after she makes her last major (Ptolemaic) aspect to another planet while in a sign, and before she crosses into the next sign. During that gap she is forming no new connections, so beginnings started then classically tend to drift or come to nothing.</p></div>
+    <div class="qa"><h3>Is the moon void of course right now?</h3><p>The reading at the top of this page shows the Moon's status live, computed with the Swiss Ephemeris in your own timezone, along with when the current void period ends if one is active.</p></div>
+    <div class="qa"><h3>Is void of course moon bad?</h3><p>No, it is a pause, not a curse. It is a poor time to begin something you want to go somewhere: launch, sign, propose, decide. It is a good time to rest, tidy, reflect, and finish what is already underway. The old counsel is to work with the pause rather than against it.</p></div>
+    <div class="qa"><h3>How long does void of course moon last?</h3><p>Anywhere from a few minutes to more than a day, depending on how soon the Moon's last aspect in a sign falls before her ingress into the next one. There is no fixed length; each void period is computed, not estimated.</p></div>
+    <div class="qa"><h3>Should I avoid signing anything during void of course moon?</h3><p>Traditionally, yes, for anything you want to go somewhere: a contract, a launch, a big purchase, a first date. Our electional timing finder excludes void-of-course Moon from every window it scores, for exactly this reason.</p></div>
+  </section>
+
+  <div class="cta">
+    <h2>Planning around the void?</h2>
+    <p>The free timing finder already excludes void-of-course Moon from every window it scores, and shows every void period in your range.</p>
+    <a href="/electional" rel="noopener">Open the timing finder</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = TR.esc;
+const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Chicago";
+fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(r => r.json()).then(d => {
+  const out = document.getElementById("out");
+  if (d.error) { out.innerHTML = `<div class="error">${esc(d.error)}</div>`; return; }
+  out.innerHTML = d.void_of_course
+    ? `<p class="big" style="color:#9c4460">Void of course now</p>
+       <p>The Moon is in <strong>${esc(d.moon)}</strong>, making no new aspects until she crosses into her next sign, around <strong>${esc(d.voc_until)}</strong> (${esc(tz)}).</p>
+       <p class="hint">Hold off on beginnings; this is a good stretch to finish, tidy, or rest instead.</p>`
+    : `<p class="big">Not void of course</p>
+       <p>The Moon is in <strong>${esc(d.moon)}</strong>, actively forming aspects.${d.next_aspect ? ` Next exact aspect: <strong>${esc(d.next_aspect.what)}</strong>, ${esc(d.next_aspect.at)}.` : ""}</p>
+       <p class="hint">A clear time to begin something, as far as the Moon is concerned.</p>`;
+}).catch(() => {
+  document.getElementById("out").innerHTML = `<div class="error">Could not read the sky just now. Try the <a href="/moon">live Moon tool</a>.</div>`;
+});
+
+// Browse void-of-course status by date (per-date pages are server-rendered and accurate forever)
+(function () {
+  const box = document.getElementById("datebrowse");
+  if (!box) return;
+  const iso = d => d.toISOString().slice(0, 10);
+  const label = d => d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  const today = new Date();
+  const days = [];
+  for (let i = 0; i <= 9; i++) { const dd = new Date(today); dd.setDate(today.getDate() + i); days.push(dd); }
+  box.innerHTML = `<h3>Browse by date</h3><div class="chips">` +
+    days.map((dd, i) => `<a href="/void-of-course-moon/${iso(dd)}">${i === 0 ? "Today" : label(dd)}</a>`).join("") +
+    `</div>`;
+})();
+</script>
+</body>
+</html>

@@ -62,6 +62,8 @@ window.TR = (function () {
   const NAV = [
     { label: "Tools", items: [
       ["/moon", "Moon now"],
+      ["/void-of-course-moon", "Void of course"],
+      ["/planetary-hours", "Planetary hours"],
       ["/big-3-calculator", "Big 3"],
       ["/natal-chart", "Natal chart"],
       ["/synastry", "Synastry"],

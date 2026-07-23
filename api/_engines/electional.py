@@ -16,6 +16,7 @@ from datetime import datetime, timedelta, timezone, date as date_cls
 from zoneinfo import ZoneInfo
 
 import engines
+import mundane
 
 SIGNS = engines.cs.SIGNS
 PTOLEMAIC = {"conjunction": 0.0, "sextile": 60.0, "square": 90.0,
@@ -45,7 +46,13 @@ ANG = ["ASC", "MC"]
 def _r(key, label, category, applies, avoid, hours, phase,
        angular=("Venus", "Jupiter"), retro=None, moon_in=None,
        moon_avoid_signs=None, moon_bonus=None, avoid_asp=None,
-       apply_w=3, avoid_w=-3):
+       apply_w=3, avoid_w=-3,
+       # Traditional-dignity pilot (venture cluster only; see
+       # electional-methodology.md, "What the tool gates vs what the
+       # reading adds"). None = recipe is untouched, byte-identical to
+       # before this pilot.
+       dignity_planets=None, dignity_w=2.5, malefic_angle_w=-3,
+       sect_pref=None, sect_w=2, asc_ruler_w=2):
     hard = [{"rule": "moon_not_voc"}]
     if retro:
         hard.append({"rule": "planet_not_retrograde", "planets": retro})
@@ -66,6 +73,12 @@ def _r(key, label, category, applies, avoid, hours, phase,
         soft.append({"rule": "moon_waning", "weight": 2})
     if moon_bonus:
         soft.append({"rule": "moon_sign_bonus", "signs": moon_bonus, "weight": 1})
+    if dignity_planets:
+        soft.append({"rule": "planet_dignity", "planets": list(dignity_planets), "weight": dignity_w})
+        soft.append({"rule": "malefic_on_angle", "planets": list(avoid), "angles": ANG, "orb": 5, "weight": malefic_angle_w})
+        soft.append({"rule": "asc_ruler_dignity", "weight": asc_ruler_w})
+        if sect_pref:
+            soft.append({"rule": "sect_bonus", "sect": sect_pref, "weight": sect_w})
     return {"key": key, "label": label, "category": category, "hard": hard, "soft": soft}
 
 
@@ -86,36 +99,64 @@ RECIPES = [
     _r("conception", "Trying to conceive", "Love",
        ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus", "Jupiter"], "waxing",
        moon_in=["Cancer", "Scorpio", "Pisces"]),
+    # Venus is the primary significator (sociability, pleasure, aesthetics),
+    # not Jupiter -- and unlike every other recipe here, night suits this
+    # matter better than day: Venus is the nocturnal sect benefic, and most
+    # parties are evening events anyway. First recipe where sect_pref
+    # points away from the day/Jupiter pattern for a real traditional
+    # reason, not an oversight.
+    _r("party", "Party / celebration", "Love",
+       ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus", "Jupiter"], "waxing",
+       angular=("Venus", "Jupiter"),
+       dignity_planets=["Venus"], sect_pref="night"),
     # Money, work, enterprise
     _r("business", "Starting a business", "Work",
        ["Jupiter", "Mercury", "Sun"], ["Saturn", "Mars"], ["Jupiter", "Mercury", "Sun"], "waxing",
-       angular=("Jupiter",), retro=["Mercury"]),
+       angular=("Jupiter",), retro=["Mercury"],
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("contract", "Signing a contract", "Work",
        ["Mercury", "Jupiter"], ["Mars", "Saturn"], ["Mercury", "Jupiter"], "waxing",
-       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("launch", "Product launch / going live", "Work",
        ["Jupiter", "Sun"], ["Saturn", "Mars"], ["Sun", "Jupiter"], "waxing",
-       angular=("Sun", "Jupiter")),
+       angular=("Sun", "Jupiter"),
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("job", "Job interview / new job", "Work",
        ["Sun", "Jupiter", "Mercury"], ["Saturn", "Mars"], ["Sun", "Jupiter", "Mercury"], "waxing",
-       angular=("Jupiter",), retro=["Mercury"]),
+       angular=("Jupiter",), retro=["Mercury"],
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("raise", "Raise / salary negotiation", "Work",
        ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Venus"], "waxing",
-       angular=("Jupiter",), avoid_w=-4),
+       angular=("Jupiter",), avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("shop", "Opening a shop / restaurant", "Work",
        ["Venus", "Jupiter"], ["Saturn", "Mars"], ["Venus", "Jupiter"], "waxing",
-       retro=["Mercury"]),
+       retro=["Mercury"],
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("investment", "Investment / opening an account", "Work",
        ["Jupiter", "Venus"], ["Saturn", "Mars"], ["Jupiter", "Venus"], "waxing",
-       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
     # Private (studio-only, never in PUBLIC_KEYS): traditional financial-venture
     # timing. Reflective astrology, NOT a market forecast or trading advice.
     _r("financial_venture", "Financial venture / speculation", "Work",
        ["Jupiter", "Venus", "Mercury"], ["Mars", "Saturn"], ["Mercury", "Jupiter"], "waxing",
-       angular=("Jupiter", "Venus"), retro=["Mercury"], avoid_w=-4),
+       angular=("Jupiter", "Venus"), retro=["Mercury"], avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
+    # Private (studio-only, never in PUBLIC_KEYS): same significators as
+    # financial_venture but waning, not waxing -- selling/closing a
+    # position is a release, not a beginning, the same principle behind
+    # surgery/diet's waning phase. Reflective astrology, NOT a market
+    # forecast or trading advice.
+    _r("sell_stock", "Sell stock / close a position", "Work",
+       ["Jupiter", "Venus", "Mercury"], ["Mars", "Saturn"], ["Mercury", "Jupiter"], "waning",
+       angular=("Jupiter", "Venus"), retro=["Mercury"], avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
     _r("publishing", "Publishing / book launch", "Work",
        ["Jupiter", "Mercury", "Sun"], ["Saturn", "Mars"], ["Mercury", "Jupiter", "Sun"], "waxing",
-       angular=("Jupiter", "Sun"), retro=["Mercury"]),
+       angular=("Jupiter", "Sun"), retro=["Mercury"],
+       dignity_planets=["Jupiter"], sect_pref="day"),
     # Home, movement, property
     _r("home", "Buying / moving into a home", "Home",
        ["Venus", "Jupiter"], ["Mars", "Saturn"], ["Venus", "Moon"], "waxing",
@@ -139,13 +180,168 @@ RECIPES = [
     # Conflict
     _r("lawsuit", "Lawsuit / legal action", "Conflict",
        ["Jupiter", "Sun"], ["Saturn", "Mars"], ["Jupiter", "Sun"], "waxing",
-       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4),
+       angular=("Jupiter",), retro=["Mercury"], avoid_w=-4,
+       dignity_planets=["Jupiter"], sect_pref="day"),
 ]
+# Mundane weather (Saturn/Uranus/Neptune/Pluto standing configurations,
+# triggered by Sun/Mercury/Venus/Mars/Jupiter — see mundane.py) applies to
+# every matter equally, not just a subset of recipes, so it's appended
+# here rather than threaded through _r() as another opt-in kwarg.
+for _r_entry in RECIPES:
+    _r_entry["soft"] = _r_entry["soft"] + [{"rule": "mundane_aspect"}]
+del _r_entry
 RECIPES_BY_KEY = {r["key"]: r for r in RECIPES}
+
+
+# ---------- The Twelve Rooms Timing Scale (star rating) ----------
+# A raw peak_score means nothing on its own (a wedding scan and a
+# haircut scan don't share a ceiling), so every window is read against
+# how strong its OWN recipe's windows actually run over time. Star
+# thresholds are empirically calibrated, not guessed: bin/
+# calibrate_timing_scale.py scanned 5 years (2024-2028) of sky-only
+# windows per recipe, at the geographic center of the contiguous US, and
+# set the boundaries at the 15th/35th/70th/90th percentile of that
+# recipe's own real score distribution (n=471-1851 windows per recipe;
+# full distribution in calibration_data.json). 3 stars = average on
+# purpose: it is the widest band (35th-70th percentile) because most
+# windows for most matters ARE ordinary. 5 stars sits in the top decile
+# deliberately, so it stays a real distinction and not grade inflation.
+# Re-run the calibration whenever a recipe's rule weights change in
+# RECIPES above.
+#
+# Known artifact: a few recipes (diet, publishing, car, surgery,
+# haircut) have so few distinct achievable raw scores that two
+# percentile boundaries land on the same value. When that happens, that
+# star rating simply never occurs for that recipe (e.g. haircut has no
+# 4-star windows in 5 years of data; diet and publishing have no
+# 2-star). This reflects those recipes having fewer stacking rules, not
+# a calibration bug.
+STAR_THRESHOLDS = {
+    "wedding": {"p15": 0.85, "p35": 3.5, "p70": 8.0, "p90": 11.5},
+    "engagement": {"p15": -0.5, "p35": 2.5, "p70": 7.0, "p90": 10.5},
+    "first_date": {"p15": -0.5, "p35": 2.5, "p70": 7.0, "p90": 10.5},
+    "reconciliation": {"p15": 0.0, "p35": 3.0, "p70": 7.5, "p90": 11.0},
+    "conception": {"p15": 1.0, "p35": 3.5, "p70": 8.0, "p90": 12.0},
+    "party": {"p15": 2.5, "p35": 5.9, "p70": 10.5, "p90": 14.5},
+    "business": {"p15": 2.99, "p35": 6.5, "p70": 11.0, "p90": 15.0},
+    "contract": {"p15": 2.0, "p35": 6.0, "p70": 10.0, "p90": 14.0},
+    "launch": {"p15": 2.8, "p35": 6.5, "p70": 11.0, "p90": 15.0},
+    "job": {"p15": 2.99, "p35": 6.5, "p70": 11.0, "p90": 15.0},
+    "raise": {"p15": 2.0, "p35": 6.0, "p70": 10.5, "p90": 14.5},
+    "shop": {"p15": 2.8, "p35": 6.5, "p70": 10.5, "p90": 15.0},
+    "investment": {"p15": 2.0, "p35": 6.0, "p70": 10.0, "p90": 14.0},
+    "financial_venture": {"p15": 3.0, "p35": 6.5, "p70": 11.0, "p90": 15.0},
+    "sell_stock": {"p15": 2.5, "p35": 6.5, "p70": 11.0, "p90": 15.0},
+    "publishing": {"p15": 3.5, "p35": 7.2, "p70": 11.5, "p90": 15.5},
+    "home": {"p15": 1.0, "p35": 4.0, "p70": 8.0, "p90": 12.0},
+    "relocation": {"p15": 1.0, "p35": 4.0, "p70": 8.5, "p90": 12.5},
+    "car": {"p15": 0.0, "p35": 3.0, "p70": 7.0, "p90": 10.8},
+    "surgery": {"p15": 0.0, "p35": 3.0, "p70": 7.5, "p90": 11.5},
+    "diet": {"p15": -1.0, "p35": 2.0, "p70": 6.5, "p90": 10.5},
+    "haircut": {"p15": 0.0, "p35": 3.0, "p70": 7.0, "p90": 10.5},
+    "lawsuit": {"p15": 2.0, "p35": 6.0, "p70": 10.0, "p90": 14.0},
+}
+
+# Plain-word labels (the comprehensible layer) plus the room name (the
+# named, ownable layer) for each star count, worst to best.
+STAR_LABELS = {
+    1: {"label": "Weak", "room_name": "Threshold",
+        "blurb": "Little traditional support, in the bottom 15% of five"
+                 " years of this election's windows; some 1-star windows"
+                 " have the Moon actively applying toward what spoils"
+                 " this matter. Usable only if nothing better is on the"
+                 " calendar."},
+    2: {"label": "Below Average", "room_name": "Open Door",
+        "blurb": "Fewer of the traditional supports than usual for this"
+                 " matter, though the Moon is clear of the spoilers."},
+    3: {"label": "Average", "room_name": "Lit Room",
+        "blurb": "A typical window for this matter, the most common"
+                 " outcome, neither rare nor weak."},
+    4: {"label": "Good", "room_name": "Full House",
+        "blurb": "Solidly stronger than the ordinary window for this"
+                 " matter, in the top 30%."},
+    5: {"label": "Excellent", "room_name": "Every Window Open",
+        "blurb": "As strong as this election gets: the top 10% of five"
+                 " years of this election's windows."},
+}
+
+
+# Separate calibration for "best dates this year": that feature shows
+# only the single strongest window per month (scan_year, below), and a
+# max-of-~20 is structurally almost always near the top of the ALL-
+# windows distribution above. Comparing it to STAR_THRESHOLDS made every
+# month of a 12-month scan come back 5-star in testing, useless as a
+# scale. This is calibrated instead against the distribution of monthly
+# maxima themselves (n=60, one per month across the same 5 years).
+# Consequence, also real: a handful of recipes (diet in particular) hit
+# their monthly-best ceiling in nearly every month, so the annual view
+# will often show 5 stars across the board for those specific matters.
+# That is the honest finding, not a bug to smooth away, but the plain
+# scan of that same recipe (STAR_THRESHOLDS) still spreads normally.
+STAR_THRESHOLDS_MONTHLY = {
+    "wedding": {"p15": 8.0, "p35": 11.15, "p70": 14.29, "p90": 17.55},
+    "engagement": {"p15": 7.42, "p35": 10.5, "p70": 13.65, "p90": 17.6},
+    "first_date": {"p15": 7.42, "p35": 10.5, "p70": 13.65, "p90": 17.6},
+    "reconciliation": {"p15": 9.0, "p35": 11.82, "p70": 14.65, "p90": 17.6},
+    "conception": {"p15": 7.0, "p35": 9.5, "p70": 12.86, "p90": 16.0},
+    "party": {"p15": 11.97, "p35": 14.5, "p70": 17.65, "p90": 20.55},
+    "business": {"p15": 10.5, "p35": 14.15, "p70": 17.5, "p90": 19.7},
+    "contract": {"p15": 10.0, "p35": 13.5, "p70": 17.0, "p90": 19.6},
+    "launch": {"p15": 12.93, "p35": 14.82, "p70": 18.15, "p90": 22.5},
+    "job": {"p15": 10.5, "p35": 14.15, "p70": 17.5, "p90": 19.7},
+    "raise": {"p15": 12.43, "p35": 14.32, "p70": 17.0, "p90": 20.6},
+    "shop": {"p15": 10.5, "p35": 13.5, "p70": 17.65, "p90": 20.05},
+    "investment": {"p15": 10.0, "p35": 13.5, "p70": 16.65, "p90": 20.05},
+    "financial_venture": {"p15": 11.7, "p35": 14.32, "p70": 18.0, "p90": 20.05},
+    "sell_stock": {"p15": 12.0, "p35": 14.5, "p70": 18.5, "p90": 21.05},
+    "publishing": {"p15": 10.93, "p35": 14.5, "p70": 18.15, "p90": 21.15},
+    "home": {"p15": 9.76, "p35": 12.82, "p70": 15.5, "p90": 18.1},
+    "relocation": {"p15": 10.43, "p35": 13.0, "p70": 15.65, "p90": 19.0},
+    "car": {"p15": 6.85, "p35": 9.39, "p70": 13.5, "p90": 16.55},
+    "surgery": {"p15": 9.0, "p35": 10.7, "p70": 15.0, "p90": 18.55},
+    "diet": {"p15": 7.42, "p35": 9.82, "p70": 13.06, "p90": 16.5},
+    "haircut": {"p15": 7.92, "p35": 10.5, "p70": 13.65, "p90": 17.1},
+    "lawsuit": {"p15": 10.43, "p35": 13.13, "p70": 16.5, "p90": 19.7},
+}
+
+
+def stars_for_score(score, recipe_key, population="window"):
+    """1-5 star rating for a window's peak_score, calibrated per recipe.
+    population="window" (default) compares against all qualifying
+    windows, the population a plain scan or the public tool shows.
+    population="monthly_best" compares against the distribution of
+    monthly maxima, for scan_year's one-per-month display. Returns None
+    if recipe_key wasn't calibrated (e.g. a fully custom scan not built
+    from one of the RECIPES presets)."""
+    table = STAR_THRESHOLDS_MONTHLY if population == "monthly_best" else STAR_THRESHOLDS
+    t = table.get(recipe_key)
+    if not t:
+        return None
+    if score < t["p15"]:
+        stars = 1
+    elif score < t["p35"]:
+        stars = 2
+    elif score < t["p70"]:
+        stars = 3
+    elif score < t["p90"]:
+        stars = 4
+    else:
+        stars = 5
+    info = STAR_LABELS[stars]
+    return {"stars": stars, "label": info["label"],
+            "room_name": info["room_name"], "blurb": info["blurb"]}
+
 
 jd_ut = engines.cs.jd_ut
 body_lonspeed = engines.cs.body_lonspeed
 signed_delta = engines.cs.signed_delta
+
+# Traditional-dignity pilot: reuse compute_factsheet's tables/functions rather
+# than reinventing them. NOTE engines.cf.whole_sign_house(lon, rising_idx) has
+# a different signature from engines.cs.whole_sign_house — always use this one.
+cf_dignity = engines.cf.dignity
+cf_whole_sign_house = engines.cf.whole_sign_house
+RULER = engines.cf.RULER
 
 
 def _lon(dt_utc, code):
@@ -322,7 +518,7 @@ def _natal_targets(chart_order):
 
 # ---------- the scan ----------
 
-def scan(criteria, get_chart=None):
+def scan(criteria, get_chart=None, recipe_key=None, population="window"):
     c = validate(criteria)
     tz = c["tz"]
     days = (c["end"] - c["start"]).days + 1
@@ -358,7 +554,8 @@ def scan(criteria, get_chart=None):
                     raise ValueError(f"unknown chart {cid}")
                 natal_cache[cid] = _natal_targets(chart["order"])
 
-    needs_angles = any(r["rule"] == "benefic_on_angle" for r in c["hard"] + c["soft"])
+    ANGLE_RULES = ("benefic_on_angle", "malefic_on_angle", "asc_ruler_dignity", "sect_bonus")
+    needs_angles = any(r["rule"] in ANGLE_RULES for r in c["hard"] + c["soft"])
     eh, em = map(int, c["earliest"].split(":"))
     lh, lm = map(int, c["latest"].split(":"))
 
@@ -437,6 +634,64 @@ def scan(criteria, get_chart=None):
                         if d <= orb:
                             score += w
                             notes.append(f"{p} on {ang_name} ({d:.1f} deg)")
+            elif r == "malefic_on_angle":
+                # Mirrors benefic_on_angle but penalizes: "keep Saturn away
+                # from exactly conjoining the Ascendant degree" (Brennan &
+                # Schaim, repeated through the 2025 report).
+                orb = float(rule.get("orb", 5))
+                for p in rule["planets"]:
+                    plon = _lon(t_utc, PLANET_CODE[p])
+                    for ang_name in rule.get("angles", ["ASC", "MC"]):
+                        d = abs(signed_delta(plon, angles[ang_name]))
+                        if d <= orb:
+                            score += w  # w is negative for this rule
+                            notes.append(f"{p} on {ang_name} ({d:.1f} deg) [avoid]")
+            elif r == "planet_dignity":
+                # Essential dignity of a named significator: domicile/
+                # exaltation score up, detriment/fall score down. This is
+                # the direct fix for a planet like Jupiter exalted in
+                # Cancer scoring even when it isn't sitting on an angle.
+                for p in rule["planets"]:
+                    plon = _lon(t_utc, PLANET_CODE[p])
+                    sign = SIGNS[int(plon // 30)]
+                    dig = cf_dignity(p, sign)
+                    if not dig:
+                        continue
+                    if "domicile" in dig or "exaltation" in dig:
+                        score += w
+                        notes.append(f"{p} {dig[0]} in {sign}")
+                    if "detriment" in dig or "fall" in dig:
+                        score -= w
+                        notes.append(f"{p} {dig[-1]} in {sign} [avoid]")
+            elif r == "sect_bonus":
+                # Day/night chart of the electional moment itself. Jupiter
+                # is the diurnal benefic, so Jupiter-led elections favor a
+                # day chart — the soft version of the report's recurring
+                # "essential to make sure the Sun is above the Ascendant."
+                below = 0 <= (slon - angles["ASC"]) % 360 < 180
+                sect = "night" if below else "day"
+                if sect == rule["sect"]:
+                    score += w
+                    notes.append(f"{sect} chart")
+            elif r == "asc_ruler_dignity":
+                # Moment-level analogue of build_natal()'s chart_ruler
+                # condition: how strong is THIS chart's own Ascendant ruler.
+                rising_idx = int(angles["ASC"] // 30)
+                ruler = RULER[SIGNS[rising_idx]]
+                rlon = _lon(t_utc, PLANET_CODE[ruler])
+                rsign = SIGNS[int(rlon // 30)]
+                dig = cf_dignity(ruler, rsign)
+                if dig and ("domicile" in dig or "exaltation" in dig):
+                    score += w
+                    notes.append(f"Asc ruler {ruler} {dig[0]} in {rsign}")
+                rhouse = cf_whole_sign_house(rlon, rising_idx)
+                if rhouse in (1, 4, 7, 10):
+                    score += w
+                    notes.append(f"Asc ruler {ruler} angular (house {rhouse})")
+            elif r == "mundane_aspect":
+                m_score, m_notes = mundane.live_score(t_utc, _lon)
+                score += m_score
+                notes += m_notes
             elif r == "transit_to_natal":
                 targets = natal_cache[rule["natal_chart"]]
                 tp = rule["transit"]
@@ -567,6 +822,7 @@ def scan(criteria, get_chart=None):
             "peak_score": round(w["peak"], 1),
             "peak_at": mid.astimezone(tz).strftime("%-I:%M %p"),
             "receipts": receipts,
+            "scale": stars_for_score(w["peak"], recipe_key, population),
         })
 
     out.sort(key=lambda w: (-w["peak_score"], -w["duration_min"]))
@@ -592,8 +848,10 @@ def explain(window):
     angles = []
     hour = None
     natal = []
+    dignities = []
+    sect = None
     for n in r.get("peak_notes", []):
-        if n.startswith("Moon applying (avoid)"):
+        if n.startswith("Moon applying (avoid)") or n.endswith("[avoid]"):
             continue
         if n.startswith("Moon applying "):
             body = n[len("Moon applying "):].split(", exact")[0].split()
@@ -601,12 +859,18 @@ def explain(window):
                 asp = f"a {body[0]} to {body[1]}"
         elif n.endswith("hour"):
             hour = n[:-5].strip()  # "Jupiter"
+        elif n.endswith("chart") and ("day" in n or "night" in n):
+            sect = n  # "day chart" / "night chart"
         elif " on ASC" in n or " on MC" in n:
             planet, _, rest = n.partition(" on ")
             ang = rest.split(" (")[0]
             angles.append(f"{planet} on the {SIGN_THE.get(ang, ang)}")
+        elif n.startswith("Asc ruler"):
+            dignities.append(n)
         elif "natal" in n:
             natal.append(n.split(" (")[0])
+        elif " in " in n and (" domicile " in f" {n} " or " exaltation " in f" {n} "):
+            dignities.append(n)
     lead = f"The {r['moon_phase']} Moon in {r['moon_sign']}"
     if asp:
         sentence = f"{lead} applies to {asp}"
@@ -614,6 +878,9 @@ def explain(window):
         sentence = f"{lead} holds clear of the hard aspects and is not void"
     tail = []
     tail += [f"with {a}" for a in angles]
+    tail += dignities
+    if sect:
+        tail.append(sect)
     if hour:
         tail.append(f"in a {hour} hour")
     tail += natal
@@ -641,7 +908,7 @@ def scan_year(recipe, location, hours=None, asof=None, months=12,
             "hard": [dict(x) for x in recipe["hard"]],
             "soft": [dict(x) for x in recipe["soft"]] + (extra_soft or []),
         }
-        res = scan(crit, get_chart=get_chart)
+        res = scan(crit, get_chart=get_chart, recipe_key=recipe["key"], population="monthly_best")
         label = datetime(y, m, 1).strftime("%B %Y")
         if res["windows"]:
             w = res["windows"][0]

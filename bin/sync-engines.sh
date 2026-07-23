@@ -13,7 +13,7 @@ mkdir -p "$DEST"
 for f in "$FACTSHEET/compute_factsheet.py" "$FACTSHEET/gen_wheel.py" \
          "$FACTSHEET/saturn_return.py" \
          "$LUNA/compute_sky.py" \
-         "$STUDIO/synastry.py" "$STUDIO/electional.py"; do
+         "$STUDIO/synastry.py" "$STUDIO/electional.py" "$STUDIO/mundane.py"; do
   base="$(basename "$f")"
   { echo "# GENERATED COPY. Do not edit. Source: $f"
     echo "# Re-sync with bin/sync-engines.sh"

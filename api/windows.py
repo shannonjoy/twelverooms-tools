@@ -51,7 +51,7 @@ class handler(BaseHTTPRequestHandler):
                 "hard": [dict(r) for r in recipe["hard"]],
                 "soft": [dict(r) for r in recipe["soft"]],
             }
-            out = electional.scan(criteria)
+            out = electional.scan(criteria, recipe_key=key)
             body, code = json.dumps(out).encode(), 200
         except Exception as e:
             body, code = json.dumps({"error": str(e)[:200]}).encode(), 400

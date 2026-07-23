@@ -130,6 +130,7 @@ def render(d):
     <h2>What a {esc(sign)} Moon feels like</h2>
     <p>When the Moon moves through {esc(sign)}, the mood of the day tilts {esc(style)}. The Moon is the fastest body in the sky and she sets the emotional weather, so this is the undertone beneath {esc(pretty)}, changing again in a day or two as she moves on.{esc(ing_txt)}</p>
     <p>Her phase is the other half. This is a <strong>{esc(m['phase'].lower())}</strong>: {esc(phase_mean)}. If you are timing something that matters, the rule of thumb is to build on a waxing Moon, release on a waning one, and steer clear of the void-of-course windows above.</p>
+    <p>For the void-of-course windows on {esc(pretty)} led up front, with what to do about them, see the <a href="/void-of-course-moon/{iso}">void of course read for this date</a>.</p>
   </section>
 
   <nav class="daynav">
