@@ -72,7 +72,7 @@ async function load() {
   if (!PLACE) return;
   out.innerHTML = `<div class="card"><p class="hint">Computing today's hours&hellip;</p></div>`;
   try {
-    const r = await fetch("/api/planetary-hours", { method: "POST", headers: {"Content-Type": "application/json"},
+    const r = await fetch("/api/planetary_hours", { method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ lat: PLACE.lat, lon: PLACE.lon, tz: PLACE.tz }) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
