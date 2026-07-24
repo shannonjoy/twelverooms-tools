@@ -44,19 +44,28 @@ def esc(s):
 # Zodiac glyphs and slugs for the 12-sign hub. Only Aries has `degrees` filled
 # in for this proof batch; every other sign is rendered as "coming soon" in
 # the hub until its own 30 degrees are verified and written the same way.
+#
+# GLYPH RENDERING: each glyph carries a trailing U+FE0E (VS15, text
+# presentation selector). Without it, Apple platforms render these specific
+# codepoints (U+2648-U+2653) via Apple Color Emoji as fixed multicolor
+# (purple-ish) badges that ignore CSS color entirely, clashing with brand
+# gold. VS15 forces the text-glyph presentation, which is a plain glyph the
+# `.toolgrid .glyph` rule can color with `--gold` like every other icon in
+# this toolgrid (see index.html's ✶ ✧ ☽ ☉ etc., none of which have this
+# emoji-presentation problem). Do not remove the VS15 suffix.
 SIGNS = [
-    {"name": "Aries", "slug": "aries", "glyph": "♈", "live": True},
-    {"name": "Taurus", "slug": "taurus", "glyph": "♉", "live": False},
-    {"name": "Gemini", "slug": "gemini", "glyph": "♊", "live": False},
-    {"name": "Cancer", "slug": "cancer", "glyph": "♋", "live": False},
-    {"name": "Leo", "slug": "leo", "glyph": "♌", "live": False},
-    {"name": "Virgo", "slug": "virgo", "glyph": "♍", "live": False},
-    {"name": "Libra", "slug": "libra", "glyph": "♎", "live": False},
-    {"name": "Scorpio", "slug": "scorpio", "glyph": "♏", "live": False},
-    {"name": "Sagittarius", "slug": "sagittarius", "glyph": "♐", "live": False},
-    {"name": "Capricorn", "slug": "capricorn", "glyph": "♑", "live": False},
-    {"name": "Aquarius", "slug": "aquarius", "glyph": "♒", "live": False},
-    {"name": "Pisces", "slug": "pisces", "glyph": "♓", "live": False},
+    {"name": "Aries", "slug": "aries", "glyph": "♈︎", "live": True},
+    {"name": "Taurus", "slug": "taurus", "glyph": "♉︎", "live": False},
+    {"name": "Gemini", "slug": "gemini", "glyph": "♊︎", "live": False},
+    {"name": "Cancer", "slug": "cancer", "glyph": "♋︎", "live": False},
+    {"name": "Leo", "slug": "leo", "glyph": "♌︎", "live": False},
+    {"name": "Virgo", "slug": "virgo", "glyph": "♍︎", "live": False},
+    {"name": "Libra", "slug": "libra", "glyph": "♎︎", "live": False},
+    {"name": "Scorpio", "slug": "scorpio", "glyph": "♏︎", "live": False},
+    {"name": "Sagittarius", "slug": "sagittarius", "glyph": "♐︎", "live": False},
+    {"name": "Capricorn", "slug": "capricorn", "glyph": "♑︎", "live": False},
+    {"name": "Aquarius", "slug": "aquarius", "glyph": "♒︎", "live": False},
+    {"name": "Pisces", "slug": "pisces", "glyph": "♓︎", "live": False},
 ]
 
 # The 30 degrees of Aries. `image` is the verified traditional symbol,
@@ -224,6 +233,7 @@ def degree_page(sign_name, sign_slug, entry, total):
     <p class="kicker">THE SYMBOL</p>
     <p class="big" style="font-size:19px;line-height:1.45">&ldquo;{esc(entry['image'])}&rdquo;</p>
     <p class="hint">{sign_name} {n}&deg; &middot; Sabian symbols, devised 1925 (Marc Edmund Jones, clairvoyant Elsie Wheeler)</p>
+    <p class="hint">Remember to round up: a planet or point at 9&deg;30&prime; takes the 10&deg; symbol, not the 9&deg; one.</p>
   </div>
 
   <section class="prose">
@@ -336,6 +346,11 @@ def hub_page(signs):
 
   <div class="toolgrid">
 {grid}
+  </div>
+
+  <div class="card">
+    <p class="kicker">HOW TO FIND YOUR DEGREE</p>
+    <p class="hint" style="font-size:14px;line-height:1.6;color:#33384a">Sabian symbols belong to whole degrees, and the convention is to round up: a planet or point at 9&deg;30&prime; Aries takes the <strong>Aries 10&deg;</strong> symbol, not the 9&deg; one. So find your planet's exact degree, round up to the next whole degree, and look that number up in the sign's list below.</p>
   </div>
 
   <section class="prose">
