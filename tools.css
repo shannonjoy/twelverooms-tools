@@ -199,6 +199,11 @@ th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-tra
 tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .error { background: #fbf1f3; border: 1px solid #e6c4cf; color: var(--berry); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
 
+/* Timing Scale badge: score/star pill in best-days-to-* tables */
+.tag.gold { display: inline-block; font-weight: 600; font-size: 13px; letter-spacing: 0.01em;
+  color: var(--gold); background: var(--wash); border: 1px solid rgba(168,134,61,0.35);
+  border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
+
 /* seed-to-season CTA (gold seal on navy) */
 .cta { background: radial-gradient(120% 160% at 50% 0%, var(--midnight-1), var(--midnight-2));
   color: var(--cream); border-radius: 16px; padding: 24px 22px; margin: 26px 0 8px; text-align: center;
