@@ -56,6 +56,7 @@ generator has always used — do not rename them):
 | `meaning`    | str  | Original Twelve Rooms prose (2-6 sentences) interpreting what the degree/symbol describes on its own terms — the image read as a small story or character, not a dictionary definition. |
 | `colors`     | str  | Original Twelve Rooms prose (2-4 sentences) on how this degree "colors" a planet or point that falls there — i.e. what it adds to a Sun, Moon, Mercury, an angle, etc. sitting at that exact degree. Often names a planet/point that resonates especially strongly with the degree. |
 | `reflection` | str  | One original line, phrased as a question, for the reader to sit with. |
+| `note`       | str, optional | **Only present on degrees whose 1925 original used dated or ethnically charged imagery** (e.g. a stereotyped "Indian warrior/squaw" picture, a named literary slave character, a slur like "gypsy" or "Chinaman"). Shannon's policy: keep the respectful restatement in `image` as-is, and add this one-line, non-preachy acknowledgment beneath the symbol card. Standard line: `"Note: the 1925 original for this degree used dated ethnic imagery; the picture above keeps its meaning in respectful, modern terms."` May be tailored per degree if a more specific line reads better, but keep it short (one sentence) and matter-of-fact, never a lecture. Omit the field entirely on every other degree -- do not add an empty string. |
 
 Minimal example (values shortened for illustration; real entries are
 full prose):

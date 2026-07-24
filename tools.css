@@ -165,6 +165,12 @@ button.go { margin-top: 18px; background: var(--navy); color: var(--cream); bord
 button.go:hover { background: #2f4173; }
 button.go:disabled { opacity: 0.5; }
 .hint { font-size: 12.5px; color: var(--soft); margin-top: 4px; }
+
+/* Sabian degree pages: a brief, tasteful note acknowledging a dated 1925
+   original image, shown under the symbol card only on flagged degrees.
+   Restrained on purpose -- italic, soft color, no icon or callout box. */
+.sabian-note { font-size: 12.5px; font-style: italic; color: var(--soft);
+  margin-top: 10px; line-height: 1.5; }
 details { margin-top: 10px; }
 summary { cursor: pointer; font-size: 12.5px; color: var(--gold); min-height: 30px; }
 .picked { font-size: 13px; color: var(--navy); margin-top: 8px; }

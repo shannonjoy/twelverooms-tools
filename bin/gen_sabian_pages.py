@@ -37,6 +37,7 @@ Run: python3 bin/gen_sabian_pages.py   (writes hub + sign index + all degree pag
 """
 import html
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
@@ -134,6 +135,8 @@ def degree_page(sign_name, sign_slug, entry, total):
                  if n > 1 else f'<a href="/sabian-symbols/{sign_slug}">← All of {sign_name}</a>')
     next_link = (f'<a href="/sabian-symbols/{sign_slug}-{n+1}">{sign_name} {n+1}° →</a>'
                  if n < total else f'<a href="/sabian-symbols">Explore other signs →</a>')
+    note = entry.get("note")
+    note_html = f'\n    <p class="sabian-note">{esc(note)}</p>' if note else ""
     title = f"{sign_name} {n}° Sabian Symbol: {esc(entry['image']).rstrip('.')} · The Twelve Rooms"
     desc = (f"The Sabian symbol for {sign_name} {n}°: {entry['image']} What it means, how it "
             f"colors a planet or point at this exact degree, and a reflection to sit with.")
@@ -163,7 +166,7 @@ def degree_page(sign_name, sign_slug, entry, total):
     <p class="big" style="font-size:19px;line-height:1.45">&ldquo;{esc(entry['image'])}&rdquo;</p>
     <p class="hint">{sign_name} {n}&deg; &middot; Sabian symbols, devised 1925 (Marc Edmund Jones, clairvoyant Elsie Wheeler)</p>
     <p class="hint">Remember to round up: a planet or point at 9&deg;30&prime; takes the 10&deg; symbol, not the 9&deg; one.</p>
-  </div>
+  </div>{note_html}
 
   <section class="prose">
     <h2>What this degree describes</h2>
@@ -239,6 +242,7 @@ def sign_index_page(sign_name, sign_slug, entries):
 
 def hub_page(signs):
     cards = []
+    live_signs = [s for s in signs if s["live"]]
     for s in signs:
         if s["live"]:
             cards.append(
@@ -249,13 +253,41 @@ def hub_page(signs):
                 f'    <div class="soon"><span class="glyph" aria-hidden="true">{s["glyph"]}</span>'
                 f'<h2>{s["name"]}</h2><p>30 degrees, in progress.</p><span class="tag gold">Coming soon</span></div>')
     grid = "\n".join(cards)
+
+    # Copy that names the live signs and counts the rest -- kept dynamic so
+    # this page never needs a manual edit as more signs come live.
+    live_names = [s["name"] for s in live_signs]
+    remaining = len(signs) - len(live_signs)
+    example_sign = live_names[0] if live_names else "Aries"
+
+    def _join_names(names):
+        if len(names) == 1:
+            return names[0]
+        if len(names) == 2:
+            return f"{names[0]} and {names[1]}"
+        return ", ".join(names[:-1]) + f", and {names[-1]}"
+
+    if live_names:
+        names_joined = _join_names(live_names)
+        is_are = "is" if len(live_names) == 1 else "are"
+        meta_desc = (f"The Sabian symbols: a traditional picture for each of the 360 degrees of the "
+                     f"zodiac, devised in 1925. {names_joined} {is_are} live, all 30 degrees each; "
+                     f"the remaining {remaining} signs are coming soon.")
+        lede_status = f"{names_joined} {'is' if len(live_names) == 1 else 'are'} complete, all 30 degrees each; the rest of the wheel is being written to the same standard."
+        faq_answer = (f"Not yet. {names_joined} {is_are} live and complete, all 30 degrees each. "
+                      f"The remaining {remaining} signs are being written to the same standard and will publish as they're finished.")
+    else:
+        meta_desc = "The Sabian symbols: a traditional picture for each of the 360 degrees of the zodiac, devised in 1925. All 12 signs are coming soon."
+        lede_status = "All 12 signs are being written to the same standard and will publish as they're finished."
+        faq_answer = "Not yet. All 12 signs are being written to the same standard and will publish as they're finished."
+
     page = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sabian Symbols: The Meaning of Every Zodiac Degree &middot; The Twelve Rooms</title>
-<meta name="description" content="The Sabian symbols: a traditional picture for each of the 360 degrees of the zodiac, devised in 1925. Aries is live, all 30 degrees; the rest of the signs are coming soon.">
+<meta name="description" content="{esc(meta_desc)}">
 <link rel="canonical" href="https://thetwelverooms.com/sabian-symbols">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
@@ -263,7 +295,7 @@ def hub_page(signs):
 {{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {{"@type":"Question","name":"What is a Sabian symbol?","acceptedAnswer":{{"@type":"Answer","text":"A Sabian symbol is a short traditional picture assigned to each of the 360 whole degrees of the zodiac, one degree at a time. They were received by clairvoyant Elsie Wheeler and recorded by astrologer Marc Edmund Jones in 1925. Astrologers use them to add texture to a planet or point's exact degree, beyond its sign alone."}}}},
 {{"@type":"Question","name":"How do I find my Sabian symbol?","acceptedAnswer":{{"@type":"Answer","text":"You need the exact degree of a planet or point, not just its sign, since each of the 30 degrees in a sign has its own symbol. Cast a free natal chart to see every planet's precise degree, then look it up in the sign's list here."}}}},
-{{"@type":"Question","name":"Are all 360 Sabian symbols here?","acceptedAnswer":{{"@type":"Answer","text":"Not yet. This is a proof batch: all 30 degrees of Aries are live and complete. The remaining 11 signs are being written to the same standard and will publish as they're finished."}}}}
+{{"@type":"Question","name":"Are all 360 Sabian symbols here?","acceptedAnswer":{{"@type":"Answer","text":{json.dumps(faq_answer)}}}}}
 ]}}
 </script>
 </head>
@@ -271,7 +303,7 @@ def hub_page(signs):
 <div id="masthead"></div>
 <main class="wrap">
   <h1>The Sabian symbols</h1>
-  <p class="lede">A short traditional picture for each of the 360 whole degrees of the zodiac, one per degree, first recorded in 1925. Every planet and point in a chart sits at one exact degree; its Sabian symbol adds a layer of meaning beyond the sign alone. Aries is complete, all 30 degrees; the rest of the wheel is being written to the same standard.</p>
+  <p class="lede">A short traditional picture for each of the 360 whole degrees of the zodiac, one per degree, first recorded in 1925. Every planet and point in a chart sits at one exact degree; its Sabian symbol adds a layer of meaning beyond the sign alone. {lede_status}</p>
 
   <div class="toolgrid">
 {grid}
@@ -279,7 +311,7 @@ def hub_page(signs):
 
   <div class="card">
     <p class="kicker">HOW TO FIND YOUR DEGREE</p>
-    <p class="hint" style="font-size:14px;line-height:1.6;color:#33384a">Sabian symbols belong to whole degrees, and the convention is to round up: a planet or point at 9&deg;30&prime; Aries takes the <strong>Aries 10&deg;</strong> symbol, not the 9&deg; one. So find your planet's exact degree, round up to the next whole degree, and look that number up in the sign's list below.</p>
+    <p class="hint" style="font-size:14px;line-height:1.6;color:#33384a">Sabian symbols belong to whole degrees, and the convention is to round up: a planet or point at 9&deg;30&prime; {example_sign} takes the <strong>{example_sign} 10&deg;</strong> symbol, not the 9&deg; one. So find your planet's exact degree, round up to the next whole degree, and look that number up in the sign's list below.</p>
   </div>
 
   <section class="prose">

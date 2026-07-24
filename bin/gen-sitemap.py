@@ -58,10 +58,14 @@ STATIC = [
     ("/best-days-to-throw-a-party-2027", "monthly", "0.6"),
     ("/sabian-symbols", "monthly", "0.6"),
     ("/sabian-symbols/aries", "monthly", "0.6"),
+    ("/sabian-symbols/taurus", "monthly", "0.6"),
+    ("/sabian-symbols/gemini", "monthly", "0.6"),
+    ("/sabian-symbols/cancer", "monthly", "0.6"),
 ]
-# Individual Sabian symbol degree pages. Aries is the Jul 24 2026 proof batch
-# (30 degrees); extend SABIAN_SIGNS as each additional sign is verified and written.
-SABIAN_SIGNS = {"aries": 30}
+# Individual Sabian symbol degree pages. Aries was the Jul 24 2026 proof
+# batch; Taurus/Gemini/Cancer (Wave 1) added the same day. Extend
+# SABIAN_SIGNS as each additional sign is verified and written.
+SABIAN_SIGNS = {"aries": 30, "taurus": 30, "gemini": 30, "cancer": 30}
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
 # Deterministic and valid forever, like the moon-date pages.
 SATURN_YEARS = range(1960, 2006)
