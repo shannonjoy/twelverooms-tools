@@ -57,24 +57,34 @@ window.TR = (function () {
     `<svg class="spark" style="left:${x};top:${y}" width="${14 * s}" height="${14 * s}" viewBox="-6 -6 12 12" opacity="${o}"><path d="M0 -6 L1.2 -1.2 L6 0 L1.2 1.2 L0 6 L-1.2 1.2 L-6 0 L-1.2 -1.2 Z"/></svg>`;
 
   /* Nav is grouped: a plain [href, label] is a top-level link; an object with
-     { label, items } renders a dropdown. Keeps the bar to a few clear
-     destinations while every calculator stays one hover/tap away. */
+     { label, items } renders a dropdown. Groups are named for what the
+     visitor wants (their chart / the sky now / a date), not for what the
+     pages are, so nothing hides behind a generic "Tools". A third array
+     entry of "cta" renders the link as the gold pill (Readings, the one
+     paid destination). */
   const NAV = [
-    { label: "Tools", items: [
-      ["/moon", "Moon now"],
-      ["/void-of-course-moon", "Void of course"],
-      ["/planetary-hours", "Planetary hours"],
-      ["/big-3-calculator", "Big 3"],
+    { label: "Your chart", items: [
       ["/natal-chart", "Natal chart"],
-      ["/synastry", "Synastry"],
+      ["/big-3-calculator", "Big 3"],
       ["/saturn-return-calculator", "Saturn return"],
+      ["/synastry", "Synastry"],
       ["/transit-timeline", "Transit timeline"],
-      ["/electional", "Timing"],
     ] },
-    ["/almanac", "Almanac"],
+    { label: "The sky now", items: [
+      ["/moon", "Moon right now"],
+      ["/void-of-course-moon", "Void-of-course Moon"],
+      ["/planetary-hours", "Planetary hours"],
+      ["/mercury-retrograde", "Mercury retrograde"],
+      ["/venus-retrograde", "Venus retrograde"],
+    ] },
+    { label: "Best dates", items: [
+      ["/almanac", "Dates by intention"],
+      ["/electional", "Pick your moment"],
+      ["/electional-astrology", "How timing works"],
+    ] },
     ["/the-twelve-houses", "The houses"],
-    ["/reports", "Readings"],
     ["/about", "About"],
+    ["/reports", "Readings", "cta"],
   ];
 
   /* Gold starfield: tiny twinkling dots, scattered asymmetrically, always
@@ -94,15 +104,15 @@ window.TR = (function () {
 
   function mast(current) {
     const path = location.pathname.replace(/\.html$/, "");
-    const link = ([href, label]) =>
-      `<a href="${href}"${path === href ? ' aria-current="page"' : ""}>${label}</a>`;
+    const link = ([href, label, kind]) =>
+      `<a href="${href}"${kind === "cta" ? ' class="nav-cta"' : ""}${path === href ? ' aria-current="page"' : ""}>${label}</a>`;
     const nav = NAV.map(item => {
       if (Array.isArray(item)) return link(item);
       const active = item.items.some(([href]) => path === href);
       const menu = item.items.map(link).join("");
       return `<div class="navgroup">
         <button type="button" class="navtoggle" aria-expanded="false" aria-haspopup="true"${active ? ' aria-current="page"' : ""}>${item.label}<span class="caret" aria-hidden="true">▾</span></button>
-        <div class="navmenu" role="menu">${menu}</div>
+        <div class="navmenu" role="menu"><div class="navmenu-card">${menu}</div></div>
       </div>`;
     }).join("");
     return `<header class="masthead">
@@ -152,7 +162,8 @@ window.TR = (function () {
   }
 
   const FOOTER = `<footer class="site">
-    <div>© 2026 The Twelve Rooms · City data © GeoNames (CC BY 4.0)</div>
+    <div><a href="/forecast">Monthly Sky Forecast</a> · the free email</div>
+    <div class="privacy">© 2026 The Twelve Rooms · City data © GeoNames (CC BY 4.0)</div>
   </footer>`;
 
   function injectFooter() {
@@ -352,6 +363,63 @@ window.TR = (function () {
     });
   }
 
+  /* ---- Monthly Sky Forecast signup (email list) ----
+     Rendered inline right after a tool result: the highest-intent moment on
+     the site, the visitor just watched the engine draw their chart. Stays
+     OFF until the list platform account exists and /api/subscribe has its
+     env vars (flip SIGNUP_ON to true at launch). Preview locally with
+     ?signup=preview. Copy per the Jul 23 kit doc; punctuation law applies. */
+  const SIGNUP_ON = true;
+
+  const signupOn = () =>
+    SIGNUP_ON || new URLSearchParams(location.search).get("signup") === "preview";
+
+  function signupHTML(source) {
+    if (!signupOn()) return "";
+    return `<div class="signup" data-source="${esc(source || "site")}">
+      <h2>Want the sky like this, every month?</h2>
+      <p>Your Monthly Sky Forecast is the transits worth knowing about, read the way your chart was: precisely, and like it knows you.</p>
+      <form class="signup-form" novalidate>
+        <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Get the Forecast</button>
+      </form>
+      <p class="signup-note">Unsubscribe anytime.</p>
+    </div>`;
+  }
+
+  function initSignup(scope) {
+    (scope || document).querySelectorAll(".signup-form").forEach(f => {
+      if (f.dataset.trWired) return;
+      f.dataset.trWired = "1";
+      f.addEventListener("submit", async e => {
+        e.preventDefault();
+        const box = f.parentElement;
+        const note = box.querySelector(".signup-note");
+        const email = f.email.value.trim();
+        const website = f.website ? f.website.value.trim() : "";
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          note.textContent = "That email doesn't look complete. Check it and try again.";
+          return;
+        }
+        f.querySelector("button").disabled = true;
+        note.textContent = "Adding you to the list…";
+        try {
+          const r = await fetch("/api/subscribe", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, website, source: box.dataset.source || "site" })
+          });
+          if (!r.ok) throw new Error("subscribe failed");
+          box.innerHTML = `<h2>You're on the list.</h2>
+            <p>Your first Sky Forecast lands with the next monthly send. Welcome.</p>`;
+        } catch (err) {
+          note.textContent = "That didn't go through. Try once more in a moment.";
+          f.querySelector("button").disabled = false;
+        }
+      });
+    });
+  }
+
   const calmMotion = () =>
     window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -391,5 +459,5 @@ window.TR = (function () {
   document.addEventListener("DOMContentLoaded", () => {
     injectMasthead(); initNav(); injectFooter(); nightSky(); reveals();
   });
-  return { attachCity, rememberBirth, birthDateField, esc };
+  return { attachCity, rememberBirth, birthDateField, esc, signupHTML, initSignup };
 })();

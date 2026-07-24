@@ -42,28 +42,51 @@ body { font-family: var(--body); color: var(--ink); background: var(--cream); li
   color: var(--gold); }
 .productline { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.28em;
   color: #9aa5c2; margin-top: 8px; text-transform: uppercase; }
-.masthead nav { margin-top: 15px; display: flex; gap: 6px 18px; flex-wrap: wrap; justify-content: center; }
+.masthead nav { margin-top: 15px; display: flex; gap: 6px 8px; flex-wrap: wrap;
+  justify-content: center; align-items: center; }
 .masthead nav a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #b9c2da; text-decoration: none; padding: 4px 2px; }
-.masthead nav a:hover, .masthead nav a[aria-current] { color: var(--gold-hi); }
-.masthead nav a { transition: color 0.2s ease; }
+  color: #b9c2da; text-decoration: none; padding: 7px 10px; border-radius: 9px; }
+.masthead nav a:hover, .masthead nav a[aria-current] { color: var(--gold-hi); background: rgba(230,207,150,0.09); }
+.masthead nav a { transition: color 0.2s ease, background 0.2s ease; }
+.masthead nav a:focus-visible, .masthead nav .navtoggle:focus-visible {
+  outline: 2px solid var(--gold-soft); outline-offset: 1px; }
 
-/* nav dropdown (Tools) — matches the flat nav links, panel is a light card */
+/* the one gold pill: Readings, the paid destination */
+.masthead nav a.nav-cta { color: var(--gold-hi); border: 1px solid rgba(201,165,92,0.65);
+  border-radius: 999px; padding: 6px 16px; margin-left: 4px;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+.masthead nav a.nav-cta:hover, .masthead nav a.nav-cta[aria-current] {
+  background: linear-gradient(135deg, #e3c98b, #b18b45); color: var(--midnight-2);
+  border-color: transparent; }
+
+/* nav dropdowns — light card panels under intent-named groups */
 .masthead nav .navgroup { position: relative; display: inline-flex; }
 .masthead nav .navtoggle { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em;
   text-transform: uppercase; color: #b9c2da; background: none; border: 0; cursor: pointer;
-  padding: 4px 2px; display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s ease; }
+  padding: 7px 10px; border-radius: 9px; display: inline-flex; align-items: center; gap: 5px;
+  transition: color 0.2s ease, background 0.2s ease; }
 .masthead nav .navtoggle:hover, .masthead nav .navgroup:hover .navtoggle,
-.masthead nav .navtoggle[aria-current], .masthead nav .navtoggle[aria-expanded="true"] { color: var(--gold-hi); }
+.masthead nav .navtoggle[aria-current], .masthead nav .navtoggle[aria-expanded="true"] {
+  color: var(--gold-hi); background: rgba(230,207,150,0.09); }
 .masthead nav .caret { font-size: 9px; transition: transform 0.2s ease; }
 .masthead nav .navgroup:hover .caret, .navtoggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
+/* Panel sits flush at top:100% with transparent padding standing in for the
+   old margin gap, so the pointer never crosses dead space and hover holds. */
 .masthead nav .navmenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  margin-top: 8px; background: #fff; border: 1px solid var(--line); border-radius: 12px;
-  box-shadow: 0 14px 34px rgba(16,24,48,0.28); padding: 6px; z-index: 40; min-width: 168px; }
+  padding-top: 8px; background: transparent; z-index: 40; }
+.masthead nav .navmenu-card { background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(16,24,48,0.28); padding: 6px; min-width: 186px; overflow: hidden;
+  position: relative; }
+.masthead nav .navmenu-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: linear-gradient(90deg, transparent, var(--gold-soft), transparent); }
 .masthead nav .navgroup.open .navmenu { display: block; }
 @media (hover: hover) and (pointer: fine) { .masthead nav .navgroup:hover .navmenu { display: block; } }
-.masthead nav .navmenu a { display: block; color: var(--navy); text-transform: none; letter-spacing: 0.01em;
-  font-size: 13.5px; padding: 8px 12px; border-radius: 8px; white-space: nowrap; }
+.masthead nav .navgroup.open .navmenu-card,
+.masthead nav .navgroup:hover .navmenu-card { animation: menu-in 0.18s ease both; }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .masthead nav .navmenu-card { animation: none !important; } }
+.masthead nav .navmenu a { display: block; text-align: left; color: var(--navy); text-transform: none;
+  letter-spacing: 0.01em; font-size: 13.5px; padding: 9px 13px; border-radius: 8px; white-space: nowrap; }
 .masthead nav .navmenu a:hover, .masthead nav .navmenu a[aria-current] { color: var(--navy); background: var(--wash); }
 .spark { position: absolute; fill: var(--gold-soft); pointer-events: none; z-index: 1;
   animation: spark-breathe 7s ease-in-out infinite; }
@@ -194,13 +217,45 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .cta a:hover::after { left: 130%; }
 @media (prefers-reduced-motion: reduce) { .cta a::after { display: none; } }
 
+/* letterspaced gold kicker above a page h1 */
+.kicker { font-family: var(--sans); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px; }
+
+/* Monthly Sky Forecast signup (inline, post-result; navy seal like .cta) */
+.signup { background: radial-gradient(120% 160% at 50% 0%, var(--midnight-1), var(--midnight-2));
+  color: var(--cream); border: 1px solid rgba(201,165,92,0.4); border-radius: 16px;
+  padding: 24px 22px; margin: 16px 0; text-align: center; }
+.signup h2 { font-family: var(--serif); color: var(--gold-hi); font-size: 19px; margin: 0 0 6px; }
+.signup p { font-size: 14px; color: #c4cbe0; max-width: 50ch; margin: 0 auto 4px; }
+.signup-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+.signup-form input { flex: 1 1 220px; max-width: 300px; width: auto; min-height: 46px;
+  border-radius: 10px; border: 1px solid rgba(201,165,92,0.4); padding: 10px 14px;
+  font: 400 15px var(--body); color: var(--ink); background: var(--cream); }
+.signup-form input:focus { outline: 2px solid var(--gold); outline-offset: 0; border-color: transparent; }
+.signup-form button { min-height: 46px; padding: 11px 22px; border: 0; border-radius: 10px;
+  cursor: pointer; font: 600 14px var(--body); letter-spacing: 0.02em; color: var(--midnight-2);
+  background: linear-gradient(135deg, #e3c98b, #b18b45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.signup-form button:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,176,106,0.35); }
+.signup-form button:disabled { opacity: 0.6; transform: none; box-shadow: none; }
+.signup-note { font-size: 12px; color: #9aa5c2; margin-top: 8px; }
+/* honeypot: visually hidden but present/focusable in the DOM (not display:none),
+   since some bots skip fields hidden that obviously; real visitors never see it */
+.hp-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
 /* tool index cards */
-.toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
 .toolgrid a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
   padding: 18px; text-decoration: none; color: var(--ink);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
 .toolgrid a:hover { border-color: var(--gold); transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(38,53,94,0.08), 0 2px 8px rgba(168,134,61,0.10); }
+.toolgrid .glyph { display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%; margin-bottom: 12px;
+  background: var(--wash); color: var(--gold); font-family: var(--serif); font-size: 19px;
+  border: 1px solid rgba(201,165,92,0.35); transition: background 0.2s ease, color 0.2s ease; }
+.toolgrid .glyph-num { font-size: 14px; letter-spacing: 0.05em; }
+.toolgrid a:hover .glyph { background: linear-gradient(135deg, #e3c98b, #b18b45); color: #fff; }
 .toolgrid h2 { font-size: 17px; margin-bottom: 5px; }
 .toolgrid p { font-size: 13px; color: var(--soft); }
 

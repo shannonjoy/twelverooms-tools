@@ -15,24 +15,34 @@
 <body>
 <div id="masthead"></div>
 <main class="wrap">
+  <p class="kicker">Free astrology tools · Swiss Ephemeris · No account</p>
   <h1>The best day for anything, computed to the degree</h1>
   <p class="lede">Electional astrology is the old art of timing: choosing the right moment to begin. It once took an astrologer and an ephemeris to work out; here it is computed for you, the best days to marry, launch, move, or ask, each read from the real sky. Every chart tool lives here too, all on the Swiss Ephemeris, no account required.</p>
   <div class="toolgrid">
-    <a href="/almanac"><h2>Best dates by intention</h2><p>The strongest days to marry, launch a business, or make your move, computed from the sky.</p></a>
-    <a href="/moon"><h2>The Moon right now</h2><p>Sign, phase, void-of-course status, and her next move, live.</p></a>
-    <a href="/big-3-calculator"><h2>Your big 3</h2><p>Sun, Moon, and rising sign, computed precisely, with warm short reads.</p></a>
-    <a href="/natal-chart"><h2>Free natal chart</h2><p>A precise chart wheel with positions, aspects, and patterns.</p></a>
-    <a href="/synastry"><h2>Synastry grid</h2><p>Cross-aspects between two charts: where you meet, where you grind.</p></a>
-    <a href="/saturn-return-calculator"><h2>Your Saturn return</h2><p>The exact dates of your late-twenties reckoning, every pass.</p></a>
-    <a href="/electional"><h2>Pick your moment</h2><p>Scan the coming weeks for the best windows to begin something.</p></a>
+    <a href="/almanac"><span class="glyph" aria-hidden="true">✶</span><h2>Best dates by intention</h2><p>The strongest days to marry, launch a business, or make your move, computed from the sky.</p></a>
+    <a href="/electional"><span class="glyph" aria-hidden="true">✧</span><h2>Pick your moment</h2><p>Scan the coming weeks for the best windows to begin something.</p></a>
+    <a href="/moon"><span class="glyph" aria-hidden="true">☽</span><h2>The Moon right now</h2><p>Sign, phase, void-of-course status, and her next move, live.</p></a>
+    <a href="/natal-chart"><span class="glyph" aria-hidden="true">☉</span><h2>Free natal chart</h2><p>A precise chart wheel with positions, aspects, and patterns.</p></a>
+    <a href="/big-3-calculator"><span class="glyph glyph-num" aria-hidden="true">III</span><h2>Your big 3</h2><p>Sun, Moon, and rising sign, computed precisely, with warm short reads.</p></a>
+    <a href="/saturn-return-calculator"><span class="glyph" aria-hidden="true">♄</span><h2>Your Saturn return</h2><p>The exact dates of your late-twenties reckoning, every pass.</p></a>
+    <a href="/synastry"><span class="glyph" aria-hidden="true">☌</span><h2>Synastry grid</h2><p>Cross-aspects between two charts: where you meet, where you grind.</p></a>
+    <a href="/transit-timeline"><span class="glyph" aria-hidden="true">☊</span><h2>Transit timeline</h2><p>The year ahead of your chart: every major transit, on one line of time.</p></a>
+    <a href="/planetary-hours"><span class="glyph" aria-hidden="true">⧖</span><h2>Planetary hours</h2><p>Which planet rules this hour, and the day's full sequence, live.</p></a>
   </div>
   <div class="cta">
     <h2>The whole chart, read together</h2>
     <p>The Twelve Rooms writes deep natal readings the old way: every planet, house, aspect, and transit, one cohesive reading. I read every line myself.</p>
     <a href="/reports">Explore the readings</a>
   </div>
+  <div id="signup-slot"></div>
   <div id="site-footer"></div>
 </main>
 <script src="/tools.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("signup-slot").innerHTML = TR.signupHTML("homepage");
+    TR.initSignup(document.getElementById("signup-slot"));
+  });
+</script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly Sky Forecast · The Twelve Rooms</title>
+<meta name="description" content="A free monthly email from The Twelve Rooms: the transits worth knowing about, computed with the Swiss Ephemeris and read the way your chart was, precisely, with no daily noise.">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Monthly Sky Forecast","description":"A free monthly astrology email: the transits worth knowing about, computed and read precisely."}
+</script>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <p class="kicker">Free · Monthly · Unsubscribe anytime</p>
+  <h1>The sky, read the way your chart was</h1>
+  <p class="lede">Once a month: the transits worth knowing about, what they mean in plain language, and one thing worth watching for. Computed with the Swiss Ephemeris, written with no daily noise, the same precision as every free tool on this site.</p>
+
+  <div id="out"></div>
+
+  <section class="prose">
+    <h2>What's in each issue</h2>
+    <p>A headline transit for the month, three or four sky events worth knowing (with dates, in plain language, no jargon), and one practical "watch for" note if you're planning something.</p>
+    <h2>What it isn't</h2>
+    <p>Not daily horoscopes, not push notifications, not a feed to keep up with. One email, once a month, worth actually reading.</p>
+  </section>
+
+  <div class="cta">
+    <h2>Want your own chart read this precisely?</h2>
+    <p>The Monthly Forecast is the collective sky. The Twelve Rooms readings are yours: every planet, house, aspect, and transit, one cohesive reading.</p>
+    <a href="/reports">Explore the readings</a>
+  </div>
+  <div id="site-footer"></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("out").innerHTML = TR.signupHTML("forecast-page");
+    TR.initSignup(document.getElementById("out"));
+  });
+</script>
+</body>
+</html>

@@ -24,6 +24,7 @@ STATIC = [
     ("/big-3-calculator", "monthly", "0.7"),
     ("/the-twelve-houses", "monthly", "0.6"),
     ("/reports", "monthly", "0.7"),
+    ("/forecast", "monthly", "0.6"),
     ("/about", "yearly", "0.5"),
     ("/almanac", "weekly", "0.7"),
     ("/mercury-retrograde", "monthly", "0.7"),

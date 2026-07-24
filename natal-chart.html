@@ -230,7 +230,9 @@ function renderChart(d) {
 
   const untimed = !d.timed ? `<div class="disclaimer">This is an untimed chart, so it shows your planets in their signs but not your rising sign or houses (those need an exact birth time). Everything below is still true; the house layer is simply missing.</div>` : "";
 
-  out.innerHTML = untimed + glance + balanceBlock(d) + wheel + placements + aspectsBlock + patterns;
+  out.innerHTML = untimed + glance + balanceBlock(d) + wheel + TR.signupHTML("natal-chart")
+    + placements + aspectsBlock + patterns;
+  TR.initSignup(out);
   out.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
