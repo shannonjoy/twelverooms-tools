@@ -53,6 +53,8 @@
   <url><loc>https://thetwelverooms.com/sabian-symbols/scorpio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/sabian-symbols/sagittarius</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/sabian-symbols/capricorn</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-07-24</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/void-of-course-moon/2026-07-24</loc><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://thetwelverooms.com/moon/2026-07-25</loc><changefreq>never</changefreq><priority>0.4</priority></url>
@@ -761,4 +763,64 @@
   <url><loc>https://thetwelverooms.com/sabian-symbols/capricorn-28</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://thetwelverooms.com/sabian-symbols/capricorn-29</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://thetwelverooms.com/sabian-symbols/capricorn-30</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-1</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-2</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-3</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-4</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-5</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-6</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-7</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-8</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-9</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-10</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-11</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-12</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-13</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-14</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-15</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-16</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-17</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-18</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-19</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-20</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-21</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-22</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-23</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-24</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-25</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-26</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-27</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-28</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-29</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/aquarius-30</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-1</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-2</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-3</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-4</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-5</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-6</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-7</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-8</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-9</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-10</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-11</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-12</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-13</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-14</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-15</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-16</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-17</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-18</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-19</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-20</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-21</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-22</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-23</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-24</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-25</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-26</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-27</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-28</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-29</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://thetwelverooms.com/sabian-symbols/pisces-30</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
 </urlset>
