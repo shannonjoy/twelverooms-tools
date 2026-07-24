@@ -13,7 +13,7 @@ import electional  # noqa: E402
 
 # Curated public set (highest search intent + broad appeal). The full
 # twenty live in the studio.
-PUBLIC_KEYS = ["wedding", "engagement", "first_date", "conception",
+PUBLIC_KEYS = ["wedding", "engagement", "first_date", "conception", "party",
                "business", "contract", "launch", "job", "investment",
                "home", "relocation"]
 
