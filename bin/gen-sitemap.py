@@ -64,11 +64,14 @@ STATIC = [
     ("/sabian-symbols/leo", "monthly", "0.6"),
     ("/sabian-symbols/virgo", "monthly", "0.6"),
     ("/sabian-symbols/libra", "monthly", "0.6"),
+    ("/sabian-symbols/scorpio", "monthly", "0.6"),
+    ("/sabian-symbols/sagittarius", "monthly", "0.6"),
+    ("/sabian-symbols/capricorn", "monthly", "0.6"),
 ]
 # Individual Sabian symbol degree pages. Aries was the Jul 24 2026 proof
 # batch; Taurus/Gemini/Cancer (Wave 1) added the same day. Extend
 # SABIAN_SIGNS as each additional sign is verified and written.
-SABIAN_SIGNS = {"aries": 30, "taurus": 30, "gemini": 30, "cancer": 30, "leo": 30, "virgo": 30, "libra": 30}
+SABIAN_SIGNS = {"aries": 30, "taurus": 30, "gemini": 30, "cancer": 30, "leo": 30, "virgo": 30, "libra": 30, "scorpio": 30, "sagittarius": 30, "capricorn": 30}
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
 # Deterministic and valid forever, like the moon-date pages.
 SATURN_YEARS = range(1960, 2006)
