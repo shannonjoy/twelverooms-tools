@@ -56,7 +56,12 @@ STATIC = [
     ("/best-days-to-send-an-important-email-2027", "monthly", "0.6"),
     ("/best-days-to-travel-2027", "monthly", "0.6"),
     ("/best-days-to-throw-a-party-2027", "monthly", "0.6"),
+    ("/sabian-symbols", "monthly", "0.6"),
+    ("/sabian-symbols/aries", "monthly", "0.6"),
 ]
+# Individual Sabian symbol degree pages. Aries is the Jul 24 2026 proof batch
+# (30 degrees); extend SABIAN_SIGNS as each additional sign is verified and written.
+SABIAN_SIGNS = {"aries": 30}
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
 # Deterministic and valid forever, like the moon-date pages.
 SATURN_YEARS = range(1960, 2006)
@@ -72,10 +77,15 @@ for i in range(days + 1):
     rows.append(f'  <url><loc>{BASE}/void-of-course-moon/{d}</loc><changefreq>never</changefreq><priority>0.4</priority></url>')
 for y in SATURN_YEARS:
     rows.append(f'  <url><loc>{BASE}/saturn-return/{y}</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>')
+sabian_count = 0
+for sign, n in SABIAN_SIGNS.items():
+    for d in range(1, n + 1):
+        rows.append(f'  <url><loc>{BASE}/sabian-symbols/{sign}-{d}</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>')
+        sabian_count += 1
 
 xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
        + "\n".join(rows) + "\n</urlset>\n")
 out = Path(__file__).resolve().parent.parent / "sitemap.xml"
 out.write_text(xml)
-print(f"wrote {out} with {len(STATIC)} static + {(days + 1) * 2} moon/void-date + {len(SATURN_YEARS)} saturn-year URLs")
+print(f"wrote {out} with {len(STATIC)} static + {(days + 1) * 2} moon/void-date + {len(SATURN_YEARS)} saturn-year + {sabian_count} sabian-degree URLs")

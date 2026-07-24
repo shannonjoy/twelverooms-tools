@@ -83,6 +83,7 @@ window.TR = (function () {
       ["/electional-astrology", "How timing works"],
     ] },
     ["/the-twelve-houses", "The houses"],
+    ["/sabian-symbols", "Sabian symbols"],
     ["/about", "About"],
     ["/reports", "Readings", "cta"],
   ];

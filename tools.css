@@ -250,7 +250,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 
 /* tool index cards */
 .toolgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
-.toolgrid a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
+.toolgrid a, .toolgrid .soon { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
   padding: 18px; text-decoration: none; color: var(--ink);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
 .toolgrid a:hover { border-color: var(--gold); transform: translateY(-2px);
@@ -263,6 +263,9 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .toolgrid a:hover .glyph { background: linear-gradient(135deg, #e3c98b, #b18b45); color: #fff; }
 .toolgrid h2 { font-size: 17px; margin-bottom: 5px; }
 .toolgrid p { font-size: 13px; color: var(--soft); }
+/* sign cards not yet built: same shape, muted, no hover lift, badge instead of a link */
+.toolgrid .soon { opacity: 0.6; cursor: default; }
+.toolgrid .soon .tag.gold { margin-top: 8px; }
 
 /* ---- 10x result UX: glance, placements, aspects ---- */
 .glance { background: radial-gradient(130% 150% at 50% 0%, var(--midnight-1), var(--midnight-2));
