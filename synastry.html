@@ -105,6 +105,7 @@ f.addEventListener("submit", async e => {
       body: JSON.stringify({ a: person("a","an","ad","at"), b: person("b","bn","bd","bt") }) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
+    TR.trackToolUse("synastry");
     const aName = esc(d.a.name), bName = esc(d.b.name);
     const asps = d.aspects.map(x => {
       const info = window.TRI ? TRI.aspect(x.a, x.aspect, x.b) : null;

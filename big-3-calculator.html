@@ -149,6 +149,7 @@ f.addEventListener("submit", async e => {
     const r = await fetch("/api/natal", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
+    TR.trackToolUse("big-3");
     render(d);
   } catch (err) {
     out.innerHTML = `<div class="error">${esc(err.message)}</div>`;

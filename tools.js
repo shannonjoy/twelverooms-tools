@@ -36,6 +36,32 @@ window.TR = (function () {
   }
   injectClarity();
 
+  /* ---- GA4 event tracking (background only, no UX change) ----
+     Taxonomy shared with Shannon's other ventures: see
+     ~/ventures/packages/analytics. Names and params match that taxonomy
+     exactly so cross-venture funnel reports stay comparable.
+       OUTBOUND_CLICK { url }    — any click on a link out to the Etsy shop
+       TOOL_USE       { tool }   — a calculator/finder actually run to a result
+       EMAIL_SIGNUP   { location } — Monthly Sky Forecast signup completes
+     All three no-op quietly if gtag never loaded (GA_ID left at placeholder). */
+  function trackEvent(name, params) {
+    if (typeof gtag === "function") gtag("event", name, params);
+  }
+
+  function trackToolUse(tool) { trackEvent("TOOL_USE", { tool }); }
+
+  /* Delegated at the document level so every current and future link to the
+     Etsy shop is covered without touching any page's markup. */
+  function initOutboundTracking() {
+    document.addEventListener("click", e => {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      let url;
+      try { url = new URL(a.href, location.href); } catch (err) { return; }
+      if (/(^|\.)etsy\.com$/.test(url.hostname)) trackEvent("OUTBOUND_CLICK", { url: a.href });
+    });
+  }
+
   const MEDALLION = `
 <svg class="medallion" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
@@ -411,6 +437,7 @@ window.TR = (function () {
             body: JSON.stringify({ email, website, source: box.dataset.source || "site" })
           });
           if (!r.ok) throw new Error("subscribe failed");
+          trackEvent("EMAIL_SIGNUP", { location: box.dataset.source || "site" });
           box.innerHTML = `<h2>You're on the list.</h2>
             <p>Your first Sky Forecast lands with the next monthly send. Welcome.</p>`;
         } catch (err) {
@@ -458,7 +485,7 @@ window.TR = (function () {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    injectMasthead(); initNav(); injectFooter(); nightSky(); reveals();
+    injectMasthead(); initNav(); injectFooter(); nightSky(); reveals(); initOutboundTracking();
   });
-  return { attachCity, rememberBirth, birthDateField, esc, signupHTML, initSignup };
+  return { attachCity, rememberBirth, birthDateField, esc, signupHTML, initSignup, trackToolUse };
 })();

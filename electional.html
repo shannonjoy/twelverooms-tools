@@ -95,6 +95,7 @@ f.addEventListener("submit", async e => {
         lat: PLACE.lat, lon: PLACE.lon, tz: PLACE.tz }) });
     const d = await r.json();
     if (d.error) throw new Error(d.error);
+    TR.trackToolUse("electional");
     out.innerHTML = d.windows.map(w => `
       <div class="card">
         <p><strong>${esc(w.start_pretty)} → ${esc(w.end_pretty)}</strong>${w.scale ? ` · <span title="${esc(w.scale.blurb)} (${esc(w.scale.room_name)})">${"★".repeat(w.scale.stars)}${"☆".repeat(5 - w.scale.stars)} ${esc(w.scale.label)}</span>` : ""} · Moon ${esc(w.receipts.moon_sign)}, ${esc(w.receipts.moon_phase)}</p>
