@@ -24,7 +24,7 @@ Requires: pip install pyswisseph  (uses built-in Moshier model; no data files ne
 """
 
 import swisseph as swe
-import json, argparse, sys
+import json, argparse, sys, math
 from datetime import datetime, date, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -87,6 +87,11 @@ ASPECTS = {"conjunction":0.0,"sextile":60.0,"square":90.0,"trine":120.0,"opposit
            "quincunx":150.0}
 # orbs (degrees) for detecting an aspect as "in orb today" (quincunx tight per Shannon's standards)
 ORB = {"conjunction":6.0,"sextile":4.0,"square":5.0,"trine":5.0,"opposition":6.0,"quincunx":2.0}
+# slow (non-FAST) transiting planets, Jupiter through Pluto + Chiron, get a tight
+# 1 degree cap to a natal point. The ORB table above is calibrated for the Moon,
+# which crosses 5 degrees in hours; an outer planet sits in that same 5 degrees
+# for months, so reusing it surfaces transits that are not actually "on" today.
+SLOW_NATAL_ORB = 1.0
 # the classical five (VoC and lunation work exclude the quincunx)
 PTOLEMAIC = {"conjunction","sextile","square","trine","opposition"}
 # tighter orb used when hunting the Moon's exact-minute perfection
@@ -256,7 +261,8 @@ def slow_contacts_to_natal(day_start_utc, tz, natal, positions):
             for asp, ang in ASPECTS.items():
                 s = sep(tinfo["lon"], plon)
                 orb = s - ang
-                if abs(orb) <= ORB[asp]:
+                cap = ORB[asp] if tname in FAST else SLOW_NATAL_ORB
+                if abs(orb) <= cap:
                     # applying? check separation an hour later using current speed
                     lon_next = norm(tinfo["lon"] + tinfo["speed"]/24.0)
                     orb_next = sep(lon_next, plon) - ang
@@ -343,6 +349,112 @@ def standing_context(jd, tz, positions):
         if not e: return None
         return {"event": f"{e[1]} in {e[2]}", "date_local": jd_to_local(e[0]).strftime("%B %-d, %-I:%M %p")}
     return {"retrogrades": retros, "last_lunation": fmt(last), "next_lunation": fmt(nxt)}
+
+# Canonical phase-name buckets, shared with api/moon.py ("the Moon right now")
+# so the whole site names a phase the same way: eight equal 45deg arcs of the
+# Sun-Moon elongation, centred on each principal phase.
+PHASE_NAMES = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous",
+               "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"]
+
+
+def moon_phase(jd):
+    """The one phase function for the site. Name follows the shared 45deg-bucket
+    convention (see api/moon.py); illum is the lit fraction of the disc
+    (0 new, 1 full) that the daily-horoscope moon SVG needs; waxing tells the
+    frontend which limb to light so the drawing shows the true shape."""
+    slon = body_lonspeed(jd, swe.SUN)[0]
+    mlon = body_lonspeed(jd, swe.MOON)[0]
+    elong = (mlon - slon) % 360.0
+    name = PHASE_NAMES[int(((elong + 22.5) % 360) // 45)]
+    illum = (1.0 - math.cos(math.radians(elong))) / 2.0
+    return {"name": name, "illum": round(illum, 3),
+            "elongation": round(elong, 1), "waxing": elong < 180.0,
+            "sign": sign_of(mlon)[0]}
+
+
+def _local_hm(dt, tz):
+    loc = dt.astimezone(tz)
+    return loc.strftime("%-I:%M %p"), loc.hour * 60 + loc.minute
+
+
+def sky_events_today(day_start_utc, tz, positions):
+    """First-class sky events that fall on the read day: lunations (New/Full
+    Moon), planetary sign ingresses, and stations (a planet turning retrograde
+    or direct). These are the loudest things the sky does and each deserves its
+    own place on the clock, not a boundary sentence."""
+    day_end_utc = day_start_utc + timedelta(days=1)
+    events = []
+
+    def elong(dt):
+        j = jd_ut(dt)
+        return ((body_lonspeed(j, swe.MOON)[0] - body_lonspeed(j, swe.SUN)[0]) % 360.0)
+
+    # --- lunations exact within the day (Sun-Moon elongation hits 0 or 180) ---
+    step = timedelta(minutes=30)
+    t = day_start_utc
+    prev = elong(t)
+    while t < day_end_utc:
+        tn = min(t + step, day_end_utc)
+        cur = elong(tn)
+        for target, label in ((0.0, "New Moon"), (180.0, "Full Moon")):
+            d0 = (prev - target + 180.0) % 360.0 - 180.0
+            d1 = (cur - target + 180.0) % 360.0 - 180.0
+            if d0 != 0.0 and (d0 < 0) != (d1 < 0) and abs(d0) < 90 and abs(d1) < 90:
+                lo, hi = t, tn
+                for _ in range(16):
+                    mid = lo + (hi - lo) / 2
+                    dm = (elong(mid) - target + 180.0) % 360.0 - 180.0
+                    if (dm < 0) == (d0 < 0): lo = mid
+                    else: hi = mid
+                mlon, _ = body_lonspeed(jd_ut(hi), swe.MOON)
+                hm, mins = _local_hm(hi, tz)
+                events.append({"type": "lunation", "kind": label, "body": "Moon",
+                               "sign": sign_of(mlon)[0], "degree": fmt_pos(mlon, False),
+                               "time_local": hm, "time_minutes": mins, "_dt": hi})
+        prev = cur
+        t = tn
+
+    # --- ingresses + stations, per planet, from day endpoints ---
+    j0, j1 = jd_ut(day_start_utc), jd_ut(day_end_utc)
+    for name, code in BODIES.items():
+        if name == "North Node":
+            continue
+        lon0, spd0 = body_lonspeed(j0, code)
+        lon1, spd1 = body_lonspeed(j1, code)
+
+        if int(lon0 // 30) != int(lon1 // 30):
+            base = int(lon0 // 30)
+            lo, hi = day_start_utc, day_end_utc
+            for _ in range(20):
+                mid = lo + (hi - lo) / 2
+                if int(body_lonspeed(jd_ut(mid), code)[0] // 30) == base: lo = mid
+                else: hi = mid
+            newlon, _ = body_lonspeed(jd_ut(hi), code)
+            hm, mins = _local_hm(hi, tz)
+            events.append({"type": "ingress", "body": name,
+                           "from_sign": SIGNS[base], "to_sign": sign_of(newlon)[0],
+                           "sign": sign_of(newlon)[0],
+                           "time_local": hm, "time_minutes": mins, "_dt": hi})
+
+        if name not in ("Sun", "Moon") and (spd0 < 0) != (spd1 < 0):
+            neg0 = spd0 < 0
+            lo, hi = day_start_utc, day_end_utc
+            for _ in range(20):
+                mid = lo + (hi - lo) / 2
+                if (body_lonspeed(jd_ut(mid), code)[1] < 0) == neg0: lo = mid
+                else: hi = mid
+            slon, _ = body_lonspeed(jd_ut(hi), code)
+            hm, mins = _local_hm(hi, tz)
+            events.append({"type": "station", "body": name,
+                           "direction": "direct" if neg0 else "retrograde",
+                           "sign": sign_of(slon)[0],
+                           "time_local": hm, "time_minutes": mins, "_dt": hi})
+
+    events.sort(key=lambda e: e["_dt"])
+    for e in events:
+        del e["_dt"]
+    return events
+
 
 # ---------- main ----------
 

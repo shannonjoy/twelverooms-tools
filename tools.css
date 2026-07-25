@@ -375,6 +375,42 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
   color: var(--gold); margin: 0 0 5px; font-weight: 600; }
 .win-caution h4 { color: var(--berry); }
 .win p { font-size: 14px; line-height: 1.55; color: #33384a; margin: 0; }
+.takeaway { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--navy);
+  margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--line); }
+
+/* moon-phase hero + the energy of the day */
+.moonhero { display: flex; gap: 18px; align-items: center; background: #fff;
+  border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; }
+.mh-moon { flex: 0 0 auto; }
+/* .result svg is width:100% globally; scope wins the specificity war here */
+.moonhero .moonsvg { width: 64px; height: 64px; display: block; flex: 0 0 auto; }
+.moon-dark { fill: #e6e8f0; }
+.moon-lit { fill: var(--gold-hi); }
+.moon-rim { fill: none; stroke: var(--gold-soft); stroke-width: 1.1; }
+.mh-text { min-width: 0; }
+.mh-phase { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px; }
+.mh-energy { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--navy); margin: 0; }
+@media (max-width: 560px) { .moonhero .moonsvg { width: 54px; height: 54px; } .mh-energy { font-size: 15.5px; } }
+
+/* a first-class sky event in the ledger: lunation, ingress, station */
+.led-event { border-left-color: var(--gold); background: linear-gradient(180deg, #fdf9ef, #fbf6ea); }
+.led-event .led-what { font-weight: 500; }
+.flag-event { color: #fff; background: var(--gold); border-color: var(--gold); }
+.led-house { font-family: var(--sans); font-size: 11.5px; line-height: 1.4; color: var(--soft); margin-top: 5px; }
+.led-detail { font-family: var(--sans); font-size: 11px; color: var(--gold); letter-spacing: 0.04em;
+  margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* teach-on-tap glossary */
+.glossary .gloss { border-bottom: 1px solid var(--line); }
+.glossary .gloss:last-of-type { border-bottom: none; }
+.gloss summary { font-family: var(--serif); font-size: 15px; color: var(--navy); cursor: pointer;
+  padding: 10px 2px; list-style: none; text-transform: capitalize; }
+.gloss summary::-webkit-details-marker { display: none; }
+.gloss summary::before { content: "+"; color: var(--gold); font-family: var(--sans); font-weight: 600;
+  margin-right: 10px; }
+.gloss[open] summary::before { content: "\2013"; }
+.gloss p { font-size: 13.5px; line-height: 1.55; color: #33384a; margin: 0 0 12px 22px; }
 
 /* almanac index cards */
 .almanac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 8px; }

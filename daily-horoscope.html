@@ -138,20 +138,57 @@ async function read(day) {
 }
 
 function toneClass(t) {
-  return t === "hard" ? "led-hard" : t === "flowing" ? "led-flow" : "led-quiet";
+  return t === "event" ? "led-event" : t === "hard" ? "led-hard"
+       : t === "flowing" ? "led-flow" : "led-quiet";
+}
+
+// The Moon drawn at its true illuminated fraction: full disc on the Full Moon,
+// a thin crescent on a crescent day. illum is the lit fraction (0..1); waxing
+// tells us which limb to light.
+function moonSVG(illum, waxing) {
+  const R = 30, cx = 36, cy = 36;
+  const k = Math.max(0.012, Math.min(0.988, illum == null ? 0.5 : illum));
+  const rx = R * Math.abs(1 - 2 * k);
+  const gibbous = k > 0.5;
+  const litRight = waxing !== false;
+  const outerSweep = litRight ? 1 : 0;
+  const termSweep = litRight ? (gibbous ? 1 : 0) : (gibbous ? 0 : 1);
+  const path = `M ${cx} ${cy - R} A ${R} ${R} 0 0 ${outerSweep} ${cx} ${cy + R} `
+             + `A ${rx.toFixed(2)} ${R} 0 0 ${termSweep} ${cx} ${cy - R} Z`;
+  return `<svg viewBox="0 0 ${cx * 2} ${cy * 2}" class="moonsvg" aria-hidden="true">
+    <circle cx="${cx}" cy="${cy}" r="${R}" class="moon-dark"/>
+    <path d="${path}" class="moon-lit"/>
+    <circle cx="${cx}" cy="${cy}" r="${R}" class="moon-rim"/>
+  </svg>`;
+}
+
+function moonHero(d) {
+  const ph = d.phase || {};
+  const label = (ph.name || "") + (ph.sign ? ` in ${esc(ph.sign)}` : "");
+  return `<div class="moonhero">
+    <div class="mh-moon">${moonSVG(ph.illum, ph.waxing)}</div>
+    <div class="mh-text">
+      ${label ? `<div class="mh-phase">${esc(label)}</div>` : ""}
+      ${d.energy ? `<p class="mh-energy">${esc(d.energy)}</p>` : ""}
+    </div>
+  </div>`;
 }
 
 function ledgerRow(e) {
   const when = e.time_local
     ? `<div class="led-when">${esc(e.time_local)}</div>`
     : `<div class="led-when orb">in orb</div>`;
-  const flags = (e.retro ? `<span class="led-flag">retrograde</span>` : "")
+  const flags = (e.is_event ? `<span class="led-flag flag-event">event</span>` : "")
+              + (e.retro ? `<span class="led-flag">retrograde</span>` : "")
               + (e.stationary ? `<span class="led-flag">stationary</span>` : "");
+  const house = e.house_tag ? `<div class="led-house">${esc(e.house_tag)}</div>` : "";
+  const detail = e.detail ? `<div class="led-detail">${esc(e.detail)}</div>` : "";
   return `<div class="led ${toneClass(e.tone)}">
     ${when}
     <div>
       <div class="led-what">${esc(e.headline)}<span class="led-sym">${esc(e.symbol)}</span>${flags}</div>
       <div class="led-why">${esc(e.line)}</div>
+      ${house}${detail}
     </div>
   </div>`;
 }
@@ -173,7 +210,7 @@ function render(d) {
   const lead = d.featured;
   const nav = dayNav(d.day);
 
-  let html = nav + `<div class="glance">
+  let html = nav + moonHero(d) + `<div class="glance">
     <h2>The sky on ${esc(d.day_label)}</h2>
     <p>${esc(d.sky)}</p>
     ${d.arc ? `<p style="margin-top:10px;font-size:14px;color:#c4cbe0">${esc(d.arc)}</p>` : ""}
@@ -211,11 +248,24 @@ function render(d) {
   }
   html += `</div>`;
 
-  if (d.windows && d.windows.length) {
-    html += `<div class="card"><h2>How to use it</h2><div class="windows">` +
-      d.windows.map(w => `<div class="win ${w.kind === "caution" ? "win-caution" : ""}">
-        <h4>${esc(w.label)}${w.anchor ? " · " + esc(w.anchor) : ""}</h4>
-        <p>${esc(w.text)}</p></div>`).join("") + `</div></div>`;
+  if ((d.windows && d.windows.length) || d.close) {
+    html += `<div class="card"><h2>How to use it</h2>`;
+    if (d.windows && d.windows.length) {
+      html += `<div class="windows">` +
+        d.windows.map(w => `<div class="win ${w.kind === "caution" ? "win-caution" : ""}">
+          <h4>${esc(w.label)}${w.anchor ? " · " + esc(w.anchor) : ""}</h4>
+          <p>${esc(w.text)}</p></div>`).join("") + `</div>`;
+    }
+    if (d.close) html += `<p class="takeaway">${esc(d.close)}</p>`;
+    html += `</div>`;
+  }
+
+  if (d.definitions && d.definitions.length) {
+    html += `<div class="card glossary">
+      <h2>The astrology behind today</h2>
+      <p class="hint">Every term this reading used, in plain language. Tap any to open.</p>
+      ${d.definitions.map(x => `<details class="gloss"><summary>${esc(x.term)}</summary><p>${esc(x.def)}</p></details>`).join("")}
+    </div>`;
   }
 
   const moon = d.moon || {};

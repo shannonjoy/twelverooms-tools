@@ -128,6 +128,19 @@ MOON_LINES = {
     ("opposition", "Saturn"): "The limit shows itself plainly. Respect it and it stops arguing.",
     ("opposition", "ASC"):    "Other people are the mirror this hour. Listen to what comes back.",
     ("opposition", "MC"):     "Home and work stand opposite each other. Name which one you are choosing.",
+
+    # Quincunxes: the awkward 150 degree angle. Each point gets its own, so a day
+    # with several of them reads as distinct fidgets, not one repeated sentence.
+    ("quincunx", "Sun"):      "A small misfit between how you feel and who you are today. Adjust the plan, not the mood.",
+    ("quincunx", "Moon"):     "Your needs and your circumstances are half a size off. Tend the small discomfort; do not overhaul the day for it.",
+    ("quincunx", "Mercury"):  "A thought that will not sit quite right. Reword it rather than abandon it.",
+    ("quincunx", "Venus"):    "Comfort and wanting point slightly different ways. Take the smaller pleasure, the one that costs no rearranging.",
+    ("quincunx", "Mars"):     "Your drive is aimed a few degrees off the target. Redirect the effort instead of pushing harder.",
+    ("quincunx", "Saturn"):   "A duty that does not fit the hour. Do the piece that fits; defer the rest without guilt.",
+    ("quincunx", "Jupiter"):  "An appetite that does not match the moment. Want it, right-size it, come back to it later.",
+    ("quincunx", "ASC"):      "How you come across and how you feel are slightly out of register. Let the first impression be imperfect.",
+    ("quincunx", "MC"):       "What the work wants and what you have to give sit a notch apart. Trim the task rather than strain to meet it.",
+    ("quincunx", "North Node"): "The way forward asks for a small correction, not a leap. Nudge the wheel and keep going.",
 }
 
 # A few non-Moon curated lines, where the composed version would undersell it.
@@ -275,3 +288,206 @@ def note(day_label, engine):
             f"houses. Times are exact to the minute for the Moon and inner planets; "
             f"slower planets hold an aspect for days, so they are marked in orb rather "
             f"than given a false minute.")
+
+
+# ---- Sky events: lunations, ingresses, stations --------------------------
+# The loudest things the sky does. Each is a first-class line on the clock,
+# not a boundary sentence buried at the edge of the day.
+
+HOUSE_THEME = {
+    1: "you, your body, and how you begin things",
+    2: "money, resources, and what you value",
+    3: "talk, siblings, and the everyday mind",
+    4: "home, family, and your roots",
+    5: "romance, children, and play",
+    6: "work, health, and daily routine",
+    7: "partnership and the close other",
+    8: "intimacy, shared resources, and depth",
+    9: "meaning, travel, and the wider view",
+    10: "career, reputation, and public role",
+    11: "friends, networks, and what is next",
+    12: "rest, the inner life, and what is hidden",
+}
+
+LUNATION_COPY = {
+    "New Moon": "A New Moon resets the lunar month in {sign}. This is the seed point: dark, low, better for naming an intention than launching one. What you begin near it tends to grow as the Moon fills.",
+    "Full Moon": "The lunar month reaches its peak: a Full Moon in {sign}. Illumination and release, the point where something reaches its high-water mark and asks to be seen, finished, or set down. Feelings run bright and close to the surface.",
+}
+
+MOTION_GLYPH = {"retrograde": "℞", "direct": "D"}
+PHASE_GLYPH = {"New Moon": "●", "Full Moon": "○"}
+
+
+def event_headline(ev):
+    t = ev["type"]
+    if t == "lunation":
+        return f"{ev['kind']} in {ev['sign']}"
+    if t == "ingress":
+        return f"{ev['body']} enters {ev['to_sign']}"
+    return f"{ev['body']} stations {ev['direction']}"
+
+
+def event_symbol(ev):
+    t = ev["type"]
+    if t == "lunation":
+        return f"{PHASE_GLYPH.get(ev['kind'], '')} {GLYPH.get('Moon')}".strip()
+    if t == "ingress":
+        return f"{GLYPH.get(ev['body'], ev['body'])} → {ev['to_sign']}"
+    return f"{GLYPH.get(ev['body'], ev['body'])} {MOTION_GLYPH.get(ev['direction'], '')}".strip()
+
+
+def event_line(ev, house=None):
+    t = ev["type"]
+    if t == "lunation":
+        text = LUNATION_COPY[ev["kind"]].format(sign=ev["sign"])
+        if house:
+            text += f" For you it lands in your {_ord(house)} house: {HOUSE_THEME.get(house, 'this part of your life')}."
+        return text
+    theme = BODY_THEME.get(ev["body"], "its own themes")
+    if t == "ingress":
+        return (f"{ev['body']} leaves {ev['from_sign']} for {ev['to_sign']}, so {theme} "
+                f"takes on a new colour for as long as it stays. A change of register, "
+                f"not a single event to catch.")
+    if ev["direction"] == "retrograde":
+        return (f"{ev['body']} turns retrograde in {ev['sign']}: {theme} turns inward for "
+                f"review. Over the coming weeks its themes double back. Revisit, do not launch.")
+    return (f"{ev['body']} turns direct in {ev['sign']}: {theme} resumes forward motion after "
+            f"its review. What had stalled begins to move again.")
+
+
+def event_tone(ev):
+    if ev["type"] == "lunation":
+        return "event"
+    return "event"
+
+
+# ---- House tag for an ordinary contact ------------------------------------
+
+def _ord(n):
+    v = n % 100
+    suf = "th" if 11 <= v <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suf}"
+
+
+def house_tag(house):
+    """'your 10th house, career, reputation, and public role' or None."""
+    if not house:
+        return None
+    return f"your {_ord(house)} house: {HOUSE_THEME.get(house, 'this part of your life')}"
+
+
+# ---- Energy of the day: one synthesized line ------------------------------
+
+_COUNT_WORD = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+_PATTERN_ASK = {
+    "quincunx": "small course-corrections rather than one big move",
+    "square": "choices made under a little friction",
+    "trine": "ease you can actually use if you take it",
+    "sextile": "small openings that reward a little effort",
+    "opposition": "balance between two pulls",
+    "conjunction": "single-pointed focus on what merges",
+}
+# The Moon's phase as an adjective, so a sentence reads "the Moon is full in
+# Aquarius", never the broken "a Full Moon Moon".
+PHASE_DESC = {
+    "New Moon": "new", "Waxing Crescent": "a waxing crescent",
+    "First Quarter": "at first quarter", "Waxing Gibbous": "waxing gibbous",
+    "Full Moon": "full", "Waning Gibbous": "waning gibbous",
+    "Last Quarter": "at last quarter", "Waning Crescent": "a waning crescent",
+}
+_LUNATIONS = ("Full Moon", "New Moon")
+
+
+def _plural_aspect(asp, n):
+    word = _COUNT_WORD.get(n, str(n))
+    plural = "quincunxes" if asp == "quincunx" else f"{asp}s"
+    return f"{word} {plural}"
+
+
+def energy_line(featured, ledger, phase, has_lunation):
+    """The one read of the whole day: the biggest thing, the Moon's phase, and
+    the shape of the personal threads underneath. One to three short sentences."""
+    if not featured:
+        return (f"A quiet day. The Moon is {PHASE_DESC.get(phase['name'], phase['name'].lower())} "
+                f"in {phase['sign']}, and nothing perfects sharply to your chart, so the day "
+                f"takes its shape from your own plans rather than the sky's.")
+
+    is_lunation = featured.get("event_kind") in _LUNATIONS
+    if is_lunation:
+        sentences = [f"Today turns on the {featured['headline']}."]
+    elif featured.get("is_event"):
+        sentences = [f"Today's headline is {featured['headline']}."]
+    else:
+        sentences = [f"The day leans on {featured['headline']}."]
+
+    if not is_lunation:
+        sentences.append(f"The Moon is {PHASE_DESC.get(phase['name'], phase['name'].lower())} "
+                         f"in {phase['sign']}.")
+
+    personal = [e for e in ledger if e.get("time_minutes") is not None and not e.get("is_event")]
+    if personal:
+        counts = {}
+        for e in personal:
+            counts[e["aspect"]] = counts.get(e["aspect"], 0) + 1
+        asp, n = max(counts.items(), key=lambda kv: kv[1])
+        if n >= 3:
+            sentences.append(f"Underneath, {_plural_aspect(asp, n)} thread the hours: "
+                             f"{_PATTERN_ASK.get(asp, 'small repeated notes')}.")
+
+    return " ".join(sentences)
+
+
+def closing_line(windows, featured):
+    """One practical, non-prescriptive takeaway, anchored only to computed hours."""
+    best = next((w for w in windows if w["kind"] == "best" and w.get("anchor")), None)
+    caution = next((w for w in windows if w["kind"] == "caution" and w.get("anchor")), None)
+    if best and caution:
+        return (f"Put what matters near {best['anchor']}, and give {caution['anchor']} a lighter "
+                f"touch. Nothing here is fate; it is the grain of the day, and you decide how to cut it.")
+    if best:
+        return (f"Aim the day's real work at {best['anchor']}, when the sky is most on your side. "
+                f"The rest is yours to shape.")
+    if caution:
+        return (f"Go gently around {caution['anchor']}, the one rough patch, and let the rest of the "
+                f"day run on your own plans rather than the sky's mood.")
+    if featured and featured.get("event_kind") in _LUNATIONS:
+        return (f"The day turns on the {featured['headline']} at {featured.get('time_local')}. No "
+                f"single hour reads as purely easy or hard, so let the lunation set the tone and "
+                f"work your own plans around it.")
+    return ("No hour stands out sharply today, easy or hard, so work from your own structure and "
+            "let the day be what you make it.")
+
+
+# ---- Teach-on-tap definitions ---------------------------------------------
+# Plain-language glossary. The frontend shows only the terms a given day uses,
+# so a newcomer can learn the craft without the page turning into a textbook.
+
+DEFINITIONS = {
+    "conjunction": "Two points at the same degree. Their meanings merge and amplify each other.",
+    "sextile": "Points 60 degrees apart. An easy, optional opening that helps if you take it.",
+    "square": "Points 90 degrees apart. Productive friction that forces a choice or an action.",
+    "trine": "Points 120 degrees apart. A smooth, flowing channel between two parts of the chart.",
+    "opposition": "Points 180 degrees apart. Two needs face each other and ask to be balanced.",
+    "quincunx": "Points 150 degrees apart. An awkward, off-register angle: adjust rather than force.",
+    "orb": "How far from exact an aspect is. The tighter the orb, the stronger the effect.",
+    "applying": "The aspect is still tightening toward exact, so it is building rather than fading.",
+    "separating": "The aspect is past exact and loosening, so its effect is winding down.",
+    "retrograde": "A planet appearing to move backward from Earth. A time to review, not launch.",
+    "stationary": "A planet nearly paused as it changes direction. Its themes come into sharp focus.",
+    "Full Moon": "The Moon opposite the Sun: the lunar month's peak. Culmination and release.",
+    "New Moon": "The Moon meeting the Sun: the month's dark reset. A seed point for intentions.",
+    "Ascendant": "The sign rising at your birth. How you meet the world and first come across.",
+    "Midheaven": "The top of your chart. Your career, calling, and public role.",
+    "whole-sign houses": "A house system where each zodiac sign is one whole house of your life.",
+}
+
+# Which glossary terms a contact or event brings to the surface.
+def terms_for_aspect(aspect):
+    return [aspect]
+
+
+def definitions_for(terms):
+    """Return {term: definition} for the terms actually shown, in a stable order."""
+    order = list(DEFINITIONS.keys())
+    seen = [t for t in order if t in set(terms)]
+    return [{"term": t, "def": DEFINITIONS[t]} for t in seen]

@@ -22,9 +22,7 @@ def build(tz_name):
     slon = engines.cs.body_lonspeed(jd, swe.SUN)[0]
     sign, deg = engines.cs.sign_of(mlon)
     elong = (mlon - slon) % 360
-    phase_names = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous",
-                   "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"]
-    phase = phase_names[int(((elong + 22.5) % 360) // 45)]
+    phase = engines.cs.moon_phase(jd)["name"]
 
     t0, t1 = now - timedelta(hours=30), now + timedelta(hours=60)
     ingresses = electional.moon_ingresses(t0, t1)
