@@ -21,9 +21,7 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-HERE = Path(__file__).parent
-sys.path.insert(0, str(HERE / "_engines"))
-sys.path.insert(0, str(HERE / "_copy"))
+sys.path.insert(0, str(Path(__file__).parent / "_engines"))
 import engines  # noqa: E402
 import horoscope_copy as hc  # noqa: E402
 

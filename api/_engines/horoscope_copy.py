@@ -1,7 +1,14 @@
 """Interpretation copy for the daily horoscope.
 
-Hand-written (not a synced engine). The ephemeris decides WHAT is happening and
-WHEN; this module decides how it reads. Two layers:
+HAND-WRITTEN. Unlike its neighbours here, this file is NOT a generated copy:
+bin/sync-engines.sh only rewrites the seven files it names, so this one and
+engines.py both survive a re-sync. Edit it here.
+
+It lives in _engines rather than a directory of its own only because
+vercel.json bundles api/_*/** and this path is the one already proven to ship.
+
+The ephemeris decides WHAT is happening and WHEN; this module decides how it
+reads. Two layers:
 
   1. CURATED — (aspect, natal point) lines for the combinations that carry a day.
   2. COMPOSED — a point phrase joined to an aspect frame, for everything else.

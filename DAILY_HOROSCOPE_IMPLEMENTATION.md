@@ -13,12 +13,15 @@ tool grid.
 | --- | --- |
 | `daily-horoscope.html` | The page: birth form, date picker, day navigation, rendering |
 | `api/horoscope.py` | `POST /api/horoscope` — natal chart, the day's sky, the ledger |
-| `api/_copy/horoscope_copy.py` | Every word of interpretation. Hand-written, not a synced engine |
+| `api/_engines/horoscope_copy.py` | Every word of interpretation. Hand-written, not a synced engine |
 | `tools.css` | `.ledger` / `.led-*`, `.lead-card`, `.win*` (search "daily horoscope") |
 
-Nothing new was added to `api/_engines/` — `bin/sync-engines.sh` owns that
-directory and overwrites its named files. The copy module lives in `api/_copy/`,
-which Vercel still bundles via the existing `includeFiles: "api/_*/**"` glob.
+`horoscope_copy.py` sits in `api/_engines/` despite not being a synced engine,
+because that path is already proven to bundle in production. `bin/sync-engines.sh`
+only rewrites the seven files it names, so it survives a re-sync exactly as the
+hand-written `engines.py` does. A new `api/_*/` directory would almost certainly
+be bundled by the same `includeFiles` glob, but "almost certainly" is not worth a
+500 on a live endpoint.
 
 ## Request and response
 
@@ -100,7 +103,7 @@ says so plainly instead of inventing something.
 
 ## Where the words come from
 
-`api/_copy/horoscope_copy.py`, in two layers:
+`api/_engines/horoscope_copy.py`, in two layers:
 
 1. **Curated** — `MOON_LINES`, keyed `(aspect, point)`, covers the Moon's
    contacts to the nine points a day actually turns on; `BODY_LINES` covers a
