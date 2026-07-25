@@ -96,6 +96,7 @@ window.TR = (function () {
       ["/saturn-return-calculator", "Saturn return"],
       ["/synastry", "Synastry"],
       ["/transit-timeline", "Transit timeline"],
+      ["/daily-horoscope", "Daily horoscope"],
     ] },
     { label: "The sky now", items: [
       ["/moon", "Moon right now"],

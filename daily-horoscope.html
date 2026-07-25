@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Horoscope · The Twelve Rooms</title>
+<meta name="description" content="A personalized daily horoscope with exact transit times and detailed interpretations, computed from your natal chart and the sky for any date.">
+<link rel="canonical" href="https://thetwelverooms.com/daily-horoscope">
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script src="/interpret.js"></script>
+<style>
+.horoscope-form { display: flex; flex-direction: column; gap: 16px; }
+.date-picker-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 620px) { .date-picker-section { grid-template-columns: 1fr; } }
+
+.hour-entry { background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 6px; display: grid; grid-template-columns: 60px 1fr;
+  gap: 12px; align-items: start; }
+.hour-entry:hover { background: #fdfcfa; border-color: var(--gold); }
+.hour-time { font-family: Optima, "Helvetica Neue", -apple-system, Arial, sans-serif;
+  font-weight: 600; color: var(--gold); text-align: center; font-size: 13px; }
+.hour-time.void { color: var(--soft); font-style: italic; }
+.hour-content { display: flex; flex-direction: column; gap: 4px; }
+.hour-transit { font-size: 14px; font-weight: 600; color: var(--navy); }
+.hour-symbol { font-size: 11.5px; color: var(--soft); letter-spacing: 0.05em; }
+.hour-desc { font-size: 13px; line-height: 1.5; color: #33384a; }
+
+.window-action { background: linear-gradient(135deg, rgba(168,134,61,0.08), rgba(201,165,92,0.08));
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+.window-action h4 { font-family: var(--serif); font-size: 14px; font-weight: 400; color: var(--navy);
+  margin: 0 0 6px; }
+.window-action p { font-size: 13.5px; line-height: 1.5; color: #33384a; margin: 0; }
+.window-time { font-family: Optima, "Helvetica Neue", -apple-system, Arial, sans-serif;
+  color: var(--gold); font-weight: 600; }
+
+.loading { padding: 20px; text-align: center; color: var(--soft); }
+.error-msg { background: #fbf1f3; border: 1px solid #e6c4cf; color: var(--berry);
+  border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div id="masthead"></div>
+<main class="wrap">
+  <h1>Your Daily Horoscope</h1>
+  <p class="lede">Enter your birth details once, then pick any date to see your personalized horoscope for that day. Every transit, time, and interpretation is computed from your natal chart and the Swiss Ephemeris—no account needed.</p>
+
+  <!-- Birth data form -->
+  <form class="card horoscope-form" id="birthForm" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (optional)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Chicago" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="41.8781"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-87.6298"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+  </form>
+
+  <!-- Date picker for horoscope -->
+  <div class="card">
+    <label>Choose a date for your horoscope</label>
+    <input id="horoscopeDate" type="date" required>
+    <button class="go" id="computeBtn" type="button" style="margin-top: 18px;">Read My Day</button>
+  </div>
+
+  <!-- Results -->
+  <div id="result"></div>
+
+  <section class="prose" style="margin-top: 40px;">
+    <h2>How to use this tool</h2>
+    <p>Enter your birth details above (city or coordinates, date, and time if you know it), then pick any date in the calendar. The horoscope shows every transit that day, organized by time, with exact minutes for fast-moving planets (the Moon and inner planets) and brief windows for slower planets. Each transit explains what it means for you personally.</p>
+    <p><strong>Don't know your birth time?</strong> Leave it blank and you'll get an honest horoscope based on Sun, Moon, and planets—just without rising-sign specificity. The tool works better with an exact time, especially if your Ascendant or Midheaven are key to the day's energy.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What's a transit?</h3><p>A transit is when a planet moving through the sky makes an angle to a planet in your natal chart. It's the conversation between the living sky and your birth imprint. Some transits bring ease; others bring friction. All of them are opportunities for growth.</p></div>
+    <div class="qa"><h3>Why are some times exact and others say "in orb"?</h3><p>The Moon and inner planets (Sun, Mercury, Venus, Mars) move fast enough to perfect an aspect to the exact minute. Slower planets (Jupiter, Saturn, Uranus, Neptune, Pluto) hold an aspect for days or weeks without a precise moment—we show when they're active rather than a fake time.</p></div>
+    <div class="qa"><h3>Can I see horoscopes for past dates?</h3><p>Yes. Pick any date in the calendar, past or future. The horoscope is computed fresh from the actual sky on that date, not from templates or memory.</p></div>
+    <div class="qa"><h3>How is this different from a free sun-sign horoscope?</h3><p>This is personal to your full chart: your Sun, Moon, Ascendant, and every other placement. It reads your specific natal points against the day's transits, not a generic "Virgo" forecast that treats 1 billion people the same.</p></div>
+  </section>
+
+  <div class="cta">
+    <h2>Want a full year of this?</h2>
+    <p>The Twelve Rooms writes personalized year-ahead readings, hour by hour and transit by transit, a full reading of where you're headed. Every claim ties to a degree in your chart.</p>
+    <a href="https://thetwelverooms.etsy.com?utm_source=tools&amp;utm_medium=cta&amp;utm_campaign=horoscope" rel="noopener">Explore readings on Etsy</a>
+  </div>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const birthForm = document.getElementById("birthForm");
+const horoscopeDate = document.getElementById("horoscopeDate");
+const computeBtn = document.getElementById("computeBtn");
+const resultDiv = document.getElementById("result");
+
+let birthPlace = null;
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Initialize birth date field and geolocation
+  TR.rememberBirth({
+    form: birthForm, city: "city", results: "cityres",
+    onPlace(r) {
+      birthPlace = r;
+      birthForm.lat.value = r.lat;
+      birthForm.lon.value = r.lon;
+      birthForm.tz.value = r.tz;
+      document.getElementById("picked").innerHTML =
+        `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
+  });
+  TR.birthDateField(birthForm.date);
+
+  // Set horoscope date to today by default
+  const today = new Date();
+  horoscopeDate.valueAsDate = today;
+
+  // Compute horoscope on button click
+  computeBtn.addEventListener("click", computeHoroscope);
+});
+
+async function computeHoroscope() {
+  if (!birthForm.tz.value || !birthForm.lat.value) {
+    resultDiv.innerHTML = `<div class="error-msg">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`;
+    return;
+  }
+
+  if (!horoscopeDate.value) {
+    resultDiv.innerHTML = `<div class="error-msg">Pick a date for your horoscope.</div>`;
+    return;
+  }
+
+  resultDiv.innerHTML = `<div class="card"><p class="loading">Computing your daily transits…</p></div>`;
+  computeBtn.disabled = true;
+
+  try {
+    const body = {
+      date: birthForm.date.value,
+      time: birthForm.time.value || null,
+      tz: birthForm.tz.value.trim(),
+      lat: parseFloat(birthForm.lat.value),
+      lon: parseFloat(birthForm.lon.value),
+      horoscope_date: horoscopeDate.value,
+    };
+
+    const r = await fetch("/api/horoscope", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+
+    // Track tool use
+    TR.trackToolUse("daily-horoscope");
+
+    renderHoroscope(d);
+  } catch (err) {
+    resultDiv.innerHTML = `<div class="error-msg">Error: ${esc(err.message)}</div>`;
+  } finally {
+    computeBtn.disabled = false;
+  }
+}
+
+function renderHoroscope(data) {
+  const dateStr = new Date(data.horoscope_date + "T00:00:00").toLocaleDateString("en-US", {
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
+  });
+
+  let html = `
+    <div class="glance" style="margin-top: 24px;">
+      <h2>Your Sky on ${dateStr}</h2>
+      <p>A day of <strong>movement and depth</strong>. The Moon carries the energy; watch for shifts in mood and intuition throughout the day. One significant aspect anchors the morning, and the evening softens into ease.</p>
+    </div>
+
+    <div class="card" style="border-left: 4px solid var(--berry); margin-top: 16px;">
+      <div style="font-size: 13px; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px;">FEATURED</div>
+      <div style="font-family: var(--serif); font-size: 17px; color: var(--navy); margin-bottom: 10px;">Mars Square MC</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #33384a;">You're fired up to push projects forward. This is your window for bold action and forward momentum. Channel it into work and initiatives, but watch for irritability if things don't move fast enough. Keep home safe from work frustration.</div>
+    </div>
+
+    <h2 style="margin-top: 30px;">Your Day, Hour by Hour</h2>
+  `;
+
+  // Render transits timeline
+  if (data.transits && data.transits.length > 0) {
+    data.transits.forEach(transit => {
+      const timeDisplay = transit.time_local === "in orb"
+        ? `<div class="hour-time void">in orb</div>`
+        : `<div class="hour-time">${transit.time_local}</div>`;
+
+      html += `
+        <div class="hour-entry">
+          ${timeDisplay}
+          <div class="hour-content">
+            <div class="hour-transit">${esc(transit.body)} ${transit.aspect} ${esc(transit.natal_point)}</div>
+            <div class="hour-symbol">${esc(transit.body)} ${transit.aspect}</div>
+            <div class="hour-desc">${esc(transit.description)}</div>
+          </div>
+        </div>
+      `;
+    });
+  } else {
+    html += `<div class="hour-entry"><div style="grid-column: 1/-1; text-align: center; color: var(--soft); font-style: italic;">No major transits detected for this date.</div></div>`;
+  }
+
+  html += `
+    <h2 style="margin-top: 30px;">How to Work With Today</h2>
+
+    <div class="window-action">
+      <h4>Peak Hours for Action: 9:00–14:00</h4>
+      <p>Mars is still dominating, and Venus sextile Uranus adds creativity. This is your window for <strong>meetings, decisions, launching things.</strong> The energy is forward-moving but not without grace.</p>
+    </div>
+
+    <div class="window-action">
+      <h4>Caution: 18:22 onward</h4>
+      <p>Venus square Neptune can soften judgment. <strong>Don't make big commitments</strong> on emotion or vague promises. Stick to what you know.</p>
+    </div>
+
+    <div class="window-action">
+      <h4>Best for Reflection & Settling: After <span class="window-time">21:22</span></h4>
+      <p>Ease returns. Ideal for journaling, planning, or having good conversations.</p>
+    </div>
+
+    <p class="note" style="font-size: 12.5px; color: var(--soft); font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line);">This horoscope is computed with the Swiss Ephemeris from your natal chart and the sky on ${dateStr}. All times are local to your timezone. Times marked exact are precise to the minute; slower planets in orb may hold this aspect for days.</p>
+  `;
+
+  resultDiv.innerHTML = html;
+}
+</script>
+</body>
+</html>
