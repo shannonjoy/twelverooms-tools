@@ -17,6 +17,7 @@ STATIC = [
     ("/", "weekly", "1.0"),
     ("/moon", "daily", "0.9"),
     ("/natal-chart", "monthly", "0.9"),
+    ("/daily-horoscope", "daily", "0.9"),
     ("/synastry", "monthly", "0.8"),
     ("/electional", "monthly", "0.8"),
     ("/saturn-return-calculator", "monthly", "0.8"),
