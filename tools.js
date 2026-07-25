@@ -43,7 +43,8 @@ window.TR = (function () {
        OUTBOUND_CLICK { url }    — any click on a link out to the Etsy shop
        TOOL_USE       { tool }   — a calculator/finder actually run to a result
        EMAIL_SIGNUP   { location } — Monthly Sky Forecast signup completes
-     All three no-op quietly if gtag never loaded (GA_ID left at placeholder). */
+       SHARE          { url }    — the "Share this" control fires (native sheet or copy-link)
+     All four no-op quietly if gtag never loaded (GA_ID left at placeholder). */
   function trackEvent(name, params) {
     if (typeof gtag === "function") gtag("event", name, params);
   }
@@ -196,6 +197,49 @@ window.TR = (function () {
   function injectFooter() {
     const slot = document.getElementById("site-footer");
     if (slot) slot.outerHTML = FOOTER;
+  }
+
+  /* ---- Shareable-tool-output growth loop ----
+     A generic "Share this" control: native share sheet (navigator.share)
+     with a copy-link fallback for browsers that lack it. Auto-wires any
+     `.tr-share-btn` on the page, the same way injectMasthead/injectFooter
+     auto-wire on DOMContentLoaded, so a generated page never needs its own
+     inline <script> — the generator only has to emit the markup.
+
+     Reads title/text from data attributes (data-share-title,
+     data-share-text) if present, otherwise falls back to document.title
+     and no text. Always shares location.href (the page's own canonical
+     URL, e.g. /sabian-symbols/aries-1) — the part of the loop that matters
+     is the link, since that's what carries the page's og:image into
+     whatever the recipient's client unfurls it in (iMessage, Slack,
+     Twitter/X, etc). This is the SAME control every future tool's result
+     page can drop in — one markup pattern, one JS wire-up, works for the
+     360 static Sabian cards today and for dynamic personalized cards later
+     (see gen_sabian_cards.py's docstring for the @vercel/og scale path). */
+  function initShare() {
+    document.querySelectorAll(".tr-share-btn").forEach(btn => {
+      if (btn.dataset.trWired) return;
+      btn.dataset.trWired = "1";
+      const note = btn.parentElement.querySelector(".tr-share-note");
+      const setNote = msg => { if (note) note.textContent = msg; };
+      btn.addEventListener("click", async () => {
+        const url = location.href;
+        const title = btn.dataset.shareTitle || document.title;
+        const text = btn.dataset.shareText || "";
+        trackEvent("SHARE", { url });
+        if (navigator.share) {
+          try { await navigator.share({ title, text, url }); }
+          catch (e) { /* visitor cancelled the share sheet — not an error */ }
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(url);
+          setNote("Link copied.");
+        } catch (e) {
+          setNote(url); /* clipboard blocked (older browser/http) — show the link to copy by hand */
+        }
+      });
+    });
   }
 
   /* City typeahead. onPick receives {name, admin1, country, lat, lon, tz}. */
@@ -485,7 +529,7 @@ window.TR = (function () {
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    injectMasthead(); initNav(); injectFooter(); nightSky(); reveals(); initOutboundTracking();
+    injectMasthead(); initNav(); injectFooter(); nightSky(); reveals(); initOutboundTracking(); initShare();
   });
   return { attachCity, rememberBirth, birthDateField, esc, signupHTML, initSignup, trackToolUse };
 })();

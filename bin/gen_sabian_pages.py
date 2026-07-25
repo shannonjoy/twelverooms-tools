@@ -33,6 +33,20 @@ Dane Rudhyar's "An Astrological Mandala" (1973) wording. `meaning`,
 written fresh for this project; none of it is copied from Jones or
 Rudhyar.
 
+SHAREABLE-TOOL-OUTPUT GROWTH LOOP (proof staged Jul 24 2026, Aries only):
+every degree page carries a ".tr-share" button (tools.js's initShare())
+that shares the page's own URL, and og_tags() below points that page's
+og:image/twitter:image at a pre-rendered 1200x630 branded card at
+/og/sabian/<slug>-<n>.png, so the shared link unfurls as a Twelve Rooms
+card in iMessage/Slack/Twitter/etc instead of a bare URL. og_tags() only
+emits the image tags when that PNG actually exists on disk at generation
+time, so wiring another sign's OG is zero-code: render its cards with
+bin/gen_sabian_cards.py (same headless-Chrome-screenshot method as
+brand-assets/gen_pins.py), then re-run this generator. See
+gen_sabian_cards.py's own docstring for the scale path from these 360
+FIXED cards to DYNAMIC og:image for personalized tool results (Big 3,
+synastry, natal chart), which pre-rendering can't cover.
+
 Run: python3 bin/gen_sabian_pages.py   (writes hub + sign index + all degree pages)
 """
 import html
@@ -128,6 +142,43 @@ def build_signs():
     return signs
 
 
+def og_tags(sign_name, sign_slug, n, entry):
+    """og:*/twitter:* meta tags for one degree page -- emitted ONLY when
+    that degree's share-card PNG has actually been rendered (see
+    bin/gen_sabian_cards.py). No card yet means no tags at all, so a sign
+    with no cards renders byte-identical to before this feature (the proof
+    is scoped to Aries; every other sign's OG is untouched on purpose).
+    This is also the whole scaling mechanism: render another sign's cards
+    with gen_sabian_cards.py, re-run this generator, and that sign's pages
+    pick up full OG automatically -- no hand-editing here or per-page."""
+    card_path = OUT / "og" / "sabian" / f"{sign_slug}-{n}.png"
+    if not card_path.exists():
+        return ""
+    title = f"{sign_name} {n}° Sabian Symbol · The Twelve Rooms"
+    desc = f"“{entry['image']}”"
+    page_url = f"https://thetwelverooms.com/sabian-symbols/{sign_slug}-{n}"
+    tags = [
+        '<meta property="og:type" content="article">',
+        f'<meta property="og:title" content="{esc(title)}">',
+        f'<meta property="og:description" content="{esc(desc)}">',
+        f'<meta property="og:url" content="{page_url}">',
+        '<meta property="og:site_name" content="The Twelve Rooms">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{esc(title)}">',
+        f'<meta name="twitter:description" content="{esc(desc)}">',
+    ]
+    img_url = f"https://thetwelverooms.com/og/sabian/{sign_slug}-{n}.png"
+    img_alt = f"{sign_name} {n}°: {entry['image']}"
+    tags += [
+        f'<meta property="og:image" content="{img_url}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        f'<meta property="og:image:alt" content="{esc(img_alt)}">',
+        f'<meta name="twitter:image" content="{img_url}">',
+    ]
+    return "\n".join(tags)
+
+
 def degree_page(sign_name, sign_slug, entry, total):
     n = entry["degree"]
     slug = f"{sign_slug}-{n}"
@@ -137,6 +188,8 @@ def degree_page(sign_name, sign_slug, entry, total):
                  if n < total else f'<a href="/sabian-symbols">Explore other signs →</a>')
     note = entry.get("note")
     note_html = f'\n    <p class="sabian-note">{esc(note)}</p>' if note else ""
+    og_html = og_tags(sign_name, sign_slug, n, entry)
+    og_line = f"{og_html}\n" if og_html else ""
     title = f"{sign_name} {n}° Sabian Symbol: {esc(entry['image']).rstrip('.')} · The Twelve Rooms"
     desc = (f"The Sabian symbol for {sign_name} {n}°: {entry['image']} What it means, how it "
             f"colors a planet or point at this exact degree, and a reflection to sit with.")
@@ -148,7 +201,7 @@ def degree_page(sign_name, sign_slug, entry, total):
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="https://thetwelverooms.com/sabian-symbols/{slug}">
-<link rel="stylesheet" href="/tools.css">
+{og_line}<link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Article","headline":"{sign_name} {n}° Sabian Symbol","author":{{"@type":"Organization","name":"The Twelve Rooms"}},"about":"Sabian symbol for {sign_name} degree {n}"}}
@@ -167,6 +220,11 @@ def degree_page(sign_name, sign_slug, entry, total):
     <p class="hint">{sign_name} {n}&deg; &middot; Sabian symbols, devised 1925 (Marc Edmund Jones, clairvoyant Elsie Wheeler)</p>
     <p class="hint">Remember to round up: a planet or point at 9&deg;30&prime; takes the 10&deg; symbol, not the 9&deg; one.</p>
   </div>{note_html}
+
+  <div class="tr-share">
+    <button type="button" class="tr-share-btn" data-share-title="{esc(f'{sign_name} {n}° Sabian Symbol')}" data-share-text="{esc(entry['image'])}">Share this symbol</button>
+    <p class="tr-share-note" aria-live="polite"></p>
+  </div>
 
   <section class="prose">
     <h2>What this degree describes</h2>
