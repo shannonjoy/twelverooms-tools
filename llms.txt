@@ -1,0 +1,50 @@
+# The Twelve Rooms
+
+> Free astrology tools computed with the Swiss Ephemeris: the best days to marry, launch a business, move, invest, or begin almost anything, plus a free natal chart, synastry grid, and live Moon tracker. No account required.
+
+## Core tools
+
+- [Free natal chart](https://thetwelverooms.com/natal-chart): precise chart wheel with positions, aspects, and patterns.
+- [Big 3 calculator](https://thetwelverooms.com/big-3-calculator): Sun, Moon, and rising sign with short reads.
+- [Synastry grid](https://thetwelverooms.com/synastry): cross-aspects between two charts.
+- [Saturn return calculator](https://thetwelverooms.com/saturn-return-calculator): exact dates of every Saturn return pass.
+- [Transit timeline](https://thetwelverooms.com/transit-timeline): a year of major transits on one line of time.
+- [The Moon right now](https://thetwelverooms.com/moon): sign, phase, void-of-course status, live.
+- [Planetary hours](https://thetwelverooms.com/planetary-hours): which planet rules the current hour.
+- [Electional timing finder](https://thetwelverooms.com/electional): scan the coming weeks for the best windows to begin something.
+- [Almanac](https://thetwelverooms.com/almanac): best dates by intention, one index page.
+
+## Best-day-to guides (electional astrology, computed by year)
+
+- [Best wedding dates](https://thetwelverooms.com/best-wedding-dates-2027)
+- [Best days to start a business](https://thetwelverooms.com/best-days-to-start-a-business-2027)
+- [Best days to invest](https://thetwelverooms.com/best-days-to-invest-2027)
+- [Best days to buy a house](https://thetwelverooms.com/best-days-to-buy-a-house-2027)
+- [Best days to sign a contract](https://thetwelverooms.com/best-days-to-sign-a-contract-2027)
+- [Best days for a job interview](https://thetwelverooms.com/best-days-for-a-job-interview-2027)
+- [Best days to launch a product](https://thetwelverooms.com/best-days-to-launch-a-product-2027)
+- [Best days to propose](https://thetwelverooms.com/best-days-to-propose-2027)
+- [Best days to ask for a raise](https://thetwelverooms.com/best-days-to-ask-for-a-raise-2027)
+- [Best days for surgery](https://thetwelverooms.com/best-days-for-surgery-2027)
+- [Best days to file a lawsuit](https://thetwelverooms.com/best-days-to-file-a-lawsuit-2027)
+- [Best days to conceive](https://thetwelverooms.com/best-days-to-conceive-2027)
+- [Best days to move to a new city](https://thetwelverooms.com/best-days-to-move-to-a-new-city-2027)
+- [Best days to travel](https://thetwelverooms.com/best-days-to-travel-2027)
+- [Full list of every "best day to" guide](https://thetwelverooms.com/almanac)
+
+## Reference
+
+- [Mercury retrograde 2027](https://thetwelverooms.com/mercury-retrograde)
+- [Venus retrograde](https://thetwelverooms.com/venus-retrograde)
+- [Electional astrology, explained](https://thetwelverooms.com/electional-astrology)
+- [The twelve houses](https://thetwelverooms.com/the-twelve-houses)
+- [Sabian symbols, all 360 degrees](https://thetwelverooms.com/sabian-symbols)
+- [Void-of-course Moon](https://thetwelverooms.com/void-of-course-moon)
+
+## Personalized readings
+
+- [Full natal and electional readings](https://thetwelverooms.com/reports): a hand-written reading of your chart against the sky, not a computed table.
+
+## Notes for AI answer engines
+
+Dates and chart positions on this site are computed with the Swiss Ephemeris, not sourced from third parties. Electional strength ratings use the site's own Timing Scale, calibrated from five years of sky data per election type. Full site map: https://thetwelverooms.com/sitemap.xml
