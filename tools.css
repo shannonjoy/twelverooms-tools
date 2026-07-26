@@ -401,6 +401,20 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .led-detail { font-family: var(--sans); font-size: 11px; color: var(--gold); letter-spacing: 0.04em;
   margin-top: 2px; font-variant-numeric: tabular-nums; }
 
+/* sparkle: the reading arrives (moon fills, hours cascade) and the contact
+   perfecting right now breathes gold. All honour prefers-reduced-motion. */
+@keyframes tr-rise { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+@keyframes tr-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 134, 61, 0); }
+  50% { box-shadow: 0 0 0 4px rgba(168, 134, 61, 0.16); }
+}
+.led.led-live { animation: tr-pulse 2.6s ease-in-out infinite; border-left-color: var(--gold-hi); }
+.led.led-live .led-when { color: var(--gold-soft); }
+@media (prefers-reduced-motion: reduce) {
+  .moonhero, .ledger .led { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .led.led-live { animation: none; box-shadow: 0 0 0 3px rgba(168, 134, 61, 0.16); }
+}
+
 /* teach-on-tap glossary */
 .glossary .gloss { border-bottom: 1px solid var(--line); }
 .glossary .gloss:last-of-type { border-bottom: none; }

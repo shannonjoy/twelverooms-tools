@@ -82,6 +82,7 @@
 <script src="/tools.js"></script>
 <script>
 const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const RM = (matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) || false;
 const f = document.getElementById("f");
 const out = document.getElementById("out");
 const dayField = document.getElementById("day");
@@ -145,7 +146,7 @@ function toneClass(t) {
 // The Moon drawn at its true illuminated fraction: full disc on the Full Moon,
 // a thin crescent on a crescent day. illum is the lit fraction (0..1); waxing
 // tells us which limb to light.
-function moonSVG(illum, waxing) {
+function moonPath(illum, waxing) {
   const R = 30, cx = 36, cy = 36;
   const k = Math.max(0.012, Math.min(0.988, illum == null ? 0.5 : illum));
   const rx = R * Math.abs(1 - 2 * k);
@@ -153,13 +154,64 @@ function moonSVG(illum, waxing) {
   const litRight = waxing !== false;
   const outerSweep = litRight ? 1 : 0;
   const termSweep = litRight ? (gibbous ? 1 : 0) : (gibbous ? 0 : 1);
-  const path = `M ${cx} ${cy - R} A ${R} ${R} 0 0 ${outerSweep} ${cx} ${cy + R} `
-             + `A ${rx.toFixed(2)} ${R} 0 0 ${termSweep} ${cx} ${cy - R} Z`;
+  return `M ${cx} ${cy - R} A ${R} ${R} 0 0 ${outerSweep} ${cx} ${cy + R} `
+       + `A ${rx.toFixed(2)} ${R} 0 0 ${termSweep} ${cx} ${cy - R} Z`;
+}
+
+function moonSVG(illum, waxing) {
+  const R = 30, cx = 36, cy = 36, w = waxing !== false;
+  const i = illum == null ? 0.5 : illum;
   return `<svg viewBox="0 0 ${cx * 2} ${cy * 2}" class="moonsvg" aria-hidden="true">
     <circle cx="${cx}" cy="${cy}" r="${R}" class="moon-dark"/>
-    <path d="${path}" class="moon-lit"/>
+    <path d="${moonPath(i, w)}" class="moon-lit" data-illum="${i}" data-waxing="${w ? 1 : 0}"/>
     <circle cx="${cx}" cy="${cy}" r="${R}" class="moon-rim"/>
   </svg>`;
+}
+
+// Idea 1: the Moon fills from new to today's true phase on load. Motion is the
+// message, it draws exactly the light that is really there tonight.
+function animateMoons(scope) {
+  scope.querySelectorAll(".moon-lit").forEach(p => {
+    const target = parseFloat(p.dataset.illum), w = p.dataset.waxing === "1";
+    if (RM || !(target > 0.02)) { p.setAttribute("d", moonPath(target, w)); return; }
+    const start = 0.012, t0 = performance.now(), dur = 950;
+    p.setAttribute("d", moonPath(start, w));
+    (function frame(t) {
+      const e = Math.min(1, (t - t0) / dur), eased = 1 - Math.pow(1 - e, 3);
+      p.setAttribute("d", moonPath(start + (target - start) * eased, w));
+      if (e < 1) requestAnimationFrame(frame);
+    })(t0);
+    // Guarantee the true phase even if rAF is paused (tab loaded in background).
+    setTimeout(() => p.setAttribute("d", moonPath(target, w)), dur + 150);
+  });
+}
+
+// Idea 2: the hero fades up and the hours cascade in on the clock.
+function unfurl(scope) {
+  if (RM) return;
+  const hero = scope.querySelector(".moonhero");
+  if (hero) hero.style.animation = "tr-rise .5s ease both";
+  scope.querySelectorAll(".ledger .led").forEach((el, i) => {
+    el.style.animation = "tr-rise .5s ease both";
+    el.style.animationDelay = (120 + Math.min(i, 10) * 60) + "ms";
+  });
+}
+
+// Idea 4: when reading today, the transit perfecting right now breathes gold.
+function markLive(scope, dayISO) {
+  if (window.__liveTimer) { clearInterval(window.__liveTimer); window.__liveTimer = null; }
+  const isToday = dayISO === iso(new Date());
+  const rows = [...scope.querySelectorAll(".led[data-min]")];
+  const update = () => {
+    const now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes();
+    rows.forEach(r => {
+      const m = r.dataset.min;
+      r.classList.toggle("led-live",
+        isToday && m !== "" && Math.abs(Number(m) - nowMin) <= 20);
+    });
+  };
+  update();
+  if (isToday) window.__liveTimer = setInterval(update, 60000);
 }
 
 function moonHero(d) {
@@ -183,7 +235,7 @@ function ledgerRow(e) {
               + (e.stationary ? `<span class="led-flag">stationary</span>` : "");
   const house = e.house_tag ? `<div class="led-house">${esc(e.house_tag)}</div>` : "";
   const detail = e.detail ? `<div class="led-detail">${esc(e.detail)}</div>` : "";
-  return `<div class="led ${toneClass(e.tone)}">
+  return `<div class="led ${toneClass(e.tone)}" data-min="${e.time_minutes == null ? "" : e.time_minutes}">
     ${when}
     <div>
       <div class="led-what">${esc(e.headline)}<span class="led-sym">${esc(e.symbol)}</span>${flags}</div>
@@ -284,6 +336,9 @@ function render(d) {
 
   out.innerHTML = html;
   wireDayLinks(out);
+  animateMoons(out);
+  unfurl(out);
+  markLive(out, d.day);
   buildDateStrip(d.day);
 }
 
