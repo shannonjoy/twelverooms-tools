@@ -99,11 +99,17 @@ CARD_DIR = OUT_ROOT / "og" / "sabian"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 CARD_W, CARD_H = 1200, 630
 
-# PROOF: Aries only. Add more slugs (matching bin/sabian_data/<slug>.py
-# files, sourcing name/order/glyph from that module's SIGN dict) to render
-# the rest of the wheel -- see CANONICAL_SIGNS in gen_sabian_pages.py for
-# the full 12-sign list/order.
-SIGNS_TO_RENDER = ["aries"]
+# The full wheel, in zodiac order. This was Aries-only through Aug 6 2026
+# while the mechanism was being proved (design, render pipeline, OG wiring,
+# share button); all 360 degree PAGES already existed, but the other 11
+# signs had no card, so 330 of the 360 pages unfurled as a bare URL. The
+# proof held, so the list is now the whole wheel. Each slug must match a
+# bin/sabian_data/<slug>.py file, whose SIGN dict supplies name/order/glyph
+# -- same list and order as CANONICAL_SIGNS in gen_sabian_pages.py.
+SIGNS_TO_RENDER = [
+    "aries", "taurus", "gemini", "cancer", "leo", "virgo",
+    "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces",
+]
 
 # Classical element by 1-12 zodiac order, cycling fire/earth/air/water.
 ELEMENT_BY_ORDER_MOD = {1: "fire", 2: "earth", 3: "air", 0: "water"}

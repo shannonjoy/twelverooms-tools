@@ -284,6 +284,64 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .toolgrid .soon { opacity: 0.6; cursor: default; }
 .toolgrid .soon .tag.gold { margin-top: 8px; }
 
+/* ---- Skip nav (Aug 6 2026) ----
+   First focusable thing on every page, so a keyboard or screen reader user
+   jumps the masthead and its five nav groups in one keystroke instead of
+   tabbing all of them on all 404 pages. It lives in the static HTML, ahead
+   of the #masthead slot that tools.js fills in, so it works before the
+   script runs and with the script off.
+
+   Hidden by clipping, never display:none or visibility:hidden, which would
+   remove it from the focus order and turn the feature off. The target
+   carries tabindex="-1"; without it the browser scrolls to the landmark but
+   leaves focus back in the nav. */
+.skip-link { position: absolute; top: 0; left: 0;
+  width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap; z-index: 100;
+  font-family: var(--body); font-size: 14px; font-weight: 600; line-height: 1;
+  color: var(--cream); background: var(--navy);
+  border-radius: 8px; text-decoration: none; }
+.skip-link:focus, .skip-link:focus-visible {
+  width: auto; height: auto; overflow: visible;
+  clip: auto; clip-path: none; white-space: normal;
+  margin: 8px; padding: 11px 17px;
+  outline: 2px solid var(--gold); outline-offset: 2px; }
+#main-content:focus { outline: none; }
+
+/* ---- Grid weighting (Aug 6 2026) ----
+   Ten cards at identical weight asked the visitor to read all ten and
+   decide what this site is. It is an electional site: choosing the right
+   moment is the thing it does that nobody else does for free, and it is
+   what the paid readings extend. So the two electional tools lead at full
+   weight, and synastry and the transit timeline, which are real but are
+   the long tail, sit quietly at the end.
+
+   Weight only. No card was removed, no copy rewritten, and every tool is
+   still one click from here. */
+/* The lead pair gets its own two-column row rather than a `span 2` inside
+   the main grid. The main grid is auto-fill, so its column count changes
+   with the viewport, and a spanning card lands next to a hole at every
+   width where the count is odd. A separate grid is always exactly full. */
+.toolgrid--lead {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.toolgrid--lead a { padding: 22px; border-color: rgba(201,165,92,0.55);
+  background: linear-gradient(180deg, #fff 0%, var(--wash) 260%); }
+.toolgrid--lead .glyph { width: 44px; height: 44px; font-size: 23px; margin-bottom: 14px; }
+.toolgrid--lead h2 { font-size: 21px; margin-bottom: 7px; }
+.toolgrid--lead p { font-size: 14.5px; }
+
+.toolgrid a.quiet .glyph {
+  width: 30px; height: 30px; font-size: 16px; margin-bottom: 10px;
+  color: var(--gold-soft);
+}
+.toolgrid a.quiet h2 { font-size: 15px; }
+.toolgrid a.quiet p { font-size: 12.5px; }
+
 /* ---- 10x result UX: glance, placements, aspects ---- */
 .glance { background: radial-gradient(130% 150% at 50% 0%, var(--midnight-1), var(--midnight-2));
   color: var(--cream); border: 1px solid rgba(201,165,92,0.4); border-radius: 16px;

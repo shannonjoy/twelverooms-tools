@@ -208,8 +208,9 @@ def degree_page(sign_name, sign_slug, entry, total):
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="masthead"></div>
-<main class="wrap">
+<main class="wrap" id="main-content" tabindex="-1">
   <p class="hint"><a href="/sabian-symbols">Sabian Symbols</a> &middot; <a href="/sabian-symbols/{sign_slug}">{sign_name}</a> &middot; Degree {n} of {total}</p>
   <h1>{sign_name} {n}&deg;</h1>
   <p class="lede">The traditional symbol for this degree, one of the 360 Sabian symbols first recorded in 1925: <strong>&ldquo;{esc(entry['image'])}&rdquo;</strong></p>
@@ -274,8 +275,9 @@ def sign_index_page(sign_name, sign_slug, entries):
 <link rel="icon" href="/favicon.svg">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="masthead"></div>
-<main class="wrap">
+<main class="wrap" id="main-content" tabindex="-1">
   <p class="hint"><a href="/sabian-symbols">Sabian Symbols</a> &middot; {sign_name}</p>
   <h1>{sign_name}: all 30 Sabian symbols</h1>
   <p class="lede">Every whole degree of {sign_name} has its own Sabian symbol, a small traditional picture first recorded in 1925. Find the exact degree of your Sun, Moon, Ascendant, or any planet in {sign_name}, and read what that degree adds to it.</p>
@@ -358,8 +360,9 @@ def hub_page(signs):
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="masthead"></div>
-<main class="wrap">
+<main class="wrap" id="main-content" tabindex="-1">
   <h1>The Sabian symbols</h1>
   <p class="lede">A short traditional picture for each of the 360 whole degrees of the zodiac, one per degree, first recorded in 1925. Every planet and point in a chart sits at one exact degree; its Sabian symbol adds a layer of meaning beyond the sign alone. {lede_status}</p>
 
