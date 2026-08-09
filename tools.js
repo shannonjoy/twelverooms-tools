@@ -193,6 +193,7 @@ window.TR = (function () {
   const FOOTER = `<footer class="site">
     <div><a href="/forecast">Monthly Sky Forecast</a> · the free email</div>
     <div class="privacy">© 2026 The Twelve Rooms · City data © GeoNames (CC BY 4.0)</div>
+    <div class="privacy">Positions computed with the Swiss Ephemeris. Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>, source available. Brand and readings © The Twelve Rooms.</div>
   </footer>`;
 
   function injectFooter() {
