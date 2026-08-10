@@ -1,0 +1,6 @@
+{
+  "_comment": "Single source of truth for the per-date programmatic series. index_from and index_to bound what /moon/:date and /void-of-course-moon/:date will let a crawler reach; api/_seo/crawl.py must carry the same two dates. sitemap_days_forward is how much of that window bin/gen-sitemap.py advertises, counted forward from the day it runs.",
+  "index_from": "2026-01-01",
+  "index_to": "2027-12-31",
+  "sitemap_days_forward": 60
+}

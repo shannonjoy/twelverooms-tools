@@ -13,9 +13,11 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 sys.path.insert(0, str(Path(__file__).parent / "_engines"))
+sys.path.insert(0, str(Path(__file__).parent / "_seo"))
 import engines  # noqa: E402
 import electional  # noqa: E402
 import swisseph as swe  # noqa: E402
+import crawl  # noqa: E402
 
 
 def esc(s):
@@ -48,8 +50,17 @@ def render(d):
     m = compute(d)
     pretty = d.strftime("%B %-d, %Y")
     iso = d.isoformat()
-    prev = (d - timedelta(days=1)).isoformat()
-    nxt = (d + timedelta(days=1)).isoformat()
+    # Day-to-day chain, clipped at the indexable window so the walk ends.
+    # See api/_seo/crawl.py: unclipped this route reached 73,414 dates.
+    prev_d, next_d = d - timedelta(days=1), d + timedelta(days=1)
+    daynav = "".join(
+        [f'<a href="{h}">&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
+         for h in [crawl.chain_href(prev_d, "/void-of-course-moon")] if h]
+        + ['<a href="/void-of-course-moon">Void of course now</a>']
+        + [f'<a href="{h}">{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
+           for h in [crawl.chain_href(next_d, "/void-of-course-moon")] if h]
+    )
+    robots = crawl.robots_meta(d)
     is_void = bool(m["voc"])
     status = "Void of course" if is_void else "Not void of course"
 
@@ -87,6 +98,7 @@ def render(d):
 <title>Void of Course Moon on {esc(pretty)}? · The Twelve Rooms</title>
 <meta name="description" content="{esc(answer)}">
 <link rel="canonical" href="https://thetwelverooms.com/void-of-course-moon/{iso}">
+{robots}
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">{faq}</script>
@@ -106,18 +118,14 @@ def render(d):
     <p>Void of course is the Moon's coasting gap: after her last exact aspect in a sign, and before she crosses into the next one, she is forming no new connections. Traditionally it is a poor stretch to begin something you want to go somewhere: sign, launch, propose, decide. It is a fine stretch to finish, tidy, reflect, or rest. See the full <a href="/void-of-course-moon">guide to void of course Moon</a> for the doctrine behind it, or the <a href="/moon/{iso}">full sign and phase read for {esc(pretty)}</a>.</p>
   </section>
 
-  <nav class="daynav">
-    <a href="/void-of-course-moon/{prev}">&larr; {esc((d - timedelta(days=1)).strftime('%b %-d'))}</a>
-    <a href="/void-of-course-moon">Void of course now</a>
-    <a href="/void-of-course-moon/{nxt}">{esc((d + timedelta(days=1)).strftime('%b %-d'))} &rarr;</a>
-  </nav>
+  <nav class="daynav">{daynav}</nav>
 
   <div class="cta">
     <h2>Timing something on {esc(d.strftime('%B %-d'))}?</h2>
     <p>The free timing finder excludes void-of-course Moon from every window it scores, for your own city and intention.</p>
     <a href="/electional" rel="noopener">Open the timing finder</a>
   </div>
-  <div id="site-footer"></div>
+  <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>
 <script src="/tools.js"></script>
 </body>

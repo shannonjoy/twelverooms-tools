@@ -10,9 +10,11 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 sys.path.insert(0, str(Path(__file__).parent / "_engines"))
+sys.path.insert(0, str(Path(__file__).parent / "_seo"))
 import engines  # noqa: E402
 import electional  # noqa: E402
 import swisseph as swe  # noqa: E402
+import crawl  # noqa: E402
 
 SIGN_STYLE = {
     "Aries": "bold and headlong", "Taurus": "steady and sensory",
@@ -70,8 +72,17 @@ def render(d):
     m = compute(d)
     pretty = d.strftime("%B %-d, %Y")
     iso = d.isoformat()
-    prev = (d - timedelta(days=1)).isoformat()
-    nxt = (d + timedelta(days=1)).isoformat()
+    # Day-to-day chain, clipped at the indexable window so the walk ends.
+    # See api/_seo/crawl.py: unclipped this route reached 73,414 dates.
+    prev_d, next_d = d - timedelta(days=1), d + timedelta(days=1)
+    daynav = "".join(
+        [f'<a href="{h}">&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
+         for h in [crawl.chain_href(prev_d, "/moon")] if h]
+        + ['<a href="/moon">Today\'s Moon</a>']
+        + [f'<a href="{h}">{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
+           for h in [crawl.chain_href(next_d, "/moon")] if h]
+    )
+    robots = crawl.robots_meta(d)
     sign = m["sign"]
     style = SIGN_STYLE.get(sign, "distinct")
     phase_mean = PHASE_MEAN.get(m["phase"], "")
@@ -107,6 +118,7 @@ def render(d):
 <title>Moon Sign on {esc(pretty)}: What Sign Is the Moon In? · The Twelve Rooms</title>
 <meta name="description" content="On {esc(pretty)} the Moon is in {esc(sign)} ({esc(m['phase'])}). See the sign, phase, void-of-course windows, and any sign change that day, computed with the Swiss Ephemeris.">
 <link rel="canonical" href="https://thetwelverooms.com/moon/{iso}">
+{robots}
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">{faq}</script>
@@ -133,18 +145,14 @@ def render(d):
     <p>For the void-of-course windows on {esc(pretty)} led up front, with what to do about them, see the <a href="/void-of-course-moon/{iso}">void of course read for this date</a>.</p>
   </section>
 
-  <nav class="daynav">
-    <a href="/moon/{prev}">&larr; {esc((d - timedelta(days=1)).strftime('%b %-d'))}</a>
-    <a href="/moon">Today's Moon</a>
-    <a href="/moon/{nxt}">{esc((d + timedelta(days=1)).strftime('%b %-d'))} &rarr;</a>
-  </nav>
+  <nav class="daynav">{daynav}</nav>
 
   <div class="cta">
     <h2>Timing something on {esc(d.strftime('%B %-d'))}?</h2>
     <p>Find the exact best window for your city and intention in the free timing finder, or ask The Twelve Rooms for a full reading.</p>
     <a href="/electional" rel="noopener">Open the timing finder</a>
   </div>
-  <div id="site-footer"></div>
+  <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>
 <script src="/tools.js"></script>
 </body>

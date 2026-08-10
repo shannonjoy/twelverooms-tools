@@ -22,7 +22,9 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 sys.path.insert(0, str(Path(__file__).parent / "_engines"))
+sys.path.insert(0, str(Path(__file__).parent / "_seo"))
 import engines            # noqa: E402
+import crawl              # noqa: E402
 import saturn_return as sr  # noqa: E402
 import swisseph as swe    # noqa: E402
 
@@ -221,7 +223,7 @@ def render(year):
     <p>The Twelve Rooms Saturn Return reading reads your natal Saturn in full, the room the return lands in, and what this season is here to confirm, honestly and without doom.</p>
     <a href="/reports">Explore the Saturn return reading</a>
   </div>
-  <div id="site-footer"></div>
+  <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>
 <script src="/tools.js"></script>
 </body>

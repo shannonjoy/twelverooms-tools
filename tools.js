@@ -196,9 +196,13 @@ window.TR = (function () {
     <div class="privacy">Positions computed with the Swiss Ephemeris. Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>, source available. Brand and readings © The Twelve Rooms.</div>
   </footer>`;
 
+  /* Only fill an empty slot. Pages now ship the footer server-rendered (see
+     api/_seo/crawl.py and bin/apply-static-footer.py) so the sitewide link
+     block exists in the raw HTML a crawler reads, not only after this script
+     runs. Replacing it here would undo that, so a filled slot is left alone. */
   function injectFooter() {
     const slot = document.getElementById("site-footer");
-    if (slot) slot.outerHTML = FOOTER;
+    if (slot && !slot.firstElementChild) slot.outerHTML = FOOTER;
   }
 
   /* ---- Shareable-tool-output growth loop ----
