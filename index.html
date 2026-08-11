@@ -26,8 +26,18 @@
 <!-- og:end -->
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
+<!-- Publisher identity. The site had a WebApplication and an FAQPage and no
+     statement of WHO publishes it, so an answer engine had nothing to attach
+     the tools to. The Etsy shop and Pinterest are named as sameAs so the three
+     surfaces resolve to one entity instead of three strangers. Swiss Ephemeris
+     is named on the entity, not only in prose, because "computed, not
+     generated" is the whole claim. Added 2026-08-11 with the portfolio pass. -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"The Twelve Rooms Astrology Tools","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://thetwelverooms.com/#organization","name":"The Twelve Rooms","url":"https://thetwelverooms.com/","logo":"https://thetwelverooms.com/favicon.svg","description":"Free astrology tools computed with the Swiss Ephemeris, plus personalized natal and electional readings written to order.","sameAs":["https://thetwelverooms.etsy.com","https://www.pinterest.com/thetwelverooms/"]},
+{"@type":"WebSite","@id":"https://thetwelverooms.com/#website","url":"https://thetwelverooms.com/","name":"The Twelve Rooms","inLanguage":"en-US","publisher":{"@id":"https://thetwelverooms.com/#organization"}},
+{"@type":"WebApplication","name":"The Twelve Rooms Astrology Tools","applicationCategory":"LifestyleApplication","operatingSystem":"Web","publisher":{"@id":"https://thetwelverooms.com/#organization"},"isPartOf":{"@id":"https://thetwelverooms.com/#website"},"featureList":["Natal chart","Big 3 calculator","Synastry grid","Saturn return calculator","Transit timeline","Planetary hours","Moon tracker","Electional timing finder"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
