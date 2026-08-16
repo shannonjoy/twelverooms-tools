@@ -387,6 +387,74 @@ def house_tag(house):
     return f"your {_ord(house)} house: {HOUSE_THEME.get(house, 'this part of your life')}"
 
 
+# ---- The bridge: a public event, placed inside one private chart ----------
+
+# How the event meets the natal point. Written as a verb so the clause can
+# carry a subject; ASPECT_FRAME above is written to END a sentence, these are
+# written to continue one.
+BRIDGE_VERB = {
+    "conjunction": "sits right on top of",
+    "sextile":     "reaches toward",
+    "square":      "squares",
+    "trine":       "trines",
+    "opposition":  "opposes",
+    "quincunx":    "sits at an awkward angle to",
+}
+BRIDGE_SHAPE = {
+    "conjunction": "bringing {x} right to the surface",
+    "sextile":     "opening a little room around {x}",
+    "square":      "asking a question of {x}",
+    "trine":       "letting {x} move without forcing",
+    "opposition":  "pulling {x} against something else",
+    "quincunx":    "asking you to adjust {x} rather than push it",
+}
+
+def _art(body):
+    """'the ' for the luminaries, nothing for the planets: "the Sun moving into
+    Virgo", but "Venus moving into Virgo"."""
+    return "the " if body in ("Moon", "Sun") else ""
+
+
+_EVENT_SUBJECT = {
+    "lunation": lambda ev: f"the {ev['kind']} in {ev['sign']}",
+    "ingress":  lambda ev: f"{_art(ev['body'])}{ev['body']} moving into {ev['to_sign']}",
+    "station":  lambda ev: f"{_art(ev['body'])}{ev['body']} turning {ev['direction']}",
+}
+
+
+def bridge_line(ev, house=None, hit=None):
+    """The one sentence the whole reading exists to write: today's public
+    event, placed inside this particular chart.
+
+    `hit` is (point, aspect) for the tightest contact the event makes to a
+    natal point, or None. Returns None when the event touches neither a house
+    nor a point, because a bridge with nothing on either bank is just the sky
+    restated, and the reader already has that above.
+    """
+    subject = _EVENT_SUBJECT.get(ev["type"], lambda e: "the sky today")(ev)
+
+    where = None
+    if house:
+        where = (f"lands in your {_ord(house)} house: "
+                 f"{HOUSE_THEME.get(house, 'this part of your life')}")
+
+    touch = None
+    if hit:
+        point, aspect = hit
+        verb = BRIDGE_VERB.get(aspect, "touches")
+        shape = BRIDGE_SHAPE.get(aspect, "reaching {x}").format(
+            x=POINT_FEEL.get(point, "this part of your chart"))
+        touch = f"{verb} your {pretty(point)}, {shape}"
+
+    if where and touch:
+        return f"For you, {subject} {where}. It also {touch}."
+    if where:
+        return f"For you, {subject} {where}. That is the part of your life it lights."
+    if touch:
+        return f"For you, {subject} {touch}."
+    return None
+
+
 # ---- Energy of the day: one synthesized line ------------------------------
 
 _COUNT_WORD = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}

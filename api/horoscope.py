@@ -130,7 +130,12 @@ def _event_entry(ev, house=None):
               hc.event_tone(ev), ev.get("time_local"),
               EVENT_WEIGHT.get(ev["type"], 8), house=house, is_event=True)
     e.update({"body": ev.get("body"), "aspect": ev["type"], "point": None,
-              "event_type": ev["type"], "event_kind": ev.get("kind") or ev.get("direction")})
+              "event_type": ev["type"], "event_kind": ev.get("kind") or ev.get("direction"),
+              # The same line without its house clause. The sky headline card
+              # uses this one, because the bridge sentence directly beneath it
+              # already places the event in a house and saying it twice in
+              # three inches reads as a stutter.
+              "line_sky": hc.event_line(ev, None)})
     return e
 
 
@@ -184,14 +189,72 @@ def build_ledger(slow_hits, moon_hits, events, house_of_point, house_of_sign):
     return timed, background
 
 
+# How close a sky event has to come to a natal point before the bridge names it.
+BRIDGE_ORB = 3.0
+BRIDGE_ASPECTS = {0: "conjunction", 60: "sextile", 90: "square",
+                  120: "trine", 180: "opposition"}
+
+
 def pick_featured(timed, background):
-    """The day's headline: the heaviest thing that happens today. Event weights
-    sit above every contact, so a Full Moon or a station takes the headline on
-    its date; otherwise the heaviest personal contact wins. Falls back to the
-    background line when nothing perfects at all."""
-    if timed:
-        return max(timed, key=lambda e: (e["weight"], -(e["time_minutes"] or 0)))
-    return background
+    """Two headlines, not one: what the sky is doing, and what it is doing to you.
+
+    They used to compete for a single slot, with EVENT_WEIGHT deliberately set
+    above the personal ceiling so a Full Moon would win. That meant on roughly a
+    dozen days a month the reader's own reading was silently demoted by a public
+    event, which is the thing every sun-sign column already tells them. Separate
+    pools, so the sky can be loud without taking the reader's place.
+
+    Returns (sky, personal). `sky` is None on a day with no public event;
+    `personal` falls back to the background contact when nothing perfects.
+    """
+    key = lambda e: (e["weight"], -(e["time_minutes"] or 0))
+    # A Moon ingress is not news. It happens twelve times a month, the Moon's
+    # sign is already on the page twice, and letting it hold the sky headline
+    # would fill that slot with ambient weather on most days. It stays in the
+    # ledger, where it is a real timed event; it just never leads.
+    events = [e for e in timed if e.get("is_event")
+              and not (e.get("event_type") == "ingress" and e.get("body") == "Moon")]
+    contacts = [e for e in timed if not e.get("is_event")]
+    sky = max(events, key=key) if events else None
+    personal = max(contacts, key=key) if contacts else background
+    return sky, personal
+
+
+def event_lon(ev, positions):
+    """Where a sky event sits, in ecliptic longitude.
+
+    Derived rather than measured, so this needs no change to compute_sky.py
+    (a generated copy synced from the Luna engine). An ingress is 0 degrees of
+    the new sign by definition. For a lunation or a station the body's noon
+    position is within a few arcminutes of the exact moment, and a stationing
+    planet is by definition barely moving. Well inside BRIDGE_ORB either way.
+    """
+    if ev["type"] == "ingress":
+        try:
+            return cs.SIGNS.index(ev["to_sign"]) * 30.0
+        except (ValueError, KeyError):
+            return None
+    info = positions.get(ev.get("body") or "")
+    return info.get("lon") if info else None
+
+
+def natal_hit(lon, natal_pts):
+    """The tightest major aspect this longitude makes to a natal point, as
+    (point, aspect), or None. Angles win ties at equal orb: a Full Moon on the
+    Midheaven is a more useful sentence than one on Neptune."""
+    if lon is None:
+        return None
+    best = None
+    for name, nlon in natal_pts.items():
+        sep = abs((lon - nlon + 180.0) % 360.0 - 180.0)
+        for angle, aspect in BRIDGE_ASPECTS.items():
+            orb = abs(sep - angle)
+            if orb > BRIDGE_ORB:
+                continue
+            rank = (orb, 0 if name in ANGLES else 1)
+            if best is None or rank < best[0]:
+                best = (rank, (name, aspect))
+    return best[1] if best else None
 
 
 def compute(o):
@@ -262,7 +325,19 @@ def compute(o):
 
     timed, background = build_ledger(slow_hits, moon_hits, events,
                                      house_of_point, house_of_sign)
-    featured = pick_featured(timed, background)
+    sky_featured, featured = pick_featured(timed, background)
+
+    # The bridge: the day's loudest public event, placed inside this chart.
+    # Written by rule here. The narrative version is a signed-in feature, held
+    # per membership-spec.md; this stays the free reading and the fallback.
+    bridge = None
+    if sky_featured is not None:
+        ev = next((e for e in events
+                   if e["type"] == sky_featured.get("event_type")
+                   and e.get("time_local") == sky_featured.get("time_local")), None)
+        if ev is not None:
+            bridge = hc.bridge_line(ev, house_of_sign(ev.get("sign")),
+                                    natal_hit(event_lon(ev, positions), natal_pts))
     windows = hc.windows(timed)
     has_lunation = any(e["type"] == "lunation" for e in events)
     energy = hc.energy_line(featured, timed, phase, has_lunation)
@@ -311,6 +386,8 @@ def compute(o):
         "arc": hc.arc_line(ctx),
         "phase": phase,
         "featured": featured,
+        "sky_featured": sky_featured,
+        "bridge": bridge,
         "ledger": timed,
         "background": background,
         "windows": windows,

@@ -320,10 +320,17 @@ function render(d) {
   const lead = d.featured;
   const nav = dayNav(d.day);
 
+  const sky = d.sky_featured;
   let html = nav + moonHero(d) + `<div class="glance">
     <h2>The sky on ${esc(d.day_label)}</h2>
     <p>${esc(d.sky)}</p>
     ${d.arc ? `<p style="margin-top:10px;font-size:14px;color:#c4cbe0">${esc(d.arc)}</p>` : ""}
+    ${sky ? `<div class="sky-head">
+      <div class="sky-eyebrow">Today in the sky</div>
+      <h3>${esc(sky.headline)}</h3>
+      <div class="sky-when">${sky.time_local ? "Exact at " + esc(sky.time_local) : "No exact time"}</div>
+      <p>${esc(sky.line_sky || sky.line)}</p>
+    </div>` : ""}
   </div>`;
 
   if (!d.timed) {
@@ -335,11 +342,14 @@ function render(d) {
 
   if (lead) {
     html += `<div class="lead-card">
-      <div class="lead-eyebrow">The day's headline</div>
+      <div class="lead-eyebrow">Your day</div>
       <h3>${esc(lead.headline)}</h3>
       <div class="lead-when">${lead.time_local ? "Exact at " + esc(lead.time_local) : "In orb today, no exact time"}</div>
       <p>${esc(lead.line)}</p>
     </div>`;
+  }
+  if (d.bridge) {
+    html += `<p class="bridge">${esc(d.bridge)}</p>`;
   }
 
   html += `<div class="card"><h2>Your day, hour by hour</h2>`;

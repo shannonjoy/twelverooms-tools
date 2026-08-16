@@ -428,6 +428,24 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold-deep); }
   margin-bottom: 9px; }
 .lead-card p { font-size: 15px; line-height: 1.6; color: #4a4326; margin: 0; }
 
+/* the sky headline, inside the midnight glance card */
+.sky-head { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(201,165,92,0.3); }
+.sky-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--gold-soft); margin-bottom: 6px; }
+.sky-head h3 { font-family: var(--serif); font-weight: 400; font-size: 20px;
+  color: var(--gold-hi); margin: 0 0 3px; }
+.sky-when { font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  color: var(--gold-soft); margin-bottom: 8px; }
+.sky-head p { font-size: 14.5px; line-height: 1.55; color: #dfe4f0; margin: 0; }
+
+/* the bridge: the sentence that puts the sky inside one chart. It sits
+   between the two headlines deliberately, and carries no ornament but a rail. */
+.bridge { font-family: var(--serif); font-size: 16px; line-height: 1.6;
+  color: var(--navy); background: #fff; border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-soft); border-radius: 0 12px 12px 0;
+  padding: 15px 17px; margin: 0 0 16px; }
+@media (max-width: 560px) { .bridge { font-size: 15px; padding: 13px 15px; } }
+
 /* action windows */
 .windows { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
 .win { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: #fff; }
