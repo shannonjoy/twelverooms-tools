@@ -162,8 +162,19 @@ def headline(body, aspect, point):
     return f"{body} {aspect} your {pretty(point)}"
 
 
+# U+FE0E forces text presentation. Venus and Mars default to emoji on Apple
+# platforms; the rest of the set does not, but applying it to every glyph is
+# cheaper than maintaining a list of which ones need it.
+VS = "\ufe0e"
+
+
+def _g(name):
+    """A glyph for `name`, pinned to text presentation. Falls back to the name."""
+    return GLYPH[name] + VS if name in GLYPH else name
+
+
 def symbol(body, aspect, point):
-    return f"{GLYPH.get(body, body)} {ASPECT_GLYPH.get(aspect, '')} {GLYPH.get(point, point)}".strip()
+    return f"{_g(body)} {ASPECT_GLYPH.get(aspect, '')} {_g(point)}".strip()
 
 
 def line(body, aspect, point, retro=False, stationary=False):
@@ -330,10 +341,10 @@ def event_headline(ev):
 def event_symbol(ev):
     t = ev["type"]
     if t == "lunation":
-        return f"{PHASE_GLYPH.get(ev['kind'], '')} {GLYPH.get('Moon')}".strip()
+        return f"{PHASE_GLYPH.get(ev['kind'], '')} {_g('Moon')}".strip()
     if t == "ingress":
-        return f"{GLYPH.get(ev['body'], ev['body'])} → {ev['to_sign']}"
-    return f"{GLYPH.get(ev['body'], ev['body'])} {MOTION_GLYPH.get(ev['direction'], '')}".strip()
+        return f"{_g(ev['body'])} → {ev['to_sign']}"
+    return f"{_g(ev['body'])} {MOTION_GLYPH.get(ev['direction'], '')}".strip()
 
 
 def event_line(ev, house=None):

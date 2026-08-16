@@ -3,14 +3,16 @@
 :root {
   --midnight-1: #1f2b4e; --midnight-2: #101830;
   --navy: #26355e;          /* type on light */
-  --gold: #a8863d;          /* flat gold on light */
+  --gold: #a8863d;          /* flat gold on light: DISPLAY SIZES ONLY (3.28:1 on cream,
+                               clears the 3:1 large-text floor, fails the 4.5:1 small-text floor) */
+  --gold-deep: #7a5f24;     /* gold for text under 24px: 5.77:1 on cream, 6.02:1 on white */
   --gold-hi: #e6cf96;       /* highlight gold */
   --gold-soft: #c9a55c;
   --ink: #1d1d1f; --dove: #f2f2f5; --cream: #fbfaf7;
   --berry: #9c4460;         /* micro-accent only */
   --line: #e4ddcf;          /* warm hairline on cream */
   --wash: #f4f0e6;          /* soft warm tint for hover/active fills */
-  --soft: #6f7690;
+  --soft: #656b85;        /* was #6f7690, which measured 4.31:1 on cream */
   --serif: "Didot", "Bodoni 72", "Hoefler Text", Georgia, serif;
   --sans: Optima, "Helvetica Neue", -apple-system, Arial, sans-serif;
   --body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -172,9 +174,9 @@ button.go:disabled { opacity: 0.5; }
 .sabian-note { font-size: 12.5px; font-style: italic; color: var(--soft);
   margin-top: 10px; line-height: 1.5; }
 details { margin-top: 10px; }
-summary { cursor: pointer; font-size: 12.5px; color: var(--gold); min-height: 30px; }
+summary { cursor: pointer; font-size: 12.5px; color: var(--gold-deep); min-height: 30px; }
 .picked { font-size: 13px; color: var(--navy); margin-top: 8px; }
-.picked b { color: var(--gold); }
+.picked b { color: var(--gold-deep); }
 
 /* remember-my-birth-details, opt-in */
 .remember { display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
@@ -202,12 +204,12 @@ summary { cursor: pointer; font-size: 12.5px; color: var(--gold); min-height: 30
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
 td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--cream); }
 th { font-family: var(--sans); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--soft); }
-tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
+tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold-deep); }
 .error { background: #fbf1f3; border: 1px solid #e6c4cf; color: var(--berry); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
 
 /* Timing Scale badge: score/star pill in best-days-to-* tables */
 .tag.gold { display: inline-block; font-weight: 600; font-size: 13px; letter-spacing: 0.01em;
-  color: var(--gold); background: var(--wash); border: 1px solid rgba(168,134,61,0.35);
+  color: var(--gold-deep); background: var(--wash); border: 1px solid rgba(168,134,61,0.35);
   border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
 
 /* seed-to-season CTA (gold seal on navy) */
@@ -230,7 +232,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 
 /* letterspaced gold kicker above a page h1 */
 .kicker { font-family: var(--sans); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 10px; }
+  color: var(--gold-deep); margin-bottom: 10px; }
 
 /* ---- Shareable-tool-output control (generic — any result page can use
    this, not just Sabian degree pages; see tools.js initShare()) ---- */
@@ -274,7 +276,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
   box-shadow: 0 8px 24px rgba(38,53,94,0.08), 0 2px 8px rgba(168,134,61,0.10); }
 .toolgrid .glyph { display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px; border-radius: 50%; margin-bottom: 12px;
-  background: var(--wash); color: var(--gold); font-family: var(--serif); font-size: 19px;
+  background: var(--wash); color: var(--gold-deep); font-family: var(--serif); font-size: 19px;
   border: 1px solid rgba(201,165,92,0.35); transition: background 0.2s ease, color 0.2s ease; }
 .toolgrid .glyph-num { font-size: 14px; letter-spacing: 0.05em; }
 .toolgrid a:hover .glyph { background: linear-gradient(135deg, #e3c98b, #b18b45); color: #fff; }
@@ -337,7 +339,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 
 .toolgrid a.quiet .glyph {
   width: 30px; height: 30px; font-size: 16px; margin-bottom: 10px;
-  color: var(--gold-soft);
+  color: var(--gold-deep);
 }
 .toolgrid a.quiet h2 { font-size: 15px; }
 .toolgrid a.quiet p { font-size: 12.5px; }
@@ -364,7 +366,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
   margin: 18px 0; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .daynav a { font-size: 13.5px; color: var(--navy); text-decoration: none; padding: 6px 10px; border-radius: 8px; }
 .daynav a:hover { background: var(--wash); }
-.daynav a:nth-child(2) { color: var(--gold); font-weight: 600; }
+.daynav a:nth-child(2) { color: var(--gold-deep); font-weight: 600; }
 .datebrowse { margin: 16px 2px; }
 .datebrowse h3 { font-family: var(--serif); font-weight: 400; font-size: 16px; color: var(--navy); margin: 0 0 8px; }
 .datebrowse .chips { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -377,7 +379,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .place { display: flex; gap: 14px; padding: 13px 4px; border-bottom: 1px solid var(--cream); }
 .place:last-child { border-bottom: 0; }
 .place-glyph { flex: 0 0 34px; height: 34px; border-radius: 50%; background: var(--wash-gold, #f4eee1);
-  display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--gold); }
+  display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--gold-deep); }
 .place-head { font-family: var(--serif); font-size: 15.5px; color: var(--navy); margin-bottom: 3px; }
 .place-mean { font-size: 14px; line-height: 1.5; color: #33384a; }
 
@@ -386,7 +388,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .asp-col h3 { font-family: var(--serif); font-weight: 400; font-size: 17px; color: var(--navy); margin: 0 0 2px; }
 .asp-sub { font-size: 12.5px; color: var(--soft); margin: 0 0 12px; }
 .asp-item { padding: 10px 0; border-top: 1px solid var(--cream); }
-.asp-label { font-size: 12px; letter-spacing: 0.03em; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+.asp-label { font-size: 12px; letter-spacing: 0.03em; color: var(--gold-deep); font-weight: 600; margin-bottom: 3px; }
 .asp-plain { font-size: 13.5px; line-height: 1.5; color: #33384a; }
 
 /* ---- daily horoscope: the timed ledger ---- */
@@ -398,13 +400,13 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .led-flow { border-left-color: var(--gold); }
 .led-quiet { border-left-color: var(--line); }
 .led-when { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-  color: var(--gold); font-variant-numeric: tabular-nums; padding-top: 1px; }
+  color: var(--gold-deep); font-variant-numeric: tabular-nums; padding-top: 1px; }
 .led-when.orb { color: var(--soft); font-weight: 400; font-style: italic; letter-spacing: 0; }
 .led-what { font-family: var(--serif); font-size: 15.5px; color: var(--navy); }
 .led-sym { font-size: 12.5px; color: var(--soft); margin-left: 7px; letter-spacing: 0.08em; }
 .led-why { font-size: 13.5px; line-height: 1.5; color: #33384a; margin-top: 3px; }
 .led-flag { display: inline-block; font-family: var(--sans); font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--gold); background: var(--wash);
+  text-transform: uppercase; color: var(--gold-deep); background: var(--wash);
   border: 1px solid rgba(168,134,61,0.35); border-radius: 999px; padding: 2px 8px; margin-left: 7px;
   vertical-align: 1px; }
 @media (max-width: 560px) {
@@ -419,10 +421,10 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .lead-card { background: linear-gradient(180deg, #fdf9ef, #fbf6ea); border: 1px solid var(--gold-soft);
   border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }
 .lead-eyebrow { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
+  text-transform: uppercase; color: var(--gold-deep); margin-bottom: 7px; }
 .lead-card h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; color: var(--navy);
   margin: 0 0 4px; }
-.lead-when { font-family: var(--sans); font-size: 13px; color: var(--gold); font-weight: 600;
+.lead-when { font-family: var(--sans); font-size: 13px; color: var(--gold-deep); font-weight: 600;
   margin-bottom: 9px; }
 .lead-card p { font-size: 15px; line-height: 1.6; color: #4a4326; margin: 0; }
 
@@ -430,7 +432,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .windows { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
 .win { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: #fff; }
 .win h4 { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--gold); margin: 0 0 5px; font-weight: 600; }
+  color: var(--gold-deep); margin: 0 0 5px; font-weight: 600; }
 .win-caution h4 { color: var(--berry); }
 .win p { font-size: 14px; line-height: 1.55; color: #33384a; margin: 0; }
 .takeaway { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--navy);
@@ -447,7 +449,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .moon-rim { fill: none; stroke: var(--gold-soft); stroke-width: 1.1; }
 .mh-text { min-width: 0; }
 .mh-phase { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 6px; }
+  color: var(--gold-deep); margin-bottom: 6px; }
 .mh-energy { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--navy); margin: 0; }
 @media (max-width: 560px) { .moonhero .moonsvg { width: 54px; height: 54px; } .mh-energy { font-size: 15.5px; } }
 
@@ -456,7 +458,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .led-event .led-what { font-weight: 500; }
 .flag-event { color: #fff; background: var(--gold); border-color: var(--gold); }
 .led-house { font-family: var(--sans); font-size: 11.5px; line-height: 1.4; color: var(--soft); margin-top: 5px; }
-.led-detail { font-family: var(--sans); font-size: 11px; color: var(--gold); letter-spacing: 0.04em;
+.led-detail { font-family: var(--sans); font-size: 11px; color: var(--gold-deep); letter-spacing: 0.04em;
   margin-top: 2px; font-variant-numeric: tabular-nums; }
 
 /* sparkle: the reading arrives (moon fills, hours cascade) and the contact
@@ -467,7 +469,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
   50% { box-shadow: 0 0 0 4px rgba(168, 134, 61, 0.16); }
 }
 .led.led-live { animation: tr-pulse 2.6s ease-in-out infinite; border-left-color: var(--gold-hi); }
-.led.led-live .led-when { color: var(--gold-soft); }
+.led.led-live .led-when { color: var(--gold-deep); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   .moonhero, .ledger .led { animation: none !important; opacity: 1 !important; transform: none !important; }
   .led.led-live { animation: none; box-shadow: 0 0 0 3px rgba(168, 134, 61, 0.16); }
@@ -479,7 +481,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .gloss summary { font-family: var(--serif); font-size: 15px; color: var(--navy); cursor: pointer;
   padding: 10px 2px; list-style: none; text-transform: capitalize; }
 .gloss summary::-webkit-details-marker { display: none; }
-.gloss summary::before { content: "+"; color: var(--gold); font-family: var(--sans); font-weight: 600;
+.gloss summary::before { content: "+"; color: var(--gold-deep); font-family: var(--sans); font-weight: 600;
   margin-right: 10px; }
 .gloss[open] summary::before { content: "\2013"; }
 .gloss p { font-size: 13.5px; line-height: 1.55; color: #33384a; margin: 0 0 12px 22px; }
@@ -507,7 +509,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 .reading-card.flagship p { color: #c4cbe0; }
 .reading-card h3 { font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--navy); margin: 0 0 2px; }
 .reading-card .price { font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  text-transform: uppercase; color: var(--gold-deep); margin-bottom: 8px; }
 .reading-card p { font-size: 14px; line-height: 1.55; color: #33384a; margin: 0 0 14px; }
 .reading-card a { margin-top: auto; align-self: flex-start; text-decoration: none;
   font: 600 13.5px var(--body); color: var(--navy); padding: 9px 16px; border-radius: 9px;
@@ -524,7 +526,7 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 /* standout-dates callout (positive framing, distinct from .disclaimer) */
 .highlight { border: 1px solid var(--gold-soft); background: linear-gradient(180deg, #fdf9ef, #fbf6ea);
   border-radius: 12px; padding: 14px 16px; margin: 6px 0 18px; font-size: 14px; line-height: 1.6; color: #4a4326; }
-.highlight strong { color: var(--gold); }
+.highlight strong { color: var(--gold-deep); }
 
 /* editorial content below the tool */
 .prose { margin: 8px 2px 4px; max-width: 62ch; }
@@ -539,8 +541,8 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold); }
 
 footer.site { margin-top: 34px; font-size: 12.5px; color: var(--soft); border-top: 1px solid var(--line); padding-top: 16px; text-align: center; }
 footer.site a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); transition: color 0.2s ease, border-color 0.2s ease; }
-footer.site a:hover { color: var(--gold); border-color: var(--gold); }
-footer.site .seal { color: var(--gold); font-family: var(--serif); font-style: italic; }
+footer.site a:hover { color: var(--gold-deep); border-color: var(--gold); }
+footer.site .seal { color: var(--gold-deep); font-family: var(--serif); font-style: italic; }
 footer.site .privacy { margin-top: 8px; }
 
 /* Server-rendered footer sitemap. Exists so the sitewide link set is in the

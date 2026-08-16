@@ -136,7 +136,7 @@ async function load() {
     if (d.error) throw new Error(d.error);
     TR.trackToolUse("planetary-hours");
     const current = d.hours.find(h => h.current);
-    const rows = d.hours.map((h, i) => `<tr${h.current ? ' class="now"' : ""}><td>${i < 12 ? "Day" : "Night"} ${(i % 12) + 1}</td><td>${RULER_GLYPH[h.ruler] || ""} ${esc(h.ruler)}</td><td>${esc(h.from)} &ndash; ${esc(h.to)}</td></tr>`).join("");
+    const rows = d.hours.map((h, i) => `<tr${h.current ? ' class="now"' : ""}><td>${i < 12 ? "Day" : "Night"} ${(i % 12) + 1}</td><td>${RULER_GLYPH[h.ruler] ? RULER_GLYPH[h.ruler] + "\ufe0e" : ""} ${esc(h.ruler)}</td><td>${esc(h.from)} &ndash; ${esc(h.to)}</td></tr>`).join("");
     out.innerHTML = `<div class="card">
       <h2 style="margin-top:0">${esc(d.date_pretty)}</h2>
       <p>Day ruler: <strong>${esc(d.day_ruler)}</strong>${current ? ` &middot; right now: <strong>${esc(current.ruler)} hour</strong> (until ${esc(current.to)})` : ""}</p>
