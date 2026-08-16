@@ -272,10 +272,164 @@ function markLive(scope, dayISO) {
   if (isToday) window.__liveTimer = setInterval(update, 60000);
 }
 
+// ---- The wheel: the reader's chart with today drawn on it ----------------
+// Drawn here rather than server side because gen_wheel.py is a generated copy
+// synced from the factsheet engine and knows only how to draw a natal chart.
+// The API sends longitudes; this turns them into the day.
+const SIGN_GLYPH = ["♈","♉","♊","♋","♌","♍",
+                    "♎","♏","♐","♑","♒","♓"];
+// U+FE0E after each glyph: without it Apple platforms render these as emoji.
+const VS = "︎";
+const WHEEL_GLYPH = { Sun:"☉", Moon:"☽", Mercury:"☿", Venus:"♀",
+  Mars:"♂", Jupiter:"♃", Saturn:"♄", Uranus:"♅",
+  Neptune:"♆", Pluto:"♇", Chiron:"⚷", "North Node":"☊",
+  ASC:"AC", MC:"MC" };
+
+// Relax display angles apart until no two are closer than minSep, keeping the
+// original order. Same idea as gen_wheel.py's spread(); without it a stellium
+// renders as one illegible smudge.
+function spread(items, minSep) {
+  if (items.length < 2) return items;
+  const a = items.slice().sort((x, y) => x.lon - y.lon);
+  for (let pass = 0; pass < 60; pass++) {
+    let moved = false;
+    for (let i = 0; i < a.length; i++) {
+      const j = (i + 1) % a.length;
+      let gap = a[j].draw - a[i].draw;
+      if (j === 0) gap += 360;
+      if (gap < minSep) {
+        const push = (minSep - gap) / 2;
+        a[i].draw -= push; a[j].draw += push; moved = true;
+      }
+    }
+    if (!moved) break;
+  }
+  return a;
+}
+
+function wheelSVG(w) {
+  if (!w || !w.natal) return "";
+  // ASC at 9 o'clock, houses counterclockwise. On a y-down canvas that means
+  // ADDING the sine, which is what puts the 10th house at the top.
+  const origin = (w.asc == null) ? 0 : w.asc;
+  const pt = (lon, r) => {
+    const a = (180 - (lon - origin)) * Math.PI / 180;
+    return [100 + r * Math.cos(a), 100 + r * Math.sin(a)];
+  };
+  const esc2 = s => String(s).replace(/[<>&]/g, c => ({ "<":"&lt;", ">":"&gt;", "&":"&amp;" }[c]));
+  let s = "";
+  [[78,"#fdfbf6"],[62,"#fff"],[48,"#fff"],[34,"#fff"]].forEach(c =>
+    s += `<circle cx="100" cy="100" r="${c[0]}" fill="${c[1]}" stroke="#e4ddcf" stroke-width="0.8"/>`);
+
+  const base = Math.floor(origin / 30) * 30;
+  for (let i = 0; i < 12; i++) {
+    const lon = base + i * 30;
+    const [x1,y1] = pt(lon, 34), [x2,y2] = pt(lon, 78);
+    s += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#e4ddcf" stroke-width="0.7"/>`;
+    const [gx,gy] = pt(lon + 15, 70);
+    s += `<text x="${gx.toFixed(1)}" y="${(gy+3.4).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#7a5f24">${SIGN_GLYPH[((lon % 360) / 30) | 0]}${VS}</text>`;
+    if (w.asc != null) {
+      const [hx,hy] = pt(lon + 15, 41);
+      s += `<text x="${hx.toFixed(1)}" y="${(hy+2.4).toFixed(1)}" text-anchor="middle" font-size="6" fill="#a9a292" font-family="Optima,Helvetica Neue,Arial,sans-serif">${i + 1}</text>`;
+    }
+  }
+
+  (w.lines || []).forEach(L => {
+    const [ax,ay] = pt(L.from, 33), [bx,by] = pt(L.to, 33);
+    const col = L.tone === "hard" ? "#9c4460" : L.tone === "flowing" ? "#a8863d" : "#8a8f9e";
+    s += `<line x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${col}" stroke-width="1.3" opacity="0.85"/>`;
+  });
+
+  const asItems = o => Object.keys(o || {}).map(k => ({ k, lon: o[k], draw: o[k] }));
+  spread(asItems(w.natal), 9).forEach(it => {
+    const [x,y] = pt(it.draw, 55), g = WHEEL_GLYPH[it.k] || it.k;
+    const wide = g.length > 1;
+    s += `<text x="${x.toFixed(1)}" y="${(y+3.2).toFixed(1)}" text-anchor="middle" font-size="${wide ? 6 : 9.5}" fill="#26355e"${wide ? ' font-family="Optima,Helvetica Neue,Arial,sans-serif"' : ""}>${esc2(g)}${wide ? "" : VS}</text>`;
+  });
+  spread(asItems(w.transit), 11).forEach(it => {
+    const [x,y] = pt(it.draw, 88);
+    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="#fdf7e9" stroke="#a8863d" stroke-width="0.9"/>`
+       + `<text x="${x.toFixed(1)}" y="${(y+3.2).toFixed(1)}" text-anchor="middle" font-size="9" fill="#7a5f24">${WHEEL_GLYPH[it.k] || it.k}${VS}</text>`;
+  });
+
+  const label = w.asc == null
+    ? "Your chart with today's sky on the outer ring. No birth time, so no houses."
+    : "Your chart with today's sky on the outer ring, and today's exact contacts drawn across the centre.";
+  return `<div class="card wheelcard">
+    <h2>Your chart, today</h2>
+    <svg class="daywheel" viewBox="0 0 200 200" role="img" aria-label="${label}">${s}</svg>
+    <div class="wheelkey">
+      <span><i style="background:#26355e"></i> Your chart</span>
+      <span><i style="background:#a8863d"></i> Today's sky</span>
+      ${(w.lines || []).length ? `<span><i style="background:#9c4460"></i> Exact today</span>` : ""}
+    </div>
+  </div>`;
+}
+
+// ---- The day ribbon: midnight to midnight as a band of light -------------
+// No labels and no taps by design, so the 44px touch floor never applies to
+// it. The labelled, tappable version is the strip below.
+function dayRibbon(ledger) {
+  const pins = (ledger || []).filter(e => e.time_minutes != null);
+  if (!pins.length) return "";
+  // 1000 units wide, so a stroke drawn here lands near 1px on a phone once the
+  // non-uniform scale is applied. Pins are inset 6 units so a contact at 11:50
+  // PM is not half-clipped by the right edge.
+  const marks = pins.map(e => {
+    const x = 6 + (e.time_minutes / 1440) * 988;
+    const col = e.is_event ? "#7a5f24" : e.tone === "hard" ? "#9c4460" : "#a8863d";
+    return `<line x1="${x.toFixed(1)}" y1="3" x2="${x.toFixed(1)}" y2="31" stroke="#fff" stroke-width="9" opacity="0.9"/>`
+         + `<line x1="${x.toFixed(1)}" y1="3" x2="${x.toFixed(1)}" y2="31" stroke="${col}" stroke-width="4"/>`;
+  }).join("");
+  return `<div class="card"><h2>The shape of your day</h2>
+    <svg class="ribbon" viewBox="0 0 1000 34" preserveAspectRatio="none" role="img"
+         aria-label="${pins.length} timed event${pins.length === 1 ? "" : "s"} across the day.">
+      <defs><linearGradient id="skyband" x1="0" x2="1">
+        <stop offset="0" stop-color="#101830"/><stop offset="0.20" stop-color="#1f2b4e"/>
+        <stop offset="0.27" stop-color="#6b6a7a"/><stop offset="0.36" stop-color="#e8dcc2"/>
+        <stop offset="0.52" stop-color="#fbf6ea"/><stop offset="0.74" stop-color="#e3c98b"/>
+        <stop offset="0.83" stop-color="#8a6f74"/><stop offset="0.92" stop-color="#1f2b4e"/>
+        <stop offset="1" stop-color="#101830"/>
+      </linearGradient></defs>
+      <rect x="0" y="0" width="1000" height="34" fill="url(#skyband)"/>${marks}
+    </svg>
+    <div class="ribscale"><span>12 AM</span><span>Noon</span><span>11 PM</span></div>
+  </div>`;
+}
+
+// ---- Aspect marks, drawn rather than typed --------------------------------
+// The text glyphs depend on whatever font the reader's phone falls back to and
+// render at body-copy size. Drawing them fixes both.
+function aspectMark(e) {
+  const col = e.is_event ? "#7a5f24" : e.tone === "hard" ? "#9c4460" : e.tone === "flowing" ? "#a8863d" : "#8a8f9e";
+  const bg  = e.is_event ? "#fdf7e9" : e.tone === "hard" ? "#fbf4f6" : e.tone === "flowing" ? "#fdf9ef" : "#f6f4ef";
+  let art;
+  if (e.is_event && e.event_type === "lunation") {
+    art = `<circle cx="17" cy="17" r="8.5" fill="none" stroke="${col}" stroke-width="1.6"/><circle cx="17" cy="17" r="${e.event_kind === "New Moon" ? 8.5 : 3}" fill="${col}"/>`;
+  } else if (e.is_event && e.event_type === "ingress") {
+    art = `<path d="M9 17h13" stroke="${col}" stroke-width="1.3" fill="none"/><path d="M18 12.5L23.5 17 18 21.5" stroke="${col}" stroke-width="1.3" fill="none"/>`;
+  } else if (e.is_event) {
+    art = `<path d="M10 22c4-9 10-9 14 0" stroke="${col}" stroke-width="1.4" fill="none"/><circle cx="24" cy="22" r="2.4" fill="${col}"/>`;
+  } else if (e.aspect === "square") {
+    art = `<rect x="9.5" y="9.5" width="15" height="15" fill="none" stroke="${col}" stroke-width="1.4" transform="rotate(45 17 17)"/>`;
+  } else if (e.aspect === "opposition") {
+    art = `<line x1="7" y1="17" x2="27" y2="17" stroke="${col}" stroke-width="1.3"/><circle cx="7" cy="17" r="3.2" fill="${col}"/><circle cx="27" cy="17" r="3.2" fill="${col}"/>`;
+  } else if (e.aspect === "trine") {
+    art = `<polygon points="17,8 26,23 8,23" fill="none" stroke="${col}" stroke-width="1.4"/>`;
+  } else if (e.aspect === "conjunction") {
+    art = `<circle cx="14" cy="17" r="5.5" fill="none" stroke="${col}" stroke-width="1.3"/><circle cx="20" cy="17" r="5.5" fill="none" stroke="${col}" stroke-width="1.3"/>`;
+  } else if (e.aspect === "sextile") {
+    art = `<g stroke="${col}" stroke-width="1.3">${[0,60,120].map(a => `<line x1="17" y1="17" x2="17" y2="8" transform="rotate(${a} 17 17)"/><line x1="17" y1="17" x2="17" y2="26" transform="rotate(${a} 17 17)"/>`).join("")}</g>`;
+  } else {
+    art = `<path d="M9 21l8-11 8 11" stroke="${col}" stroke-width="1.4" fill="none"/>`;
+  }
+  return `<svg class="mark" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="${bg}"/>${art}</svg>`;
+}
+
 function moonHero(d) {
   const ph = d.phase || {};
   const label = (ph.name || "") + (ph.sign ? ` in ${esc(ph.sign)}` : "");
-  return `<div class="moonhero">
+  return `<div class="moonhero moonhero--night">
     <div class="mh-moon">${moonSVG(ph.illum, ph.waxing)}</div>
     <div class="mh-text">
       ${label ? `<div class="mh-phase">${esc(label)}</div>` : ""}
@@ -294,9 +448,10 @@ function ledgerRow(e) {
   const house = e.house_tag ? `<div class="led-house">${esc(e.house_tag)}</div>` : "";
   const detail = e.detail ? `<div class="led-detail">${esc(e.detail)}</div>` : "";
   return `<div class="led ${toneClass(e.tone)}" data-min="${e.time_minutes == null ? "" : e.time_minutes}">
+    ${aspectMark(e)}
     ${when}
     <div>
-      <div class="led-what">${esc(e.headline)}<span class="led-sym">${esc(e.symbol)}</span>${flags}</div>
+      <div class="led-what">${esc(e.headline)}${flags}</div>
       <div class="led-why">${esc(e.line)}</div>
       ${house}${detail}
     </div>
@@ -351,10 +506,12 @@ function render(d) {
   if (d.bridge) {
     html += `<p class="bridge">${esc(d.bridge)}</p>`;
   }
+  html += wheelSVG(d.wheel);
+  html += dayRibbon(d.ledger);
 
   html += `<div class="card"><h2>Your day, hour by hour</h2>`;
   if (d.ledger.length) {
-    html += `<div class="ledger">${d.ledger.map(ledgerRow).join("")}</div>`;
+    html += `<div class="ledger daystrip">${d.ledger.map(ledgerRow).join("")}</div>`;
   } else {
     html += `<p class="hint">Nothing perfects to the minute for you on this day. That is a real
       answer rather than a gap: the Moon makes no exact contact to your chart, so the day takes its

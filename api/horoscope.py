@@ -257,6 +257,39 @@ def natal_hit(lon, natal_pts):
     return best[1] if best else None
 
 
+# Bodies drawn on the wheel. Chiron and the nodes are left off deliberately:
+# at this size the ring gets crowded and the day's story is never about them.
+WHEEL_BODIES = ("Sun", "Moon", "Mercury", "Venus", "Mars",
+                "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto")
+
+
+def wheel_data(natal_pts, positions, timed):
+    """Longitudes for drawing the day on the reader's own wheel.
+
+    Deliberately raw numbers rather than an SVG: gen_wheel.py draws a natal
+    chart, it is a generated copy synced from the factsheet engine, and it has
+    no concept of a transit ring. Sending longitudes lets the page draw the
+    biwheel without touching a shared engine or adding an endpoint.
+
+    `asc` is null on an untimed chart, in which case the page orients the wheel
+    from 0 Aries and draws no house numbers, because there are none.
+    """
+    natal = {k: round(v, 3) for k, v in natal_pts.items()}
+    transit = {b: round(i["lon"], 3) for b, i in positions.items()
+               if b in WHEEL_BODIES and i.get("lon") is not None}
+    lines = []
+    for e in timed:
+        if e.get("is_event") or not e.get("point"):
+            continue
+        a, b = transit.get(e.get("body")), natal.get(e.get("point"))
+        if a is None or b is None:
+            continue
+        lines.append({"from": a, "to": b, "tone": e.get("tone"),
+                      "label": e.get("headline")})
+    return {"asc": natal.get("ASC"), "natal": natal,
+            "transit": transit, "lines": lines}
+
+
 def compute(o):
     tz_name = str(o["tz"]).strip()
     view_name = str(o.get("view_tz") or tz_name).strip()
@@ -398,6 +431,7 @@ def compute(o):
                  "ingress_local": moon.get("ingress_local"),
                  "phase": phase["name"],
                  "house": positions["Moon"].get("whole_sign_house")},
+        "wheel": wheel_data(natal_pts, positions, timed),
         "natal_used": {hc.pretty(k): cs.fmt_pos(v, False) for k, v in natal_pts.items()},
         "note": hc.note(day_label, engine),
         "method": "Swiss Ephemeris (Moshier), whole-sign houses",
