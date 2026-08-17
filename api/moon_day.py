@@ -24,6 +24,54 @@ SIGN_STYLE = {
     "Sagittarius": "restless and searching", "Capricorn": "serious and steady",
     "Aquarius": "cool and original", "Pisces": "dreamy and soft",
 }
+# Ruler and practical do/avoid guidance, one clear instruction each way.
+# These recur every two to three days as the Moon changes sign, which is
+# the correct astronomical cadence, not padding: what makes each date page
+# unique is this text combined with that date's phase, aspects, ingress,
+# and void-of-course windows below.
+SIGN_RULER = {
+    "Aries": "Mars", "Taurus": "Venus", "Gemini": "Mercury", "Cancer": "the Moon",
+    "Leo": "the Sun", "Virgo": "Mercury", "Libra": "Venus", "Scorpio": "Mars and Pluto",
+    "Sagittarius": "Jupiter", "Capricorn": "Saturn", "Aquarius": "Saturn and Uranus",
+    "Pisces": "Jupiter and Neptune",
+}
+SIGN_PRACTICAL = {
+    "Aries": "Good day to start rather than plan further, decisiveness reads as "
+             "competence right now. Watch the temper: the quick reaction costs more "
+             "than it solves.",
+    "Taurus": "Good day to slow down and do the tactile thing you have been putting "
+              "off, cooking, a walk, paying a bill. Resist digging in on principle "
+              "alone, not every hill needs holding today.",
+    "Gemini": "Good day for the conversation, the email, or the research you have "
+              "been avoiding, words move easily. Watch scattering across five "
+              "threads instead of finishing one.",
+    "Cancer": "Good day to tend people and home, a call to family or a meal cooked "
+              "from scratch lands well. Watch taking a neutral comment personally, "
+              "the skin is thinner than usual.",
+    "Leo": "Good day to ask for what you want out loud, warmth is well received "
+           "right now. Watch needing an audience for every small win, some things "
+           "can just be done.",
+    "Virgo": "Good day to fix the one broken system, laundry, budget, inbox, the "
+             "effort actually holds. Watch turning care into criticism, especially "
+             "of yourself.",
+    "Libra": "Good day for the negotiation or the apology, fairness lands and "
+             "people meet you halfway. Watch avoiding a needed conflict just to "
+             "keep the peace.",
+    "Scorpio": "Good day for the hard, honest conversation, depth is available and "
+               "worth using. Watch the urge to control an outcome that is not "
+               "yours to control.",
+    "Sagittarius": "Good day to book the trip, start the course, say the blunt "
+                   "true thing. Watch overpromising on time or money before you "
+                   "have checked the math.",
+    "Capricorn": "Good day to do the unglamorous work that compounds, nobody "
+                 "notices today, everyone notices in a year. Watch letting duty "
+                 "crowd out actual rest.",
+    "Aquarius": "Good day to step back and see the pattern, a little distance "
+                "clarifies more than more input would. Watch detaching so far "
+                "you miss what someone needed from you.",
+    "Pisces": "Good day for rest, art, or anything that asks you to feel rather "
+              "than solve. Watch absorbing a mood that was never yours to carry.",
+}
 PHASE_MEAN = {
     "New Moon": "a beginning, a seed in the dark, good for setting intentions",
     "Waxing Crescent": "building, taking the first real steps",
@@ -36,6 +84,48 @@ PHASE_MEAN = {
 }
 PHASES = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous",
           "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"]
+
+# Moon-to-planet aspect language: verb for the aspect, then what it colors
+# for each of the six classical planets that voc_intervals already tracks.
+# 5 aspects times 6 planets, each hand-written so the day's actual aspect
+# set (which varies date to date) reads as real guidance, not a fill-in.
+ASPECT_VERB = {
+    "conjunction": "meets", "sextile": "opens an easy angle to",
+    "square": "squares off with", "trine": "flows easily with",
+    "opposition": "stands opposite",
+}
+ASPECT_PLANET_TEXT = {
+    ("conjunction", "Sun"): "blending feeling and will for the day, whatever you decide now lands with extra weight",
+    ("conjunction", "Mercury"): "sharpening the line between what you feel and what you say, a good window to speak plainly",
+    ("conjunction", "Venus"): "warming the day toward comfort, affection, and small pleasures",
+    ("conjunction", "Mars"): "raising the temperature, energy runs hot and quick to act",
+    ("conjunction", "Jupiter"): "swelling the mood, appetite and optimism both run large today",
+    ("conjunction", "Saturn"): "sobering the day, feelings meet a real limit or an old responsibility",
+    ("sextile", "Sun"): "opening an easy window to line up what you want with what you feel, worth the small effort to use it",
+    ("sextile", "Mercury"): "making conversation and small decisions come easier than usual",
+    ("sextile", "Venus"): "smoothing the social hours, a good stretch for connection or a kindness",
+    ("sextile", "Mars"): "giving a low-friction lift to get something moving",
+    ("sextile", "Jupiter"): "offering a gentle boost of luck or generosity, easy to miss if you are not looking for it",
+    ("sextile", "Saturn"): "supporting steady, practical progress on something that needed discipline",
+    ("square", "Sun"): "putting feeling and will at odds, expect a real choice rather than a comfortable one",
+    ("square", "Mercury"): "making it easy to say the wrong thing fast, worth a pause before you speak",
+    ("square", "Venus"): "straining comfort or budget, a want and a need pulling in different directions",
+    ("square", "Mars"): "raising friction and impatience, a good day to move the body before the mood moves you",
+    ("square", "Jupiter"): "tempting overreach, the urge to promise or spend more than is wise",
+    ("square", "Saturn"): "pressing feeling against duty, something you have been avoiding gets harder to keep avoiding",
+    ("trine", "Sun"): "letting feeling and will move together with little resistance, a good day to act on instinct",
+    ("trine", "Mercury"): "making honest, easy conversation more available than usual",
+    ("trine", "Venus"): "softening the day toward warmth, good for connection, beauty, or rest",
+    ("trine", "Mars"): "giving energy a clean, usable outlet",
+    ("trine", "Jupiter"): "widening the mood toward ease and generosity, a fortunate undertone",
+    ("trine", "Saturn"): "grounding feeling in something durable, a good day to commit to a plan",
+    ("opposition", "Sun"): "asking you to balance what you feel against what you are trying to become",
+    ("opposition", "Mercury"): "highlighting a gap between what you feel and what is being said, worth naming out loud",
+    ("opposition", "Venus"): "putting your own needs across the table from someone else's, a negotiation more than a fight",
+    ("opposition", "Mars"): "raising the odds of a clash, better to name the tension than let it simmer",
+    ("opposition", "Jupiter"): "tempting a swing between too much caution and too much confidence",
+    ("opposition", "Saturn"): "setting feeling against obligation, a day that asks what you owe against what you need",
+}
 
 
 def esc(s):
@@ -59,13 +149,18 @@ def compute(d):
 
     day_ing = [(dt, s) for dt, s in ings if day0 <= dt < day1]
     day_voc = [(max(v0, day0), min(v1, day1)) for v0, v1 in vocs if v0 < day1 and v1 > day0]
+    day_asp = [(dt, p, a) for dt, p, a in perfs if day0 <= dt < day1]
 
     def t(dt):
         return dt.strftime("%-I:%M %p UTC")
 
     return {"sign": sign, "deg": deg, "phase": phase,
             "ingress": [{"sign": engines.cs.SIGNS[s], "at": t(dt)} for dt, s in day_ing],
-            "voc": [{"from": t(a), "to": t(b)} for a, b in day_voc]}
+            "voc": [{"from": t(a), "to": t(b)} for a, b in day_voc],
+            "aspects": [{"planet": p, "aspect": a, "at": t(dt),
+                         "new_moon": p == "Sun" and a == "conjunction",
+                         "full_moon": p == "Sun" and a == "opposition"}
+                        for dt, p, a in day_asp]}
 
 
 def render(d):
@@ -85,6 +180,8 @@ def render(d):
     robots = crawl.robots_meta(d)
     sign = m["sign"]
     style = SIGN_STYLE.get(sign, "distinct")
+    ruler = SIGN_RULER.get(sign, "")
+    practical = SIGN_PRACTICAL.get(sign, "")
     phase_mean = PHASE_MEAN.get(m["phase"], "")
     ing_txt = ""
     if m["ingress"]:
@@ -97,6 +194,42 @@ def render(d):
                     f"Poor timing to begin anything you want to go somewhere.</li>")
     else:
         voc_line = "<li>The Moon makes clean aspects through the day (no long void window).</li>"
+
+    is_new_moon = any(a["new_moon"] for a in m["aspects"])
+    is_full_moon = any(a["full_moon"] for a in m["aspects"])
+    lunation_line = ""
+    if is_new_moon:
+        lunation_line = (f'<p class="moon-mood"><strong>This is the New Moon</strong>, exact in {esc(sign)} '
+                          f"today: the Sun and Moon meet in the same sign, the dark of the cycle and the "
+                          f"clearest day of the month to set an intention in this sign's {esc(style)} "
+                          f"register.</p>")
+    elif is_full_moon:
+        opp = engines.cs.SIGNS[(engines.cs.SIGNS.index(sign) + 6) % 12] if sign in engines.cs.SIGNS else ""
+        lunation_line = (f'<p class="moon-mood"><strong>This is the Full Moon</strong>, exact in {esc(sign)} '
+                          f"today, opposite the Sun in {esc(opp)}: whatever began around the New Moon two "
+                          f"weeks back comes to a head or comes to light now.</p>")
+
+    asp_items = "".join(
+        f'<li>Moon {esc(ASPECT_VERB.get(a["aspect"], a["aspect"]))} {esc(a["planet"])} at {esc(a["at"])}</li>'
+        for a in m["aspects"]
+    )
+    asp_prose = ""
+    if m["aspects"]:
+        lines = []
+        for a in m["aspects"]:
+            clause = ASPECT_PLANET_TEXT.get((a["aspect"], a["planet"]), "")
+            verb = ASPECT_VERB.get(a["aspect"], a["aspect"])
+            if clause:
+                lines.append(f"At {esc(a['at'])}, the Moon {esc(verb)} {esc(a['planet'])}, "
+                              f"{esc(clause)}.")
+        if lines:
+            asp_prose = (f"<h2>The Moon's aspects on {esc(pretty)}</h2>"
+                         f"<p>{' '.join(lines)}</p>")
+    else:
+        asp_prose = (f"<h2>The Moon's aspects on {esc(pretty)}</h2>"
+                     f"<p>The Moon perfects no major aspect to another planet within the day itself, "
+                     f"so {esc(pretty)} runs on sign and phase alone, without a sharp trigger from "
+                     f"another planet.</p>")
 
     faq = (
         '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":['
@@ -132,17 +265,28 @@ def render(d):
     <div class="big">&#9789; {esc(sign)}</div>
     <p><strong>{esc(m['phase'])}</strong>{' &middot; <strong style="color:#9c4460">void of course part of the day</strong>' if m['voc'] else ' &middot; making aspects all day'}</p>
     <p class="moon-mood">With the Moon in {esc(sign)}, the emotional weather runs {esc(style)}.{esc(ing_txt)} The {esc(m['phase'].lower())} is {esc(phase_mean)}.</p>
+    {lunation_line}
     <ul class="facts">
       {''.join(f'<li>Enters {esc(i["sign"])} at {esc(i["at"])}</li>' for i in m['ingress'])}
       {voc_line}
+      {asp_items}
     </ul>
   </div>
 
   <section class="prose">
     <h2>What a {esc(sign)} Moon feels like</h2>
-    <p>When the Moon moves through {esc(sign)}, the mood of the day tilts {esc(style)}. The Moon is the fastest body in the sky and she sets the emotional weather, so this is the undertone beneath {esc(pretty)}, changing again in a day or two as she moves on.{esc(ing_txt)}</p>
+    <p>When the Moon moves through {esc(sign)}, the mood of the day tilts {esc(style)}. The Moon is the fastest body in the sky and she sets the emotional weather, so this is the undertone beneath {esc(pretty)}, changing again in a day or two as she moves on.{esc(ing_txt)} {esc(sign)} is ruled by {esc(ruler)}, and that rulership is where the sign's style comes from.</p>
     <p>Her phase is the other half. This is a <strong>{esc(m['phase'].lower())}</strong>: {esc(phase_mean)}. If you are timing something that matters, the rule of thumb is to build on a waxing Moon, release on a waning one, and steer clear of the void-of-course windows above.</p>
     <p>For the void-of-course windows on {esc(pretty)} led up front, with what to do about them, see the <a href="/void-of-course-moon/{iso}">void of course read for this date</a>.</p>
+  </section>
+
+  <section class="prose">
+    {asp_prose}
+  </section>
+
+  <section class="prose">
+    <h2>What to do with a {esc(sign)} Moon on {esc(pretty)}</h2>
+    <p>{esc(practical)}</p>
   </section>
 
   <nav class="daynav">{daynav}</nav>
