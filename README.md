@@ -17,6 +17,23 @@ requires the complete source be public, which it is.
 - `/electional` + `/api/windows` — electional window finder (lite, 21-day cap)
 - `/api/geo` — offline city lookup (GeoNames, CC-BY) for the birthplace fields
 
+## Solar return year book (offline, per order)
+Not a web tool: a two-step generator for the birthday-to-birthday reading.
+`bin/solar_return.py` casts the return to the second, overlays it on the natal
+chart, walks the whole year (ingresses, stations, shadows, lunations with
+eclipse flags, every transit perfection with retrograde pass numbers) and
+scores every day for a library of occasions with local best windows.
+`bin/gen_solar_return_page.py` renders that JSON plus a hand-written reading
+JSON into one self-contained, print-ready HTML page (bi-wheel, aspect grid,
+interactive year ring, ranked tables). Birth data stays on the command line;
+no order or output is committed.
+
+```
+python3 bin/solar_return.py --date 1991-03-14 --time 07:42 --tz America/Los_Angeles \
+  --lat 45.52 --lon -122.68 --place "Portland, Oregon" --year 2026 --out sr.json
+python3 bin/gen_solar_return_page.py --data sr.json --reading reading.json --out year.html
+```
+
 ## Principles (updated Jul 21 2026 — see roadmap.md for the accounts item)
 - The tools themselves stay open, ungated, and server-rendered/crawlable —
   that's an SEO requirement, not a branding stance. No paywalls on the tools.
