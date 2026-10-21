@@ -1,0 +1,164 @@
+{
+ "slug": "best-wedding-dates-2028",
+ "recipe": "wedding",
+ "label": "Wedding / marriage",
+ "year": 2028,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": true,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2028-01-07",
+   "day": "Fri, Jan 7",
+   "score": 11.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Taurus applies to a trine to Jupiter, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "February",
+   "date": "2028-02-14",
+   "day": "Mon, Feb 14",
+   "score": 8.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Libra holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "March",
+   "date": "2028-03-29",
+   "day": "Wed, Mar 29",
+   "score": 13.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Taurus applies to a conjunction to Venus, with Jupiter on the Ascendant, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "April",
+   "date": "2028-04-10",
+   "day": "Mon, Apr 10",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Scorpio applies to a sextile to Jupiter, with Jupiter on the Ascendant, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "May",
+   "date": "2028-05-06",
+   "day": "Sat, May 6",
+   "score": 6.5,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Libra applies to a trine to Venus, with Venus on the Ascendant, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "June",
+   "date": "2028-06-23",
+   "day": "Fri, Jun 23",
+   "score": 13.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Cancer applies to a sextile to Jupiter, with Venus on the Midheaven, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "July",
+   "date": "2028-07-13",
+   "day": "Thu, Jul 13",
+   "score": 14.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Aries applies to a sextile to Venus, with Venus on the Midheaven, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "August",
+   "date": "2028-08-31",
+   "day": "Thu, Aug 31",
+   "score": 13.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Aquarius applies to a trine to Jupiter, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "September",
+   "date": "2028-09-12",
+   "day": "Tue, Sep 12",
+   "score": 10.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Cancer holds clear of the hard aspects and is not void, with Jupiter on the Midheaven, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "October",
+   "date": "2028-10-19",
+   "day": "Thu, Oct 19",
+   "score": 14.2,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Scorpio applies to a sextile to Venus, with Venus on the Midheaven, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "November",
+   "date": "2028-11-09",
+   "day": "Thu, Nov 9",
+   "score": 17.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waning Moon in Leo applies to a sextile to Venus, with Venus on the Midheaven, with Jupiter on the Midheaven, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "December",
+   "date": "2028-12-20",
+   "day": "Wed, Dec 20",
+   "score": 14.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Aquarius applies to a trine to Jupiter, with Jupiter on the Midheaven, in a Venus hour.",
+   "shared_with": null
+  }
+ ],
+ "distinct_from": null,
+ "computed": "2026-10-21"
+}

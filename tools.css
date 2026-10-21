@@ -623,3 +623,11 @@ footer.site .footer-nav a:hover { border-bottom: 1px solid var(--gold); }
 @media (max-width: 640px) {
   footer.site .footer-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 }
+
+/* Month row above the best-dates tables (2026-10-21) */
+.monthnav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.monthnav a { font-size: 13px; padding: 3px 9px; border-radius: 999px; text-decoration: none;
+  border: 1px solid var(--gold-soft); color: var(--gold-deep); }
+.monthnav a:hover { background: #fbf6ea; }
+.year-table tr:target td { background: #fdf9ef; }
+.year-table tr[id] { scroll-margin-top: 16px; }

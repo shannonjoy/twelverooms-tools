@@ -1,0 +1,164 @@
+{
+ "slug": "best-days-to-open-a-restaurant-2027",
+ "recipe": "shop",
+ "label": "Opening a shop / restaurant",
+ "year": 2027,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": true,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2027-01-13",
+   "day": "Wed, Jan 13",
+   "score": 17.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Aries applies to a trine to Venus, Asc ruler Moon angular (house 10), day chart.",
+   "shared_with": null
+  },
+  {
+   "month": "February",
+   "date": "2027-02-01",
+   "day": "Mon, Feb 1",
+   "score": 10.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Sagittarius applies to a trine to Jupiter, with Venus on the Midheaven, day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "March",
+   "date": "2027-03-18",
+   "day": "Thu, Mar 18",
+   "score": 16.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo applies to a conjunction to Jupiter, Asc ruler Mercury angular (house 7), day chart, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "April",
+   "date": "2027-04-13",
+   "day": "Tue, Apr 13",
+   "score": 20.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Cancer applies to a trine to Venus, with Venus on the Midheaven, Asc ruler Moon domicile in Cancer, Asc ruler Moon angular (house 1), day chart.",
+   "shared_with": null
+  },
+  {
+   "month": "May",
+   "date": "2027-05-12",
+   "day": "Wed, May 12",
+   "score": 14.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo applies to a conjunction to Jupiter, Asc ruler Mercury domicile in Gemini, Asc ruler Mercury angular (house 10), day chart, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "June",
+   "date": "2027-06-07",
+   "day": "Mon, Jun 7",
+   "score": 12.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Cancer applies to a sextile to Venus, Asc ruler Moon domicile in Cancer, Asc ruler Moon angular (house 1), day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "July",
+   "date": "2027-07-05",
+   "day": "Mon, Jul 5",
+   "score": 17.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo holds clear of the hard aspects and is not void, with Jupiter on the Ascendant, Asc ruler Mercury domicile in Gemini, Asc ruler Mercury angular (house 10), day chart.",
+   "shared_with": null
+  },
+  {
+   "month": "August",
+   "date": "2027-08-20",
+   "day": "Fri, Aug 20",
+   "score": 18.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waning Moon in Aries holds clear of the hard aspects and is not void, with Venus on the Ascendant, with Jupiter on the Ascendant, Asc ruler Mercury domicile in Virgo, Asc ruler Mercury angular (house 1), day chart, in a Venus hour.",
+   "shared_with": null
+  },
+  {
+   "month": "September",
+   "date": "2027-09-30",
+   "day": "Thu, Sep 30",
+   "score": 12.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Libra applies to a conjunction to Venus, with Venus on the Ascendant, Asc ruler Venus domicile in Libra, Asc ruler Venus angular (house 1), day chart.",
+   "shared_with": null
+  },
+  {
+   "month": "October",
+   "date": "2027-10-02",
+   "day": "Sat, Oct 2",
+   "score": 8.8,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Scorpio applies to a sextile to Jupiter, with Venus on the Ascendant, Asc ruler Venus domicile in Libra, Asc ruler Venus angular (house 1), day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "November",
+   "date": "2027-11-13",
+   "day": "Sat, Nov 13",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Taurus applies to a trine to Jupiter, with Venus on the Midheaven, Asc ruler Jupiter angular (house 7), day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "December",
+   "date": "2027-12-15",
+   "day": "Wed, Dec 15",
+   "score": 12.5,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Cancer applies to a sextile to Jupiter, Asc ruler Mars exaltation in Capricorn, Asc ruler Mars angular (house 10), day chart, in a Venus hour.",
+   "shared_with": null
+  }
+ ],
+ "distinct_from": null,
+ "computed": "2026-10-21"
+}

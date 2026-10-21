@@ -1,0 +1,201 @@
+{
+ "slug": "best-days-to-invest-2027",
+ "recipe": "investment",
+ "label": "Investment / opening an account",
+ "year": 2027,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": true,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2027-01-15",
+   "day": "Fri, Jan 15",
+   "score": 15.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Aries applies to a trine to Jupiter, Asc ruler Saturn angular (house 4), day chart, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-01-13",
+    "day": "January 13",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "February",
+   "date": "2027-02-06",
+   "day": "Sat, Feb 6",
+   "score": 5.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Aquarius holds clear of the hard aspects and is not void, Asc ruler Sun angular (house 7), day chart, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-02-01",
+    "day": "February 1",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "March",
+   "date": "2027-03-18",
+   "day": "Thu, Mar 18",
+   "score": 16.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo applies to a conjunction to Jupiter, Asc ruler Mercury angular (house 7), day chart, in a Venus hour.",
+   "moved_from": null
+  },
+  {
+   "month": "April",
+   "date": "2027-04-13",
+   "day": "Tue, Apr 13",
+   "score": 20.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Cancer applies to a trine to Venus, with Jupiter on the Ascendant, Asc ruler Sun exaltation in Aries, day chart, in a Jupiter hour.",
+   "moved_from": null
+  },
+  {
+   "month": "May",
+   "date": "2027-05-08",
+   "day": "Sat, May 8",
+   "score": 12.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Gemini applies to a sextile to Venus, with Jupiter on the Midheaven, Asc ruler Mars angular (house 10), day chart, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-05-12",
+    "day": "May 12",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 3
+   }
+  },
+  {
+   "month": "June",
+   "date": "2027-06-07",
+   "day": "Mon, Jun 7",
+   "score": 12.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Cancer applies to a sextile to Venus, Asc ruler Moon domicile in Cancer, Asc ruler Moon angular (house 1), day chart, in a Jupiter hour.",
+   "moved_from": null
+  },
+  {
+   "month": "July",
+   "date": "2027-07-05",
+   "day": "Mon, Jul 5",
+   "score": 17.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Leo holds clear of the hard aspects and is not void, with Jupiter on the Ascendant, Asc ruler Mercury domicile in Gemini, Asc ruler Mercury angular (house 10), day chart.",
+   "moved_from": null
+  },
+  {
+   "month": "August",
+   "date": "2027-08-20",
+   "day": "Fri, Aug 20",
+   "score": 16.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Aries holds clear of the hard aspects and is not void, with Jupiter on the Ascendant, Asc ruler Mercury domicile in Virgo, Asc ruler Mercury angular (house 1), day chart, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-08-03",
+    "day": "August 3",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "September",
+   "date": "2027-09-28",
+   "day": "Tue, Sep 28",
+   "score": 8.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Virgo applies to a conjunction to Jupiter, Asc ruler Venus domicile in Libra, Asc ruler Venus angular (house 1), in a Jupiter hour.",
+   "moved_from": {
+    "date": "2027-09-30",
+    "day": "September 30",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "October",
+   "date": "2027-10-02",
+   "day": "Sat, Oct 2",
+   "score": 8.8,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Scorpio applies to a sextile to Jupiter, with Jupiter on the Midheaven, Asc ruler Mars domicile in Scorpio, Asc ruler Mars angular (house 1), day chart, in a Venus hour.",
+   "moved_from": null
+  },
+  {
+   "month": "November",
+   "date": "2027-11-20",
+   "day": "Sat, Nov 20",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Leo applies to a trine to Venus, with Jupiter on the Midheaven, Asc ruler Jupiter angular (house 10), day chart, in a Jupiter hour.",
+   "moved_from": {
+    "date": "2027-11-17",
+    "day": "November 17",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 3
+   }
+  },
+  {
+   "month": "December",
+   "date": "2027-12-11",
+   "day": "Sat, Dec 11",
+   "score": 10.5,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Taurus applies to a trine to Jupiter, Asc ruler Saturn angular (house 4), day chart, in a Jupiter hour.",
+   "moved_from": {
+    "date": "2027-12-15",
+    "day": "December 15",
+    "page": "best-days-to-start-a-business-2027",
+    "stars": 2
+   }
+  }
+ ],
+ "distinct_from": [
+  "best-days-to-start-a-business-2027"
+ ],
+ "computed": "2026-10-21"
+}

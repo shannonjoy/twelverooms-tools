@@ -1,0 +1,226 @@
+{
+ "slug": "best-days-for-a-first-date-2027",
+ "recipe": "first_date",
+ "label": "First date / new relationship",
+ "year": 2027,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": false,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2027-01-19",
+   "day": "Tue, Jan 19",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Gemini applies to a sextile to Jupiter, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-01-13",
+    "day": "January 13",
+    "page": "best-days-to-propose-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "February",
+   "date": "2027-02-01",
+   "day": "Mon, Feb 1",
+   "score": 6.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Sagittarius applies to a trine to Jupiter, with Venus on the Midheaven.",
+   "moved_from": {
+    "date": "2027-02-28",
+    "day": "February 28",
+    "page": "best-days-to-propose-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "March",
+   "date": "2027-03-04",
+   "day": "Thu, Mar 4",
+   "score": 11.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Aquarius applies to a conjunction to Venus, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-03-18",
+    "day": "March 18",
+    "page": "best-days-to-propose-2027",
+    "stars": 3
+   }
+  },
+  {
+   "month": "April",
+   "date": "2027-04-23",
+   "day": "Fri, Apr 23",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Sagittarius applies to a trine to Venus, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-04-13",
+    "day": "April 13",
+    "page": "best-days-to-propose-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "May",
+   "date": "2027-05-08",
+   "day": "Sat, May 8",
+   "score": 8.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Gemini applies to a sextile to Jupiter, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-05-12",
+    "day": "May 12",
+    "page": "best-days-to-propose-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "June",
+   "date": "2027-06-15",
+   "day": "Tue, Jun 15",
+   "score": 17.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Scorpio holds clear of the hard aspects and is not void, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-06-14",
+    "day": "June 14",
+    "page": "best-days-to-propose-2027",
+    "stars": 5
+   }
+  },
+  {
+   "month": "July",
+   "date": "2027-07-05",
+   "day": "Mon, Jul 5",
+   "score": 13.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-07-28",
+    "day": "July 28",
+    "page": "best-days-to-propose-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "August",
+   "date": "2027-08-16",
+   "day": "Mon, Aug 16",
+   "score": 14.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Aquarius holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-08-03",
+    "day": "August 3",
+    "page": "best-days-to-propose-2027",
+    "stars": 4
+   }
+  },
+  {
+   "month": "September",
+   "date": "2027-09-27",
+   "day": "Mon, Sep 27",
+   "score": 6.5,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Virgo applies to a conjunction to Jupiter, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-09-30",
+    "day": "September 30",
+    "page": "best-days-to-propose-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "October",
+   "date": "2027-10-22",
+   "day": "Fri, Oct 22",
+   "score": 6.8,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Leo holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-10-21",
+    "day": "October 21",
+    "page": "best-days-to-propose-2027",
+    "stars": 2
+   }
+  },
+  {
+   "month": "November",
+   "date": "2027-11-18",
+   "day": "Thu, Nov 18",
+   "score": 12.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Cancer holds clear of the hard aspects and is not void, with Venus on the Ascendant.",
+   "moved_from": {
+    "date": "2027-11-17",
+    "day": "November 17",
+    "page": "best-days-to-propose-2027",
+    "stars": 3
+   }
+  },
+  {
+   "month": "December",
+   "date": "2027-12-15",
+   "day": "Wed, Dec 15",
+   "score": 9.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Cancer applies to a sextile to Jupiter, in a Venus hour.",
+   "moved_from": {
+    "date": "2027-12-10",
+    "day": "December 10",
+    "page": "best-days-to-propose-2027",
+    "stars": 2
+   }
+  }
+ ],
+ "distinct_from": [
+  "best-days-to-propose-2027"
+ ],
+ "computed": "2026-10-21"
+}

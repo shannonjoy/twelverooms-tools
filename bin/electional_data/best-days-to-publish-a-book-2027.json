@@ -1,0 +1,164 @@
+{
+ "slug": "best-days-to-publish-a-book-2027",
+ "recipe": "publishing",
+ "label": "Publishing / book launch",
+ "year": 2027,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": true,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2027-01-13",
+   "day": "Wed, Jan 13",
+   "score": 19.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Aries applies to a sextile to Mercury, Asc ruler Moon angular (house 10), day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "February",
+   "date": "2027-02-01",
+   "day": "Mon, Feb 1",
+   "score": 12.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Sagittarius applies to a trine to Jupiter, with Sun on the Midheaven, Asc ruler Mercury angular (house 10), day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "March",
+   "date": "2027-03-24",
+   "day": "Wed, Mar 24",
+   "score": 17.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Scorpio applies to a trine to Mercury, with Jupiter on the Ascendant, Asc ruler Sun exaltation in Aries, day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "April",
+   "date": "2027-04-23",
+   "day": "Fri, Apr 23",
+   "score": 20.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waning Moon in Sagittarius holds clear of the hard aspects and is not void, with Jupiter on the Ascendant, with Sun on the Midheaven, Asc ruler Sun angular (house 10), day chart, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "May",
+   "date": "2027-05-12",
+   "day": "Wed, May 12",
+   "score": 14.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Leo applies to a conjunction to Jupiter, Asc ruler Mercury domicile in Gemini, Asc ruler Mercury angular (house 1), day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "June",
+   "date": "2027-06-08",
+   "day": "Tue, Jun 8",
+   "score": 10.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Leo applies to a sextile to Sun, with Jupiter on the Ascendant, day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "July",
+   "date": "2027-07-12",
+   "day": "Mon, Jul 12",
+   "score": 20.5,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waxing Moon in Scorpio applies to a trine to Sun, with Sun on the Midheaven, Asc ruler Venus angular (house 10), day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "August",
+   "date": "2027-08-03",
+   "day": "Tue, Aug 3",
+   "score": 17.0,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Virgo applies to a conjunction to Jupiter, with Sun on the Midheaven, day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "September",
+   "date": "2027-09-30",
+   "day": "Thu, Sep 30",
+   "score": 11.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waxing Moon in Libra holds clear of the hard aspects and is not void, with Sun on the Ascendant, Asc ruler Venus domicile in Libra, Asc ruler Venus angular (house 1), day chart, in a Jupiter hour.",
+   "shared_with": null
+  },
+  {
+   "month": "October",
+   "date": "2027-10-01",
+   "day": "Fri, Oct 1",
+   "score": 10.5,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waxing Moon in Scorpio applies to a conjunction to Mercury, with Sun on the Midheaven, Asc ruler Jupiter angular (house 10), day chart, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "November",
+   "date": "2027-11-17",
+   "day": "Wed, Nov 17",
+   "score": 16.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Cancer applies to a trine to Mercury, with Sun on the Ascendant, day chart, in a Mercury hour.",
+   "shared_with": null
+  },
+  {
+   "month": "December",
+   "date": "2027-12-15",
+   "day": "Wed, Dec 15",
+   "score": 12.5,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Cancer applies to a sextile to Jupiter, with Sun on the Midheaven, Asc ruler Jupiter angular (house 7), day chart, in a Sun hour.",
+   "shared_with": null
+  }
+ ],
+ "distinct_from": null,
+ "computed": "2026-10-21"
+}

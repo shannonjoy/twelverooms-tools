@@ -1,0 +1,164 @@
+{
+ "slug": "best-days-to-start-a-diet-2027",
+ "recipe": "diet",
+ "label": "Diet / breaking a habit",
+ "year": 2027,
+ "location": {
+  "lat": 39.8333,
+  "lon": -98.5855,
+  "tz": "America/Chicago"
+ },
+ "hours": {
+  "earliest": "07:00",
+  "latest": "21:00"
+ },
+ "mercury_direct_rule": false,
+ "rows": [
+  {
+   "month": "January",
+   "date": "2027-01-12",
+   "day": "Tue, Jan 12",
+   "score": 12.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waxing Moon in Pisces applies to a sextile to Sun, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "February",
+   "date": "2027-02-28",
+   "day": "Sun, Feb 28",
+   "score": 7.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Sagittarius holds clear of the hard aspects and is not void, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "March",
+   "date": "2027-03-04",
+   "day": "Thu, Mar 4",
+   "score": 10.5,
+   "stars": 3,
+   "label": "Average",
+   "room_name": "Lit Room",
+   "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
+   "why": "The waning Moon in Aquarius applies to a sextile to Saturn, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "April",
+   "date": "2027-04-24",
+   "day": "Sat, Apr 24",
+   "score": 16.5,
+   "stars": 5,
+   "label": "Excellent",
+   "room_name": "Every Window Open",
+   "blurb": "As strong as this election gets: the top 10% of five years of this election's windows.",
+   "why": "The waning Moon in Sagittarius applies to a trine to Saturn, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "May",
+   "date": "2027-05-30",
+   "day": "Sun, May 30",
+   "score": 7.0,
+   "stars": 1,
+   "label": "Weak",
+   "room_name": "Threshold",
+   "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
+   "why": "The waning Moon in Aries applies to a sextile to Sun, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "June",
+   "date": "2027-06-13",
+   "day": "Sun, Jun 13",
+   "score": 17.5,
+   "stars": 5,
+   "label": "Excellent",
+   "room_name": "Every Window Open",
+   "blurb": "As strong as this election gets: the top 10% of five years of this election's windows.",
+   "why": "The waxing Moon in Libra applies to a trine to Sun, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "July",
+   "date": "2027-07-28",
+   "day": "Wed, Jul 28",
+   "score": 16.5,
+   "stars": 5,
+   "label": "Excellent",
+   "room_name": "Every Window Open",
+   "blurb": "As strong as this election gets: the top 10% of five years of this election's windows.",
+   "why": "The waning Moon in Gemini applies to a sextile to Sun, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "August",
+   "date": "2027-08-17",
+   "day": "Tue, Aug 17",
+   "score": 14.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waning Moon in Aquarius applies to a sextile to Saturn, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "September",
+   "date": "2027-09-26",
+   "day": "Sun, Sep 26",
+   "score": 7.5,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Leo applies to a trine to Saturn, in a Sun hour.",
+   "shared_with": null
+  },
+  {
+   "month": "October",
+   "date": "2027-10-24",
+   "day": "Sun, Oct 24",
+   "score": 8.8,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Virgo applies to a sextile to Sun, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "November",
+   "date": "2027-11-18",
+   "day": "Thu, Nov 18",
+   "score": 16.0,
+   "stars": 4,
+   "label": "Good",
+   "room_name": "Full House",
+   "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
+   "why": "The waning Moon in Cancer applies to a trine to Sun, in a Saturn hour.",
+   "shared_with": null
+  },
+  {
+   "month": "December",
+   "date": "2027-12-14",
+   "day": "Tue, Dec 14",
+   "score": 8.0,
+   "stars": 2,
+   "label": "Below Average",
+   "room_name": "Open Door",
+   "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
+   "why": "The waning Moon in Cancer holds clear of the hard aspects and is not void, in a Saturn hour.",
+   "shared_with": null
+  }
+ ],
+ "distinct_from": null,
+ "computed": "2026-10-21"
+}

@@ -874,5 +874,15 @@ PAGES = [
 ]
 
 if __name__ == "__main__":
+    import sys
+    # Superseded 2026-10-21. The live pages have since been post-processed
+    # (OG tags, footer, internal links) and their tables, CTAs and FAQ
+    # answers now come from bin/compute_electional_rows.py and
+    # bin/apply_electional_pages.py. The "rows" above are the old hand-entered
+    # dates with unlabeled scores; rebuilding from them would put both back.
+    # Kept for the page prose it holds. Pass --really to write anyway.
+    if "--really" not in sys.argv:
+        raise SystemExit("gen_dates_page.py is superseded; see the note above __main__. "
+                         "Use bin/apply_electional_pages.py.")
     for cfg in PAGES:
         print("wrote", build(cfg) + ".html")
