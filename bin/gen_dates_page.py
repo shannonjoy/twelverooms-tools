@@ -99,7 +99,7 @@ PAGES = [
         "lede": "The best day in each month of 2027 to open a business, sign the papers, or go live, by Western electional astrology: the waxing Moon applying to Jupiter (fortune), Mercury (commerce), or the Sun, with Mercury direct so the paperwork holds. Computed with the Swiss Ephemeris.",
         "rows": [
             ("January", "Fri, Jan 15", 5, "Waxing Moon in Taurus, applying to a trine to the Sun."),
-            ("February", "Sun, Feb 7", 5, "Waxing Moon in Pisces, conjunct Mercury, but wedged between the Feb 6 eclipse and the Feb 10 Mercury retrograde. A weak month."),
+            ("February", "Sun, Feb 7", 5, "Waxing Moon in Pisces, conjunct Mercury, but wedged between the Feb 6 eclipse and the Feb 9 Mercury retrograde. A weak month."),
             ("March", "Sat, Mar 13", 5, "Waxing Moon in Gemini, applying to a sextile to Jupiter, just clear of the retrograde."),
             ("April", "Wed, Apr 14", 5, "Waxing Moon in Leo, applying to a trine to Mercury, planet of commerce."),
             ("May", "Tue, May 11", 5, "Waxing Moon in Leo, applying to a sextile to Mercury."),
@@ -120,8 +120,8 @@ PAGES = [
             "And the cardinal rule for anything you sign: <strong>Mercury must be direct</strong>, "
             "which is why every date above dodges the three retrogrades.</p>"),
         "avoid": (
-            "<p><strong>The three Mercury retrogrades:</strong> Feb 10 to Mar 4, Jun 11 to Jul 5, "
-            "and Oct 8 to 29. Signing and launching under a backward Mercury invites errors and "
+            "<p><strong>The three Mercury retrogrades:</strong> Feb 9 to Mar 3, Jun 10 to Jul 4, "
+            "and Oct 7 to 28. Signing and launching under a backward Mercury invites errors and "
             "do-overs. See the full <a href='/mercury-retrograde'>Mercury retrograde 2027 guide</a>. "
             "<strong>Eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and "
             "Aug 17 are also unstable ground, which is why February and mid-summer are the year's "
@@ -133,7 +133,7 @@ PAGES = [
             ("What is the best day to start a business in 2027?",
              "There is no single best day; the strongest windows fall on a waxing Moon applying to Jupiter or Mercury with Mercury direct. The table above gives the best day in each month, so you can pick one that fits your own timeline."),
             ("Why does Mercury retrograde matter for a business launch?",
-             "Mercury rules commerce, contracts, and communication. Traditionally you avoid signing or launching while it is retrograde (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29 in 2027) because agreements made then tend to be revisited. Every date here keeps Mercury direct."),
+             "Mercury rules commerce, contracts, and communication. Traditionally you avoid signing or launching while it is retrograde (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28 in 2027) because agreements made then tend to be revisited. Every date here keeps Mercury direct."),
             ("How are these dates calculated?",
              "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
             ("Does my own birth chart matter?",
@@ -168,8 +168,8 @@ PAGES = [
             "days add a Moon in <strong>Taurus</strong>, her sign of exaltation, which lifts March 27 "
             "and January 6 above the rest.</p>"),
         "avoid": (
-            "<p><strong>The three Mercury retrogrades of 2028:</strong> Jan 25 to Feb 15, May 22 to "
-            "Jun 15, and Sep 20 to Oct 12. <strong>Eclipse seasons</strong> cluster around Jan 12 and "
+            "<p><strong>The three Mercury retrogrades of 2028:</strong> Jan 24 to Feb 14, May 21 to "
+            "Jun 14, and Sep 19 to Oct 11. <strong>Eclipse seasons</strong> cluster around Jan 12 and "
             "26, around Jul 6 and 22, and on Dec 31. Astrologers keep weddings several days clear of "
             "eclipses, so early January and both eclipse windows are the year's most delicate ground, "
             "even where the Moon's best available day looks fine.</p>"),
@@ -182,7 +182,7 @@ PAGES = [
             ("How are these dates chosen?",
              "By Western electional astrology: a waxing Moon, not void of course, applying to Venus or Jupiter with Venus and Mercury direct, computed with the Swiss Ephemeris. The exact best time depends on your location."),
             ("What months should I avoid for a 2028 wedding?",
-             "Sidestep the Mercury retrogrades (Jan 25 to Feb 15, May 22 to Jun 15, Sep 20 to Oct 12) and the eclipse seasons around Jan 12 and 26, Jul 6 and 22, and Dec 31."),
+             "Sidestep the Mercury retrogrades (Jan 24 to Feb 14, May 21 to Jun 14, Sep 19 to Oct 11) and the eclipse seasons around Jan 12 and 26, Jul 6 and 22, and Dec 31."),
             ("Do these dates work for my location and my chart?",
              "The dates rank the sky itself, which is the same everywhere. The exact best time shifts by location, and the single strongest date is the one that also speaks well to you and your partner's own charts, which is the personalized electional reading."),
         ],
@@ -217,8 +217,8 @@ PAGES = [
             "held away from Mars and Saturn.</p>"),
         "avoid": (
             "<p>2027 carries <strong>no Venus retrograde</strong>, which is uncommon and steady ground "
-            "for anything to do with the body and love. The Mercury retrogrades (Feb 10 to Mar 4, "
-            "Jun 11 to Jul 5, Oct 8 to 29) matter less here than for contracts, but the "
+            "for anything to do with the body and love. The Mercury retrogrades (Feb 9 to Mar 3, "
+            "Jun 10 to Jul 4, Oct 7 to 28) matter less here than for contracts, but the "
             "<strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 "
             "are unsettled ground worth stepping around when you can.</p>"),
         "cta_h2": "Timing something this tender?",
@@ -243,7 +243,7 @@ PAGES = [
         "lede": "The best day in each month of 2027 to sign a contract, close a deal, or put your name to something binding, by Western electional astrology: the waxing Moon applying to Mercury (agreements) or Jupiter (good faith), with Mercury direct so the terms hold. Computed with the Swiss Ephemeris.",
         "rows": [
             ("January", "Thu, Jan 7", 9, "Waxing Moon in Capricorn applying to a conjunction with Mercury, Jupiter rising, in a Jupiter hour."),
-            ("February", "Sat, Feb 6", 6, "Waxing Moon in Aquarius, clear and not void, Jupiter rising, in a Mercury hour. Sign before the Feb 10 retrograde."),
+            ("February", "Sat, Feb 6", 6, "Waxing Moon in Aquarius, clear and not void, Jupiter rising, in a Mercury hour. Sign before the Feb 9 retrograde."),
             ("March", "Sun, Mar 14", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Jupiter rising, just clear of the retrograde."),
             ("April", "Wed, Apr 14", 9, "Waxing Moon in Leo applying to a trine to Mercury, Jupiter rising."),
             ("May", "Sun, May 16", 9, "Waxing Moon in Libra applying to a trine to Mercury, Jupiter rising."),
@@ -251,7 +251,7 @@ PAGES = [
             ("July", "Tue, Jul 6", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Mercury hour."),
             ("August", "Wed, Aug 11", 9, "Waxing Moon in Sagittarius applying to a trine to Mercury, Jupiter rising."),
             ("September", "Sat, Sep 4", 9, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter on the Midheaven, in a Mercury hour."),
-            ("October", "Sat, Oct 2", 7, "Waxing Moon in Scorpio applying to a sextile to Jupiter. Sign before the Oct 8 retrograde."),
+            ("October", "Sat, Oct 2", 7, "Waxing Moon in Scorpio applying to a sextile to Jupiter. Sign before the Oct 7 retrograde."),
             ("November", "Mon, Nov 1", 9, "Waxing Moon in Sagittarius applying to a sextile to Mercury, Jupiter on the Midheaven."),
             ("December", "Thu, Dec 2", 9, "Waxing Moon in Aquarius applying to a sextile to Mercury, Jupiter on the Midheaven."),
         ],
@@ -263,8 +263,8 @@ PAGES = [
             "<strong>Mercury must be direct</strong>, so every date above sidesteps the three "
             "retrogrades.</p>"),
         "avoid": (
-            "<p><strong>The three Mercury retrogrades:</strong> Feb 10 to Mar 4, Jun 11 to Jul 5, and "
-            "Oct 8 to 29. Signing under a backward Mercury is the one thing the tradition is most firm "
+            "<p><strong>The three Mercury retrogrades:</strong> Feb 9 to Mar 3, Jun 10 to Jul 4, and "
+            "Oct 7 to 28. Signing under a backward Mercury is the one thing the tradition is most firm "
             "about, because agreements made then tend to be reopened. See the "
             "<a href='/mercury-retrograde'>Mercury retrograde 2027 guide</a>. The "
             "<strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 "
@@ -276,7 +276,7 @@ PAGES = [
             ("What is the best day to sign a contract in 2027?",
              "The strongest days fall on a waxing Moon applying to Mercury or Jupiter with Mercury direct. The table above gives the best such day in each month, so you can pick one that fits your timeline."),
             ("Why does Mercury retrograde matter for signing?",
-             "Mercury rules contracts, terms, and communication. The tradition avoids signing while it is retrograde (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29 in 2027) because those agreements tend to be revisited. Every date here keeps Mercury direct."),
+             "Mercury rules contracts, terms, and communication. The tradition avoids signing while it is retrograde (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28 in 2027) because those agreements tend to be revisited. Every date here keeps Mercury direct."),
             ("How are these dates calculated?",
              "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
             ("Does my own chart matter?",
@@ -312,7 +312,7 @@ PAGES = [
         "avoid": (
             "<p>2027 carries <strong>no Venus retrograde</strong>, uncommon and welcome for anything to "
             "do with value and home. If you are also signing paperwork, keep <strong>Mercury direct</strong> "
-            "(avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29). And the <strong>eclipse seasons</strong> "
+            "(avoid Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28). And the <strong>eclipse seasons</strong> "
             "around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 are shaky ground for a move you want "
             "to feel settled.</p>"),
         "cta_h2": "Timing a move that matters?",
@@ -357,8 +357,8 @@ PAGES = [
             "<strong>Mercury direct</strong> keeps the conversation clean, so every date above avoids the "
             "retrogrades.</p>"),
         "avoid": (
-            "<p>Keep <strong>Mercury direct</strong> for interviews and offers: avoid Feb 10 to Mar 4, "
-            "Jun 11 to Jul 5, and Oct 8 to 29. The <strong>eclipse seasons</strong> around Feb 6 and 20 "
+            "<p>Keep <strong>Mercury direct</strong> for interviews and offers: avoid Feb 9 to Mar 3, "
+            "Jun 10 to Jul 4, and Oct 7 to 28. The <strong>eclipse seasons</strong> around Feb 6 and 20 "
             "and around Jul 18, Aug 2, and Aug 17 are unstable for beginnings you want to last. See the "
             "<a href='/mercury-retrograde'>Mercury retrograde 2027 guide</a> for the full windows.</p>"),
         "cta_h2": "Timing a move that matters?",
@@ -370,7 +370,7 @@ PAGES = [
             ("Does astrology help with getting a job?",
              "Electional astrology is about timing, not guarantees. It picks a moment when the sky favors recognition and clear communication. It supports your preparation; it does not replace it."),
             ("Why keep Mercury direct?",
-             "Mercury rules interviews, offers, and paperwork. Under retrograde (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29 in 2027) those tend to get muddled or revisited, so the dates here keep Mercury direct."),
+             "Mercury rules interviews, offers, and paperwork. Under retrograde (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28 in 2027) those tend to get muddled or revisited, so the dates here keep Mercury direct."),
             ("Does my own chart matter?",
              "For the strongest timing, yes. These dates rank the sky, which is the same for everyone. The single best date is the one that also speaks well to your own chart, which is the personalized reading."),
         ],
@@ -404,7 +404,7 @@ PAGES = [
         "avoid": (
             "<p>A void-of-course Moon is the classic mistake for a launch: the old rule is that nothing "
             "done under it comes to much. If your launch also involves signing or heavy messaging, keep "
-            "<strong>Mercury direct</strong> (avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29). The "
+            "<strong>Mercury direct</strong> (avoid Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28). The "
             "<strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 "
             "are dramatic, unpredictable ground for a debut.</p>"),
         "cta_h2": "Timing a launch that matters?",
@@ -449,8 +449,8 @@ PAGES = [
             "planet is never walking backward when you ask.</p>"),
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, which is genuinely rare and good news for "
-            "matters of the heart. The Mercury retrogrades (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to "
-            "29) matter less for a proposal than for a contract, but the <strong>eclipse seasons</strong> "
+            "matters of the heart. The Mercury retrogrades (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to "
+            "28) matter less for a proposal than for a contract, but the <strong>eclipse seasons</strong> "
             "around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 carry a charge you may prefer to "
             "step around for a tender moment.</p>"),
         "cta_h2": "Asking a question this big?",
@@ -475,7 +475,7 @@ PAGES = [
         "lede": "The best day in each month of 2027 to buy a car or make a major purchase, by Western electional astrology: the waxing Moon applying to Venus (value) or Jupiter (fortune), with Mercury direct for the paperwork. Computed with the Swiss Ephemeris. 2027 has no Venus retrograde, steady ground for anything you buy and keep.",
         "rows": [
             ("January", "Tue, Jan 19", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
-            ("February", "Mon, Feb 1", 6, "Moon in Sagittarius applying to a trine to Jupiter, Jupiter rising. Buy before the Feb 10 retrograde."),
+            ("February", "Mon, Feb 1", 6, "Moon in Sagittarius applying to a trine to Jupiter, Jupiter rising. Buy before the Feb 9 retrograde."),
             ("March", "Tue, Mar 9", 8, "Waxing Moon in Aries applying to a sextile to Venus, Venus on the Midheaven."),
             ("April", "Thu, Apr 8", 8, "Waxing Moon in Taurus, Venus-ruled, applying to a sextile to Venus, Venus on the Midheaven."),
             ("May", "Sat, May 8", 8, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
@@ -483,7 +483,7 @@ PAGES = [
             ("July", "Tue, Jul 6", 8, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Venus hour."),
             ("August", "Wed, Aug 11", 8, "Waxing Moon in Sagittarius applying to a trine to Venus, Venus rising."),
             ("September", "Fri, Sep 3", 8, "Waxing Moon in Libra, Venus-ruled, clear and not void, Venus and Jupiter rising, in a Venus hour."),
-            ("October", "Sat, Oct 2", 8, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter on the Midheaven. Buy before the Oct 8 retrograde."),
+            ("October", "Sat, Oct 2", 8, "Waxing Moon in Scorpio applying to a sextile to Jupiter, Jupiter on the Midheaven. Buy before the Oct 7 retrograde."),
             ("November", "Fri, Nov 5", 10, "Waxing Moon in Aquarius applying to a sextile to Venus, Venus rising, Jupiter on the Midheaven. The year's strongest."),
             ("December", "Sun, Dec 5", 8, "Waxing Moon in Pisces applying to a sextile to Venus, Venus rising."),
         ],
@@ -495,8 +495,8 @@ PAGES = [
             "signing, every date keeps <strong>Mercury direct</strong>.</p>"),
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, good news for anything you buy and keep. "
-            "Keep <strong>Mercury direct</strong> for the contract (avoid Feb 10 to Mar 4, Jun 11 to "
-            "Jul 5, Oct 8 to 29), and step around the <strong>eclipse seasons</strong> around Feb 6 and "
+            "Keep <strong>Mercury direct</strong> for the contract (avoid Feb 9 to Mar 3, Jun 10 to "
+            "Jul 4, Oct 7 to 28), and step around the <strong>eclipse seasons</strong> around Feb 6 and "
             "20 and around Jul 18, Aug 2, and Aug 17, jangly ground for a big purchase.</p>"),
         "cta_h2": "Buying something big?",
         "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
@@ -505,7 +505,7 @@ PAGES = [
             ("What is the best day to buy a car in 2027?",
              "The strongest days fall on a waxing Moon applying to Venus or Jupiter, not void of course, with Mercury direct for the paperwork. The table above gives the best such day in each month of 2027."),
             ("Why does Mercury matter for buying a car?",
-             "Because a purchase is also a signing. Mercury rules contracts and paperwork, so the dates keep it direct, avoiding the 2027 retrogrades (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29)."),
+             "Because a purchase is also a signing. Mercury rules contracts and paperwork, so the dates keep it direct, avoiding the 2027 retrogrades (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28)."),
             ("How are these dates calculated?",
              "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
             ("Does my own chart matter?",
@@ -539,8 +539,8 @@ PAGES = [
             "away from Saturn (not now) and Mars (friction). Ask when the sky is inclined to say yes.</p>"),
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, steady ground for questions of worth. It "
-            "helps to ask when <strong>Mercury is direct</strong> too (avoid Feb 10 to Mar 4, Jun 11 to "
-            "Jul 5, Oct 8 to 29), since the ask is a conversation, and to steer clear of the "
+            "helps to ask when <strong>Mercury is direct</strong> too (avoid Feb 9 to Mar 3, Jun 10 to "
+            "Jul 4, Oct 7 to 28), since the ask is a conversation, and to steer clear of the "
             "<strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17, "
             "when moods swing.</p>"),
         "cta_h2": "Asking for what you're worth?",
@@ -565,7 +565,7 @@ PAGES = [
         "lede": "The best day in each month of 2027 to open a restaurant, cafe, or shop, by Western electional astrology: the waxing Moon applying to Venus (welcome, pleasure) or Jupiter (abundance), with Mercury direct for the lease and signage. Computed with the Swiss Ephemeris. Starting a different kind of business? See <a href='/best-days-to-start-a-business-2027'>2027's business dates</a>.",
         "rows": [
             ("January", "Tue, Jan 19", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
-            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Venus on the Midheaven. Open before the Feb 10 retrograde."),
+            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Venus on the Midheaven. Open before the Feb 9 retrograde."),
             ("March", "Tue, Mar 9", 9, "Waxing Moon in Aries applying to a sextile to Venus, Jupiter rising, in a Venus hour."),
             ("April", "Thu, Apr 8", 9, "Waxing Moon in Taurus, Venus-ruled, applying to a sextile to Venus, Jupiter rising."),
             ("May", "Sat, May 8", 9, "Waxing Moon in Gemini applying to a sextile to Jupiter, Venus on the Midheaven, in a Venus hour."),
@@ -585,7 +585,7 @@ PAGES = [
             "<strong>Mercury direct</strong>.</p>"),
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, welcome for a Venus-ruled venture. Keep "
-            "<strong>Mercury direct</strong> for signing (avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 "
+            "<strong>Mercury direct</strong> for signing (avoid Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 "
             "to 29) and mind the <strong>eclipse seasons</strong> around Feb 6 and 20 and around Jul 18, "
             "Aug 2, and Aug 17.</p>"),
         "cta_h2": "Opening your doors?",
@@ -610,7 +610,7 @@ PAGES = [
         "lede": "The best day in each month of 2027 to publish a book, release your writing, or send it into the world, by Western electional astrology: the waxing Moon applying to Mercury (the word), Jupiter (reach), or the Sun (visibility), with Mercury direct. Computed with the Swiss Ephemeris.",
         "rows": [
             ("January", "Thu, Jan 7", 9, "Waxing Moon in Capricorn applying to a conjunction with Mercury, Jupiter rising."),
-            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Sun on the Midheaven. Before the Feb 10 retrograde."),
+            ("February", "Mon, Feb 1", 7, "Moon in Sagittarius applying to a trine to Jupiter, Sun on the Midheaven. Before the Feb 9 retrograde."),
             ("March", "Wed, Mar 10", 9, "Waxing Moon in Aries applying to a trine to Jupiter, Sun rising, in a Mercury hour."),
             ("April", "Wed, Apr 14", 9, "Waxing Moon in Leo applying to a trine to Mercury, Sun on the Midheaven, in a Sun hour."),
             ("May", "Wed, May 12", 9, "Waxing Moon in Leo applying to a conjunction with Jupiter, Jupiter rising, in a Sun hour."),
@@ -630,7 +630,7 @@ PAGES = [
             "so the words land as written.</p>"),
         "avoid": (
             "<p><strong>Mercury retrograde</strong> is the one to dodge for anything built on words: "
-            "Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29. The <strong>eclipse seasons</strong> around "
+            "Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28. The <strong>eclipse seasons</strong> around "
             "Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 are loud, unpredictable ground for a "
             "debut you want read on its merits.</p>"),
         "cta_h2": "Sending your words out?",
@@ -640,7 +640,7 @@ PAGES = [
             ("What is the best day to publish a book in 2027?",
              "The strongest days fall on a waxing Moon applying to Mercury, Jupiter, or the Sun, with Mercury direct. The table above gives the best such day in each month of 2027."),
             ("Why keep Mercury direct for publishing?",
-             "Mercury rules writing, print, and the message itself. Releasing under a retrograde Mercury (Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29 in 2027) invites mix-ups and revisions, so the dates keep it direct."),
+             "Mercury rules writing, print, and the message itself. Releasing under a retrograde Mercury (Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28 in 2027) invites mix-ups and revisions, so the dates keep it direct."),
             ("How are these dates calculated?",
              "By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses. The exact best hour depends on your location, since the angles and planetary hours are local."),
             ("Does my own chart matter?",
@@ -675,8 +675,8 @@ PAGES = [
             "fortune.</p>"),
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, steady for belonging and home. If you are "
-            "also signing a lease, keep <strong>Mercury direct</strong> (avoid Feb 10 to Mar 4, Jun 11 "
-            "to Jul 5, Oct 8 to 29), and give the <strong>eclipse seasons</strong> around Feb 6 and 20 "
+            "also signing a lease, keep <strong>Mercury direct</strong> (avoid Feb 9 to Mar 3, Jun 10 "
+            "to Jul 4, Oct 7 to 28), and give the <strong>eclipse seasons</strong> around Feb 6 and 20 "
             "and around Jul 18, Aug 2, and Aug 17 a wide berth for a fresh start you want to hold.</p>"),
         "cta_h2": "Starting over somewhere new?",
         "cta_p": "Find the exact best window for your city in the free timing finder, or commission a full electional reading that weighs the sky against your own chart.",
@@ -720,7 +720,7 @@ PAGES = [
         "avoid": (
             "<p>2027 has <strong>no Venus retrograde</strong>, which the tradition reads as clear ground "
             "for love and repair. For the conversation itself, <strong>Mercury direct</strong> helps "
-            "(avoid Feb 10 to Mar 4, Jun 11 to Jul 5, Oct 8 to 29), and the <strong>eclipse seasons</strong> "
+            "(avoid Feb 9 to Mar 3, Jun 10 to Jul 4, Oct 7 to 28), and the <strong>eclipse seasons</strong> "
             "around Feb 6 and 20 and around Jul 18, Aug 2, and Aug 17 tend to stir feelings up rather "
             "than settle them.</p>"),
         "cta_h2": "Reaching out again?",
