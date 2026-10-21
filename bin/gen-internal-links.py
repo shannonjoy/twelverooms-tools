@@ -14,14 +14,14 @@ Measured on main, 2026-08-10, over the server-rendered link graph:
 
 This script writes both surfaces into the HTML itself, between markers, so
 re-running it replaces rather than duplicates. Run it before
-bin/gen-sitemap.py: the date index and the sitemap advertise the same
-window, read from seo-window.json.
+bin/gen-sitemap.py. The date index carries the rolling window from
+seo-window.json (the sitemap no longer lists dates), and the hub pages roll
+it forward in the browser between runs.
 
-Usage: python3 bin/gen-internal-links.py [days_forward]
+Usage: python3 bin/gen-internal-links.py
 """
 import json
 import re
-import sys
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -29,7 +29,8 @@ ROOT = Path(__file__).resolve().parent.parent
 WINDOW = json.loads((ROOT / "seo-window.json").read_text())
 INDEX_FROM = date.fromisoformat(WINDOW["index_from"])
 INDEX_TO = date.fromisoformat(WINDOW["index_to"])
-DAYS = int(sys.argv[1]) if len(sys.argv) > 1 else WINDOW["sitemap_days_forward"]
+ROLL_BACK = WINDOW["roll_back_days"]
+ROLL_FORWARD = WINDOW["roll_forward_days"]
 
 DATE_HUBS = [
     ("moon.html", "/moon", "Browse the Moon by date",
@@ -88,8 +89,12 @@ def splice(path, block):
     f.write_text(s, encoding="utf-8")
 
 
+# Up to and including every trailing end marker: an earlier version of this
+# pattern stopped at the chips' own </div>, and each run left one more stray
+# "end --></div>" behind.
 DATEBROWSE_RE = re.compile(
-    r'<div class="datebrowse" id="datebrowse">.*?</div>\s*(?=\n)', re.S)
+    r'<div class="datebrowse" id="datebrowse"[^>]*>.*?' + re.escape(END) + r'</div>'
+    r'(?:\s*' + re.escape(END) + r'</div>)*', re.S)
 
 
 def date_index():
@@ -99,18 +104,20 @@ def date_index():
     skips a slot that already has children, so filling it here replaces that
     row instead of sitting next to it.
     """
-    start = date.today()
-    days = [start + timedelta(days=i) for i in range(DAYS + 1)]
+    today = date.today()
+    days = [today + timedelta(days=i) for i in range(-ROLL_BACK, ROLL_FORWARD + 1)]
     days = [d for d in days if INDEX_FROM <= d <= INDEX_TO]
     for filename, prefix, heading, lede in DATE_HUBS:
         chips = "".join(
             f'<a href="{prefix}/{d.isoformat()}">{d.strftime("%b %-d")}</a>'
             for d in days)
-        block = (f'<div class="datebrowse" id="datebrowse">{START}\n'
+        block = (f'<div class="datebrowse" id="datebrowse" data-prefix="{prefix}" '
+                 f'data-from="{INDEX_FROM}" data-to="{INDEX_TO}" '
+                 f'data-back="{ROLL_BACK}" data-forward="{ROLL_FORWARD}">{START}\n'
                  f'    <h3>{heading}</h3>\n'
                  f'    <p class="hint">{lede}</p>\n'
                  f'    <div class="chips">{chips}</div>\n'
-                 f'  {END}</div>\n')
+                 f'  {END}</div>')
         f = ROOT / filename
         s = f.read_text(encoding="utf-8")
         s, n = DATEBROWSE_RE.subn(lambda _: block, s, count=1)
@@ -142,7 +149,7 @@ def main():
     days = date_index()
     count = electional_cluster()
     print(f"date index: {days} dates written into {len(DATE_HUBS)} hub pages "
-          f"({DAYS} days forward, clipped to {INDEX_FROM}..{INDEX_TO})")
+          f"({ROLL_BACK} back to {ROLL_FORWARD} forward, clipped to {INDEX_FROM}..{INDEX_TO})")
     print(f"electional cluster: {SIBLINGS} sibling links written into {count} pages")
     print("now run: python3 bin/gen-sitemap.py")
 

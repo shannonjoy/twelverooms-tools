@@ -229,6 +229,11 @@ tr.now td { background: #fbf6ea; font-weight: 600; color: var(--gold-deep); }
   transform: skewX(-18deg); transition: left 0.55s ease; }
 .cta a:hover::after { left: 130%; }
 @media (prefers-reduced-motion: reduce) { .cta a::after { display: none; } }
+/* Second CTA button: a named Etsy reading beside the free tool (2026-10-21) */
+.cta a + a { margin: 10px 0 0 10px; }
+.cta a.secondary { background: transparent; color: var(--gold-hi);
+  border: 1px solid rgba(201,165,92,0.6); padding: 10px 21px; }
+@media (max-width: 480px) { .cta a + a { margin-left: 0; } }
 
 /* letterspaced gold kicker above a page h1 */
 .kicker { font-family: var(--sans); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;

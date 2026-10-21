@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Regenerate sitemap.xml: the static pages plus a rolling window of
-server-rendered per-date Moon pages (/moon/YYYY-MM-DD) and per-date
-void-of-course pages (/void-of-course-moon/YYYY-MM-DD, added Jul 22 2026
-as a second programmatic series: same underlying data, led by
-void-of-course status instead of sign, targeting "void of course moon
-[date]" distinctly). Re-run periodically to roll the window forward. The
-date pages are deterministic and valid forever, so past entries dropping
-off only trims the sitemap, not the pages.
-Usage: python3 bin/gen-sitemap.py [days_forward]"""
-import json
-import sys
-from datetime import date, timedelta
+"""Regenerate sitemap.xml: the hand-built pages, the Sabian hub and 12 sign
+pages, and the 46 Saturn return cohort pages. Nothing else.
+
+Since 2026-10-21 (search plan move 1, Shannon's call) the sitemap carries
+no per-date Moon or void-of-course URLs and no Sabian degree pages. Those
+pages still serve for readers and links; the date pages are indexable only
+inside the rolling window in api/_seo/crawl.py, and the degree pages are
+noindex. lastmod is the date of the last commit that touched the file
+serving each URL, or today for a file with uncommitted changes, so run this
+after committing content changes and commit the sitemap on its own.
+Usage: python3 bin/gen-sitemap.py"""
+import subprocess
+from datetime import date
 from pathlib import Path
 
 BASE = "https://thetwelverooms.com"
@@ -72,27 +73,19 @@ STATIC = [
     ("/sabian-symbols/aquarius", "monthly", "0.6"),
     ("/sabian-symbols/pisces", "monthly", "0.6"),
 ]
-# Individual Sabian symbol degree pages. Aries was the Jul 24 2026 proof
-# batch; Taurus/Gemini/Cancer (Wave 1) added the same day. Extend
-# SABIAN_SIGNS as each additional sign is verified and written.
-SABIAN_SIGNS = {"aries": 30, "taurus": 30, "gemini": 30, "cancer": 30, "leo": 30, "virgo": 30, "libra": 30, "scorpio": 30, "sagittarius": 30, "capricorn": 30, "aquarius": 30, "pisces": 30}
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
-# Deterministic and valid forever, like the moon-date pages.
+# Computed per request and written in the tense the calendar calls for.
 SATURN_YEARS = range(1960, 2006)
 
+# Left out on purpose (Shannon, 2026-10-21, search plan move 1):
+#  - the 360 Sabian degree pages, now served noindex, follow;
+#  - every per-date /moon/ and /void-of-course-moon/ URL. A committed sitemap
+#    cannot roll forward, so each date it listed went stale within weeks
+#    (all 122 had by Oct 20). The hubs link the current dates instead, and
+#    api/_seo/crawl.py keeps only the rolling window indexable.
 ROOT = Path(__file__).resolve().parent.parent
-WINDOW = json.loads((ROOT / "seo-window.json").read_text())
-INDEX_FROM = date.fromisoformat(WINDOW["index_from"])
-INDEX_TO = date.fromisoformat(WINDOW["index_to"])
 
-# How much of the indexable window to advertise, counted forward from today.
-# Was 180 days, which put 362 per-date URLs in a sitemap that held 24
-# electional pages: the money pages were outnumbered 15 to 1 in the one file
-# Google reads to decide what to crawl. The pages outside this window still
-# serve 200 and stay indexable; they are simply not pushed.
-days = int(sys.argv[1]) if len(sys.argv) > 1 else WINDOW["sitemap_days_forward"]
-start = date.today()
-today = start.isoformat()
+today = date.today().isoformat()
 
 
 def url(path, changefreq, priority, lastmod):
@@ -103,44 +96,35 @@ def url(path, changefreq, priority, lastmod):
             f'<changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>')
 
 
-def file_mtime(path):
-    """Last modified date of the file that serves this path, when there is
-    one. Real mtimes beat stamping every URL with today: a sitewide lastmod
-    of today on every regeneration is the pattern that teaches Google to
-    stop trusting the field."""
-    candidate = ROOT / (path.lstrip("/") + ".html")
-    if path == "/":
-        candidate = ROOT / "index.html"
-    if candidate.exists():
-        return date.fromtimestamp(candidate.stat().st_mtime).isoformat()
-    return today
+def git_date(*files):
+    """Date of the last commit that touched any of these files; today when
+    one has uncommitted changes. A checkout stamps every file with the
+    checkout time, so file mtimes said 'today' for the whole site."""
+    rel = [str(f.relative_to(ROOT)) for f in files if f.exists()]
+    if not rel:
+        return today
+    dirty = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain", "--", *rel],
+                           capture_output=True, text=True).stdout.strip()
+    if dirty:
+        return today
+    out = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%cs", "--", *rel],
+                         capture_output=True, text=True).stdout.strip()
+    return out or today
 
 
-rows = [url(p, cf, pr, file_mtime(p)) for p, cf, pr in STATIC]
-dated_count = 0
-for i in range(days + 1):
-    d = start + timedelta(days=i)
-    if not (INDEX_FROM <= d <= INDEX_TO):
-        continue  # outside the indexable window: api/_seo/crawl.py noindexes it
-    iso = d.isoformat()
-    rows.append(url(f"/moon/{iso}", "never", "0.4", today))
-    rows.append(url(f"/void-of-course-moon/{iso}", "never", "0.4", today))
-    dated_count += 2
-saturn_mtime = file_mtime("/saturn-return-calculator")
+def serving_file(path):
+    return ROOT / ("index.html" if path == "/" else path.lstrip("/") + ".html")
+
+
+rows = [url(p, cf, pr, git_date(serving_file(p))) for p, cf, pr in STATIC]
+saturn_lastmod = git_date(ROOT / "api" / "saturn.py", ROOT / "api" / "_seo" / "crawl.py")
 for y in SATURN_YEARS:
-    rows.append(url(f"/saturn-return/{y}", "yearly", "0.5", saturn_mtime))
-sabian_count = 0
-for sign, n in SABIAN_SIGNS.items():
-    for d in range(1, n + 1):
-        path = f"/sabian-symbols/{sign}-{d}"
-        rows.append(url(path, "yearly", "0.5", file_mtime(path)))
-        sabian_count += 1
+    rows.append(url(f"/saturn-return/{y}", "yearly", "0.5", saturn_lastmod))
 
 xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
        + "\n".join(rows) + "\n</urlset>\n")
 out = Path(__file__).resolve().parent.parent / "sitemap.xml"
 out.write_text(xml)
-print(f"wrote {out}: {len(rows)} URLs = {len(STATIC)} static + {dated_count} moon/void-date "
-      f"+ {len(SATURN_YEARS)} saturn-year + {sabian_count} sabian-degree")
-print(f"per-date window advertised: {days} days forward, clipped to {INDEX_FROM}..{INDEX_TO}")
+print(f"wrote {out}: {len(rows)} URLs = {len(STATIC)} static + {len(SATURN_YEARS)} saturn-year "
+      f"(no per-date or Sabian degree URLs, by design)")

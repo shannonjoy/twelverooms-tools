@@ -1,6 +1,7 @@
 {
-  "_comment": "Single source of truth for the per-date programmatic series. index_from and index_to bound what /moon/:date and /void-of-course-moon/:date will let a crawler reach; api/_seo/crawl.py must carry the same two dates. sitemap_days_forward is how much of that window bin/gen-sitemap.py advertises, counted forward from the day it runs.",
+  "_comment": "Single source of truth for the per-date programmatic series. index_from and index_to bound what /moon/:date and /void-of-course-moon/:date will chain-link at all; roll_back_days and roll_forward_days bound which of those dates are indexable, counted from today at request time. api/_seo/crawl.py must carry the same four values (bin/check-seo.py enforces it). Since 2026-10-21 the sitemap lists no per-date URLs: a committed sitemap cannot roll, so every date in it expired. The hubs carry the rolling links instead (bin/gen-internal-links.py writes them; the hub pages roll them forward in the browser).",
   "index_from": "2026-01-01",
   "index_to": "2027-12-31",
-  "sitemap_days_forward": 60
+  "roll_back_days": 7,
+  "roll_forward_days": 30
 }

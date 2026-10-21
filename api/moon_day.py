@@ -15,6 +15,7 @@ import engines  # noqa: E402
 import electional  # noqa: E402
 import swisseph as swe  # noqa: E402
 import crawl  # noqa: E402
+import shop  # noqa: E402
 
 SIGN_STYLE = {
     "Aries": "bold and headlong", "Taurus": "steady and sensory",
@@ -167,18 +168,21 @@ def render(d):
     m = compute(d)
     pretty = d.strftime("%B %-d, %Y")
     iso = d.isoformat()
-    # Day-to-day chain, clipped at the indexable window so the walk ends.
+    # Day-to-day chain, clipped at the indexable window so the walk ends,
+    # and nofollow into dates outside the rolling window (crawl.chain_rel).
     # See api/_seo/crawl.py: unclipped this route reached 73,414 dates.
     prev_d, next_d = d - timedelta(days=1), d + timedelta(days=1)
     daynav = "".join(
-        [f'<a href="{h}">&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
+        [f'<a href="{h}"{crawl.chain_rel(prev_d)}>&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
          for h in [crawl.chain_href(prev_d, "/moon")] if h]
         + ['<a href="/moon">Today\'s Moon</a>']
-        + [f'<a href="{h}">{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
+        + [f'<a href="{h}"{crawl.chain_rel(next_d)}>{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
            for h in [crawl.chain_href(next_d, "/moon")] if h]
     )
     robots = crawl.robots_meta(d)
     sign = m["sign"]
+    # "an Aries Moon", "an Aquarius Moon": the article follows the sound.
+    a_sign = ("an " if sign[:1] in "AEIOU" else "a ") + esc(sign)
     style = SIGN_STYLE.get(sign, "distinct")
     ruler = SIGN_RULER.get(sign, "")
     practical = SIGN_PRACTICAL.get(sign, "")
@@ -274,7 +278,7 @@ def render(d):
   </div>
 
   <section class="prose">
-    <h2>What a {esc(sign)} Moon feels like</h2>
+    <h2>What {a_sign} Moon feels like</h2>
     <p>When the Moon moves through {esc(sign)}, the mood of the day tilts {esc(style)}. The Moon is the fastest body in the sky and she sets the emotional weather, so this is the undertone beneath {esc(pretty)}, changing again in a day or two as she moves on.{esc(ing_txt)} {esc(sign)} is ruled by {esc(ruler)}, and that rulership is where the sign's style comes from.</p>
     <p>Her phase is the other half. This is a <strong>{esc(m['phase'].lower())}</strong>: {esc(phase_mean)}. If you are timing something that matters, the rule of thumb is to build on a waxing Moon, release on a waning one, and steer clear of the void-of-course windows above.</p>
     <p>For the void-of-course windows on {esc(pretty)} led up front, with what to do about them, see the <a href="/void-of-course-moon/{iso}">void of course read for this date</a>.</p>
@@ -285,7 +289,7 @@ def render(d):
   </section>
 
   <section class="prose">
-    <h2>What to do with a {esc(sign)} Moon on {esc(pretty)}</h2>
+    <h2>What to do with {a_sign} Moon on {esc(pretty)}</h2>
     <p>{esc(practical)}</p>
   </section>
 
@@ -293,8 +297,9 @@ def render(d):
 
   <div class="cta">
     <h2>Timing something on {esc(d.strftime('%B %-d'))}?</h2>
-    <p>Find the exact best window for your city and intention in the free timing finder, or ask The Twelve Rooms for a full reading.</p>
+    <p>Find the exact best window for your city and intention in the free timing finder. For the dates that are yours rather than everyone's, the Year-Ahead Reading reads your next twelve months from your own chart.</p>
     <a href="/electional" rel="noopener">Open the timing finder</a>
+    <a class="secondary" href="{shop.etsy_url('year_ahead', 'moon-day')}" rel="noopener">The Year-Ahead Reading on Etsy</a>
   </div>
   <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>

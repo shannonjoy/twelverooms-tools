@@ -19,10 +19,19 @@ Two problems this module exists to solve, both measured on 2026-08-10:
    dates outside it are served with `noindex, follow` and the chain link that
    would leave the window is dropped, so the walk terminates.
 
-Keep INDEX_FROM and INDEX_TO in step with seo-window.json at the repo root.
-bin/check-seo.py fails if the two disagree.
+3. Added 2026-10-21 (search plan, move 1): a dated page is only worth
+   indexing while it is current. Inside INDEX_FROM..INDEX_TO a page is now
+   indexable only within a rolling window of ROLL_BACK days before today to
+   ROLL_FORWARD days after it, judged at request time. Older and further-out
+   dates still serve 200 for visitors and keep their day-to-day links, but
+   carry `noindex, follow`, and a chain link into that zone is marked
+   `rel="nofollow"` so a crawler is not walked through it. Nothing expires
+   by being forgotten in a static file any more.
+
+Keep INDEX_FROM, INDEX_TO, ROLL_BACK and ROLL_FORWARD in step with
+seo-window.json at the repo root. bin/check-seo.py fails if they disagree.
 """
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 
 # Indexable window for the per-date programmatic series. Wider than the
 # sitemap window on purpose: a reader asking about a wedding date eighteen
@@ -31,17 +40,37 @@ from datetime import date
 INDEX_FROM = date(2026, 1, 1)
 INDEX_TO = date(2027, 12, 31)
 
+# Rolling indexable window, counted from today (UTC) at request time.
+ROLL_BACK = 7
+ROLL_FORWARD = 30
+
+
+def today_utc():
+    return datetime.now(timezone.utc).date()
+
 
 def in_index_window(d):
-    """True when a per-date page should be indexable and chain-linked."""
+    """True when a per-date page may be chain-linked at all."""
     return INDEX_FROM <= d <= INDEX_TO
 
 
-def robots_meta(d):
-    """Robots meta tag for a per-date page, empty inside the window."""
-    if in_index_window(d):
+def in_rolling_window(d, today=None):
+    """True when a per-date page is current enough to be indexed."""
+    today = today or today_utc()
+    return (in_index_window(d)
+            and today - timedelta(days=ROLL_BACK) <= d <= today + timedelta(days=ROLL_FORWARD))
+
+
+def robots_meta(d, today=None):
+    """Robots meta tag for a per-date page: empty only while it is current."""
+    if in_rolling_window(d, today):
         return ""
     return '<meta name="robots" content="noindex, follow">'
+
+
+def chain_rel(d, today=None):
+    """rel attribute for a prev or next link: nofollow into a stale date."""
+    return "" if in_rolling_window(d, today) else ' rel="nofollow"'
 
 
 def chain_href(d, path_prefix):

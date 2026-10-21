@@ -18,6 +18,7 @@ import engines  # noqa: E402
 import electional  # noqa: E402
 import swisseph as swe  # noqa: E402
 import crawl  # noqa: E402
+import shop  # noqa: E402
 
 
 def esc(s):
@@ -50,14 +51,15 @@ def render(d):
     m = compute(d)
     pretty = d.strftime("%B %-d, %Y")
     iso = d.isoformat()
-    # Day-to-day chain, clipped at the indexable window so the walk ends.
+    # Day-to-day chain, clipped at the indexable window so the walk ends,
+    # and nofollow into dates outside the rolling window (crawl.chain_rel).
     # See api/_seo/crawl.py: unclipped this route reached 73,414 dates.
     prev_d, next_d = d - timedelta(days=1), d + timedelta(days=1)
     daynav = "".join(
-        [f'<a href="{h}">&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
+        [f'<a href="{h}"{crawl.chain_rel(prev_d)}>&larr; {esc(prev_d.strftime("%b %-d"))}</a>'
          for h in [crawl.chain_href(prev_d, "/void-of-course-moon")] if h]
         + ['<a href="/void-of-course-moon">Void of course now</a>']
-        + [f'<a href="{h}">{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
+        + [f'<a href="{h}"{crawl.chain_rel(next_d)}>{esc(next_d.strftime("%b %-d"))} &rarr;</a>'
            for h in [crawl.chain_href(next_d, "/void-of-course-moon")] if h]
     )
     robots = crawl.robots_meta(d)
@@ -122,8 +124,9 @@ def render(d):
 
   <div class="cta">
     <h2>Timing something on {esc(d.strftime('%B %-d'))}?</h2>
-    <p>The free timing finder excludes void-of-course Moon from every window it scores, for your own city and intention.</p>
+    <p>The free timing finder excludes void-of-course Moon from every window it scores, for your own city and intention. For the dates that are yours rather than everyone's, the Year-Ahead Reading reads your next twelve months from your own chart.</p>
     <a href="/electional" rel="noopener">Open the timing finder</a>
+    <a class="secondary" href="{shop.etsy_url('year_ahead', 'void-of-course-day')}" rel="noopener">The Year-Ahead Reading on Etsy</a>
   </div>
   <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>

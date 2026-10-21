@@ -19,6 +19,9 @@ Checks, each of which failed on main at the time of writing:
      page.
   6. Every electional page has at least MIN_ELECTIONAL_INBOUND inbound
      links from other pages, not counting its own canonical.
+  7. (2026-10-21, search plan move 1) The sitemap lists no per-date URL and
+     no Sabian degree page; every Sabian degree page carries noindex; and no
+     sitemap URL is served from a file that carries noindex.
 
 Usage: python3 bin/check-seo.py
 Exit status 0 when every check passes, 1 otherwise.
@@ -42,6 +45,9 @@ SCRIPT_RE = re.compile(r"<script\b.*?</script>", re.S | re.I)
 HREF_RE = re.compile(r'<a\b[^>]*?href\s*=\s*"([^"]+)"', re.I)
 LOC_RE = re.compile(r"<loc>([^<]+)</loc>")
 URL_RE = re.compile(r"<url>.*?</url>", re.S)
+DATED_RE = re.compile(r"^/(?:moon|void-of-course-moon)/\d{4}-\d{2}-\d{2}$")
+SABIAN_DEGREE_RE = re.compile(r"^/sabian-symbols/[a-z]+-\d+$")
+NOINDEX_RE = re.compile(r'<meta name="robots" content="[^"]*noindex', re.I)
 
 # Paths served by a rewrite in vercel.json rather than by a file on disk.
 DYNAMIC_PREFIXES = ("/moon/", "/void-of-course-moon/", "/saturn-return/")
@@ -103,14 +109,19 @@ def main():
     # 2. window constants agree
     window = json.loads((ROOT / "seo-window.json").read_text())
     if (date.fromisoformat(window["index_from"]) != crawl.INDEX_FROM
-            or date.fromisoformat(window["index_to"]) != crawl.INDEX_TO):
+            or date.fromisoformat(window["index_to"]) != crawl.INDEX_TO
+            or window.get("roll_back_days") != crawl.ROLL_BACK
+            or window.get("roll_forward_days") != crawl.ROLL_FORWARD):
         failures.append(
             f"indexable window disagrees: seo-window.json says "
-            f"{window['index_from']}..{window['index_to']}, api/_seo/crawl.py says "
-            f"{crawl.INDEX_FROM}..{crawl.INDEX_TO}")
+            f"{window['index_from']}..{window['index_to']} rolling "
+            f"-{window.get('roll_back_days')}/+{window.get('roll_forward_days')}, "
+            f"api/_seo/crawl.py says {crawl.INDEX_FROM}..{crawl.INDEX_TO} rolling "
+            f"-{crawl.ROLL_BACK}/+{crawl.ROLL_FORWARD}")
     else:
-        notes.append(f"indexable window: {crawl.INDEX_FROM} to {crawl.INDEX_TO}, "
-                     f"agreed by seo-window.json and api/_seo/crawl.py")
+        notes.append(f"indexable window: {crawl.INDEX_FROM} to {crawl.INDEX_TO}, rolling "
+                     f"{crawl.ROLL_BACK} days back to {crawl.ROLL_FORWARD} ahead, agreed by "
+                     f"seo-window.json and api/_seo/crawl.py")
 
     # 3. sitemap lastmod on every URL
     sitemap = (ROOT / "sitemap.xml").read_text()
@@ -122,15 +133,26 @@ def main():
     else:
         notes.append(f"sitemap: {len(entries)} URLs, all carrying lastmod")
 
-    # sitemap must stay inside the indexable window
-    outside = []
-    for u in urls:
-        m = re.match(r"^/(?:moon|void-of-course-moon)/(\d{4}-\d{2}-\d{2})$", u)
-        if m and not crawl.in_index_window(date.fromisoformat(m.group(1))):
-            outside.append(u)
-    if outside:
-        failures.append(f"{len(outside)} sitemap URLs fall outside the indexable "
-                        f"window and would be served noindex, first: {outside[:3]}")
+    # 7. the sitemap diet holds
+    dated = [u for u in urls if DATED_RE.match(u)]
+    degrees = [u for u in urls if SABIAN_DEGREE_RE.match(u)]
+    if dated or degrees:
+        failures.append(f"sitemap lists {len(dated)} per-date and {len(degrees)} Sabian degree "
+                        f"URLs; both are left out by design, first: {(dated + degrees)[:3]}")
+    noindexed = {p for p, f in page_paths() if NOINDEX_RE.search(
+        f.read_text(encoding="utf-8", errors="replace"))}
+    listed_noindex = [u for u in urls if u in noindexed]
+    if listed_noindex:
+        failures.append(f"{len(listed_noindex)} sitemap URLs are served noindex, "
+                        f"first: {listed_noindex[:3]}")
+    degree_files = [p for p, _ in page_paths() if SABIAN_DEGREE_RE.match(p)]
+    open_degrees = [p for p in degree_files if p not in noindexed]
+    if open_degrees:
+        failures.append(f"{len(open_degrees)} Sabian degree pages lack noindex, "
+                        f"first: {open_degrees[:3]}")
+    if not (dated or degrees or listed_noindex or open_degrees):
+        notes.append(f"sitemap diet: no per-date or Sabian degree URLs listed, "
+                     f"{len(degree_files)} degree pages noindex, no listed URL noindex")
 
     # 4 and 5. orphans and depth, over the server-rendered graph
     out = build_graph()

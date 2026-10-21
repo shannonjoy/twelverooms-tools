@@ -48,6 +48,11 @@ FIXED cards to DYNAMIC og:image for personalized tool results (Big 3,
 synastry, natal chart), which pre-rendering can't cover.
 
 Run: python3 bin/gen_sabian_pages.py   (writes hub + sign index + all degree pages)
+
+Degree pages carry noindex, follow (Shannon, 2026-10-21, search plan move 1):
+they stay served and linked for readers, but 360 templated pages on a young
+domain were spending its quality allowance. The hub and the 12 sign pages
+stay indexable and in the sitemap.
 """
 import html
 import importlib.util
@@ -200,6 +205,7 @@ def degree_page(sign_name, sign_slug, entry, total):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://thetwelverooms.com/sabian-symbols/{slug}">
 {og_line}<link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
