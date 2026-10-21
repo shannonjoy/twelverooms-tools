@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent / "_engines"))
 sys.path.insert(0, str(Path(__file__).parent / "_seo"))
 import engines            # noqa: E402
 import crawl              # noqa: E402
+import shop               # noqa: E402
 import saturn_return as sr  # noqa: E402
 import swisseph as swe    # noqa: E402
 
@@ -108,6 +109,41 @@ def _fmt_day(jd):
     return datetime(y, m, int(d)).strftime("%B %-d, %Y")
 
 
+def sign_passes(sign, year_lo, year_hi):
+    """Every day transiting Saturn entered or left `sign` between Jan 1 of
+    year_lo and Dec 31 of year_hi, as [(jd, "enters"|"leaves")]. Retrograde
+    returns show up as a leave and a re-entry, which is the honest shape of
+    a three-pass return."""
+    x, end = _jd(year_lo, 1, 1), _jd(year_hi, 12, 31)
+    inside = _sign_at(x) == sign
+    out = []
+    while x < end:
+        nxt = min(x + 2.0, end)
+        now_in = _sign_at(nxt) == sign
+        if now_in != inside:
+            out.append((_find_ingress_day(x, nxt), "enters" if now_in else "leaves"))
+            inside = now_in
+        x = nxt
+    return out
+
+
+def _tense(sign, years, today=None):
+    """past, now or future for a return, judged to the day: the return is
+    over once Saturn has left the sign for the last time inside the window,
+    and has not begun until it first enters."""
+    today_jd = _jd(*(today or date.today()).timetuple()[:3])
+    moves = sign_passes(sign, years[0] - 1, years[1])
+    entries = [j for j, k in moves if k == "enters"]
+    leaves = [j for j, k in moves if k == "leaves"]
+    first_in = entries[0] if entries else _jd(years[0], 1, 1)
+    last_out = leaves[-1] if leaves else _jd(years[1], 12, 31)
+    if last_out < today_jd:
+        return "past"
+    if first_in <= today_jd:
+        return "now"
+    return "future"
+
+
 def _win_phrase(years):
     return str(years[0]) if years[0] == years[1] else f"{years[0]} to {years[1]}"
 
@@ -126,10 +162,24 @@ def render(year):
     blocks = [(_sign_block(s, year), ing) for s, ing in signs]
     two = len(blocks) == 2
 
-    # Lede + the headline window (first block's first return).
+    # Lede + the headline window. In a year Saturn changed signs, lead with
+    # the sign that held most of that year's births.
     lead = blocks[0][0]
+    if two and blocks[1][1] < _jd(year, 7, 1):
+        lead = blocks[1][0]
     lead_first = lead["first"]
     first_phrase = _win_phrase(lead_first) if lead_first else "your late twenties"
+    tense = _tense(lead["sign"], lead_first) if lead_first else "future"
+    window_clause = {
+        "past": f"came in the window <strong>{esc(first_phrase)}</strong>",
+        "now": f"is happening now, across <strong>{esc(first_phrase)}</strong>",
+        "future": f"lands in the window <strong>{esc(first_phrase)}</strong>",
+    }[tense]
+    window_plain = {
+        "past": f"came in the window {first_phrase}",
+        "now": f"is happening now, across {first_phrase}",
+        "future": f"lands in the window {first_phrase}",
+    }[tense]
     if two:
         ing_day = _fmt_day(blocks[1][1])
         sign_summary = (f"Saturn changed signs in {year}: it was in <strong>{esc(blocks[0][0]['sign'])}</strong> "
@@ -151,9 +201,22 @@ def render(year):
                 who = f'<p class="hint">For {esc(year)} births before {esc(_fmt_day(blocks[1][1]))}.</p>'
             else:
                 who = f'<p class="hint">For {esc(year)} births on or after {esc(_fmt_day(ing))}.</p>'
-        first_txt = (f"Saturn is back in {esc(s)} across <strong>{esc(_win_phrase(blk['first']))}</strong>; "
-                     f"your exact return, near age 29 to 30, lands inside that window"
-                     if blk["first"] else "in your late twenties")
+        if blk["first"]:
+            t = _tense(s, blk["first"])
+            verb = {"past": "was back in", "now": "is back in", "future": "returns to"}[t]
+            lands = {"past": "landed", "now": "lands", "future": "lands"}[t]
+            first_txt = (f"Saturn {verb} {esc(s)} across <strong>{esc(_win_phrase(blk['first']))}</strong>; "
+                         f"your exact return, near age 29 to 30, {lands} inside that window")
+        else:
+            first_txt = "in your late twenties"
+        passes_txt = ""
+        if blk["first"] and t == "now":
+            moves = sign_passes(s, blk["first"][0] - 1, blk["first"][1])
+            if moves:
+                steps = "; ".join(f"{k} {esc(s)} on {esc(_fmt_day(j))}"
+                                  for j, k in moves)
+                passes_txt = (f"<li><strong>Saturn's passes, computed:</strong> {steps}. "
+                              f"Each entry is a pass of your return; your exact dates sit inside them.</li>")
         second_txt = ""
         if blk["second"]:
             second_txt = (f"<li><strong>Second Saturn return:</strong> around "
@@ -164,6 +227,7 @@ def render(year):
       <p class="moon-mood">A Saturn return in {esc(s)} is about {esc(blk['theme'])}.</p>
       <ul class="facts">
         <li><strong>First Saturn return:</strong> {first_txt}.</li>
+        {passes_txt}
         {second_txt}
       </ul>
     </div>""")
@@ -173,7 +237,7 @@ def render(year):
         '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":['
         '{"@type":"Question","name":"When is the Saturn return for someone born in ' + esc(year) + '?",'
         '"acceptedAnswer":{"@type":"Answer","text":"'
-        + esc(f"If you were born in {year}, your first Saturn return lands in the window {first_phrase}, "
+        + esc(f"If you were born in {year}, your first Saturn return {window_plain}, "
               f"with the exact return near age 29 to 30, when transiting Saturn comes back to the sign it "
               f"held at your birth. The exact dates depend on your birth date and are computed by the free "
               f"Saturn return calculator.")
@@ -189,8 +253,8 @@ def render(year):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Saturn Return for {esc(year)} Births: When Is It? &middot; The Twelve Rooms</title>
-<meta name="description" content="Born in {esc(year)}? Your natal Saturn is in {esc(meta_signs)}, and your first Saturn return lands in {esc(first_phrase)}, near age 29 to 30. Computed with the Swiss Ephemeris. Get your exact dates with the free calculator.">
+<title>Saturn Return for {esc(year)} Babies: When Is It? &middot; The Twelve Rooms</title>
+<meta name="description" content="Born in {esc(year)}? Your natal Saturn is in {esc(meta_signs)}, and your first Saturn return {esc(window_plain)}, near age 29 to 30. Computed with the Swiss Ephemeris. Get your exact dates with the free calculator.">
 <link rel="canonical" href="https://thetwelverooms.com/saturn-return/{year}">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
@@ -200,7 +264,7 @@ def render(year):
 <div id="masthead"></div>
 <main class="wrap">
   <h1>Saturn return for {esc(year)} births</h1>
-  <p class="lede">{sign_summary} Your first Saturn return, when Saturn comes home to that sign, lands in the window <strong>{esc(first_phrase)}</strong>, with the exact return near age 29 to 30. Times to the day depend on your exact birth date: get them free in the <a href="/saturn-return-calculator">Saturn return calculator</a>.</p>
+  <p class="lede">{sign_summary} Your first Saturn return, when Saturn comes home to that sign, {window_clause}, with the exact return near age 29 to 30. Times to the day depend on your exact birth date: get them free in the <a href="/saturn-return-calculator">Saturn return calculator</a>.</p>
 
   {''.join(cards)}
 
@@ -209,7 +273,7 @@ def render(year):
     <p>Saturn takes about twenty-nine and a half years to circle the zodiac, so a little before you turn thirty it arrives back at the place it sat when you were born. That homecoming is your <strong>Saturn return</strong>, and the tradition treats it as the true threshold into adulthood: the season the life you built in your twenties gets its first honest audit. What is real is confirmed; what was scaffolding tends to come loose. It is demanding, not cursed, and in hindsight it is almost always the making of the next version of you.</p>
     <p>Because Saturn spends part of most years retrograde, a return can arrive as one clean pass or as three passes spread across roughly a year. The honest way to hold it is as a window, the whole stretch Saturn spends on your natal degree, rather than a single day. For {esc(year)} births that window is the range above; your exact passes come from your birth date.</p>
     <h2>Get your exact dates</h2>
-    <p>This page is keyed to your birth year, which pins the sign and the rough window. Your precise passes, and the house the return lands in, come from your full birth details. The <a href="/saturn-return-calculator">free calculator</a> computes them to the day, and nothing is stored.</p>
+    <p>This page is keyed to your birth year, which pins the sign and the rough window. Your precise passes, and the house the return lands in, come from your full birth details. The <a href="/saturn-return-calculator">free calculator</a> computes them to the day.</p>
   </section>
 
   <nav class="daynav">
@@ -220,8 +284,8 @@ def render(year):
 
   <div class="cta">
     <h2>The dates are free. The meaning is the reading.</h2>
-    <p>The Twelve Rooms Saturn Return reading reads your natal Saturn in full, the room the return lands in, and what this season is here to confirm, honestly and without doom.</p>
-    <a href="/reports">Explore the Saturn return reading</a>
+    <p>The Twelve Rooms Saturn Return Report reads your natal Saturn in full, the room the return lands in, and what this season is here to confirm, honestly and without doom.</p>
+    <a href="{shop.etsy_url('saturn', f'saturn-return-{year}')}" rel="noopener">The Saturn Return Report on Etsy</a>
   </div>
   <div id="site-footer">{crawl.FOOTER_HTML}</div>
 </main>
