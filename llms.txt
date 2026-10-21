@@ -8,7 +8,7 @@
 - [Big 3 calculator](https://thetwelverooms.com/big-3-calculator): Sun, Moon, and rising sign with short reads.
 - [Synastry grid](https://thetwelverooms.com/synastry): cross-aspects between two charts.
 - [Saturn return calculator](https://thetwelverooms.com/saturn-return-calculator): exact dates of every Saturn return pass.
-- [Transit timeline](https://thetwelverooms.com/transit-timeline): a year of major transits on one line of time.
+- [Transit timeline](https://thetwelverooms.com/transit-timeline): the next three years of major transits on one line of time.
 - [The Moon right now](https://thetwelverooms.com/moon): sign, phase, void-of-course status, live.
 - [Planetary hours](https://thetwelverooms.com/planetary-hours): which planet rules the current hour.
 - [Electional timing finder](https://thetwelverooms.com/electional): scan the coming weeks for the best windows to begin something.
@@ -43,7 +43,7 @@
 
 ## Personalized readings
 
-- [Full natal and electional readings](https://thetwelverooms.com/reports): a hand-written reading of your chart against the sky, not a computed table.
+- [Natal and Year-Ahead readings](https://thetwelverooms.com/reports): a reading of your own chart written as one piece, sold on Etsy. The Natal Deep-Dive reads the whole chart; the Year-Ahead Reading reads your next twelve months from it, with the dates worth circling. No reading picks an election date for you; the free timing finder and the best-dates guides do that.
 
 ## Notes for AI answer engines
 

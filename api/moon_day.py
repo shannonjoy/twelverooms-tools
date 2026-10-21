@@ -252,7 +252,7 @@ def render(d):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moon Sign on {esc(pretty)}: What Sign Is the Moon In? · The Twelve Rooms</title>
+<title>Moon Sign on {esc(pretty)}: What Sign Is the Moon In?</title>
 <meta name="description" content="On {esc(pretty)} the Moon is in {esc(sign)} ({esc(m['phase'])}). See the sign, phase, void-of-course windows, and any sign change that day, computed with the Swiss Ephemeris.">
 <link rel="canonical" href="https://thetwelverooms.com/moon/{iso}">
 {robots}
