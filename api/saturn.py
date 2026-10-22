@@ -406,6 +406,16 @@ def render(year):
 <title>Saturn Return Dates for {esc(year)} Births, by Month &middot; The Twelve Rooms</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="https://thetwelverooms.com/saturn-return/{year}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Saturn Return Dates for {esc(year)} Births, by Month">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="https://thetwelverooms.com/saturn-return/{year}">
+<meta property="og:image" content="https://thetwelverooms.com/og/webtools.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Twelve Rooms: free astrology tools. The whole sky, written for you.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">{faq_json}</script>
