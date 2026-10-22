@@ -228,19 +228,15 @@ def gen_is_mercury():
     verdict, cur, phase = merc_state(ASOF)
     rx, dr = cur["station_retrograde"], cur["station_direct"]
     sb, se = cur["shadow_begins"], cur["shadow_ends"]
-    asof_label = ASOF.strftime("%B %-d, %Y")
-    if phase == "pre":
-        say = (f"Mercury is in its pre-shadow. It stations retrograde <strong>{long_day(rx)}</strong> "
-               f"at {deg_label(rx)} and turns direct {long_day(dr)}.")
-    elif phase == "rx":
-        say = (f"Mercury is retrograde in {signs_phrase(cur['signs'])}. It turns direct "
-               f"<strong>{long_day(dr)}</strong> at {deg_label(dr)}.")
-    elif phase == "post":
-        say = (f"Mercury turned direct {long_day(dr)} and is in its post-shadow until "
-               f"<strong>{long_day(se)}</strong>.")
-    else:
-        say = (f"Mercury is moving direct. The next retrograde runs <strong>{long_day(rx)} to "
-               f"{long_day(dr)}</strong>.")
+    # The no-JavaScript answer is a schedule, not a verdict (2026-10-22).
+    # A baked "Not yet" turned false the minute Mercury stationed, and
+    # crawlers and answer engines read the HTML, not sky.js. The dates are
+    # true before, during and after the retrograde; sky.js still replaces
+    # the verdict and this sentence with today's yes or no on load.
+    static_verdict = f"{short_day(rx)} to {short_day(dr)}"
+    say = (f"Mercury stations retrograde on <strong>{long_day(rx)}</strong> at {central(rx)[1]}, "
+           f"at {deg_label(rx)}, and turns direct on <strong>{long_day(dr)}</strong> at "
+           f"{central(dr)[1]}, at {deg_label(dr)}. Its shadow runs {long_day(sb)} to {long_day(se)}.")
     periods = [{"retrograde": iso_z(r["station_retrograde"]["utc"]),
                 "direct": iso_z(r["station_direct"]["utc"]),
                 "shadow_begins": iso_z(r["shadow_begins"]["utc"]),
@@ -249,8 +245,7 @@ def gen_is_mercury():
 
     def cell(label, ev, extra, ph):
         day, clock = central(ev)
-        now_cls = ' class="now"' if ph == phase else ""
-        return (f'<div data-phase="{ph}"{now_cls}><b>{label}</b>'
+        return (f'<div data-phase="{ph}"><b>{label}</b>'
                 f'<span>{day}</span><small>{clock} &middot; {utc_clock(ev)}</small>'
                 f'<small>{extra}</small></div>')
 
@@ -275,14 +270,14 @@ def gen_is_mercury():
         per_year.setdefault(year_of(r["station_retrograde"]), []).append(r)
     lens = [r["days"] for r in MERC]
 
-    nxt = next(r for r in MERC if d_of(r["station_retrograde"]["utc"]).date() > ASOF) \
-        if phase in ("rx", "post") else cur
+    after = next((r for r in MERC if d_of(r["station_retrograde"]["utc"]) > d_of(rx["utc"])), None)
     qas = [
         ("When is the next Mercury retrograde?",
-         f"Mercury next stations retrograde on {long_day(nxt['station_retrograde'])} at "
-         f"{deg_text(nxt['station_retrograde'])} and turns direct on {long_day(nxt['station_direct'])} "
-         f"at {deg_text(nxt['station_direct'])} (US Central time). The shadow runs "
-         f"{long_day(nxt['shadow_begins'])} to {long_day(nxt['shadow_ends'])}."),
+         f"Mercury stations retrograde on {long_day(rx)} at {deg_text(rx)} and turns direct on "
+         f"{long_day(dr)} at {deg_text(dr)} (US Central time), with the shadow from {long_day(sb)} "
+         f"to {long_day(se)}."
+         + (f" The one after that runs {long_day(after['station_retrograde'])} to "
+            f"{long_day(after['station_direct'])} in {signs_phrase(after['signs'])}." if after else "")),
         ("How many times is Mercury retrograde in 2027?",
          f"Three times: " + "; ".join(
              f"{long_day(r['station_retrograde'])} to {long_day(r['station_direct'])} in "
@@ -306,15 +301,15 @@ def gen_is_mercury():
 
     body = f"""  <h1>Is Mercury retrograde right now?</h1>
   <div class="answer" data-mercury="merc-periods" aria-live="polite">
-    <div class="kicker">Mercury today</div>
-    <div class="verdict">{verdict}</div>
+    <div class="kicker">Mercury retrograde</div>
+    <div class="verdict">{static_verdict}</div>
     <p class="say">{say}</p>
-    <p class="asof">As of {asof_label}. This answer updates with your own clock when the page loads.</p>
+    <p class="asof">Computed with the Swiss Ephemeris, in US Central time. When the page loads, the answer above checks your own clock.</p>
   </div>
   <p class="lede">The short answer, then the dates. Every station, shadow and degree below is computed with the Swiss Ephemeris, shown in US Central time with UTC beside it. For what the season means and what to do with it, read <a href="/mercury-retrograde">Mercury retrograde, explained</a>.</p>
 
   <div class="card">
-    <h2 style="margin-top:0">{"This" if phase in ("pre", "rx", "post") else "The next"} retrograde, start to finish</h2>
+    <h2 style="margin-top:0">The {datetime.fromisoformat(rx["central"][:16]).strftime("%B %Y")} retrograde, start to finish</h2>
     <div class="phase-row">{phase_row}</div>
     <p class="hint" style="margin-top:10px">A retrograde has four marks: the shadow opens, Mercury stations retrograde, it stations direct, and the shadow closes. The highlighted box is where Mercury is today.</p>
   </div>
