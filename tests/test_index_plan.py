@@ -174,7 +174,7 @@ class SitemapAndRouting(unittest.TestCase):
         self.locs = re.findall(r"<loc>https://thetwelverooms.com([^<]*)</loc>", read("sitemap.xml"))
 
     def test_sitemap_contents(self):
-        self.assertEqual(len(self.locs), 102)
+        self.assertEqual(len(self.locs), 109)  # 102 + the 7 sky-calendar and embed pages (growth-features-1021)
         self.assertEqual(len(set(self.locs)), 102)
         years = [p for p in self.locs if p.startswith("/saturn-return/")]
         self.assertEqual(years, [f"/saturn-return/{y}" for y in YEARS])
@@ -202,7 +202,7 @@ class IndexNow(unittest.TestCase):
         out = subprocess.run(["node", str(ROOT / "bin" / "indexnow.mjs"), "--dry-run"],
                              capture_output=True, text=True, cwd=ROOT)
         self.assertEqual(out.returncode, 0, out.stderr)
-        self.assertIn("dry run: 102 URLs, nothing sent", out.stdout)
+        self.assertIn("dry run: 109 URLs, nothing sent", out.stdout)
 
 
 if __name__ == "__main__":
