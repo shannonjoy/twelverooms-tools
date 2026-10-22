@@ -175,7 +175,7 @@ class SitemapAndRouting(unittest.TestCase):
 
     def test_sitemap_contents(self):
         self.assertEqual(len(self.locs), 109)  # 102 + the 7 sky-calendar and embed pages (growth-features-1021)
-        self.assertEqual(len(set(self.locs)), 102)
+        self.assertEqual(len(set(self.locs)), 109)
         years = [p for p in self.locs if p.startswith("/saturn-return/")]
         self.assertEqual(years, [f"/saturn-return/{y}" for y in YEARS])
         for slug in CORE:
