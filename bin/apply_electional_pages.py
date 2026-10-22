@@ -321,7 +321,8 @@ def month_nav():
 
 
 OLD_CARD = re.compile(
-    r'(?:<div class="highlight">.*?</div>\s*)?<div class="card">\s*<table class="year-table">.*?</table>'
+    r'(?:<div class="highlight">.*?</div>\s*)?<div class="card">\s*(?:<nav class="monthnav".*?</nav>\s*)?'
+    r'<table class="year-table">.*?</table>'
     r'\s*<p class="hint"[^>]*>.*?</p>\s*</div>', re.S)
 MARKED = re.compile(re.escape(START) + r".*?" + re.escape(END), re.S)
 
@@ -362,6 +363,32 @@ def set_first_answer(s, aeo):
 # named a date the table no longer shows or said "every date" of something
 # the computed rows do not all share. Replaced with what the rows support.
 PROSE_FIXES = {
+    # 2026-10-22: the July rows (Apr 8, Aug 31, Nov 13, Dec 11 "Excellent")
+    # were entered by hand; the computed table replaces them, and these
+    # sentences said what the old rows said.
+    "best-wedding-dates-2027": [
+        ("The strongest days of the year add one more grace: a Moon in <strong>Taurus</strong>, her sign "
+         "of exaltation, which is why April 8, November 13, and December 11 rise above the rest, joined "
+         "by a Virgo standout on August 31.",
+         "A Moon in <strong>Taurus</strong>, her sign of exaltation, adds one more grace, as it does on "
+         "November 13 and December 11."),
+        ("The strongest wedding dates of 2027 fall on a Taurus Moon, the Moon's sign of exaltation: "
+         "April 8, November 13, and December 11, plus a fourth standout in Virgo on August 31. Each is "
+         "rated Excellent on the Twelve Rooms Timing Scale, the top tenth of what this election produces "
+         "across five years of sky data. The table on this page gives the best day in every month.",
+         "Each has the Moon out of the void and applying to Venus or Jupiter, with Venus and Mercury "
+         "direct. No month reaches Excellent, the top tenth of five years of this election. The table "
+         "gives the best day in every month, with its window in Central time."),
+        ("That makes February and the back half of summer the year's weakest windows for a wedding, "
+         "even where the Moon's best available day looks fine on paper.",
+         "The table names any best day within five days of one. July 28 and August 3 rate Good on the "
+         "sky alone, but both sit close to the August 2 total solar eclipse, so pad them or look to "
+         "January 13 or April 13."),
+        ("That makes February and the back half of summer the weakest windows of the year, even where "
+         "the Moon cooperates.",
+         "On the sky alone, October is the year's weakest month, and February, May, June and September "
+         "rate Below Average. July 28 and August 3 rate Good but sit near the August 2 eclipse."),
+    ],
     "best-wedding-dates-2028": [
         (", which lifts March 27 and January 6 above the rest.", "."),
         ("The strongest fall on a Taurus Moon, the Moon's exaltation: March 27 and January 6. "

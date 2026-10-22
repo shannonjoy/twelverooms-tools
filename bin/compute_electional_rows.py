@@ -58,6 +58,12 @@ PROPOSE = "best-days-to-propose-2027"
 PAGES = {
     BUSINESS: ("business", 2027, ()),
     INVEST: ("investment", 2027, (BUSINESS,)),
+    # Wedding 2027 joined 2026-10-22. Its July 23 rows were entered by hand
+    # (Taurus-Moon picks such as Apr 8), not this method's output: 8 of 12
+    # dates and most ratings never reproduced. It was left out of the
+    # Oct 20 pass because it already showed stars. The engine, unchanged
+    # since Jul 22, picks Apr 13 for April.
+    "best-wedding-dates-2027": ("wedding", 2027, ()),
     "best-wedding-dates-2028": ("wedding", 2028, ()),
     "best-days-to-conceive-2027": ("conception", 2027, ()),
     "best-days-to-sign-a-contract-2027": ("contract", 2027, ()),

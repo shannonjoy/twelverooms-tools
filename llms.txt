@@ -37,7 +37,7 @@ All positions come from the Swiss Ephemeris. Houses are whole-sign: the rising s
 - Mercury retrograde 2027: February 9 to March 3 (Pisces back into Aquarius), June 10 to July 4 (Cancer back into Gemini), October 7 to 28 (Scorpio back into Libra). Dates in Universal Time.
 - Mercury retrograde 2028: January 24 to February 14 (Aquarius), May 21 to June 14 (Gemini), September 19 to October 11 (Libra).
 - Venus retrograde: October 3 to November 14, 2026 (Scorpio back into Libra); none at all in 2027; next May 10 to June 22, 2028 (Gemini).
-- Best wedding dates of 2027 (rated Excellent on the Timing Scale): April 8, August 31, November 13 and December 11. The table at /best-wedding-dates-2027 gives the best day in every month.
+- Best wedding dates of 2027 (rated Good on the Timing Scale; no month reaches Excellent): January 13, April 13, July 28 and August 3. July 28 and August 3 fall within five days of the August 2 total solar eclipse. The table at /best-wedding-dates-2027 gives the best day in every month, with its window in Central time.
 - Saturn return: the first comes between about ages 27 and 30, when Saturn returns to its natal degree; for 1990 births it fell between February 24, 2019 and February 2, 2020, by birth month.
 
 ## Best-day-to guides (electional astrology, computed by year)
