@@ -34,6 +34,14 @@ requires the complete source be public, which it is.
 2. From this directory: `vercel --scope shanjoy` (preview) / `vercel --prod --scope shanjoy`
 3. After first prod deploy: add the custom domain, submit the sitemap in
    Google Search Console.
+4. After a deploy that changes pages, ping IndexNow (Bing and the engines
+   that share it; outbound, on Shannon's word only). The key file
+   `2b21e1bf700bcce0781ed2c9cf2863d5.txt` must be live at the site root first:
+   `curl https://thetwelverooms.com/2b21e1bf700bcce0781ed2c9cf2863d5.txt`.
+   Then `node bin/indexnow.mjs --dry-run` to see the list, and
+   `node bin/indexnow.mjs` to send every sitemap URL, or
+   `node bin/indexnow.mjs /moon /natal-chart` for just those. 200 or 202 is
+   success; 403 means the key file is not live yet.
 
 ## License
 AGPL-3.0. Reuse the code freely under that license; the Twelve Rooms
