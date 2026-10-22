@@ -1,0 +1,392 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Twelve Rooms//Sky Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:The Twelve Rooms: Sky Calendar 2027
+X-WR-CALDESC:New and Full Moons\, eclipses\, and Mercury\, Venus and Mars r
+ etrogrades. Computed with the Swiss Ephemeris by The Twelve Rooms.
+X-WR-TIMEZONE:UTC
+REFRESH-INTERVAL;VALUE=DURATION:P1W
+X-PUBLISHED-TTL:P1W
+BEGIN:VEVENT
+UID:newmoon-2027-01-07@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270107T202400Z
+SUMMARY:New Moon in Capricorn
+DESCRIPTION:Exact at Thu Jan 7\, 2027\, 2:24 PM CST (Jan 7\, 2027\, 20:24 U
+ TC)\, 17°18′ Capricorn. Computed with the Swiss Ephemeris. https://thet
+ welverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mars-rx-2027-01-10@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20270110
+DTEND;VALUE=DATE:20270402
+SUMMARY:Mars retrograde in Virgo and Leo
+DESCRIPTION:Mars stations retrograde Sun Jan 10\, 2027\, 6:59 AM CST at 10
+ °26′ Virgo and direct Thu Apr 1\, 2027\, 9:08 AM CDT at 20°56′ Leo. 
+ Shadow November 5\, 2026 to June 7\, 2027. https://thetwelverooms.com/retr
+ ogrades-2027
+URL:https://thetwelverooms.com/retrogrades-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-01-22@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270122T121700Z
+SUMMARY:Full Moon in Leo (Wolf Moon)
+DESCRIPTION:Exact at Fri Jan 22\, 2027\, 6:17 AM CST (Jan 22\, 2027\, 12:17
+  UTC)\, 2°14′ Leo. Computed with the Swiss Ephemeris. https://thetwelve
+ rooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-02-06@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270206T155600Z
+SUMMARY:New Moon in Aquarius: annular solar eclipse
+DESCRIPTION:Exact at Sat Feb 6\, 2027\, 9:56 AM CST (Feb 6\, 2027\, 15:56 U
+ TC)\, 17°38′ Aquarius. Computed with the Swiss Ephemeris. https://thetw
+ elverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:solar-eclipse-2027-02-06@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270206T160000Z
+SUMMARY:Annular solar eclipse in Aquarius (maximum)
+DESCRIPTION:Greatest eclipse Sat Feb 6\, 2027\, 10:00 AM CST (Feb 6\, 2027\
+ , 16:00 UTC)\, 17°39′ Aquarius. https://thetwelverooms.com/eclipses-202
+ 7
+URL:https://thetwelverooms.com/eclipses-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mercury-rx-2027-02-09@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20270209
+DTEND;VALUE=DATE:20270304
+SUMMARY:Mercury retrograde in Pisces and Aquarius
+DESCRIPTION:Mercury stations retrograde Tue Feb 9\, 2027\, 11:36 AM CST at 
+ 5°59′ Pisces and direct Wed Mar 3\, 2027\, 6:32 AM CST at 20°55′ Aqu
+ arius. Shadow January 25\, 2027 to March 23\, 2027. https://thetwelverooms
+ .com/is-mercury-retrograde
+URL:https://thetwelverooms.com/is-mercury-retrograde
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lunar-eclipse-2027-02-20@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270220T231300Z
+SUMMARY:Penumbral lunar eclipse in Virgo (maximum)
+DESCRIPTION:Greatest eclipse Sat Feb 20\, 2027\, 5:13 PM CST (Feb 20\, 2027
+ \, 23:13 UTC)\, 1°59′ Virgo. https://thetwelverooms.com/eclipses-2027
+URL:https://thetwelverooms.com/eclipses-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-02-20@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270220T232400Z
+SUMMARY:Full Moon in Virgo (Snow Moon): penumbral lunar eclipse
+DESCRIPTION:Exact at Sat Feb 20\, 2027\, 5:24 PM CST (Feb 20\, 2027\, 23:24
+  UTC)\, 2°06′ Virgo. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-03-08@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270308T092900Z
+SUMMARY:New Moon in Pisces
+DESCRIPTION:Exact at Mon Mar 8\, 2027\, 3:29 AM CST (Mar 8\, 2027\, 09:29 U
+ TC)\, 17°35′ Pisces. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-03-22@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270322T104400Z
+SUMMARY:Full Moon in Libra (Worm Moon)
+DESCRIPTION:Exact at Mon Mar 22\, 2027\, 5:44 AM CDT (Mar 22\, 2027\, 10:44
+  UTC)\, 1°35′ Libra. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-04-06@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270406T235100Z
+SUMMARY:New Moon in Aries
+DESCRIPTION:Exact at Tue Apr 6\, 2027\, 6:51 PM CDT (Apr 6\, 2027\, 23:51 U
+ TC)\, 16°57′ Aries. Computed with the Swiss Ephemeris. https://thetwelv
+ erooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-04-20@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270420T222700Z
+SUMMARY:Full Moon in Scorpio (Pink Moon)
+DESCRIPTION:Exact at Tue Apr 20\, 2027\, 5:27 PM CDT (Apr 20\, 2027\, 22:27
+  UTC)\, 0°37′ Scorpio. Computed with the Swiss Ephemeris. https://thetw
+ elverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-05-06@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270506T105900Z
+SUMMARY:New Moon in Taurus
+DESCRIPTION:Exact at Thu May 6\, 2027\, 5:59 AM CDT (May 6\, 2027\, 10:59 U
+ TC)\, 15°43′ Taurus. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-05-20@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270520T105900Z
+SUMMARY:Full Moon in Scorpio (Flower Moon)
+DESCRIPTION:Exact at Thu May 20\, 2027\, 5:59 AM CDT (May 20\, 2027\, 10:59
+  UTC)\, 29°14′ Scorpio. Computed with the Swiss Ephemeris. https://thet
+ welverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-06-04@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270604T194000Z
+SUMMARY:New Moon in Gemini
+DESCRIPTION:Exact at Fri Jun 4\, 2027\, 2:40 PM CDT (Jun 4\, 2027\, 19:40 U
+ TC)\, 13°58′ Gemini. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mercury-rx-2027-06-10@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20270610
+DTEND;VALUE=DATE:20270705
+SUMMARY:Mercury retrograde in Cancer and Gemini
+DESCRIPTION:Mercury stations retrograde Thu Jun 10\, 2027\, 1:15 PM CDT at 
+ 6°22′ Cancer and direct Sun Jul 4\, 2027\, 2:39 PM CDT at 27°28′ Gem
+ ini. Shadow May 26\, 2027 to July 19\, 2027. https://thetwelverooms.com/is
+ -mercury-retrograde
+URL:https://thetwelverooms.com/is-mercury-retrograde
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-06-19@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270619T004400Z
+SUMMARY:Full Moon in Sagittarius (Strawberry Moon)
+DESCRIPTION:Exact at Fri Jun 18\, 2027\, 7:44 PM CDT (Jun 19\, 2027\, 00:44
+  UTC)\, 27°33′ Sagittarius. Computed with the Swiss Ephemeris. https://
+ thetwelverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-07-04@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270704T030200Z
+SUMMARY:New Moon in Cancer
+DESCRIPTION:Exact at Sat Jul 3\, 2027\, 10:02 PM CDT (Jul 4\, 2027\, 03:02 
+ UTC)\, 11°57′ Cancer. Computed with the Swiss Ephemeris. https://thetwe
+ lverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-07-18@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270718T154500Z
+SUMMARY:Full Moon in Capricorn (Buck Moon): penumbral lunar eclipse
+DESCRIPTION:Exact at Sun Jul 18\, 2027\, 10:45 AM CDT (Jul 18\, 2027\, 15:4
+ 5 UTC)\, 25°49′ Capricorn. Computed with the Swiss Ephemeris. https://t
+ hetwelverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lunar-eclipse-2027-07-18@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270718T160300Z
+SUMMARY:Penumbral lunar eclipse in Capricorn (maximum)
+DESCRIPTION:Greatest eclipse Sun Jul 18\, 2027\, 11:03 AM CDT (Jul 18\, 202
+ 7\, 16:03 UTC)\, 25°58′ Capricorn. https://thetwelverooms.com/eclipses-
+ 2027
+URL:https://thetwelverooms.com/eclipses-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-08-02@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270802T100500Z
+SUMMARY:New Moon in Leo: total solar eclipse
+DESCRIPTION:Exact at Mon Aug 2\, 2027\, 5:05 AM CDT (Aug 2\, 2027\, 10:05 U
+ TC)\, 9°55′ Leo. Computed with the Swiss Ephemeris. https://thetwelvero
+ oms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:solar-eclipse-2027-08-02@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270802T100700Z
+SUMMARY:Total solar eclipse in Leo (maximum)
+DESCRIPTION:Greatest eclipse Mon Aug 2\, 2027\, 5:07 AM CDT (Aug 2\, 2027\,
+  10:07 UTC)\, 9°56′ Leo. https://thetwelverooms.com/eclipses-2027
+URL:https://thetwelverooms.com/eclipses-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lunar-eclipse-2027-08-17@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270817T071400Z
+SUMMARY:Penumbral lunar eclipse in Aquarius (maximum)
+DESCRIPTION:Greatest eclipse Tue Aug 17\, 2027\, 2:14 AM CDT (Aug 17\, 2027
+ \, 07:14 UTC)\, 24°04′ Aquarius. https://thetwelverooms.com/eclipses-20
+ 27
+URL:https://thetwelverooms.com/eclipses-2027
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-08-17@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270817T072900Z
+SUMMARY:Full Moon in Aquarius (Sturgeon Moon): penumbral lunar eclipse
+DESCRIPTION:Exact at Tue Aug 17\, 2027\, 2:29 AM CDT (Aug 17\, 2027\, 07:29
+  UTC)\, 24°12′ Aquarius. Computed with the Swiss Ephemeris. https://the
+ twelverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-08-31@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270831T174100Z
+SUMMARY:New Moon in Virgo
+DESCRIPTION:Exact at Tue Aug 31\, 2027\, 12:41 PM CDT (Aug 31\, 2027\, 17:4
+ 1 UTC)\, 8°06′ Virgo. Computed with the Swiss Ephemeris. https://thetwe
+ lverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-09-15@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270915T230400Z
+SUMMARY:Full Moon in Pisces (Harvest Moon)
+DESCRIPTION:Exact at Wed Sep 15\, 2027\, 6:04 PM CDT (Sep 15\, 2027\, 23:04
+  UTC)\, 22°53′ Pisces. Computed with the Swiss Ephemeris. https://thetw
+ elverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-09-30@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20270930T023600Z
+SUMMARY:New Moon in Libra
+DESCRIPTION:Exact at Wed Sep 29\, 2027\, 9:36 PM CDT (Sep 30\, 2027\, 02:36
+  UTC)\, 6°43′ Libra. Computed with the Swiss Ephemeris. https://thetwel
+ verooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mercury-rx-2027-10-07@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART;VALUE=DATE:20271007
+DTEND;VALUE=DATE:20271029
+SUMMARY:Mercury retrograde in Scorpio and Libra
+DESCRIPTION:Mercury stations retrograde Thu Oct 7\, 2027\, 9:37 AM CDT at 4
+ °56′ Scorpio and direct Thu Oct 28\, 2027\, 9:11 AM CDT at 19°19′ Li
+ bra. Shadow September 17\, 2027 to November 13\, 2027. https://thetwelvero
+ oms.com/is-mercury-retrograde
+URL:https://thetwelverooms.com/is-mercury-retrograde
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-10-15@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271015T134700Z
+SUMMARY:Full Moon in Aries (Hunter's Moon)
+DESCRIPTION:Exact at Fri Oct 15\, 2027\, 8:47 AM CDT (Oct 15\, 2027\, 13:47
+  UTC)\, 21°59′ Aries. Computed with the Swiss Ephemeris. https://thetwe
+ lverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-10-29@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271029T133700Z
+SUMMARY:New Moon in Scorpio
+DESCRIPTION:Exact at Fri Oct 29\, 2027\, 8:37 AM CDT (Oct 29\, 2027\, 13:37
+  UTC)\, 5°54′ Scorpio. Computed with the Swiss Ephemeris. https://thetw
+ elverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-11-14@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271114T032600Z
+SUMMARY:Full Moon in Taurus (Beaver Moon)
+DESCRIPTION:Exact at Sat Nov 13\, 2027\, 9:26 PM CST (Nov 14\, 2027\, 03:26
+  UTC)\, 21°31′ Taurus. Computed with the Swiss Ephemeris. https://thetw
+ elverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-11-28@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271128T032400Z
+SUMMARY:New Moon in Sagittarius
+DESCRIPTION:Exact at Sat Nov 27\, 2027\, 9:24 PM CST (Nov 28\, 2027\, 03:24
+  UTC)\, 5°39′ Sagittarius. Computed with the Swiss Ephemeris. https://t
+ hetwelverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fullmoon-2027-12-13@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271213T160900Z
+SUMMARY:Full Moon in Gemini (Cold Moon)
+DESCRIPTION:Exact at Mon Dec 13\, 2027\, 10:09 AM CST (Dec 13\, 2027\, 16:0
+ 9 UTC)\, 21°25′ Gemini. Computed with the Swiss Ephemeris. https://thet
+ welverooms.com/full-moon-calendar
+URL:https://thetwelverooms.com/full-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:newmoon-2027-12-27@thetwelverooms.com
+DTSTAMP:20261021T000000Z
+DTSTART:20271227T201200Z
+SUMMARY:New Moon in Capricorn
+DESCRIPTION:Exact at Mon Dec 27\, 2027\, 2:12 PM CST (Dec 27\, 2027\, 20:12
+  UTC)\, 5°50′ Capricorn. Computed with the Swiss Ephemeris. https://the
+ twelverooms.com/new-moon-calendar
+URL:https://thetwelverooms.com/new-moon-calendar
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

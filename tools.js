@@ -104,6 +104,8 @@ window.TR = (function () {
       ["/planetary-hours", "Planetary hours"],
       ["/mercury-retrograde", "Mercury retrograde"],
       ["/venus-retrograde", "Venus retrograde"],
+      ["/full-moon-calendar", "Full Moon calendar"],
+      ["/astrology-calendar", "Astrology calendar"],
     ] },
     { label: "Best dates", items: [
       ["/almanac", "Dates by intention"],
