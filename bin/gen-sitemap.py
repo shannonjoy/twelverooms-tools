@@ -73,6 +73,19 @@ STATIC = [
     ("/sabian-symbols/aquarius", "monthly", "0.6"),
     ("/sabian-symbols/pisces", "monthly", "0.6"),
 ]
+# Sky calendar pages (branch site-creator/growth-features-1021), rendered by
+# bin/gen_sky_pages.py. Not listed: /embed/moon-today (the widget itself) and
+# /big-3/<combo> share pages, both noindex by design.
+STATIC += [
+    ("/is-mercury-retrograde", "daily", "0.8"),
+    ("/retrogrades-2027", "monthly", "0.7"),
+    ("/eclipses-2027", "monthly", "0.7"),
+    ("/full-moon-calendar", "monthly", "0.7"),
+    ("/new-moon-calendar", "monthly", "0.7"),
+    ("/astrology-calendar", "monthly", "0.7"),
+    ("/embed", "monthly", "0.5"),
+]
+
 # Programmatic per-birth-year Saturn return pages (/saturn-return/YYYY).
 # Computed per request and written in the tense the calendar calls for.
 SATURN_YEARS = range(1960, 2006)

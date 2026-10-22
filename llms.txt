@@ -41,6 +41,15 @@
 - [Sabian symbols, all 360 degrees](https://thetwelverooms.com/sabian-symbols)
 - [Void-of-course Moon](https://thetwelverooms.com/void-of-course-moon)
 
+## Sky calendar (computed with the Swiss Ephemeris)
+
+- [Is Mercury retrograde right now?](https://thetwelverooms.com/is-mercury-retrograde): live answer, shadow dates, every Mercury retrograde 2026 to 2028.
+- [Retrogrades 2027](https://thetwelverooms.com/retrogrades-2027): every planet's 2027 stations, with degrees and signs.
+- [Eclipses 2027](https://thetwelverooms.com/eclipses-2027): the five 2027 eclipses, with exact times, degrees and the August 2 total solar eclipse.
+- [Full Moon calendar](https://thetwelverooms.com/full-moon-calendar) and [New Moon calendar](https://thetwelverooms.com/new-moon-calendar): every 2027 lunation with time, sign and almanac name.
+- [Astrology calendar feed](https://thetwelverooms.com/astrology-calendar): subscribable iCalendar feed of Moons, eclipses and retrogrades.
+- [Moon widget](https://thetwelverooms.com/embed): free embeddable "Moon today" widget.
+
 ## Personalized readings
 
 - [Natal and Year-Ahead readings](https://thetwelverooms.com/reports): a reading of your own chart written as one piece, sold on Etsy. The Natal Deep-Dive reads the whole chart; the Year-Ahead Reading reads your next twelve months from it, with the dates worth circling. No reading picks an election date for you; the free timing finder and the best-dates guides do that.
