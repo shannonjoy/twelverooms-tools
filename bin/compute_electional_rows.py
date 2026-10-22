@@ -93,7 +93,10 @@ def row(w, month):
     return {"month": month, "date": d.isoformat(), "day": d.strftime("%a, %b %-d"),
             "score": w["peak_score"], "stars": w["scale"]["stars"],
             "label": w["scale"]["label"], "room_name": w["scale"]["room_name"],
-            "blurb": w["scale"]["blurb"], "why": el.explain(w)}
+            "blurb": w["scale"]["blurb"], "why": el.explain(w),
+            # Window and peak, local time at LOC (2026-10-21, index plan):
+            # the one fact that differs between elections that share a day.
+            "start": w["start"], "end": w["end"], "peak_at": w["peak_at"]}
 
 
 def compute(slug, key, year, avoid=None):
@@ -123,8 +126,18 @@ def compute(slug, key, year, avoid=None):
                                "page": used[best["start"][:10]], "stars": best["scale"]["stars"]}
         rows.append(r)
     return {"slug": slug, "recipe": key, "label": recipe["label"], "year": year,
+            "significators": significators(recipe),
             "location": LOC, "hours": HOURS, "mercury_direct_rule": mercury_rule(recipe),
             "rows": rows}
+
+
+def significators(recipe):
+    """What this election's recipe looks for, so a page can say which of
+    its own rules a window meets (2026-10-21, index plan)."""
+    soft = {r["rule"]: r for r in recipe["soft"]}
+    return {"applies": soft["moon_applying_aspect"]["to"],
+            "hours": soft["planetary_hour_ruler"]["rulers"],
+            "angular": (soft.get("benefic_on_angle") or {}).get("planets", [])}
 
 
 def mercury_rule(recipe):

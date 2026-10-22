@@ -173,9 +173,78 @@ def row_notes(r, data, sky, best):
                 notes.append(f'Mercury is retrograde ({short_day(span["from"])} to '
                              f'{short_day(span["to"])}), so keep paperwork out of it.')
     if r["stars"] <= 2 and best["date"] != r["date"]:
-        notes.append(f'A thin month for this election; {long_day(best["date"])} is the year\'s '
-                     f'strongest day if your date is flexible.')
+        notes.append(f'A thin month for {MATTER.get(data["recipe"], "this election")}; '
+                     f'{long_day(best["date"])} is the year\'s strongest day if your date is flexible.')
     return notes
+
+
+def _clock(iso_or_pretty):
+    """'2027-01-13T15:13-06:00' or '4:00 PM' -> '3:13 p.m.' / '4 p.m.'."""
+    s = iso_or_pretty
+    if "T" in s:
+        h, m = int(s[11:13]), int(s[14:16])
+    else:
+        hm, ap = s.split()
+        h, m = (int(x) for x in hm.split(":"))
+        h = h % 12 + (12 if ap.upper() == "PM" else 0)
+    suffix = "a.m." if h < 12 else "p.m."
+    h12 = h % 12 or 12
+    return f"{h12}:{m:02d} {suffix}" if m else f"{h12} {suffix}"
+
+
+# How each election is named inside a sentence.
+MATTER = {"wedding": "a wedding", "engagement": "a proposal", "first_date": "a first date",
+          "reconciliation": "reconciling", "conception": "conceiving",
+          "business": "starting a business", "contract": "signing a contract",
+          "launch": "a product launch", "job": "a job interview", "raise": "asking for a raise",
+          "shop": "opening a restaurant", "investment": "investing",
+          "publishing": "publishing a book", "home": "buying a house", "relocation": "a move",
+          "car": "buying a car", "diet": "starting a diet", "haircut": "a haircut"}
+
+_APPLY_RE = re.compile(r"applies to an? \w+ (?:to|with) (?:the )?(\w+)")
+_HOUR_RE = re.compile(r"in an? (\w+) hour")
+_ANGLE_RE = re.compile(r"with (?:the )?(\w+) on the (Ascendant|Midheaven)")
+
+
+def significator_note(r, data):
+    """Which of THIS election's own rules the window meets (2026-10-21,
+    index plan). Elections that pick the same day share its sky; what
+    differs is what each one is looking for in it, which the recipe says
+    (bin/compute_electional_rows.significators)."""
+    sig = data.get("significators")
+    if not sig:
+        return []
+    why = r["why"]
+    matter = MATTER.get(data["recipe"], data["label"].lower())
+    hits = []
+    m = _APPLY_RE.search(why)
+    applies = sig["applies"]
+    if m and m.group(1) in applies:
+        pl = m.group(1)
+        role = ("the planet it wants first" if pl == applies[0]
+                else f"one of the {['', 'one', 'two', 'three'][len(applies)]} it looks for")
+        hits.append(f"the Moon reaches {_the(pl)}, {role}")
+    m = _HOUR_RE.search(why)
+    if m and m.group(1) in sig["hours"]:
+        hits.append(f"the hour is {_the(m.group(1))}'s, "
+                    + ("its chosen hour" if len(sig["hours"]) == 1 else "one of its chosen hours"))
+    for pl, ang in _ANGLE_RE.findall(why):
+        if pl in sig["angular"]:
+            hits.append(f"{_the(pl)} holds the {ang}")
+    if hits:
+        return [f"For {matter}: " + "; ".join(hits) + "."]
+    return [f"For {matter}, none of its own planets ({and_list(applies)}) is touched here; "
+            f"the rating rests on the rest of the chart."]
+
+
+def window_note(r):
+    """The computed window for this election on this day (2026-10-21,
+    index plan). Two elections that share a day share its sky, but not its
+    hours: each recipe scores its own planetary-hour rulers and angles."""
+    if not r.get("start"):
+        return []
+    return [f'Open {_clock(r["start"])} to {_clock(r["end"])}, strongest near {_clock(r["peak_at"])} '
+            f'Central time.']
 
 
 def summary(data, verb):
@@ -219,14 +288,16 @@ def table_block(data, sky, verb):
                        f'<td>&mdash;</td><td>No window this month clears the requirements for this '
                        f'election; look to the neighboring months.</td></tr>')
             continue
-        why = " ".join([html.escape(polish(r["why"]))] + row_notes(r, data, sky, best))
+        why = " ".join([html.escape(polish(r["why"]))] + significator_note(r, data) + window_note(r)
+                       + row_notes(r, data, sky, best))
         title = html.escape(f'{r["blurb"]} ({r["room_name"]})')
         out.append(f'        <tr id="{mid}"><td><strong>{r["month"]}</strong></td>'
                    f'<td>{html.escape(r["day"])}</td>'
                    f'<td><span class="tag gold" title="{title}">{stars(r["stars"])} {r["label"]}</span></td>'
                    f'<td>{why}</td></tr>')
     highlight, _ = summary(data, verb)
-    mercury = " Every date keeps Mercury direct." if data["mercury_direct_rule"] else ""
+    mercury = (f" Every {data['year']} date here keeps Mercury direct."
+               if data["mercury_direct_rule"] else "")
     return (f'{START}\n'
             f'  <div class="highlight">{highlight}</div>\n\n'
             f'  <div class="card">\n'
@@ -236,11 +307,10 @@ def table_block(data, sky, verb):
             f'      <tbody>\n' + "\n".join(out) + '\n'
             f'      </tbody>\n'
             f'    </table>\n'
-            f'    <p class="hint" style="margin-top:8px">Strength is read on the Twelve Rooms Timing '
-            f'Scale, calibrated from five years of this election\'s own sky data, not a fixed formula. '
-            f'Best day shown by date; the exact best time of day depends on your location, because the '
-            f'chart\'s angles and the planetary hours are local. Run your city in the '
-            f'<a href="/electional">timing finder</a> for the hour.{mercury}</p>\n'
+            f'    <p class="hint" style="margin-top:8px">Strength for {html.escape(MATTER.get(data["recipe"], data["label"].lower()))} '
+            f'is read on the Twelve Rooms Timing Scale, against five years of this election\'s own '
+            f'windows; times are computed for the geographic center of the contiguous US and move with '
+            f'your city in the <a href="/electional">timing finder</a>.{mercury}</p>\n'
             f'  </div>\n'
             f'  {END}')
 
@@ -386,6 +456,28 @@ def promise(s, slug):
     return s[:m.start()] + cta + s[m.end():]
 
 
+def specific_boilerplate(s, data):
+    """Three stock sentences sat word for word on a dozen or more pages
+    (2026-10-21, index plan). Say what they say about this election, with
+    the method the rows were actually computed by. Idempotent: no new
+    sentence contains the old one."""
+    matter = MATTER.get(data["recipe"], data["label"].lower())
+    year = data["year"]
+    swaps = [
+        ("By Western electional astrology, computed with the Swiss Ephemeris in whole-sign houses.",
+         f"By Western electional astrology: every day of {year} scanned in 15-minute steps from 7 a.m. "
+         f"to 9 p.m. Central with the Swiss Ephemeris in whole-sign houses, and each month's best "
+         f"window for {matter} rated against five years of the same election."),
+        ("These dates rank the sky, which is the same for everyone. The single",
+         f"These dates rank the sky for {matter}, which is the same for everyone. The single"),
+        ("Run your city and dates in the free timing finder for the exact windows.",
+         f"Run your city and dates for {matter} in the free timing finder for the exact windows."),
+    ]
+    for a, b in swaps:
+        s = s.replace(a, b)
+    return s
+
+
 def main():
     sky_all = json.loads((DATA / "sky.json").read_text())
     for slug in PAGES:
@@ -400,6 +492,7 @@ def main():
             for a, b in PROSE_FIXES.get(slug, []):
                 s = s.replace(a, b)
             s = set_first_answer(s, summary(data, verb)[1])
+            s = specific_boilerplate(s, data)
         else:
             s = add_anchors(s)
         s = promise(s, slug)

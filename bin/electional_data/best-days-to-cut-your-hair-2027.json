@@ -3,6 +3,19 @@
  "recipe": "haircut",
  "label": "Haircut (grow)",
  "year": 2027,
+ "significators": {
+  "applies": [
+   "Venus",
+   "Jupiter"
+  ],
+  "hours": [
+   "Venus",
+   "Moon"
+  ],
+  "angular": [
+   "Venus"
+  ]
+ },
  "location": {
   "lat": 39.8333,
   "lon": -98.5855,
@@ -24,6 +37,9 @@
    "room_name": "Full House",
    "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
    "why": "The waxing Moon in Aries applies to a trine to Venus, in a Venus hour.",
+   "start": "2027-01-13T15:13-06:00",
+   "end": "2027-01-13T21:00-06:00",
+   "peak_at": "6:45 PM",
    "moved_from": null
   },
   {
@@ -36,6 +52,9 @@
    "room_name": "Open Door",
    "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
    "why": "The waning Moon in Sagittarius applies to a trine to Jupiter, with Venus on the Midheaven, in a Moon hour.",
+   "start": "2027-02-28T07:00-06:00",
+   "end": "2027-02-28T21:00-06:00",
+   "peak_at": "10:00 AM",
    "moved_from": null
   },
   {
@@ -48,6 +67,9 @@
    "room_name": "Lit Room",
    "blurb": "A typical window for this matter, the most common outcome, neither rare nor weak.",
    "why": "The waxing Moon in Leo holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Venus hour.",
+   "start": "2027-03-18T07:00-05:00",
+   "end": "2027-03-18T21:00-05:00",
+   "peak_at": "11:15 AM",
    "moved_from": null
   },
   {
@@ -60,6 +82,9 @@
    "room_name": "Full House",
    "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
    "why": "The waxing Moon in Cancer applies to a trine to Venus, with Venus on the Midheaven, in a Moon hour.",
+   "start": "2027-04-13T07:00-05:00",
+   "end": "2027-04-13T18:00-05:00",
+   "peak_at": "11:30 AM",
    "moved_from": null
   },
   {
@@ -72,6 +97,9 @@
    "room_name": "Threshold",
    "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
    "why": "The waxing Moon in Leo applies to a conjunction to Jupiter, in a Moon hour.",
+   "start": "2027-05-12T07:00-05:00",
+   "end": "2027-05-12T21:00-05:00",
+   "peak_at": "7:45 AM",
    "moved_from": null
   },
   {
@@ -84,6 +112,9 @@
    "room_name": "Every Window Open",
    "blurb": "As strong as this election gets: the top 10% of five years of this election's windows.",
    "why": "The waxing Moon in Scorpio holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Venus hour.",
+   "start": "2027-06-14T07:00-05:00",
+   "end": "2027-06-14T21:00-05:00",
+   "peak_at": "12:30 PM",
    "moved_from": null
   },
   {
@@ -96,6 +127,9 @@
    "room_name": "Full House",
    "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
    "why": "The waning Moon in Gemini applies to a sextile to Venus, with Venus on the Midheaven, in a Venus hour.",
+   "start": "2027-07-28T11:10-05:00",
+   "end": "2027-07-28T21:00-05:00",
+   "peak_at": "1:45 PM",
    "moved_from": null
   },
   {
@@ -108,6 +142,9 @@
    "room_name": "Full House",
    "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
    "why": "The waxing Moon in Virgo applies to a conjunction to Jupiter, with Venus on the Midheaven.",
+   "start": "2027-08-03T12:57-05:00",
+   "end": "2027-08-03T16:00-05:00",
+   "peak_at": "1:15 PM",
    "moved_from": null
   },
   {
@@ -120,6 +157,9 @@
    "room_name": "Threshold",
    "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
    "why": "The waxing Moon in Libra applies to a conjunction to Venus, with Venus on the Ascendant.",
+   "start": "2027-09-30T07:00-05:00",
+   "end": "2027-09-30T21:00-05:00",
+   "peak_at": "9:00 AM",
    "moved_from": null
   },
   {
@@ -132,6 +172,9 @@
    "room_name": "Threshold",
    "blurb": "Little traditional support, in the bottom 15% of five years of this election's windows; some 1-star windows have the Moon actively applying toward what spoils this matter. Usable only if nothing better is on the calendar.",
    "why": "The waning Moon in Cancer applies to a trine to Venus, with Venus on the Ascendant.",
+   "start": "2027-10-21T07:00-05:00",
+   "end": "2027-10-21T21:00-05:00",
+   "peak_at": "9:15 AM",
    "moved_from": null
   },
   {
@@ -144,6 +187,9 @@
    "room_name": "Full House",
    "blurb": "Solidly stronger than the ordinary window for this matter, in the top 30%.",
    "why": "The waning Moon in Cancer holds clear of the hard aspects and is not void, with Venus on the Midheaven, in a Moon hour.",
+   "start": "2027-11-17T07:00-06:00",
+   "end": "2027-11-17T21:00-06:00",
+   "peak_at": "2:00 PM",
    "moved_from": null
   },
   {
@@ -156,9 +202,12 @@
    "room_name": "Open Door",
    "blurb": "Fewer of the traditional supports than usual for this matter, though the Moon is clear of the spoilers.",
    "why": "The waning Moon in Cancer applies to a sextile to Jupiter, with Venus on the Midheaven, in a Moon hour.",
+   "start": "2027-12-15T07:00-06:00",
+   "end": "2027-12-15T19:45-06:00",
+   "peak_at": "2:30 PM",
    "moved_from": null
   }
  ],
  "distinct_from": [],
- "computed": "2026-10-21"
+ "computed": "2026-10-22"
 }
