@@ -1,0 +1,2555 @@
+{
+ "method": "Swiss Ephemeris (Moshier model) via the site engine, api/_engines/compute_sky.py; see bin/sky_calendar.py",
+ "from_year": 2026,
+ "to_year": 2028,
+ "retrogrades": {
+  "Mercury": [
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2026-02-26T06:48Z",
+     "central": "2026-02-26T00:48-0600",
+     "central_date": "2026-02-26",
+     "central_label": "Thu Feb 26, 2026, 12:48 AM CST",
+     "utc_label": "Feb 26, 2026, 06:48 UTC",
+     "sign": "Pisces",
+     "deg": 22,
+     "min": 34,
+     "lon": 352.5653,
+     "label": "22°34′ Pisces"
+    },
+    "station_direct": {
+     "utc": "2026-03-20T19:33Z",
+     "central": "2026-03-20T14:33-0500",
+     "central_date": "2026-03-20",
+     "central_label": "Fri Mar 20, 2026, 2:33 PM CDT",
+     "utc_label": "Mar 20, 2026, 19:33 UTC",
+     "sign": "Pisces",
+     "deg": 8,
+     "min": 29,
+     "lon": 338.4907,
+     "label": "8°29′ Pisces"
+    },
+    "days": 23,
+    "signs": [
+     "Pisces"
+    ],
+    "shadow_begins": {
+     "utc": "2026-02-11T22:12Z",
+     "central": "2026-02-11T16:12-0600",
+     "central_date": "2026-02-11",
+     "central_label": "Wed Feb 11, 2026, 4:12 PM CST",
+     "utc_label": "Feb 11, 2026, 22:12 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2026-04-09T11:42Z",
+     "central": "2026-04-09T06:42-0500",
+     "central_date": "2026-04-09",
+     "central_label": "Thu Apr 9, 2026, 6:42 AM CDT",
+     "utc_label": "Apr 9, 2026, 11:42 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2026-06-29T17:36Z",
+     "central": "2026-06-29T12:36-0500",
+     "central_date": "2026-06-29",
+     "central_label": "Mon Jun 29, 2026, 12:36 PM CDT",
+     "utc_label": "Jun 29, 2026, 17:36 UTC",
+     "sign": "Cancer",
+     "deg": 26,
+     "min": 15,
+     "lon": 116.2574,
+     "label": "26°15′ Cancer"
+    },
+    "station_direct": {
+     "utc": "2026-07-23T22:58Z",
+     "central": "2026-07-23T17:58-0500",
+     "central_date": "2026-07-23",
+     "central_label": "Thu Jul 23, 2026, 5:58 PM CDT",
+     "utc_label": "Jul 23, 2026, 22:58 UTC",
+     "sign": "Cancer",
+     "deg": 16,
+     "min": 19,
+     "lon": 106.3165,
+     "label": "16°19′ Cancer"
+    },
+    "days": 24,
+    "signs": [
+     "Cancer"
+    ],
+    "shadow_begins": {
+     "utc": "2026-06-13T00:53Z",
+     "central": "2026-06-12T19:53-0500",
+     "central_date": "2026-06-12",
+     "central_label": "Fri Jun 12, 2026, 7:53 PM CDT",
+     "utc_label": "Jun 13, 2026, 00:53 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2026-08-07T03:37Z",
+     "central": "2026-08-06T22:37-0500",
+     "central_date": "2026-08-06",
+     "central_label": "Thu Aug 6, 2026, 10:37 PM CDT",
+     "utc_label": "Aug 7, 2026, 03:37 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2026-10-24T07:13Z",
+     "central": "2026-10-24T02:13-0500",
+     "central_date": "2026-10-24",
+     "central_label": "Sat Oct 24, 2026, 2:13 AM CDT",
+     "utc_label": "Oct 24, 2026, 07:13 UTC",
+     "sign": "Scorpio",
+     "deg": 20,
+     "min": 59,
+     "lon": 230.979,
+     "label": "20°59′ Scorpio"
+    },
+    "station_direct": {
+     "utc": "2026-11-13T15:54Z",
+     "central": "2026-11-13T09:54-0600",
+     "central_date": "2026-11-13",
+     "central_label": "Fri Nov 13, 2026, 9:54 AM CST",
+     "utc_label": "Nov 13, 2026, 15:54 UTC",
+     "sign": "Scorpio",
+     "deg": 5,
+     "min": 2,
+     "lon": 215.0335,
+     "label": "5°02′ Scorpio"
+    },
+    "days": 20,
+    "signs": [
+     "Scorpio"
+    ],
+    "shadow_begins": {
+     "utc": "2026-10-04T09:09Z",
+     "central": "2026-10-04T04:09-0500",
+     "central_date": "2026-10-04",
+     "central_label": "Sun Oct 4, 2026, 4:09 AM CDT",
+     "utc_label": "Oct 4, 2026, 09:09 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2026-11-30T06:16Z",
+     "central": "2026-11-30T00:16-0600",
+     "central_date": "2026-11-30",
+     "central_label": "Mon Nov 30, 2026, 12:16 AM CST",
+     "utc_label": "Nov 30, 2026, 06:16 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2027-02-09T17:36Z",
+     "central": "2027-02-09T11:36-0600",
+     "central_date": "2027-02-09",
+     "central_label": "Tue Feb 9, 2027, 11:36 AM CST",
+     "utc_label": "Feb 9, 2027, 17:36 UTC",
+     "sign": "Pisces",
+     "deg": 5,
+     "min": 59,
+     "lon": 335.9813,
+     "label": "5°59′ Pisces"
+    },
+    "station_direct": {
+     "utc": "2027-03-03T12:32Z",
+     "central": "2027-03-03T06:32-0600",
+     "central_date": "2027-03-03",
+     "central_label": "Wed Mar 3, 2027, 6:32 AM CST",
+     "utc_label": "Mar 3, 2027, 12:32 UTC",
+     "sign": "Aquarius",
+     "deg": 20,
+     "min": 55,
+     "lon": 320.9232,
+     "label": "20°55′ Aquarius"
+    },
+    "days": 22,
+    "signs": [
+     "Pisces",
+     "Aquarius"
+    ],
+    "shadow_begins": {
+     "utc": "2027-01-25T18:58Z",
+     "central": "2027-01-25T12:58-0600",
+     "central_date": "2027-01-25",
+     "central_label": "Mon Jan 25, 2027, 12:58 PM CST",
+     "utc_label": "Jan 25, 2027, 18:58 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2027-03-23T14:58Z",
+     "central": "2027-03-23T09:58-0500",
+     "central_date": "2027-03-23",
+     "central_label": "Tue Mar 23, 2027, 9:58 AM CDT",
+     "utc_label": "Mar 23, 2027, 14:58 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2027-06-10T18:15Z",
+     "central": "2027-06-10T13:15-0500",
+     "central_date": "2027-06-10",
+     "central_label": "Thu Jun 10, 2027, 1:15 PM CDT",
+     "utc_label": "Jun 10, 2027, 18:15 UTC",
+     "sign": "Cancer",
+     "deg": 6,
+     "min": 22,
+     "lon": 96.3611,
+     "label": "6°22′ Cancer"
+    },
+    "station_direct": {
+     "utc": "2027-07-04T19:39Z",
+     "central": "2027-07-04T14:39-0500",
+     "central_date": "2027-07-04",
+     "central_label": "Sun Jul 4, 2027, 2:39 PM CDT",
+     "utc_label": "Jul 4, 2027, 19:39 UTC",
+     "sign": "Gemini",
+     "deg": 27,
+     "min": 28,
+     "lon": 87.4692,
+     "label": "27°28′ Gemini"
+    },
+    "days": 24,
+    "signs": [
+     "Cancer",
+     "Gemini"
+    ],
+    "shadow_begins": {
+     "utc": "2027-05-26T06:04Z",
+     "central": "2027-05-26T01:04-0500",
+     "central_date": "2027-05-26",
+     "central_label": "Wed May 26, 2027, 1:04 AM CDT",
+     "utc_label": "May 26, 2027, 06:04 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2027-07-19T08:43Z",
+     "central": "2027-07-19T03:43-0500",
+     "central_date": "2027-07-19",
+     "central_label": "Mon Jul 19, 2027, 3:43 AM CDT",
+     "utc_label": "Jul 19, 2027, 08:43 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2027-10-07T14:37Z",
+     "central": "2027-10-07T09:37-0500",
+     "central_date": "2027-10-07",
+     "central_label": "Thu Oct 7, 2027, 9:37 AM CDT",
+     "utc_label": "Oct 7, 2027, 14:37 UTC",
+     "sign": "Scorpio",
+     "deg": 4,
+     "min": 56,
+     "lon": 214.9278,
+     "label": "4°56′ Scorpio"
+    },
+    "station_direct": {
+     "utc": "2027-10-28T14:11Z",
+     "central": "2027-10-28T09:11-0500",
+     "central_date": "2027-10-28",
+     "central_label": "Thu Oct 28, 2027, 9:11 AM CDT",
+     "utc_label": "Oct 28, 2027, 14:11 UTC",
+     "sign": "Libra",
+     "deg": 19,
+     "min": 19,
+     "lon": 199.3121,
+     "label": "19°19′ Libra"
+    },
+    "days": 21,
+    "signs": [
+     "Scorpio",
+     "Libra"
+    ],
+    "shadow_begins": {
+     "utc": "2027-09-17T07:29Z",
+     "central": "2027-09-17T02:29-0500",
+     "central_date": "2027-09-17",
+     "central_label": "Fri Sep 17, 2027, 2:29 AM CDT",
+     "utc_label": "Sep 17, 2027, 07:29 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2027-11-13T09:55Z",
+     "central": "2027-11-13T03:55-0600",
+     "central_date": "2027-11-13",
+     "central_label": "Sat Nov 13, 2027, 3:55 AM CST",
+     "utc_label": "Nov 13, 2027, 09:55 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2028-01-24T11:03Z",
+     "central": "2028-01-24T05:03-0600",
+     "central_date": "2028-01-24",
+     "central_label": "Mon Jan 24, 2028, 5:03 AM CST",
+     "utc_label": "Jan 24, 2028, 11:03 UTC",
+     "sign": "Aquarius",
+     "deg": 19,
+     "min": 42,
+     "lon": 319.6985,
+     "label": "19°42′ Aquarius"
+    },
+    "station_direct": {
+     "utc": "2028-02-14T12:38Z",
+     "central": "2028-02-14T06:38-0600",
+     "central_date": "2028-02-14",
+     "central_label": "Mon Feb 14, 2028, 6:38 AM CST",
+     "utc_label": "Feb 14, 2028, 12:38 UTC",
+     "sign": "Aquarius",
+     "deg": 3,
+     "min": 59,
+     "lon": 303.9854,
+     "label": "3°59′ Aquarius"
+    },
+    "days": 21,
+    "signs": [
+     "Aquarius"
+    ],
+    "shadow_begins": {
+     "utc": "2028-01-08T19:23Z",
+     "central": "2028-01-08T13:23-0600",
+     "central_date": "2028-01-08",
+     "central_label": "Sat Jan 8, 2028, 1:23 PM CST",
+     "utc_label": "Jan 8, 2028, 19:23 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2028-03-05T16:43Z",
+     "central": "2028-03-05T10:43-0600",
+     "central_date": "2028-03-05",
+     "central_label": "Sun Mar 5, 2028, 10:43 AM CST",
+     "utc_label": "Mar 5, 2028, 16:43 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2028-05-21T08:43Z",
+     "central": "2028-05-21T03:43-0500",
+     "central_date": "2028-05-21",
+     "central_label": "Sun May 21, 2028, 3:43 AM CDT",
+     "utc_label": "May 21, 2028, 08:43 UTC",
+     "sign": "Gemini",
+     "deg": 16,
+     "min": 19,
+     "lon": 76.3146,
+     "label": "16°19′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2028-06-14T06:06Z",
+     "central": "2028-06-14T01:06-0500",
+     "central_date": "2028-06-14",
+     "central_label": "Wed Jun 14, 2028, 1:06 AM CDT",
+     "utc_label": "Jun 14, 2028, 06:06 UTC",
+     "sign": "Gemini",
+     "deg": 7,
+     "min": 45,
+     "lon": 67.7568,
+     "label": "7°45′ Gemini"
+    },
+    "days": 24,
+    "signs": [
+     "Gemini"
+    ],
+    "shadow_begins": {
+     "utc": "2028-05-06T18:40Z",
+     "central": "2028-05-06T13:40-0500",
+     "central_date": "2028-05-06",
+     "central_label": "Sat May 6, 2028, 1:40 PM CDT",
+     "utc_label": "May 6, 2028, 18:40 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2028-06-29T08:58Z",
+     "central": "2028-06-29T03:58-0500",
+     "central_date": "2028-06-29",
+     "central_label": "Thu Jun 29, 2028, 3:58 AM CDT",
+     "utc_label": "Jun 29, 2028, 08:58 UTC"
+    }
+   },
+   {
+    "planet": "Mercury",
+    "station_retrograde": {
+     "utc": "2028-09-19T16:34Z",
+     "central": "2028-09-19T11:34-0500",
+     "central_date": "2028-09-19",
+     "central_label": "Tue Sep 19, 2028, 11:34 AM CDT",
+     "utc_label": "Sep 19, 2028, 16:34 UTC",
+     "sign": "Libra",
+     "deg": 18,
+     "min": 36,
+     "lon": 198.5941,
+     "label": "18°36′ Libra"
+    },
+    "station_direct": {
+     "utc": "2028-10-11T10:28Z",
+     "central": "2028-10-11T05:28-0500",
+     "central_date": "2028-10-11",
+     "central_label": "Wed Oct 11, 2028, 5:28 AM CDT",
+     "utc_label": "Oct 11, 2028, 10:28 UTC",
+     "sign": "Libra",
+     "deg": 3,
+     "min": 29,
+     "lon": 183.4806,
+     "label": "3°29′ Libra"
+    },
+    "days": 22,
+    "signs": [
+     "Libra"
+    ],
+    "shadow_begins": {
+     "utc": "2028-08-30T07:17Z",
+     "central": "2028-08-30T02:17-0500",
+     "central_date": "2028-08-30",
+     "central_label": "Wed Aug 30, 2028, 2:17 AM CDT",
+     "utc_label": "Aug 30, 2028, 07:17 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2028-10-26T13:50Z",
+     "central": "2028-10-26T08:50-0500",
+     "central_date": "2028-10-26",
+     "central_label": "Thu Oct 26, 2028, 8:50 AM CDT",
+     "utc_label": "Oct 26, 2028, 13:50 UTC"
+    }
+   }
+  ],
+  "Venus": [
+   {
+    "planet": "Venus",
+    "station_retrograde": {
+     "utc": "2026-10-03T07:16Z",
+     "central": "2026-10-03T02:16-0500",
+     "central_date": "2026-10-03",
+     "central_label": "Sat Oct 3, 2026, 2:16 AM CDT",
+     "utc_label": "Oct 3, 2026, 07:16 UTC",
+     "sign": "Scorpio",
+     "deg": 8,
+     "min": 29,
+     "lon": 218.4911,
+     "label": "8°29′ Scorpio"
+    },
+    "station_direct": {
+     "utc": "2026-11-14T00:28Z",
+     "central": "2026-11-13T18:28-0600",
+     "central_date": "2026-11-13",
+     "central_label": "Fri Nov 13, 2026, 6:28 PM CST",
+     "utc_label": "Nov 14, 2026, 00:28 UTC",
+     "sign": "Libra",
+     "deg": 22,
+     "min": 52,
+     "lon": 202.8637,
+     "label": "22°52′ Libra"
+    },
+    "days": 42,
+    "signs": [
+     "Scorpio",
+     "Libra"
+    ],
+    "shadow_begins": {
+     "utc": "2026-08-31T14:46Z",
+     "central": "2026-08-31T09:46-0500",
+     "central_date": "2026-08-31",
+     "central_label": "Mon Aug 31, 2026, 9:46 AM CDT",
+     "utc_label": "Aug 31, 2026, 14:46 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2026-12-15T18:44Z",
+     "central": "2026-12-15T12:44-0600",
+     "central_date": "2026-12-15",
+     "central_label": "Tue Dec 15, 2026, 12:44 PM CST",
+     "utc_label": "Dec 15, 2026, 18:44 UTC"
+    }
+   },
+   {
+    "planet": "Venus",
+    "station_retrograde": {
+     "utc": "2028-05-10T23:03Z",
+     "central": "2028-05-10T18:03-0500",
+     "central_date": "2028-05-10",
+     "central_label": "Wed May 10, 2028, 6:03 PM CDT",
+     "utc_label": "May 10, 2028, 23:03 UTC",
+     "sign": "Gemini",
+     "deg": 19,
+     "min": 41,
+     "lon": 79.6867,
+     "label": "19°41′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2028-06-22T22:13Z",
+     "central": "2028-06-22T17:13-0500",
+     "central_date": "2028-06-22",
+     "central_label": "Thu Jun 22, 2028, 5:13 PM CDT",
+     "utc_label": "Jun 22, 2028, 22:13 UTC",
+     "sign": "Gemini",
+     "deg": 3,
+     "min": 11,
+     "lon": 63.1797,
+     "label": "3°11′ Gemini"
+    },
+    "days": 43,
+    "signs": [
+     "Gemini"
+    ],
+    "shadow_begins": {
+     "utc": "2028-04-07T13:47Z",
+     "central": "2028-04-07T08:47-0500",
+     "central_date": "2028-04-07",
+     "central_label": "Fri Apr 7, 2028, 8:47 AM CDT",
+     "utc_label": "Apr 7, 2028, 13:47 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2028-07-26T21:10Z",
+     "central": "2028-07-26T16:10-0500",
+     "central_date": "2028-07-26",
+     "central_label": "Wed Jul 26, 2028, 4:10 PM CDT",
+     "utc_label": "Jul 26, 2028, 21:10 UTC"
+    }
+   }
+  ],
+  "Mars": [
+   {
+    "planet": "Mars",
+    "station_retrograde": {
+     "utc": "2027-01-10T12:59Z",
+     "central": "2027-01-10T06:59-0600",
+     "central_date": "2027-01-10",
+     "central_label": "Sun Jan 10, 2027, 6:59 AM CST",
+     "utc_label": "Jan 10, 2027, 12:59 UTC",
+     "sign": "Virgo",
+     "deg": 10,
+     "min": 26,
+     "lon": 160.429,
+     "label": "10°26′ Virgo"
+    },
+    "station_direct": {
+     "utc": "2027-04-01T14:08Z",
+     "central": "2027-04-01T09:08-0500",
+     "central_date": "2027-04-01",
+     "central_label": "Thu Apr 1, 2027, 9:08 AM CDT",
+     "utc_label": "Apr 1, 2027, 14:08 UTC",
+     "sign": "Leo",
+     "deg": 20,
+     "min": 56,
+     "lon": 140.9266,
+     "label": "20°56′ Leo"
+    },
+    "days": 81,
+    "signs": [
+     "Virgo",
+     "Leo"
+    ],
+    "shadow_begins": {
+     "utc": "2026-11-05T15:34Z",
+     "central": "2026-11-05T09:34-0600",
+     "central_date": "2026-11-05",
+     "central_label": "Thu Nov 5, 2026, 9:34 AM CST",
+     "utc_label": "Nov 5, 2026, 15:34 UTC"
+    },
+    "shadow_ends": {
+     "utc": "2027-06-08T01:58Z",
+     "central": "2027-06-07T20:58-0500",
+     "central_date": "2027-06-07",
+     "central_label": "Mon Jun 7, 2027, 8:58 PM CDT",
+     "utc_label": "Jun 8, 2027, 01:58 UTC"
+    }
+   }
+  ],
+  "Jupiter": [
+   {
+    "planet": "Jupiter",
+    "station_retrograde": {
+     "utc": "2025-11-11T16:42Z",
+     "central": "2025-11-11T10:42-0600",
+     "central_date": "2025-11-11",
+     "central_label": "Tue Nov 11, 2025, 10:42 AM CST",
+     "utc_label": "Nov 11, 2025, 16:42 UTC",
+     "sign": "Cancer",
+     "deg": 25,
+     "min": 9,
+     "lon": 115.1526,
+     "label": "25°09′ Cancer"
+    },
+    "station_direct": {
+     "utc": "2026-03-11T03:30Z",
+     "central": "2026-03-10T22:30-0500",
+     "central_date": "2026-03-10",
+     "central_label": "Tue Mar 10, 2026, 10:30 PM CDT",
+     "utc_label": "Mar 11, 2026, 03:30 UTC",
+     "sign": "Cancer",
+     "deg": 15,
+     "min": 5,
+     "lon": 105.0874,
+     "label": "15°05′ Cancer"
+    },
+    "days": 119,
+    "signs": [
+     "Cancer"
+    ]
+   },
+   {
+    "planet": "Jupiter",
+    "station_retrograde": {
+     "utc": "2026-12-13T00:57Z",
+     "central": "2026-12-12T18:57-0600",
+     "central_date": "2026-12-12",
+     "central_label": "Sat Dec 12, 2026, 6:57 PM CST",
+     "utc_label": "Dec 13, 2026, 00:57 UTC",
+     "sign": "Leo",
+     "deg": 27,
+     "min": 1,
+     "lon": 147.0247,
+     "label": "27°01′ Leo"
+    },
+    "station_direct": {
+     "utc": "2027-04-13T02:11Z",
+     "central": "2027-04-12T21:11-0500",
+     "central_date": "2027-04-12",
+     "central_label": "Mon Apr 12, 2027, 9:11 PM CDT",
+     "utc_label": "Apr 13, 2027, 02:11 UTC",
+     "sign": "Leo",
+     "deg": 17,
+     "min": 0,
+     "lon": 136.9955,
+     "label": "17°00′ Leo"
+    },
+    "days": 121,
+    "signs": [
+     "Leo"
+    ]
+   },
+   {
+    "planet": "Jupiter",
+    "station_retrograde": {
+     "utc": "2028-01-12T08:54Z",
+     "central": "2028-01-12T02:54-0600",
+     "central_date": "2028-01-12",
+     "central_label": "Wed Jan 12, 2028, 2:54 AM CST",
+     "utc_label": "Jan 12, 2028, 08:54 UTC",
+     "sign": "Virgo",
+     "deg": 27,
+     "min": 31,
+     "lon": 177.5122,
+     "label": "27°31′ Virgo"
+    },
+    "station_direct": {
+     "utc": "2028-05-13T20:00Z",
+     "central": "2028-05-13T15:00-0500",
+     "central_date": "2028-05-13",
+     "central_label": "Sat May 13, 2028, 3:00 PM CDT",
+     "utc_label": "May 13, 2028, 20:00 UTC",
+     "sign": "Virgo",
+     "deg": 17,
+     "min": 32,
+     "lon": 167.5403,
+     "label": "17°32′ Virgo"
+    },
+    "days": 122,
+    "signs": [
+     "Virgo"
+    ]
+   }
+  ],
+  "Saturn": [
+   {
+    "planet": "Saturn",
+    "station_retrograde": {
+     "utc": "2026-07-26T19:57Z",
+     "central": "2026-07-26T14:57-0500",
+     "central_date": "2026-07-26",
+     "central_label": "Sun Jul 26, 2026, 2:57 PM CDT",
+     "utc_label": "Jul 26, 2026, 19:57 UTC",
+     "sign": "Aries",
+     "deg": 14,
+     "min": 45,
+     "lon": 14.75,
+     "label": "14°45′ Aries"
+    },
+    "station_direct": {
+     "utc": "2026-12-10T23:31Z",
+     "central": "2026-12-10T17:31-0600",
+     "central_date": "2026-12-10",
+     "central_label": "Thu Dec 10, 2026, 5:31 PM CST",
+     "utc_label": "Dec 10, 2026, 23:31 UTC",
+     "sign": "Aries",
+     "deg": 7,
+     "min": 56,
+     "lon": 7.931,
+     "label": "7°56′ Aries"
+    },
+    "days": 137,
+    "signs": [
+     "Aries"
+    ]
+   },
+   {
+    "planet": "Saturn",
+    "station_retrograde": {
+     "utc": "2027-08-09T18:06Z",
+     "central": "2027-08-09T13:06-0500",
+     "central_date": "2027-08-09",
+     "central_label": "Mon Aug 9, 2027, 1:06 PM CDT",
+     "utc_label": "Aug 9, 2027, 18:06 UTC",
+     "sign": "Aries",
+     "deg": 27,
+     "min": 53,
+     "lon": 27.8804,
+     "label": "27°53′ Aries"
+    },
+    "station_direct": {
+     "utc": "2027-12-24T02:47Z",
+     "central": "2027-12-23T20:47-0600",
+     "central_date": "2027-12-23",
+     "central_label": "Thu Dec 23, 2027, 8:47 PM CST",
+     "utc_label": "Dec 24, 2027, 02:47 UTC",
+     "sign": "Aries",
+     "deg": 21,
+     "min": 1,
+     "lon": 21.0206,
+     "label": "21°01′ Aries"
+    },
+    "days": 136,
+    "signs": [
+     "Aries"
+    ]
+   },
+   {
+    "planet": "Saturn",
+    "station_retrograde": {
+     "utc": "2028-08-22T22:17Z",
+     "central": "2028-08-22T17:17-0500",
+     "central_date": "2028-08-22",
+     "central_label": "Tue Aug 22, 2028, 5:17 PM CDT",
+     "utc_label": "Aug 22, 2028, 22:17 UTC",
+     "sign": "Taurus",
+     "deg": 11,
+     "min": 19,
+     "lon": 41.3136,
+     "label": "11°19′ Taurus"
+    },
+    "station_direct": {
+     "utc": "2029-01-05T12:39Z",
+     "central": "2029-01-05T06:39-0600",
+     "central_date": "2029-01-05",
+     "central_label": "Fri Jan 5, 2029, 6:39 AM CST",
+     "utc_label": "Jan 5, 2029, 12:39 UTC",
+     "sign": "Taurus",
+     "deg": 4,
+     "min": 25,
+     "lon": 34.4165,
+     "label": "4°25′ Taurus"
+    },
+    "days": 136,
+    "signs": [
+     "Taurus"
+    ]
+   }
+  ],
+  "Uranus": [
+   {
+    "planet": "Uranus",
+    "station_retrograde": {
+     "utc": "2025-09-06T04:51Z",
+     "central": "2025-09-05T23:51-0500",
+     "central_date": "2025-09-05",
+     "central_label": "Fri Sep 5, 2025, 11:51 PM CDT",
+     "utc_label": "Sep 6, 2025, 04:51 UTC",
+     "sign": "Gemini",
+     "deg": 1,
+     "min": 28,
+     "lon": 61.4637,
+     "label": "1°28′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2026-02-04T02:33Z",
+     "central": "2026-02-03T20:33-0600",
+     "central_date": "2026-02-03",
+     "central_label": "Tue Feb 3, 2026, 8:33 PM CST",
+     "utc_label": "Feb 4, 2026, 02:33 UTC",
+     "sign": "Taurus",
+     "deg": 27,
+     "min": 28,
+     "lon": 57.4598,
+     "label": "27°28′ Taurus"
+    },
+    "days": 151,
+    "signs": [
+     "Gemini",
+     "Taurus"
+    ]
+   },
+   {
+    "planet": "Uranus",
+    "station_retrograde": {
+     "utc": "2026-09-10T18:27Z",
+     "central": "2026-09-10T13:27-0500",
+     "central_date": "2026-09-10",
+     "central_label": "Thu Sep 10, 2026, 1:27 PM CDT",
+     "utc_label": "Sep 10, 2026, 18:27 UTC",
+     "sign": "Gemini",
+     "deg": 5,
+     "min": 42,
+     "lon": 65.697,
+     "label": "5°42′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2027-02-08T12:29Z",
+     "central": "2027-02-08T06:29-0600",
+     "central_date": "2027-02-08",
+     "central_label": "Mon Feb 8, 2027, 6:29 AM CST",
+     "utc_label": "Feb 8, 2027, 12:29 UTC",
+     "sign": "Gemini",
+     "deg": 1,
+     "min": 41,
+     "lon": 61.6826,
+     "label": "1°41′ Gemini"
+    },
+    "days": 151,
+    "signs": [
+     "Gemini"
+    ]
+   },
+   {
+    "planet": "Uranus",
+    "station_retrograde": {
+     "utc": "2027-09-15T09:10Z",
+     "central": "2027-09-15T04:10-0500",
+     "central_date": "2027-09-15",
+     "central_label": "Wed Sep 15, 2027, 4:10 AM CDT",
+     "utc_label": "Sep 15, 2027, 09:10 UTC",
+     "sign": "Gemini",
+     "deg": 9,
+     "min": 57,
+     "lon": 69.9557,
+     "label": "9°57′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2028-02-12T23:50Z",
+     "central": "2028-02-12T17:50-0600",
+     "central_date": "2028-02-12",
+     "central_label": "Sat Feb 12, 2028, 5:50 PM CST",
+     "utc_label": "Feb 12, 2028, 23:50 UTC",
+     "sign": "Gemini",
+     "deg": 5,
+     "min": 56,
+     "lon": 65.9311,
+     "label": "5°56′ Gemini"
+    },
+    "days": 151,
+    "signs": [
+     "Gemini"
+    ]
+   },
+   {
+    "planet": "Uranus",
+    "station_retrograde": {
+     "utc": "2028-09-19T00:01Z",
+     "central": "2028-09-18T19:01-0500",
+     "central_date": "2028-09-18",
+     "central_label": "Mon Sep 18, 2028, 7:01 PM CDT",
+     "utc_label": "Sep 19, 2028, 00:01 UTC",
+     "sign": "Gemini",
+     "deg": 14,
+     "min": 14,
+     "lon": 74.241,
+     "label": "14°14′ Gemini"
+    },
+    "station_direct": {
+     "utc": "2029-02-16T10:52Z",
+     "central": "2029-02-16T04:52-0600",
+     "central_date": "2029-02-16",
+     "central_label": "Fri Feb 16, 2029, 4:52 AM CST",
+     "utc_label": "Feb 16, 2029, 10:52 UTC",
+     "sign": "Gemini",
+     "deg": 10,
+     "min": 12,
+     "lon": 70.2054,
+     "label": "10°12′ Gemini"
+    },
+    "days": 150,
+    "signs": [
+     "Gemini"
+    ]
+   }
+  ],
+  "Neptune": [
+   {
+    "planet": "Neptune",
+    "station_retrograde": {
+     "utc": "2026-07-07T10:55Z",
+     "central": "2026-07-07T05:55-0500",
+     "central_date": "2026-07-07",
+     "central_label": "Tue Jul 7, 2026, 5:55 AM CDT",
+     "utc_label": "Jul 7, 2026, 10:55 UTC",
+     "sign": "Aries",
+     "deg": 4,
+     "min": 25,
+     "lon": 4.418,
+     "label": "4°25′ Aries"
+    },
+    "station_direct": {
+     "utc": "2026-12-12T22:17Z",
+     "central": "2026-12-12T16:17-0600",
+     "central_date": "2026-12-12",
+     "central_label": "Sat Dec 12, 2026, 4:17 PM CST",
+     "utc_label": "Dec 12, 2026, 22:17 UTC",
+     "sign": "Aries",
+     "deg": 1,
+     "min": 37,
+     "lon": 1.6128,
+     "label": "1°37′ Aries"
+    },
+    "days": 158,
+    "signs": [
+     "Aries"
+    ]
+   },
+   {
+    "planet": "Neptune",
+    "station_retrograde": {
+     "utc": "2027-07-09T22:41Z",
+     "central": "2027-07-09T17:41-0500",
+     "central_date": "2027-07-09",
+     "central_label": "Fri Jul 9, 2027, 5:41 PM CDT",
+     "utc_label": "Jul 9, 2027, 22:41 UTC",
+     "sign": "Aries",
+     "deg": 6,
+     "min": 40,
+     "lon": 6.6594,
+     "label": "6°40′ Aries"
+    },
+    "station_direct": {
+     "utc": "2027-12-15T09:06Z",
+     "central": "2027-12-15T03:06-0600",
+     "central_date": "2027-12-15",
+     "central_label": "Wed Dec 15, 2027, 3:06 AM CST",
+     "utc_label": "Dec 15, 2027, 09:06 UTC",
+     "sign": "Aries",
+     "deg": 3,
+     "min": 51,
+     "lon": 3.8525,
+     "label": "3°51′ Aries"
+    },
+    "days": 158,
+    "signs": [
+     "Aries"
+    ]
+   },
+   {
+    "planet": "Neptune",
+    "station_retrograde": {
+     "utc": "2028-07-11T13:04Z",
+     "central": "2028-07-11T08:04-0500",
+     "central_date": "2028-07-11",
+     "central_label": "Tue Jul 11, 2028, 8:04 AM CDT",
+     "utc_label": "Jul 11, 2028, 13:04 UTC",
+     "sign": "Aries",
+     "deg": 8,
+     "min": 54,
+     "lon": 8.9002,
+     "label": "8°54′ Aries"
+    },
+    "station_direct": {
+     "utc": "2028-12-16T20:43Z",
+     "central": "2028-12-16T14:43-0600",
+     "central_date": "2028-12-16",
+     "central_label": "Sat Dec 16, 2028, 2:43 PM CST",
+     "utc_label": "Dec 16, 2028, 20:43 UTC",
+     "sign": "Aries",
+     "deg": 6,
+     "min": 6,
+     "lon": 6.0918,
+     "label": "6°06′ Aries"
+    },
+    "days": 158,
+    "signs": [
+     "Aries"
+    ]
+   }
+  ],
+  "Pluto": [
+   {
+    "planet": "Pluto",
+    "station_retrograde": {
+     "utc": "2026-05-06T15:34Z",
+     "central": "2026-05-06T10:34-0500",
+     "central_date": "2026-05-06",
+     "central_label": "Wed May 6, 2026, 10:34 AM CDT",
+     "utc_label": "May 6, 2026, 15:34 UTC",
+     "sign": "Aquarius",
+     "deg": 5,
+     "min": 31,
+     "lon": 305.5094,
+     "label": "5°31′ Aquarius"
+    },
+    "station_direct": {
+     "utc": "2026-10-16T02:40Z",
+     "central": "2026-10-15T21:40-0500",
+     "central_date": "2026-10-15",
+     "central_label": "Thu Oct 15, 2026, 9:40 PM CDT",
+     "utc_label": "Oct 16, 2026, 02:40 UTC",
+     "sign": "Aquarius",
+     "deg": 3,
+     "min": 4,
+     "lon": 303.0685,
+     "label": "3°04′ Aquarius"
+    },
+    "days": 162,
+    "signs": [
+     "Aquarius"
+    ]
+   },
+   {
+    "planet": "Pluto",
+    "station_retrograde": {
+     "utc": "2027-05-08T12:54Z",
+     "central": "2027-05-08T07:54-0500",
+     "central_date": "2027-05-08",
+     "central_label": "Sat May 8, 2027, 7:54 AM CDT",
+     "utc_label": "May 8, 2027, 12:54 UTC",
+     "sign": "Aquarius",
+     "deg": 7,
+     "min": 11,
+     "lon": 307.178,
+     "label": "7°11′ Aquarius"
+    },
+    "station_direct": {
+     "utc": "2027-10-18T03:52Z",
+     "central": "2027-10-17T22:52-0500",
+     "central_date": "2027-10-17",
+     "central_label": "Sun Oct 17, 2027, 10:52 PM CDT",
+     "utc_label": "Oct 18, 2027, 03:52 UTC",
+     "sign": "Aquarius",
+     "deg": 4,
+     "min": 45,
+     "lon": 304.7482,
+     "label": "4°45′ Aquarius"
+    },
+    "days": 163,
+    "signs": [
+     "Aquarius"
+    ]
+   },
+   {
+    "planet": "Pluto",
+    "station_retrograde": {
+     "utc": "2028-05-09T09:30Z",
+     "central": "2028-05-09T04:30-0500",
+     "central_date": "2028-05-09",
+     "central_label": "Tue May 9, 2028, 4:30 AM CDT",
+     "utc_label": "May 9, 2028, 09:30 UTC",
+     "sign": "Aquarius",
+     "deg": 8,
+     "min": 50,
+     "lon": 308.8253,
+     "label": "8°50′ Aquarius"
+    },
+    "station_direct": {
+     "utc": "2028-10-19T03:46Z",
+     "central": "2028-10-18T22:46-0500",
+     "central_date": "2028-10-18",
+     "central_label": "Wed Oct 18, 2028, 10:46 PM CDT",
+     "utc_label": "Oct 19, 2028, 03:46 UTC",
+     "sign": "Aquarius",
+     "deg": 6,
+     "min": 24,
+     "lon": 306.4068,
+     "label": "6°24′ Aquarius"
+    },
+    "days": 163,
+    "signs": [
+     "Aquarius"
+    ]
+   }
+  ]
+ },
+ "lunations": [
+  {
+   "kind": "full",
+   "jd": 2461043.9186879625,
+   "utc": "2026-01-03T10:03Z",
+   "central": "2026-01-03T04:03-0600",
+   "central_date": "2026-01-03",
+   "central_label": "Sat Jan 3, 2026, 4:03 AM CST",
+   "utc_label": "Jan 3, 2026, 10:03 UTC",
+   "sign": "Cancer",
+   "deg": 13,
+   "min": 2,
+   "lon": 103.0329,
+   "label": "13°02′ Cancer",
+   "name": "Wolf Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461059.3277970892,
+   "utc": "2026-01-18T19:52Z",
+   "central": "2026-01-18T13:52-0600",
+   "central_date": "2026-01-18",
+   "central_label": "Sun Jan 18, 2026, 1:52 PM CST",
+   "utc_label": "Jan 18, 2026, 19:52 UTC",
+   "sign": "Capricorn",
+   "deg": 28,
+   "min": 44,
+   "lon": 298.7321,
+   "label": "28°44′ Capricorn"
+  },
+  {
+   "kind": "full",
+   "jd": 2461073.4230898097,
+   "utc": "2026-02-01T22:09Z",
+   "central": "2026-02-01T16:09-0600",
+   "central_date": "2026-02-01",
+   "central_label": "Sun Feb 1, 2026, 4:09 PM CST",
+   "utc_label": "Feb 1, 2026, 22:09 UTC",
+   "sign": "Leo",
+   "deg": 13,
+   "min": 4,
+   "lon": 133.0612,
+   "label": "13°04′ Leo",
+   "name": "Snow Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461089.000811091,
+   "utc": "2026-02-17T12:01Z",
+   "central": "2026-02-17T06:01-0600",
+   "central_date": "2026-02-17",
+   "central_label": "Tue Feb 17, 2026, 6:01 AM CST",
+   "utc_label": "Feb 17, 2026, 12:01 UTC",
+   "sign": "Aquarius",
+   "deg": 28,
+   "min": 50,
+   "lon": 328.8289,
+   "label": "28°50′ Aquarius",
+   "eclipse": "annular solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461102.984671543,
+   "utc": "2026-03-03T11:38Z",
+   "central": "2026-03-03T05:38-0600",
+   "central_date": "2026-03-03",
+   "central_label": "Tue Mar 3, 2026, 5:38 AM CST",
+   "utc_label": "Mar 3, 2026, 11:38 UTC",
+   "sign": "Virgo",
+   "deg": 12,
+   "min": 54,
+   "lon": 162.8982,
+   "label": "12°54′ Virgo",
+   "name": "Worm Moon",
+   "eclipse": "total lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461118.557977342,
+   "utc": "2026-03-19T01:23Z",
+   "central": "2026-03-18T20:23-0500",
+   "central_date": "2026-03-18",
+   "central_label": "Wed Mar 18, 2026, 8:23 PM CDT",
+   "utc_label": "Mar 19, 2026, 01:23 UTC",
+   "sign": "Pisces",
+   "deg": 28,
+   "min": 27,
+   "lon": 358.4514,
+   "label": "28°27′ Pisces"
+  },
+  {
+   "kind": "full",
+   "jd": 2461132.5916675036,
+   "utc": "2026-04-02T02:12Z",
+   "central": "2026-04-01T21:12-0500",
+   "central_date": "2026-04-01",
+   "central_label": "Wed Apr 1, 2026, 9:12 PM CDT",
+   "utc_label": "Apr 2, 2026, 02:12 UTC",
+   "sign": "Libra",
+   "deg": 12,
+   "min": 21,
+   "lon": 192.3529,
+   "label": "12°21′ Libra",
+   "name": "Pink Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461147.9943163083,
+   "utc": "2026-04-17T11:52Z",
+   "central": "2026-04-17T06:52-0500",
+   "central_date": "2026-04-17",
+   "central_label": "Fri Apr 17, 2026, 6:52 AM CDT",
+   "utc_label": "Apr 17, 2026, 11:52 UTC",
+   "sign": "Aries",
+   "deg": 27,
+   "min": 29,
+   "lon": 27.4828,
+   "label": "27°29′ Aries"
+  },
+  {
+   "kind": "full",
+   "jd": 2461162.2244300935,
+   "utc": "2026-05-01T17:23Z",
+   "central": "2026-05-01T12:23-0500",
+   "central_date": "2026-05-01",
+   "central_label": "Fri May 1, 2026, 12:23 PM CDT",
+   "utc_label": "May 1, 2026, 17:23 UTC",
+   "sign": "Scorpio",
+   "deg": 11,
+   "min": 21,
+   "lon": 221.3473,
+   "label": "11°21′ Scorpio",
+   "name": "Flower Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461177.3340725186,
+   "utc": "2026-05-16T20:01Z",
+   "central": "2026-05-16T15:01-0500",
+   "central_date": "2026-05-16",
+   "central_label": "Sat May 16, 2026, 3:01 PM CDT",
+   "utc_label": "May 16, 2026, 20:01 UTC",
+   "sign": "Taurus",
+   "deg": 25,
+   "min": 58,
+   "lon": 55.9615,
+   "label": "25°58′ Taurus"
+  },
+  {
+   "kind": "full",
+   "jd": 2461191.864717563,
+   "utc": "2026-05-31T08:45Z",
+   "central": "2026-05-31T03:45-0500",
+   "central_date": "2026-05-31",
+   "central_label": "Sun May 31, 2026, 3:45 AM CDT",
+   "utc_label": "May 31, 2026, 08:45 UTC",
+   "sign": "Sagittarius",
+   "deg": 9,
+   "min": 56,
+   "lon": 249.9294,
+   "label": "9°56′ Sagittarius",
+   "name": "Flower Moon",
+   "blue_moon": true
+  },
+  {
+   "kind": "new",
+   "jd": 2461206.6209689174,
+   "utc": "2026-06-15T02:54Z",
+   "central": "2026-06-14T21:54-0500",
+   "central_date": "2026-06-14",
+   "central_label": "Sun Jun 14, 2026, 9:54 PM CDT",
+   "utc_label": "Jun 15, 2026, 02:54 UTC",
+   "sign": "Gemini",
+   "deg": 24,
+   "min": 3,
+   "lon": 84.0502,
+   "label": "24°03′ Gemini"
+  },
+  {
+   "kind": "full",
+   "jd": 2461221.497717671,
+   "utc": "2026-06-29T23:57Z",
+   "central": "2026-06-29T18:57-0500",
+   "central_date": "2026-06-29",
+   "central_label": "Mon Jun 29, 2026, 6:57 PM CDT",
+   "utc_label": "Jun 29, 2026, 23:57 UTC",
+   "sign": "Capricorn",
+   "deg": 8,
+   "min": 15,
+   "lon": 278.2474,
+   "label": "8°15′ Capricorn",
+   "name": "Strawberry Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461235.90528269,
+   "utc": "2026-07-14T09:44Z",
+   "central": "2026-07-14T04:44-0500",
+   "central_date": "2026-07-14",
+   "central_label": "Tue Jul 14, 2026, 4:44 AM CDT",
+   "utc_label": "Jul 14, 2026, 09:44 UTC",
+   "sign": "Cancer",
+   "deg": 21,
+   "min": 59,
+   "lon": 111.9865,
+   "label": "21°59′ Cancer"
+  },
+  {
+   "kind": "full",
+   "jd": 2461251.108166898,
+   "utc": "2026-07-29T14:36Z",
+   "central": "2026-07-29T09:36-0500",
+   "central_date": "2026-07-29",
+   "central_label": "Wed Jul 29, 2026, 9:36 AM CDT",
+   "utc_label": "Jul 29, 2026, 14:36 UTC",
+   "sign": "Aquarius",
+   "deg": 6,
+   "min": 30,
+   "lon": 306.5024,
+   "label": "6°30′ Aquarius",
+   "name": "Buck Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461265.2338375086,
+   "utc": "2026-08-12T17:37Z",
+   "central": "2026-08-12T12:37-0500",
+   "central_date": "2026-08-12",
+   "central_label": "Wed Aug 12, 2026, 12:37 PM CDT",
+   "utc_label": "Aug 12, 2026, 17:37 UTC",
+   "sign": "Leo",
+   "deg": 20,
+   "min": 2,
+   "lon": 140.0329,
+   "label": "20°02′ Leo",
+   "eclipse": "total solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461280.679545906,
+   "utc": "2026-08-28T04:19Z",
+   "central": "2026-08-27T23:19-0500",
+   "central_date": "2026-08-27",
+   "central_label": "Thu Aug 27, 2026, 11:19 PM CDT",
+   "utc_label": "Aug 28, 2026, 04:19 UTC",
+   "sign": "Pisces",
+   "deg": 4,
+   "min": 54,
+   "lon": 334.902,
+   "label": "4°54′ Pisces",
+   "name": "Sturgeon Moon",
+   "eclipse": "partial lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461294.6437621913,
+   "utc": "2026-09-11T03:27Z",
+   "central": "2026-09-10T22:27-0500",
+   "central_date": "2026-09-10",
+   "central_label": "Thu Sep 10, 2026, 10:27 PM CDT",
+   "utc_label": "Sep 11, 2026, 03:27 UTC",
+   "sign": "Virgo",
+   "deg": 18,
+   "min": 26,
+   "lon": 168.4318,
+   "label": "18°26′ Virgo"
+  },
+  {
+   "kind": "full",
+   "jd": 2461310.2007073546,
+   "utc": "2026-09-26T16:49Z",
+   "central": "2026-09-26T11:49-0500",
+   "central_date": "2026-09-26",
+   "central_label": "Sat Sep 26, 2026, 11:49 AM CDT",
+   "utc_label": "Sep 26, 2026, 16:49 UTC",
+   "sign": "Aries",
+   "deg": 3,
+   "min": 37,
+   "lon": 3.6198,
+   "label": "3°37′ Aries",
+   "name": "Harvest Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461324.159802587,
+   "utc": "2026-10-10T15:50Z",
+   "central": "2026-10-10T10:50-0500",
+   "central_date": "2026-10-10",
+   "central_label": "Sat Oct 10, 2026, 10:50 AM CDT",
+   "utc_label": "Oct 10, 2026, 15:50 UTC",
+   "sign": "Libra",
+   "deg": 17,
+   "min": 22,
+   "lon": 197.3607,
+   "label": "17°22′ Libra"
+  },
+  {
+   "kind": "full",
+   "jd": 2461339.674852706,
+   "utc": "2026-10-26T04:12Z",
+   "central": "2026-10-25T23:12-0500",
+   "central_date": "2026-10-25",
+   "central_label": "Sun Oct 25, 2026, 11:12 PM CDT",
+   "utc_label": "Oct 26, 2026, 04:12 UTC",
+   "sign": "Taurus",
+   "deg": 2,
+   "min": 46,
+   "lon": 32.7619,
+   "label": "2°46′ Taurus",
+   "name": "Hunter's Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461353.7931377324,
+   "utc": "2026-11-09T07:02Z",
+   "central": "2026-11-09T01:02-0600",
+   "central_date": "2026-11-09",
+   "central_label": "Mon Nov 9, 2026, 1:02 AM CST",
+   "utc_label": "Nov 9, 2026, 07:02 UTC",
+   "sign": "Scorpio",
+   "deg": 16,
+   "min": 53,
+   "lon": 226.8898,
+   "label": "16°53′ Scorpio"
+  },
+  {
+   "kind": "full",
+   "jd": 2461369.120557964,
+   "utc": "2026-11-24T14:54Z",
+   "central": "2026-11-24T08:54-0600",
+   "central_date": "2026-11-24",
+   "central_label": "Tue Nov 24, 2026, 8:54 AM CST",
+   "utc_label": "Nov 24, 2026, 14:54 UTC",
+   "sign": "Gemini",
+   "deg": 2,
+   "min": 20,
+   "lon": 62.3362,
+   "label": "2°20′ Gemini",
+   "name": "Beaver Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461383.536010204,
+   "utc": "2026-12-09T00:52Z",
+   "central": "2026-12-08T18:52-0600",
+   "central_date": "2026-12-08",
+   "central_label": "Tue Dec 8, 2026, 6:52 PM CST",
+   "utc_label": "Dec 9, 2026, 00:52 UTC",
+   "sign": "Sagittarius",
+   "deg": 16,
+   "min": 57,
+   "lon": 256.9466,
+   "label": "16°57′ Sagittarius"
+  },
+  {
+   "kind": "full",
+   "jd": 2461398.5613010926,
+   "utc": "2026-12-24T01:28Z",
+   "central": "2026-12-23T19:28-0600",
+   "central_date": "2026-12-23",
+   "central_label": "Wed Dec 23, 2026, 7:28 PM CST",
+   "utc_label": "Dec 24, 2026, 01:28 UTC",
+   "sign": "Cancer",
+   "deg": 2,
+   "min": 14,
+   "lon": 92.2328,
+   "label": "2°14′ Cancer",
+   "name": "Cold Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461413.3502943157,
+   "utc": "2027-01-07T20:24Z",
+   "central": "2027-01-07T14:24-0600",
+   "central_date": "2027-01-07",
+   "central_label": "Thu Jan 7, 2027, 2:24 PM CST",
+   "utc_label": "Jan 7, 2027, 20:24 UTC",
+   "sign": "Capricorn",
+   "deg": 17,
+   "min": 18,
+   "lon": 287.3043,
+   "label": "17°18′ Capricorn"
+  },
+  {
+   "kind": "full",
+   "jd": 2461428.0120560047,
+   "utc": "2027-01-22T12:17Z",
+   "central": "2027-01-22T06:17-0600",
+   "central_date": "2027-01-22",
+   "central_label": "Fri Jan 22, 2027, 6:17 AM CST",
+   "utc_label": "Jan 22, 2027, 12:17 UTC",
+   "sign": "Leo",
+   "deg": 2,
+   "min": 14,
+   "lon": 122.2378,
+   "label": "2°14′ Leo",
+   "name": "Wolf Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461443.1639952795,
+   "utc": "2027-02-06T15:56Z",
+   "central": "2027-02-06T09:56-0600",
+   "central_date": "2027-02-06",
+   "central_label": "Sat Feb 6, 2027, 9:56 AM CST",
+   "utc_label": "Feb 6, 2027, 15:56 UTC",
+   "sign": "Aquarius",
+   "deg": 17,
+   "min": 38,
+   "lon": 317.6271,
+   "label": "17°38′ Aquarius",
+   "eclipse": "annular solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461457.47474753,
+   "utc": "2027-02-20T23:24Z",
+   "central": "2027-02-20T17:24-0600",
+   "central_date": "2027-02-20",
+   "central_label": "Sat Feb 20, 2027, 5:24 PM CST",
+   "utc_label": "Feb 20, 2027, 23:24 UTC",
+   "sign": "Virgo",
+   "deg": 2,
+   "min": 6,
+   "lon": 152.0931,
+   "label": "2°06′ Virgo",
+   "name": "Snow Moon",
+   "eclipse": "penumbral lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461472.8954831897,
+   "utc": "2027-03-08T09:29Z",
+   "central": "2027-03-08T03:29-0600",
+   "central_date": "2027-03-08",
+   "central_label": "Mon Mar 8, 2027, 3:29 AM CST",
+   "utc_label": "Mar 8, 2027, 09:29 UTC",
+   "sign": "Pisces",
+   "deg": 17,
+   "min": 35,
+   "lon": 347.5801,
+   "label": "17°35′ Pisces"
+  },
+  {
+   "kind": "full",
+   "jd": 2461486.9470892474,
+   "utc": "2027-03-22T10:44Z",
+   "central": "2027-03-22T05:44-0500",
+   "central_date": "2027-03-22",
+   "central_label": "Mon Mar 22, 2027, 5:44 AM CDT",
+   "utc_label": "Mar 22, 2027, 10:44 UTC",
+   "sign": "Libra",
+   "deg": 1,
+   "min": 35,
+   "lon": 181.5852,
+   "label": "1°35′ Libra",
+   "name": "Worm Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461502.4938517297,
+   "utc": "2027-04-06T23:51Z",
+   "central": "2027-04-06T18:51-0500",
+   "central_date": "2027-04-06",
+   "central_label": "Tue Apr 6, 2027, 6:51 PM CDT",
+   "utc_label": "Apr 6, 2027, 23:51 UTC",
+   "sign": "Aries",
+   "deg": 16,
+   "min": 57,
+   "lon": 16.9518,
+   "label": "16°57′ Aries"
+  },
+  {
+   "kind": "full",
+   "jd": 2461516.435545164,
+   "utc": "2027-04-20T22:27Z",
+   "central": "2027-04-20T17:27-0500",
+   "central_date": "2027-04-20",
+   "central_label": "Tue Apr 20, 2027, 5:27 PM CDT",
+   "utc_label": "Apr 20, 2027, 22:27 UTC",
+   "sign": "Scorpio",
+   "deg": 0,
+   "min": 37,
+   "lon": 210.6165,
+   "label": "0°37′ Scorpio",
+   "name": "Pink Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461531.957376966,
+   "utc": "2027-05-06T10:59Z",
+   "central": "2027-05-06T05:59-0500",
+   "central_date": "2027-05-06",
+   "central_label": "Thu May 6, 2027, 5:59 AM CDT",
+   "utc_label": "May 6, 2027, 10:59 UTC",
+   "sign": "Taurus",
+   "deg": 15,
+   "min": 43,
+   "lon": 45.7089,
+   "label": "15°43′ Taurus"
+  },
+  {
+   "kind": "full",
+   "jd": 2461545.957657037,
+   "utc": "2027-05-20T10:59Z",
+   "central": "2027-05-20T05:59-0500",
+   "central_date": "2027-05-20",
+   "central_label": "Thu May 20, 2027, 5:59 AM CDT",
+   "utc_label": "May 20, 2027, 10:59 UTC",
+   "sign": "Scorpio",
+   "deg": 29,
+   "min": 14,
+   "lon": 239.2255,
+   "label": "29°14′ Scorpio",
+   "name": "Flower Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461561.3196913763,
+   "utc": "2027-06-04T19:40Z",
+   "central": "2027-06-04T14:40-0500",
+   "central_date": "2027-06-04",
+   "central_label": "Fri Jun 4, 2027, 2:40 PM CDT",
+   "utc_label": "Jun 4, 2027, 19:40 UTC",
+   "sign": "Gemini",
+   "deg": 13,
+   "min": 58,
+   "lon": 73.972,
+   "label": "13°58′ Gemini"
+  },
+  {
+   "kind": "full",
+   "jd": 2461575.5307900114,
+   "utc": "2027-06-19T00:44Z",
+   "central": "2027-06-18T19:44-0500",
+   "central_date": "2027-06-18",
+   "central_label": "Fri Jun 18, 2027, 7:44 PM CDT",
+   "utc_label": "Jun 19, 2027, 00:44 UTC",
+   "sign": "Sagittarius",
+   "deg": 27,
+   "min": 33,
+   "lon": 267.5574,
+   "label": "27°33′ Sagittarius",
+   "name": "Strawberry Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461590.6264394927,
+   "utc": "2027-07-04T03:02Z",
+   "central": "2027-07-03T22:02-0500",
+   "central_date": "2027-07-03",
+   "central_label": "Sat Jul 3, 2027, 10:02 PM CDT",
+   "utc_label": "Jul 4, 2027, 03:02 UTC",
+   "sign": "Cancer",
+   "deg": 11,
+   "min": 57,
+   "lon": 101.9565,
+   "label": "11°57′ Cancer"
+  },
+  {
+   "kind": "full",
+   "jd": 2461605.156206316,
+   "utc": "2027-07-18T15:45Z",
+   "central": "2027-07-18T10:45-0500",
+   "central_date": "2027-07-18",
+   "central_label": "Sun Jul 18, 2027, 10:45 AM CDT",
+   "utc_label": "Jul 18, 2027, 15:45 UTC",
+   "sign": "Capricorn",
+   "deg": 25,
+   "min": 49,
+   "lon": 295.8126,
+   "label": "25°49′ Capricorn",
+   "name": "Buck Moon",
+   "eclipse": "penumbral lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461619.920292957,
+   "utc": "2027-08-02T10:05Z",
+   "central": "2027-08-02T05:05-0500",
+   "central_date": "2027-08-02",
+   "central_label": "Mon Aug 2, 2027, 5:05 AM CDT",
+   "utc_label": "Aug 2, 2027, 10:05 UTC",
+   "sign": "Leo",
+   "deg": 9,
+   "min": 55,
+   "lon": 129.9173,
+   "label": "9°55′ Leo",
+   "eclipse": "total solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461634.8116049184,
+   "utc": "2027-08-17T07:29Z",
+   "central": "2027-08-17T02:29-0500",
+   "central_date": "2027-08-17",
+   "central_label": "Tue Aug 17, 2027, 2:29 AM CDT",
+   "utc_label": "Aug 17, 2027, 07:29 UTC",
+   "sign": "Aquarius",
+   "deg": 24,
+   "min": 12,
+   "lon": 324.1968,
+   "label": "24°12′ Aquarius",
+   "name": "Sturgeon Moon",
+   "eclipse": "penumbral lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461649.2369421325,
+   "utc": "2027-08-31T17:41Z",
+   "central": "2027-08-31T12:41-0500",
+   "central_date": "2027-08-31",
+   "central_label": "Tue Aug 31, 2027, 12:41 PM CDT",
+   "utc_label": "Aug 31, 2027, 17:41 UTC",
+   "sign": "Virgo",
+   "deg": 8,
+   "min": 6,
+   "lon": 158.1043,
+   "label": "8°06′ Virgo"
+  },
+  {
+   "kind": "full",
+   "jd": 2461664.4607906598,
+   "utc": "2027-09-15T23:04Z",
+   "central": "2027-09-15T18:04-0500",
+   "central_date": "2027-09-15",
+   "central_label": "Wed Sep 15, 2027, 6:04 PM CDT",
+   "utc_label": "Sep 15, 2027, 23:04 UTC",
+   "sign": "Pisces",
+   "deg": 22,
+   "min": 53,
+   "lon": 352.8828,
+   "label": "22°53′ Pisces",
+   "name": "Harvest Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461678.608400885,
+   "utc": "2027-09-30T02:36Z",
+   "central": "2027-09-29T21:36-0500",
+   "central_date": "2027-09-29",
+   "central_label": "Wed Sep 29, 2027, 9:36 PM CDT",
+   "utc_label": "Sep 30, 2027, 02:36 UTC",
+   "sign": "Libra",
+   "deg": 6,
+   "min": 43,
+   "lon": 186.7241,
+   "label": "6°43′ Libra"
+  },
+  {
+   "kind": "full",
+   "jd": 2461694.0742927063,
+   "utc": "2027-10-15T13:47Z",
+   "central": "2027-10-15T08:47-0500",
+   "central_date": "2027-10-15",
+   "central_label": "Fri Oct 15, 2027, 8:47 AM CDT",
+   "utc_label": "Oct 15, 2027, 13:47 UTC",
+   "sign": "Aries",
+   "deg": 21,
+   "min": 59,
+   "lon": 21.9826,
+   "label": "21°59′ Aries",
+   "name": "Hunter's Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461708.0670691202,
+   "utc": "2027-10-29T13:37Z",
+   "central": "2027-10-29T08:37-0500",
+   "central_date": "2027-10-29",
+   "central_label": "Fri Oct 29, 2027, 8:37 AM CDT",
+   "utc_label": "Oct 29, 2027, 13:37 UTC",
+   "sign": "Scorpio",
+   "deg": 5,
+   "min": 54,
+   "lon": 215.9036,
+   "label": "5°54′ Scorpio"
+  },
+  {
+   "kind": "full",
+   "jd": 2461723.642996202,
+   "utc": "2027-11-14T03:26Z",
+   "central": "2027-11-13T21:26-0600",
+   "central_date": "2027-11-13",
+   "central_label": "Sat Nov 13, 2027, 9:26 PM CST",
+   "utc_label": "Nov 14, 2027, 03:26 UTC",
+   "sign": "Taurus",
+   "deg": 21,
+   "min": 31,
+   "lon": 51.5214,
+   "label": "21°31′ Taurus",
+   "name": "Beaver Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461737.6419723746,
+   "utc": "2027-11-28T03:24Z",
+   "central": "2027-11-27T21:24-0600",
+   "central_date": "2027-11-27",
+   "central_label": "Sat Nov 27, 2027, 9:24 PM CST",
+   "utc_label": "Nov 28, 2027, 03:24 UTC",
+   "sign": "Sagittarius",
+   "deg": 5,
+   "min": 39,
+   "lon": 245.6533,
+   "label": "5°39′ Sagittarius"
+  },
+  {
+   "kind": "full",
+   "jd": 2461753.1727991914,
+   "utc": "2027-12-13T16:09Z",
+   "central": "2027-12-13T10:09-0600",
+   "central_date": "2027-12-13",
+   "central_label": "Mon Dec 13, 2027, 10:09 AM CST",
+   "utc_label": "Dec 13, 2027, 16:09 UTC",
+   "sign": "Gemini",
+   "deg": 21,
+   "min": 25,
+   "lon": 81.4129,
+   "label": "21°25′ Gemini",
+   "name": "Cold Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461767.3418951742,
+   "utc": "2027-12-27T20:12Z",
+   "central": "2027-12-27T14:12-0600",
+   "central_date": "2027-12-27",
+   "central_label": "Mon Dec 27, 2027, 2:12 PM CST",
+   "utc_label": "Dec 27, 2027, 20:12 UTC",
+   "sign": "Capricorn",
+   "deg": 5,
+   "min": 50,
+   "lon": 275.8381,
+   "label": "5°50′ Capricorn"
+  },
+  {
+   "kind": "full",
+   "jd": 2461782.668827457,
+   "utc": "2028-01-12T04:03Z",
+   "central": "2028-01-11T22:03-0600",
+   "central_date": "2028-01-11",
+   "central_label": "Tue Jan 11, 2028, 10:03 PM CST",
+   "utc_label": "Jan 12, 2028, 04:03 UTC",
+   "sign": "Cancer",
+   "deg": 21,
+   "min": 28,
+   "lon": 111.4588,
+   "label": "21°28′ Cancer",
+   "name": "Wolf Moon",
+   "eclipse": "partial lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461797.1337017296,
+   "utc": "2028-01-26T15:13Z",
+   "central": "2028-01-26T09:13-0600",
+   "central_date": "2028-01-26",
+   "central_label": "Wed Jan 26, 2028, 9:13 AM CST",
+   "utc_label": "Jan 26, 2028, 15:13 UTC",
+   "sign": "Aquarius",
+   "deg": 6,
+   "min": 11,
+   "lon": 306.1837,
+   "label": "6°11′ Aquarius",
+   "eclipse": "annular solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461812.1276141373,
+   "utc": "2028-02-10T15:04Z",
+   "central": "2028-02-10T09:04-0600",
+   "central_date": "2028-02-10",
+   "central_label": "Thu Feb 10, 2028, 9:04 AM CST",
+   "utc_label": "Feb 10, 2028, 15:04 UTC",
+   "sign": "Leo",
+   "deg": 21,
+   "min": 24,
+   "lon": 141.3965,
+   "label": "21°24′ Leo",
+   "name": "Snow Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461826.942661101,
+   "utc": "2028-02-25T10:37Z",
+   "central": "2028-02-25T04:37-0600",
+   "central_date": "2028-02-25",
+   "central_label": "Fri Feb 25, 2028, 4:37 AM CST",
+   "utc_label": "Feb 25, 2028, 10:37 UTC",
+   "sign": "Pisces",
+   "deg": 6,
+   "min": 21,
+   "lon": 336.3482,
+   "label": "6°21′ Pisces"
+  },
+  {
+   "kind": "full",
+   "jd": 2461841.5458724312,
+   "utc": "2028-03-11T01:06Z",
+   "central": "2028-03-10T19:06-0600",
+   "central_date": "2028-03-10",
+   "central_label": "Fri Mar 10, 2028, 7:06 PM CST",
+   "utc_label": "Mar 11, 2028, 01:06 UTC",
+   "sign": "Virgo",
+   "deg": 20,
+   "min": 59,
+   "lon": 170.9867,
+   "label": "20°59′ Virgo",
+   "name": "Worm Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461856.688426983,
+   "utc": "2028-03-26T04:31Z",
+   "central": "2028-03-25T23:31-0500",
+   "central_date": "2028-03-25",
+   "central_label": "Sat Mar 25, 2028, 11:31 PM CDT",
+   "utc_label": "Mar 26, 2028, 04:31 UTC",
+   "sign": "Aries",
+   "deg": 6,
+   "min": 3,
+   "lon": 6.046,
+   "label": "6°03′ Aries"
+  },
+  {
+   "kind": "full",
+   "jd": 2461870.935163116,
+   "utc": "2028-04-09T10:27Z",
+   "central": "2028-04-09T05:27-0500",
+   "central_date": "2028-04-09",
+   "central_label": "Sun Apr 9, 2028, 5:27 AM CDT",
+   "utc_label": "Apr 9, 2028, 10:27 UTC",
+   "sign": "Libra",
+   "deg": 20,
+   "min": 6,
+   "lon": 200.0966,
+   "label": "20°06′ Libra",
+   "name": "Pink Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461886.324246592,
+   "utc": "2028-04-24T19:47Z",
+   "central": "2028-04-24T14:47-0500",
+   "central_date": "2028-04-24",
+   "central_label": "Mon Apr 24, 2028, 2:47 PM CDT",
+   "utc_label": "Apr 24, 2028, 19:47 UTC",
+   "sign": "Taurus",
+   "deg": 5,
+   "min": 9,
+   "lon": 35.1469,
+   "label": "5°09′ Taurus"
+  },
+  {
+   "kind": "full",
+   "jd": 2461900.325681699,
+   "utc": "2028-05-08T19:49Z",
+   "central": "2028-05-08T14:49-0500",
+   "central_date": "2028-05-08",
+   "central_label": "Mon May 8, 2028, 2:49 PM CDT",
+   "utc_label": "May 8, 2028, 19:49 UTC",
+   "sign": "Scorpio",
+   "deg": 18,
+   "min": 44,
+   "lon": 228.7338,
+   "label": "18°44′ Scorpio",
+   "name": "Flower Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461915.8446515906,
+   "utc": "2028-05-24T08:16Z",
+   "central": "2028-05-24T03:16-0500",
+   "central_date": "2028-05-24",
+   "central_label": "Wed May 24, 2028, 3:16 AM CDT",
+   "utc_label": "May 24, 2028, 08:16 UTC",
+   "sign": "Gemini",
+   "deg": 3,
+   "min": 41,
+   "lon": 63.6915,
+   "label": "3°41′ Gemini"
+  },
+  {
+   "kind": "full",
+   "jd": 2461929.756124793,
+   "utc": "2028-06-07T06:09Z",
+   "central": "2028-06-07T01:09-0500",
+   "central_date": "2028-06-07",
+   "central_label": "Wed Jun 7, 2028, 1:09 AM CDT",
+   "utc_label": "Jun 7, 2028, 06:09 UTC",
+   "sign": "Sagittarius",
+   "deg": 17,
+   "min": 2,
+   "lon": 257.0281,
+   "label": "17°02′ Sagittarius",
+   "name": "Strawberry Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2461945.269145014,
+   "utc": "2028-06-22T18:28Z",
+   "central": "2028-06-22T13:28-0500",
+   "central_date": "2028-06-22",
+   "central_label": "Thu Jun 22, 2028, 1:28 PM CDT",
+   "utc_label": "Jun 22, 2028, 18:28 UTC",
+   "sign": "Cancer",
+   "deg": 1,
+   "min": 51,
+   "lon": 91.8465,
+   "label": "1°51′ Cancer"
+  },
+  {
+   "kind": "full",
+   "jd": 2461959.257497748,
+   "utc": "2028-07-06T18:11Z",
+   "central": "2028-07-06T13:11-0500",
+   "central_date": "2028-07-06",
+   "central_label": "Thu Jul 6, 2028, 1:11 PM CDT",
+   "utc_label": "Jul 6, 2028, 18:11 UTC",
+   "sign": "Capricorn",
+   "deg": 15,
+   "min": 11,
+   "lon": 285.1856,
+   "label": "15°11′ Capricorn",
+   "name": "Buck Moon",
+   "eclipse": "partial lunar eclipse"
+  },
+  {
+   "kind": "new",
+   "jd": 2461974.6262017577,
+   "utc": "2028-07-22T03:02Z",
+   "central": "2028-07-21T22:02-0500",
+   "central_date": "2028-07-21",
+   "central_label": "Fri Jul 21, 2028, 10:02 PM CDT",
+   "utc_label": "Jul 22, 2028, 03:02 UTC",
+   "sign": "Cancer",
+   "deg": 29,
+   "min": 51,
+   "lon": 119.8459,
+   "label": "29°51′ Cancer",
+   "eclipse": "total solar eclipse"
+  },
+  {
+   "kind": "full",
+   "jd": 2461988.8401463684,
+   "utc": "2028-08-05T08:10Z",
+   "central": "2028-08-05T03:10-0500",
+   "central_date": "2028-08-05",
+   "central_label": "Sat Aug 5, 2028, 3:10 AM CDT",
+   "utc_label": "Aug 5, 2028, 08:10 UTC",
+   "sign": "Aquarius",
+   "deg": 13,
+   "min": 26,
+   "lon": 313.4363,
+   "label": "13°26′ Aquarius",
+   "name": "Sturgeon Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2462003.947127192,
+   "utc": "2028-08-20T10:44Z",
+   "central": "2028-08-20T05:44-0500",
+   "central_date": "2028-08-20",
+   "central_label": "Sun Aug 20, 2028, 5:44 AM CDT",
+   "utc_label": "Aug 20, 2028, 10:44 UTC",
+   "sign": "Leo",
+   "deg": 27,
+   "min": 56,
+   "lon": 147.941,
+   "label": "27°56′ Leo"
+  },
+  {
+   "kind": "full",
+   "jd": 2462018.49139594,
+   "utc": "2028-09-03T23:48Z",
+   "central": "2028-09-03T18:48-0500",
+   "central_date": "2028-09-03",
+   "central_label": "Sun Sep 3, 2028, 6:48 PM CDT",
+   "utc_label": "Sep 3, 2028, 23:48 UTC",
+   "sign": "Pisces",
+   "deg": 11,
+   "min": 59,
+   "lon": 341.9877,
+   "label": "11°59′ Pisces",
+   "name": "Corn Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2462033.26651672,
+   "utc": "2028-09-18T18:24Z",
+   "central": "2028-09-18T13:24-0500",
+   "central_date": "2028-09-18",
+   "central_label": "Mon Sep 18, 2028, 1:24 PM CDT",
+   "utc_label": "Sep 18, 2028, 18:24 UTC",
+   "sign": "Virgo",
+   "deg": 26,
+   "min": 22,
+   "lon": 176.3592,
+   "label": "26°22′ Virgo"
+  },
+  {
+   "kind": "full",
+   "jd": 2462048.1840281924,
+   "utc": "2028-10-03T16:25Z",
+   "central": "2028-10-03T11:25-0500",
+   "central_date": "2028-10-03",
+   "central_label": "Tue Oct 3, 2028, 11:25 AM CDT",
+   "utc_label": "Oct 3, 2028, 16:25 UTC",
+   "sign": "Aries",
+   "deg": 10,
+   "min": 59,
+   "lon": 10.9869,
+   "label": "10°59′ Aries",
+   "name": "Harvest Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2462062.6228226847,
+   "utc": "2028-10-18T02:57Z",
+   "central": "2028-10-17T21:57-0500",
+   "central_date": "2028-10-17",
+   "central_label": "Tue Oct 17, 2028, 9:57 PM CDT",
+   "utc_label": "Oct 18, 2028, 02:57 UTC",
+   "sign": "Libra",
+   "deg": 25,
+   "min": 16,
+   "lon": 205.2643,
+   "label": "25°16′ Libra"
+  },
+  {
+   "kind": "full",
+   "jd": 2462077.887031877,
+   "utc": "2028-11-02T09:17Z",
+   "central": "2028-11-02T04:17-0500",
+   "central_date": "2028-11-02",
+   "central_label": "Thu Nov 2, 2028, 4:17 AM CDT",
+   "utc_label": "Nov 2, 2028, 09:17 UTC",
+   "sign": "Taurus",
+   "deg": 10,
+   "min": 29,
+   "lon": 40.4841,
+   "label": "10°29′ Taurus",
+   "name": "Hunter's Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2462092.0542047434,
+   "utc": "2028-11-16T13:18Z",
+   "central": "2028-11-16T07:18-0600",
+   "central_date": "2028-11-16",
+   "central_label": "Thu Nov 16, 2028, 7:18 AM CST",
+   "utc_label": "Nov 16, 2028, 13:18 UTC",
+   "sign": "Scorpio",
+   "deg": 24,
+   "min": 43,
+   "lon": 234.7171,
+   "label": "24°43′ Scorpio"
+  },
+  {
+   "kind": "full",
+   "jd": 2462107.5695936633,
+   "utc": "2028-12-02T01:40Z",
+   "central": "2028-12-01T19:40-0600",
+   "central_date": "2028-12-01",
+   "central_label": "Fri Dec 1, 2028, 7:40 PM CST",
+   "utc_label": "Dec 2, 2028, 01:40 UTC",
+   "sign": "Gemini",
+   "deg": 10,
+   "min": 24,
+   "lon": 70.4044,
+   "label": "10°24′ Gemini",
+   "name": "Cold Moon"
+  },
+  {
+   "kind": "new",
+   "jd": 2462121.5877193357,
+   "utc": "2028-12-16T02:06Z",
+   "central": "2028-12-15T20:06-0600",
+   "central_date": "2028-12-15",
+   "central_label": "Fri Dec 15, 2028, 8:06 PM CST",
+   "utc_label": "Dec 16, 2028, 02:06 UTC",
+   "sign": "Sagittarius",
+   "deg": 24,
+   "min": 39,
+   "lon": 264.6447,
+   "label": "24°39′ Sagittarius"
+  },
+  {
+   "kind": "full",
+   "jd": 2462137.2003706675,
+   "utc": "2028-12-31T16:49Z",
+   "central": "2028-12-31T10:49-0600",
+   "central_date": "2028-12-31",
+   "central_label": "Sun Dec 31, 2028, 10:49 AM CST",
+   "utc_label": "Dec 31, 2028, 16:49 UTC",
+   "sign": "Cancer",
+   "deg": 10,
+   "min": 33,
+   "lon": 100.547,
+   "label": "10°33′ Cancer",
+   "name": "Cold Moon",
+   "blue_moon": true,
+   "eclipse": "total lunar eclipse"
+  }
+ ],
+ "eclipses": [
+  {
+   "kind": "solar",
+   "type": "annular",
+   "jd": 2461089.008263744,
+   "node": {
+    "sign": "Pisces",
+    "deg": 9,
+    "min": 39,
+    "lon": 339.6555,
+    "label": "9°39′ Pisces"
+   },
+   "magnitude": 0.98,
+   "greatest_at": {
+    "lat": -64.7,
+    "lon": 87.1,
+    "near": null
+   },
+   "utc": "2026-02-17T12:12Z",
+   "central": "2026-02-17T06:12-0600",
+   "central_date": "2026-02-17",
+   "central_label": "Tue Feb 17, 2026, 6:12 AM CST",
+   "utc_label": "Feb 17, 2026, 12:12 UTC",
+   "sign": "Aquarius",
+   "deg": 28,
+   "min": 56,
+   "lon": 328.927,
+   "label": "28°56′ Aquarius",
+   "central_seconds": 139
+  },
+  {
+   "kind": "lunar",
+   "type": "total",
+   "jd": 2461102.981744393,
+   "node": {
+    "sign": "Pisces",
+    "deg": 8,
+    "min": 55,
+    "lon": 338.9155,
+    "label": "8°55′ Pisces"
+   },
+   "magnitude": 1.15,
+   "penumbral_magnitude": 2.184,
+   "utc": "2026-03-03T11:34Z",
+   "central": "2026-03-03T05:34-0600",
+   "central_date": "2026-03-03",
+   "central_label": "Tue Mar 3, 2026, 5:34 AM CST",
+   "utc_label": "Mar 3, 2026, 11:34 UTC",
+   "sign": "Virgo",
+   "deg": 12,
+   "min": 52,
+   "lon": 162.8592,
+   "label": "12°52′ Virgo"
+  },
+  {
+   "kind": "solar",
+   "type": "total",
+   "jd": 2461265.240248149,
+   "node": {
+    "sign": "Pisces",
+    "deg": 0,
+    "min": 19,
+    "lon": 330.3241,
+    "label": "0°19′ Pisces"
+   },
+   "magnitude": 1.018,
+   "greatest_at": {
+    "lat": 65.2,
+    "lon": -25.1,
+    "near": {
+     "name": "Keflavík",
+     "country": "IS",
+     "km": 178
+    }
+   },
+   "utc": "2026-08-12T17:46Z",
+   "central": "2026-08-12T12:46-0500",
+   "central_date": "2026-08-12",
+   "central_label": "Wed Aug 12, 2026, 12:46 PM CDT",
+   "utc_label": "Aug 12, 2026, 17:46 UTC",
+   "sign": "Leo",
+   "deg": 20,
+   "min": 8,
+   "lon": 140.1254,
+   "label": "20°08′ Leo",
+   "central_seconds": 138
+  },
+  {
+   "kind": "lunar",
+   "type": "partial",
+   "jd": 2461280.6756752203,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 29,
+    "min": 30,
+    "lon": 329.5066,
+    "label": "29°30′ Aquarius"
+   },
+   "magnitude": 0.93,
+   "penumbral_magnitude": 1.965,
+   "utc": "2026-08-28T04:13Z",
+   "central": "2026-08-27T23:13-0500",
+   "central_date": "2026-08-27",
+   "central_label": "Thu Aug 27, 2026, 11:13 PM CDT",
+   "utc_label": "Aug 28, 2026, 04:13 UTC",
+   "sign": "Pisces",
+   "deg": 4,
+   "min": 51,
+   "lon": 334.8525,
+   "label": "4°51′ Pisces"
+  },
+  {
+   "kind": "solar",
+   "type": "annular",
+   "jd": 2461443.1664388734,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 20,
+    "min": 54,
+    "lon": 320.9029,
+    "label": "20°54′ Aquarius"
+   },
+   "magnitude": 0.964,
+   "greatest_at": {
+    "lat": -31.3,
+    "lon": -48.5,
+    "near": {
+     "name": "Cidreira",
+     "country": "BR",
+     "km": 205
+    }
+   },
+   "utc": "2027-02-06T16:00Z",
+   "central": "2027-02-06T10:00-0600",
+   "central_date": "2027-02-06",
+   "central_label": "Sat Feb 6, 2027, 10:00 AM CST",
+   "utc_label": "Feb 6, 2027, 16:00 UTC",
+   "sign": "Aquarius",
+   "deg": 17,
+   "min": 39,
+   "lon": 317.6565,
+   "label": "17°39′ Aquarius",
+   "central_seconds": 471
+  },
+  {
+   "kind": "lunar",
+   "type": "penumbral",
+   "jd": 2461457.467260514,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 20,
+    "min": 9,
+    "lon": 320.1456,
+    "label": "20°09′ Aquarius"
+   },
+   "magnitude": 0.0,
+   "penumbral_magnitude": 0.926,
+   "utc": "2027-02-20T23:13Z",
+   "central": "2027-02-20T17:13-0600",
+   "central_date": "2027-02-20",
+   "central_label": "Sat Feb 20, 2027, 5:13 PM CST",
+   "utc_label": "Feb 20, 2027, 23:13 UTC",
+   "sign": "Virgo",
+   "deg": 1,
+   "min": 59,
+   "lon": 151.9829,
+   "label": "1°59′ Virgo"
+  },
+  {
+   "kind": "lunar",
+   "type": "penumbral",
+   "jd": 2461605.16876076,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 12,
+    "min": 19,
+    "lon": 312.3246,
+    "label": "12°19′ Aquarius"
+   },
+   "magnitude": 0.0,
+   "penumbral_magnitude": 0.001,
+   "utc": "2027-07-18T16:03Z",
+   "central": "2027-07-18T11:03-0500",
+   "central_date": "2027-07-18",
+   "central_label": "Sun Jul 18, 2027, 11:03 AM CDT",
+   "utc_label": "Jul 18, 2027, 16:03 UTC",
+   "sign": "Capricorn",
+   "deg": 25,
+   "min": 58,
+   "lon": 295.961,
+   "label": "25°58′ Capricorn"
+  },
+  {
+   "kind": "solar",
+   "type": "total",
+   "jd": 2461619.921294524,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 11,
+    "min": 33,
+    "lon": 311.5436,
+    "label": "11°33′ Aquarius"
+   },
+   "magnitude": 1.04,
+   "greatest_at": {
+    "lat": 25.5,
+    "lon": 33.2,
+    "near": {
+     "name": "Al Bayāḑīyah",
+     "country": "EG",
+     "km": 57
+    }
+   },
+   "utc": "2027-08-02T10:07Z",
+   "central": "2027-08-02T05:07-0500",
+   "central_date": "2027-08-02",
+   "central_label": "Mon Aug 2, 2027, 5:07 AM CDT",
+   "utc_label": "Aug 2, 2027, 10:07 UTC",
+   "sign": "Leo",
+   "deg": 9,
+   "min": 56,
+   "lon": 129.9326,
+   "label": "9°56′ Leo",
+   "central_seconds": 383
+  },
+  {
+   "kind": "lunar",
+   "type": "penumbral",
+   "jd": 2461634.8012923254,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 10,
+    "min": 45,
+    "lon": 310.7556,
+    "label": "10°45′ Aquarius"
+   },
+   "magnitude": 0.0,
+   "penumbral_magnitude": 0.546,
+   "utc": "2027-08-17T07:14Z",
+   "central": "2027-08-17T02:14-0500",
+   "central_date": "2027-08-17",
+   "central_label": "Tue Aug 17, 2027, 2:14 AM CDT",
+   "utc_label": "Aug 17, 2027, 07:14 UTC",
+   "sign": "Aquarius",
+   "deg": 24,
+   "min": 4,
+   "lon": 324.0745,
+   "label": "24°04′ Aquarius"
+  },
+  {
+   "kind": "lunar",
+   "type": "partial",
+   "jd": 2461782.6757903313,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 2,
+    "min": 56,
+    "lon": 302.9255,
+    "label": "2°56′ Aquarius"
+   },
+   "magnitude": 0.067,
+   "penumbral_magnitude": 1.047,
+   "utc": "2028-01-12T04:13Z",
+   "central": "2028-01-11T22:13-0600",
+   "central_date": "2028-01-11",
+   "central_label": "Tue Jan 11, 2028, 10:13 PM CST",
+   "utc_label": "Jan 12, 2028, 04:13 UTC",
+   "sign": "Cancer",
+   "deg": 21,
+   "min": 34,
+   "lon": 111.563,
+   "label": "21°34′ Cancer"
+  },
+  {
+   "kind": "solar",
+   "type": "annular",
+   "jd": 2461797.130445386,
+   "node": {
+    "sign": "Aquarius",
+    "deg": 2,
+    "min": 10,
+    "lon": 302.1602,
+    "label": "2°10′ Aquarius"
+   },
+   "magnitude": 0.961,
+   "greatest_at": {
+    "lat": 3.0,
+    "lon": -51.6,
+    "near": {
+     "name": "Oiapoque",
+     "country": "BR",
+     "km": 103
+    }
+   },
+   "utc": "2028-01-26T15:08Z",
+   "central": "2028-01-26T09:08-0600",
+   "central_date": "2028-01-26",
+   "central_label": "Wed Jan 26, 2028, 9:08 AM CST",
+   "utc_label": "Jan 26, 2028, 15:08 UTC",
+   "sign": "Aquarius",
+   "deg": 6,
+   "min": 9,
+   "lon": 306.1451,
+   "label": "6°09′ Aquarius",
+   "central_seconds": 627
+  },
+  {
+   "kind": "lunar",
+   "type": "partial",
+   "jd": 2461959.2636912637,
+   "node": {
+    "sign": "Capricorn",
+    "deg": 23,
+    "min": 34,
+    "lon": 293.5748,
+    "label": "23°34′ Capricorn"
+   },
+   "magnitude": 0.389,
+   "penumbral_magnitude": 1.426,
+   "utc": "2028-07-06T18:20Z",
+   "central": "2028-07-06T13:20-0500",
+   "central_date": "2028-07-06",
+   "central_label": "Thu Jul 6, 2028, 1:20 PM CDT",
+   "utc_label": "Jul 6, 2028, 18:20 UTC",
+   "sign": "Capricorn",
+   "deg": 15,
+   "min": 16,
+   "lon": 285.2633,
+   "label": "15°16′ Capricorn"
+  },
+  {
+   "kind": "solar",
+   "type": "total",
+   "jd": 2461974.6218778808,
+   "node": {
+    "sign": "Capricorn",
+    "deg": 22,
+    "min": 46,
+    "lon": 292.7616,
+    "label": "22°46′ Capricorn"
+   },
+   "magnitude": 1.028,
+   "greatest_at": {
+    "lat": -15.6,
+    "lon": 126.7,
+    "near": null
+   },
+   "utc": "2028-07-22T02:56Z",
+   "central": "2028-07-21T21:56-0500",
+   "central_date": "2028-07-21",
+   "central_label": "Fri Jul 21, 2028, 9:56 PM CDT",
+   "utc_label": "Jul 22, 2028, 02:56 UTC",
+   "sign": "Cancer",
+   "deg": 29,
+   "min": 47,
+   "lon": 119.7826,
+   "label": "29°47′ Cancer",
+   "central_seconds": 310
+  },
+  {
+   "kind": "lunar",
+   "type": "total",
+   "jd": 2462137.202869204,
+   "node": {
+    "sign": "Capricorn",
+    "deg": 14,
+    "min": 9,
+    "lon": 284.1524,
+    "label": "14°09′ Capricorn"
+   },
+   "magnitude": 1.246,
+   "penumbral_magnitude": 2.274,
+   "utc": "2028-12-31T16:52Z",
+   "central": "2028-12-31T10:52-0600",
+   "central_date": "2028-12-31",
+   "central_label": "Sun Dec 31, 2028, 10:52 AM CST",
+   "utc_label": "Dec 31, 2028, 16:52 UTC",
+   "sign": "Cancer",
+   "deg": 10,
+   "min": 35,
+   "lon": 100.5811,
+   "label": "10°35′ Cancer"
+  }
+ ]
+}
