@@ -143,6 +143,7 @@
   </footer></div>
 </main>
 <script src="/tools.js"></script>
+<script src="/big3-share.js"></script>
 <script>
 const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 const f = document.getElementById("f");
@@ -256,6 +257,8 @@ function render(d) {
       ${moonNote}
       <p class="hint" style="margin-top:10px">Want the whole picture these three open onto? <a href="/natal-chart" style="color:var(--gold)">Cast your full natal chart</a>: every planet, aspect, and pattern, free.</p>
     </div>`;
+  /* Share my Big 3: the link carries the three sign names only (big3-share.js). */
+  if (window.TRBig3) TRBig3.offer(out.querySelector(".card"), { sun, moon, rising });
   out.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 </script>
