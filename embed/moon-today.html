@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Moon today · The Twelve Rooms</title>
+<meta name="description" content="Today's Moon sign and phase, computed live with the Swiss Ephemeris. An embeddable widget from The Twelve Rooms.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://thetwelverooms.com/moon">
+<meta property="og:title" content="The Moon today · The Twelve Rooms">
+<meta property="og:description" content="Today's Moon sign and phase, computed live with the Swiss Ephemeris.">
+<meta property="og:image" content="https://thetwelverooms.com/og/webtools.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<style>
+:root { --navy:#26355e; --gold:#a8863d; --gold-deep:#7a5f24; --gold-hi:#e6cf96; --cream:#fbfaf7; --line:#e4ddcf; --soft:#656b85; }
+* { box-sizing: border-box; margin: 0; }
+html, body { background: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+.w { width: 100%; max-width: 320px; min-height: 150px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--cream); color: var(--navy); padding: 14px 16px; display: flex; gap: 14px; align-items: center; }
+.dark .w { background: radial-gradient(130% 150% at 50% 0%, #1f2b4e, #101830); border-color: #2c3a63; color: #e8ebf4; }
+svg.m { flex: 0 0 64px; }
+.k { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--soft); }
+.dark .k { color: #9aa5c2; }
+.s { font-family: Didot, "Bodoni 72", Georgia, serif; font-size: 21px; line-height: 1.2; margin: 3px 0 2px; }
+.p { font-size: 13.5px; }
+.n { font-size: 12px; color: var(--soft); margin-top: 6px; line-height: 1.4; }
+.dark .n { color: #b6bed6; }
+.c { display: block; font-size: 11px; margin-top: 8px; color: var(--gold-deep); text-decoration: none; }
+.dark .c { color: var(--gold-hi); }
+.c:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="w" id="w">
+  <svg class="m" id="moon" viewBox="-32 -32 64 64" width="64" height="64" aria-hidden="true"></svg>
+  <div>
+    <div class="k">The Moon today</div>
+    <div class="s" id="sign">Reading the sky&hellip;</div>
+    <div class="p" id="phase"></div>
+    <div class="n" id="next"></div>
+    <a class="c" href="https://thetwelverooms.com/moon?utm_source=embed&amp;utm_medium=widget&amp;utm_campaign=moon-today" target="_blank" rel="noopener">Moon data by The Twelve Rooms</a>
+  </div>
+</div>
+<script>
+"use strict";
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (q.get("theme") === "dark") document.documentElement.className = "dark";
+  var tz = "America/Chicago";
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || tz; } catch (e) {}
+  if (q.get("tz")) tz = q.get("tz");
+  function draw(elong) {
+    /* Lit fraction and limb from the Sun-Moon elongation the API returns. */
+    var r = 26, k = Math.cos(elong * Math.PI / 180), waxing = elong < 180;
+    var rx = Math.abs(k) * r, lit = waxing ? 1 : 0;
+    var outer = "M0,-" + r + " A" + r + "," + r + " 0 0," + lit + " 0," + r;
+    var inner = " A" + rx.toFixed(2) + "," + r + " 0 0," + ((k > 0) === waxing ? 0 : 1) + " 0,-" + r;
+    var dark = document.documentElement.className === "dark";
+    document.getElementById("moon").innerHTML =
+      '<circle r="' + r + '" fill="' + (dark ? "#26335a" : "#e9e3d3") + '"/>' +
+      '<path d="' + outer + inner + '" fill="' + (dark ? "#e6cf96" : "#c9a55c") + '"/>' +
+      '<circle r="' + r + '" fill="none" stroke="#b18b45" stroke-width="0.8"/>';
+  }
+  fetch("/api/moon?tz=" + encodeURIComponent(tz)).then(function (r) { return r.json(); }).then(function (d) {
+    if (d.error) throw new Error(d.error);
+    document.getElementById("sign").textContent = "Moon in " + d.sign;
+    document.getElementById("phase").textContent = d.phase + (d.void_of_course ? " \u00b7 void of course" : "");
+    var n = d.void_of_course && d.voc_until ? "Void until " + d.voc_until : "";
+    if (d.next_ingress) n = (n ? n + ". " : "") + "Enters " + d.next_ingress.sign + " " + d.next_ingress.at;
+    document.getElementById("next").textContent = n;
+    draw(d.illumination_deg);
+  }).catch(function () {
+    document.getElementById("sign").textContent = "The Moon today";
+    document.getElementById("phase").textContent = "See it live at thetwelverooms.com/moon";
+  });
+})();
+</script>
+<script src="/tools.js"></script>
+</body>
+</html>
