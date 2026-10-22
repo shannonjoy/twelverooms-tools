@@ -131,8 +131,10 @@ class CalendarFeed(unittest.TestCase):
 
 class Big3Share(unittest.TestCase):
     def setUp(self):
-        import big3
-        self.big3 = big3
+        import big3_page
+        import saturn
+        self.big3 = big3_page
+        self.saturn = saturn
 
     def test_only_sign_names_parse(self):
         p = self.big3.parse
@@ -176,7 +178,7 @@ console.log(JSON.stringify(out));"""
         self.assertIn('<meta name="robots" content="noindex, follow">', page)
         self.assertNotIn('rel="canonical"', page)
 
-        class Fake(self.big3.handler):
+        class Fake(self.saturn.handler):
             def __init__(self, path):
                 self.path, self.wfile, self.headers_out = path, BytesIO(), []
                 self.request_version, self.requestline, self.command = "HTTP/1.1", "GET", "GET"
@@ -190,7 +192,7 @@ console.log(JSON.stringify(out));"""
             def end_headers(self):
                 pass
 
-        for path, code in (("/api/big3?combo=aries-cancer-leo", 200), ("/api/big3?combo=1990-01-01", 404)):
+        for path, code in (("/api/saturn?combo=aries-cancer-leo", 200), ("/api/saturn?combo=1990-01-01", 404)):
             h = Fake(path)
             h.do_GET()
             self.assertEqual(h.code, code)
@@ -216,7 +218,7 @@ class IndexingAndPages(unittest.TestCase):
 
     def test_vercel_routes(self):
         cfg = json.loads(read("vercel.json"))
-        self.assertIn({"source": "/big-3/:combo", "destination": "/api/big3?combo=:combo"}, cfg["rewrites"])
+        self.assertIn({"source": "/big-3/:combo", "destination": "/api/saturn?combo=:combo"}, cfg["rewrites"])
         embed = next(h for h in cfg["headers"] if h["source"].startswith("/embed/"))
         self.assertIn({"key": "X-Robots-Tag", "value": "noindex, follow"}, embed["headers"])
 
@@ -242,7 +244,7 @@ class IndexingAndPages(unittest.TestCase):
     def test_brand_banned_phrases(self):
         banned = ["for entertainment purposes", "reviewed by a human", "the universe has plans",
                   "no analytics", "no tracking", "no cookies", "what we keep", "nothing else"]
-        files = [f"{s}.html" for s in NEW_PAGES] + ["embed/moon-today.html", "big3-share.js", "api/big3.py"]
+        files = [f"{s}.html" for s in NEW_PAGES] + ["embed/moon-today.html", "big3-share.js", "api/_seo/big3_page.py"]
         for f in files:
             text = read(f).lower()
             for b in banned:

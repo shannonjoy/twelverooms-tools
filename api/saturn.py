@@ -501,6 +501,19 @@ class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         q = parse_qs(urlparse(self.path).query)
+        # /big-3/<signs> share pages are served here too (vercel.json): the
+        # Hobby plan allows 12 functions and the site already uses 12.
+        if "combo" in q:
+            import big3_page
+            got = big3_page.parse(q.get("combo", [""])[0])
+            body, code = (big3_page.render(*got).encode("utf-8"), 200) if got else (big3_page.NOT_FOUND, 404)
+            self.send_response(code)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("X-Robots-Tag", "noindex, follow")
+            self.send_header("Cache-Control", "public, max-age=86400")
+            self.end_headers()
+            self.wfile.write(body)
+            return
         raw = q.get("year", [""])[0]
         try:
             year = int(raw)

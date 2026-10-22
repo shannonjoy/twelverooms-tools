@@ -13,11 +13,10 @@ shared and to send people to /big-3-calculator, not to rank.
 import html
 import re
 import sys
-from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
-sys.path.insert(0, str(Path(__file__).parent / "_seo"))
+sys.path.insert(0, str(Path(__file__).parent))
 import crawl       # noqa: E402
 import big3_copy   # noqa: E402
 
@@ -149,19 +148,3 @@ def render(sun, moon, rising):
 NOT_FOUND = (b"<!doctype html><meta charset=utf-8><meta name=robots content='noindex'>"
              b"<title>Not found</title><p style='font-family:sans-serif;padding:40px'>That is not a "
              b"Big 3 link. Find yours with the <a href='/big-3-calculator'>Big 3 calculator</a>.</p>")
-
-
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        q = parse_qs(urlparse(self.path).query)
-        got = parse(q.get("combo", [""])[0])
-        if got:
-            body, code = render(*got).encode("utf-8"), 200
-        else:
-            body, code = NOT_FOUND, 404
-        self.send_response(code)
-        self.send_header("Content-Type", "text/html; charset=utf-8")
-        self.send_header("X-Robots-Tag", "noindex, follow")
-        self.send_header("Cache-Control", "public, max-age=86400")
-        self.end_headers()
-        self.wfile.write(body)

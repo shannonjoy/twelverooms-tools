@@ -19,7 +19,7 @@
     { "source": "/moon/:date", "destination": "/api/moon_day?date=:date" },
     { "source": "/void-of-course-moon/:date", "destination": "/api/voc_day?date=:date" },
     { "source": "/saturn-return/:year", "destination": "/api/saturn?year=:year" },
-    { "source": "/big-3/:combo", "destination": "/api/big3?combo=:combo" }
+    { "source": "/big-3/:combo", "destination": "/api/saturn?combo=:combo" }
   ],
   "headers": [
     {
