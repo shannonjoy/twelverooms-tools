@@ -29,12 +29,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"Saturn Return Calculator","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"When is my Saturn return?","acceptedAnswer":{"@type":"Answer","text":"Your first Saturn return happens around ages 27 to 30, when transiting Saturn comes back to the exact spot it held at your birth. Because Saturn takes about 29.5 years to orbit, the second return falls in your late 50s and a third, if reached, in the mid 80s. This calculator computes your exact dates from your birth data."}},
-{"@type":"Question","name":"Why does my Saturn return have three dates?","acceptedAnswer":{"@type":"Answer","text":"Saturn spends part of most years in retrograde. If it reaches your natal degree, stations, and reverses back over it, then turns direct and crosses a third time, your return has three exact passes spread across roughly a year. Other years it makes a single clean pass. Both are normal; the whole window matters more than any single date."}},
-{"@type":"Question","name":"Do I need my birth time for a Saturn return?","acceptedAnswer":{"@type":"Answer","text":"For the dates, no: they depend on Saturn's sign position, which a birth date alone pins down closely. For the house your return lands in (career, home, relationships) you need an accurate birth time, because houses are set by your rising sign. Enter a time for the full picture."}},
-{"@type":"Question","name":"What does a Saturn return mean?","acceptedAnswer":{"@type":"Answer","text":"It is the chart's audit and graduation, not a curse. Saturn is the planet of structure, time, and commitment, and when it returns it tests what you have built: what is truly yours is confirmed, what was scaffolding tends to fall away. It is the astrology of growing into the next version of adulthood."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When is my Saturn return?", "acceptedAnswer": {"@type": "Answer", "text": "Your first Saturn return happens around ages 27 to 30, when transiting Saturn comes back to the exact spot it held at your birth. Because Saturn takes about 29.5 years to orbit, the second return falls in your late 50s and a third, if reached, in the mid 80s. This calculator computes your exact dates from your birth data."}}, {"@type": "Question", "name": "Why does my Saturn return have three dates?", "acceptedAnswer": {"@type": "Answer", "text": "Saturn spends part of most years in retrograde. If it reaches your natal degree, stations, and reverses back over it, then turns direct and crosses a third time, your return has three exact passes spread across roughly a year. Other years it makes a single clean pass. Both are normal; the whole window matters more than any single date."}}, {"@type": "Question", "name": "Do I need my birth time for a Saturn return?", "acceptedAnswer": {"@type": "Answer", "text": "For the dates, no: they depend on Saturn's sign position, which a birth date alone pins down closely. For the house your return lands in (career, home, relationships) you need an accurate birth time, because houses are set by your rising sign. Enter a time for the full picture."}}, {"@type": "Question", "name": "What does a Saturn return mean?", "acceptedAnswer": {"@type": "Answer", "text": "It is the chart's audit and graduation, not a curse. Saturn is the planet of structure, time, and commitment, and when it returns it tests what you have built: what is truly yours is confirmed, what was scaffolding tends to fall away. It is the astrology of growing into the next version of adulthood."}}, {"@type": "Question", "name": "How is this calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Natal Saturn comes from the Swiss Ephemeris for your birth date, time and place. The calculator then follows Saturn's path day by day, finds every moment it crosses that exact degree, refines each crossing to the minute, and groups the crossings into returns with the stations between them. It is the same engine that writes the Saturn Return Report."}}]}
 </script>
 </head>
 <body>
@@ -43,6 +38,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Saturn return calculator</h1>
   <p class="lede">Around age 29, Saturn comes home to where it sat when you were born, and again near 58. This finds your exact dates, every pass, computed with the Swiss Ephemeris. Not doom: the audit and the graduation. No account required.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>When is my Saturn return?</strong> Your first Saturn return comes between about ages 27 and 30, when Saturn arrives back at the exact degree it held at your birth; the second comes near 58 or 59. Many returns make three exact passes across about a year. Enter your birth date for yours to the day, or browse the computed dates by birth year below.</div>
+  <!-- aeo-answer: end -->
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
       <div><label>Birth date</label><input name="date" type="date" required></div>
@@ -89,12 +87,23 @@
 
   <section class="faq">
     <h2>Common questions</h2>
-    <div class="qa"><h3>When is my Saturn return?</h3><p>Your first is around ages 27 to 30, the second in your late 50s, a third (if reached) in the mid 80s. Enter your birth details above for the exact dates.</p></div>
-    <div class="qa"><h3>Why does mine have three dates?</h3><p>Saturn retrograded back over your natal degree, so it crossed three times across about a year. Some returns make a single pass instead. Both are normal; the window matters more than any one date.</p></div>
-    <div class="qa"><h3>Do I need my birth time?</h3><p>Not for the dates, which follow Saturn's sign position. You need it for the house the return falls in, which is where the season actually plays out. Add a time for the full picture.</p></div>
-    <div class="qa"><h3>Is a Saturn return bad?</h3><p>No. It is demanding, not cursed. Saturn confirms what is real and lets go of what was not, which is how the next chapter of adulthood begins. It rewards honest work more than any other transit.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, each pass refined to the minute, from your exact birth data.</p></div>
+    <div class="qa"><h3>When is my Saturn return?</h3><p>Your first Saturn return happens around ages 27 to 30, when transiting Saturn comes back to the exact spot it held at your birth. Because Saturn takes about 29.5 years to orbit, the second return falls in your late 50s and a third, if reached, in the mid 80s. This calculator computes your exact dates from your birth data.</p></div>
+    <div class="qa"><h3>Why does my Saturn return have three dates?</h3><p>Saturn spends part of most years in retrograde. If it reaches your natal degree, stations, and reverses back over it, then turns direct and crosses a third time, your return has three exact passes spread across roughly a year. Other years it makes a single clean pass. Both are normal; the whole window matters more than any single date.</p></div>
+    <div class="qa"><h3>Do I need my birth time for a Saturn return?</h3><p>For the dates, no: they depend on Saturn's sign position, which a birth date alone pins down closely. For the house your return lands in (career, home, relationships) you need an accurate birth time, because houses are set by your rising sign. Enter a time for the full picture.</p></div>
+    <div class="qa"><h3>What does a Saturn return mean?</h3><p>It is the chart's audit and graduation, not a curse. Saturn is the planet of structure, time, and commitment, and when it returns it tests what you have built: what is truly yours is confirmed, what was scaffolding tends to fall away. It is the astrology of growing into the next version of adulthood.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Natal Saturn comes from the Swiss Ephemeris for your birth date, time and place. The calculator then follows Saturn's path day by day, finds every moment it crosses that exact degree, refines each crossing to the minute, and groups the crossings into returns with the stations between them. It is the same engine that writes the Saturn Return Report.</p></div>
   </section>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/saturn-return/1996">Saturn return dates for 1996 births, by month</a></li>
+      <li><a href="/transit-timeline">Every major transit in your next three years</a></li>
+      <li><a href="/natal-chart">Where Saturn sits in your natal chart</a></li>
+      <li><a href="/the-twelve-houses">The house your Saturn return lands in</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

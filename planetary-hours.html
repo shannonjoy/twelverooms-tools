@@ -26,14 +26,13 @@
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What are planetary hours?","acceptedAnswer":{"@type":"Answer","text":"Planetary hours divide daylight into 12 equal parts and night into 12 equal parts, so each hour runs long in summer and short in winter, unlike the fixed 60-minute clock hour. Each of the 24 is ruled by one of the seven classical planets in a fixed rotation, the Chaldean order, starting with the day's own ruler at sunrise."}},
-{"@type":"Question","name":"What planet rules today?","acceptedAnswer":{"@type":"Answer","text":"Each day of the week belongs to a planet: Sunday to the Sun, Monday to the Moon, Tuesday to Mars, Wednesday to Mercury, Thursday to Jupiter, Friday to Venus, Saturday to Saturn. That planet also rules the first planetary hour after sunrise. Pick your city above to see today's full table."}},
-{"@type":"Question","name":"How do you use planetary hours for timing?","acceptedAnswer":{"@type":"Answer","text":"Traditionally you match the hour's ruler to the matter: a Venus hour for love or beauty, a Mercury hour for writing or a contract, a Jupiter hour for money or growth, a Sun hour for visibility or authority. Our electional timing finder already weighs the hour ruler into every scored window, so you rarely need to do this by hand."}},
-{"@type":"Question","name":"Why are planetary hours unequal lengths?","acceptedAnswer":{"@type":"Answer","text":"They divide the actual daylight and actual night into 12 parts each, so a summer day's 12 hours run longer than 60 minutes apiece and a winter night's do too. Only at the equinoxes do planetary hours match the clock hour closely."}},
-{"@type":"Question","name":"Is this the same everywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Sunrise and sunset are local, so the hour boundaries shift with your city and date. Pick your own city above for an accurate table; a table computed for one place will drift by minutes to hours if used somewhere else."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are planetary hours?", "acceptedAnswer": {"@type": "Answer", "text": "Planetary hours divide daylight into 12 equal parts and night into 12 equal parts, so each hour runs long in summer and short in winter, unlike the fixed 60-minute clock hour. Each of the 24 is ruled by one of the seven classical planets in a fixed rotation, the Chaldean order, starting with the day's own ruler at sunrise."}}, {"@type": "Question", "name": "What planet rules today?", "acceptedAnswer": {"@type": "Answer", "text": "Each day of the week belongs to a planet: Sunday to the Sun, Monday to the Moon, Tuesday to Mars, Wednesday to Mercury, Thursday to Jupiter, Friday to Venus, Saturday to Saturn. That planet also rules the first planetary hour after sunrise. Pick your city above to see today's full table."}}, {"@type": "Question", "name": "How do you use planetary hours for timing?", "acceptedAnswer": {"@type": "Answer", "text": "Traditionally you match the hour's ruler to the matter: a Venus hour for love or beauty, a Mercury hour for writing or a contract, a Jupiter hour for money or growth, a Sun hour for visibility or authority. Our electional timing finder already weighs the hour ruler into every scored window, so you rarely need to do this by hand."}}, {"@type": "Question", "name": "Why are planetary hours unequal lengths?", "acceptedAnswer": {"@type": "Answer", "text": "They divide the actual daylight and actual night into 12 parts each, so a summer day's 12 hours run longer than 60 minutes apiece and a winter night's do too. Only at the equinoxes do planetary hours match the clock hour closely."}}, {"@type": "Question", "name": "Is this the same everywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sunrise and sunset are local, so the hour boundaries shift with your city and date. Pick your own city above for an accurate table; a table computed for one place will drift by minutes to hours if used somewhere else."}}]}
 </script>
+<!-- aeo-webapp: start -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Planetary Hours Calculator", "url": "https://thetwelverooms.com/planetary-hours", "description": "Today's planetary hours for your city, from local sunrise and sunset, computed with the Swiss Ephemeris.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+</script>
+<!-- aeo-webapp: end -->
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -41,6 +40,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Planetary hours today</h1>
   <p class="lede">The old clock beneath the clock: 12 hours of daylight and 12 of night, each ruled by one of the seven classical planets in a fixed rotation. Pick your city for today's table, computed live with the Swiss Ephemeris.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What planetary hour is it now?</strong> Daylight is split into 12 planetary hours and the night into 12 more, ruled in the Chaldean order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon. The day's first hour belongs to the planet the day is named for. Pick your city and the table shows the current hour, computed live.</div>
+  <!-- aeo-answer: end -->
 
   <div class="card">
     <div class="loc"><label>Where are you?</label>
@@ -71,6 +73,17 @@
     <p>The free timing finder already weighs the planetary hour into every scored window, alongside the Moon's aspect, the angles, and the light.</p>
     <a href="/electional" rel="noopener">Open the timing finder</a>
   </div>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/electional">Score a date range for the best window</a></li>
+      <li><a href="/moon">The Moon's sign and void-of-course status</a></li>
+      <li><a href="/void-of-course-moon">Void-of-course Moon times</a></li>
+      <li><a href="/daily-horoscope">Your own transits for today</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

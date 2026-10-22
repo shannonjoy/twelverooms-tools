@@ -27,14 +27,13 @@
 <link rel="icon" href="/favicon.svg">
 <script src="/interpret.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What sign is the Moon in today?","acceptedAnswer":{"@type":"Answer","text":"The Moon changes sign every two to three days, touring all twelve signs in about a month. The reading at the top of this page shows her sign, degree, and phase right now, computed live with the Swiss Ephemeris in your own timezone."}},
-{"@type":"Question","name":"What does void of course mean?","acceptedAnswer":{"@type":"Answer","text":"The Moon is void of course after she makes her last major aspect to another planet and before she enters the next sign. During that gap she is forming no new connections, so beginnings started then tend to drift. It is a pause, not a curse."}},
-{"@type":"Question","name":"Is a void of course Moon bad?","acceptedAnswer":{"@type":"Answer","text":"No. A void Moon is a poor time to launch, sign, or decide something you want to go somewhere, because it tends to fizzle. It is a fine time to rest, tidy, reflect, and finish what is already underway. Work with the pause rather than against it."}},
-{"@type":"Question","name":"How often does the Moon change signs?","acceptedAnswer":{"@type":"Answer","text":"Roughly every two to two and a half days. The Moon moves about thirteen degrees a day, faster than any other body, which is why she sets the emotional weather of the day and why timing work always starts with her."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed live with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What sign is the Moon in today?", "acceptedAnswer": {"@type": "Answer", "text": "The Moon changes sign every two to three days, touring all twelve signs in about a month. The reading at the top of this page shows her sign, degree, and phase right now, computed live with the Swiss Ephemeris in your own timezone."}}, {"@type": "Question", "name": "What does void of course mean?", "acceptedAnswer": {"@type": "Answer", "text": "The Moon is void of course after she makes her last major aspect to another planet and before she enters the next sign. During that gap she is forming no new connections, so beginnings started then tend to drift. It is a pause, not a curse."}}, {"@type": "Question", "name": "Is a void of course Moon bad?", "acceptedAnswer": {"@type": "Answer", "text": "No. A void Moon is a poor time to launch, sign, or decide something you want to go somewhere, because it tends to fizzle. It is a fine time to rest, tidy, reflect, and finish what is already underway. Work with the pause rather than against it."}}, {"@type": "Question", "name": "How often does the Moon change signs?", "acceptedAnswer": {"@type": "Answer", "text": "Roughly every two to two and a half days. The Moon moves about thirteen degrees a day, faster than any other body, which is why she sets the emotional weather of the day and why timing work always starts with her."}}, {"@type": "Question", "name": "How is this calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Positions are computed live with the Swiss Ephemeris. A sign change is the moment the Moon's longitude crosses into the next 30-degree sign; the void-of-course stretch runs from her last major aspect in a sign until she enters the next one; and the phase comes from the angle between the Sun and the Moon."}}]}
 </script>
+<!-- aeo-webapp: start -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Moon Sign Today", "url": "https://thetwelverooms.com/moon", "description": "The Moon's sign, phase and void-of-course status, live, computed with the Swiss Ephemeris.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+</script>
+<!-- aeo-webapp: end -->
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -42,6 +41,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>The Moon right now</h1>
   <p class="lede">The Moon is the fastest hand on the sky's clock: she changes sign every two to three days and goes void-of-course (making no more exact aspects before leaving her sign) in between. Void Moon is classically a poor time to launch or sign anything.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What sign is the Moon in today?</strong> The Moon changes sign every two to three days, so the answer moves: the live panel on this page shows today's sign, phase and any void-of-course window, computed with the Swiss Ephemeris, and every date has its own page with that day's sign change timed to the minute.</div>
+  <!-- aeo-answer: end -->
   <div class="card" id="out"><p class="hint">Reading the sky…</p></div>
 
   <div class="datebrowse" id="datebrowse" data-prefix="/moon" data-from="2026-01-01" data-to="2027-12-31" data-back="7" data-forward="30"><!-- gen-internal-links: start -->
@@ -64,7 +66,7 @@
     <div class="qa"><h3>What does void of course mean?</h3><p>The Moon is void of course after she makes her last major aspect to another planet and before she enters the next sign. During that gap she is forming no new connections, so beginnings started then tend to drift. It is a pause, not a curse.</p></div>
     <div class="qa"><h3>Is a void of course Moon bad?</h3><p>No. A void Moon is a poor time to launch, sign, or decide something you want to go somewhere, because it tends to fizzle. It is a fine time to rest, tidy, reflect, and finish what is already underway. Work with the pause rather than against it.</p></div>
     <div class="qa"><h3>How often does the Moon change signs?</h3><p>Roughly every two to two and a half days. The Moon moves about thirteen degrees a day, faster than any other body, which is why she sets the emotional weather of the day and why timing work always starts with her.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Positions are computed live with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Positions are computed live with the Swiss Ephemeris. A sign change is the moment the Moon's longitude crosses into the next 30-degree sign; the void-of-course stretch runs from her last major aspect in a sign until she enters the next one; and the phase comes from the angle between the Sun and the Moon.</p></div>
   </section>
 
   <div class="cta">
@@ -72,6 +74,17 @@
     <p>The Twelve Rooms writes personal, human-written readings from your exact birth chart: the seed, and the seasons calling it up.</p>
     <a href="https://thetwelverooms.etsy.com?utm_source=tools&amp;utm_medium=cta&amp;utm_campaign=moon" rel="noopener">Visit The Twelve Rooms on Etsy</a>
   </div>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/void-of-course-moon">Void-of-course Moon times</a></li>
+      <li><a href="/planetary-hours">Today's planetary hours</a></li>
+      <li><a href="/electional">Find the best window to begin something</a></li>
+      <li><a href="/daily-horoscope">Today's transits to your own chart</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

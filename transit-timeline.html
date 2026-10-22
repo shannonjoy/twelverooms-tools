@@ -29,12 +29,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"Personal Transit Timeline","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is a transit in astrology?","acceptedAnswer":{"@type":"Answer","text":"A transit is where the planets are now, meeting where they were when you were born. When a slow-moving planet like Saturn or Jupiter makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point. This timeline dates those meetings for the next three years."}},
-{"@type":"Question","name":"Do I need my birth time for a transit timeline?","acceptedAnswer":{"@type":"Answer","text":"For transits to your planets, no; a birth date pins those closely. For transits to your Ascendant and Midheaven, and for the most precise Moon dates, you need an accurate birth time, since those depend on the exact minute. Enter a time for the full picture."}},
-{"@type":"Question","name":"What is a Saturn or Jupiter return?","acceptedAnswer":{"@type":"Answer","text":"A return is when a planet comes all the way back to the spot it held at your birth. Jupiter returns about every 12 years and opens a new chapter of growth; Saturn returns near ages 29 and 58 and marks a threshold into a more grounded phase. Both show up on this timeline when they fall in range."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"With the Swiss Ephemeris in whole-sign houses. The timeline scans the slow planets (Jupiter through Pluto) day by day for their exact major aspects to your natal points, including the multiple passes a retrograde can bring. Your birth details are computed in memory and never stored."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a transit in astrology?", "acceptedAnswer": {"@type": "Answer", "text": "A transit is where the planets are now, meeting where they were when you were born. When a slow-moving planet like Saturn or Jupiter makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point. This timeline dates those meetings for the next three years."}}, {"@type": "Question", "name": "Do I need my birth time for a transit timeline?", "acceptedAnswer": {"@type": "Answer", "text": "For transits to your planets, no; a birth date pins those closely. For transits to your Ascendant and Midheaven, and for the most precise Moon dates, you need an accurate birth time, since those depend on the exact minute. Enter a time for the full picture."}}, {"@type": "Question", "name": "What is a Saturn or Jupiter return?", "acceptedAnswer": {"@type": "Answer", "text": "A return is when a planet comes all the way back to the spot it held at your birth. Jupiter returns about every 12 years and opens a new chapter of growth; Saturn returns near ages 29 and 58 and marks a threshold into a more grounded phase. Both show up on this timeline when they fall in range."}}, {"@type": "Question", "name": "How is this calculated?", "acceptedAnswer": {"@type": "Answer", "text": "With the Swiss Ephemeris in whole-sign houses. The timeline scans the slow planets, Jupiter through Pluto, day by day for their exact major aspects to your natal points, including the extra passes a retrograde can bring, and dates each one. Your natal chart comes from the same engine as the free natal chart."}}]}
 </script>
 </head>
 <body>
@@ -42,7 +37,10 @@
 <div id="masthead"></div>
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Your personal transit timeline</h1>
-  <p class="lede">Where the slow planets meet your birth chart over the next three years, computed to the day: your Saturn return, Jupiter's cycles of growth, and the outer-planet turning points, each one dated and named. This is the map of your seasons ahead. No account, nothing stored.</p>
+  <p class="lede">Where the slow planets meet your birth chart over the next three years, computed to the day: your Saturn return, Jupiter's cycles of growth, and the outer-planet turning points, each one dated and named. This is the map of your seasons ahead. No account needed.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What transits am I in?</strong> Enter your birth details and this lists every exact aspect the slow planets, Jupiter through Pluto, make to your natal chart over the next three years, dated to the day with retrograde passes included: your Saturn return, Jupiter's growth cycles and the outer-planet turning points.</div>
+  <!-- aeo-answer: end -->
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
       <div><label>Birth date</label><input name="date" type="date" required></div>
@@ -91,11 +89,22 @@
 
   <section class="faq">
     <h2>Common questions</h2>
-    <div class="qa"><h3>What is a transit?</h3><p>Where the planets are now, meeting where they were at your birth. When a slow planet makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point.</p></div>
-    <div class="qa"><h3>Do I need my birth time?</h3><p>Not for transits to your planets, which a birth date pins closely. You do need it for transits to your Ascendant and Midheaven, and for precise Moon dates, since those depend on the exact minute.</p></div>
-    <div class="qa"><h3>What is a Saturn return?</h3><p>When Saturn comes back to where it sat at your birth, near ages 29 and 58. It marks a threshold into a more grounded, self-authored chapter. Jupiter returns more often, about every 12 years, opening a new cycle of growth.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, the slow planets scanned day by day for their exact aspects to your chart, retrograde passes included. Your details are computed in memory and never stored, logged, or shared.</p></div>
+    <div class="qa"><h3>What is a transit in astrology?</h3><p>A transit is where the planets are now, meeting where they were when you were born. When a slow-moving planet like Saturn or Jupiter makes an exact aspect to one of your natal planets, it marks a chapter: a growth window, a test, or a turning point. This timeline dates those meetings for the next three years.</p></div>
+    <div class="qa"><h3>Do I need my birth time for a transit timeline?</h3><p>For transits to your planets, no; a birth date pins those closely. For transits to your Ascendant and Midheaven, and for the most precise Moon dates, you need an accurate birth time, since those depend on the exact minute. Enter a time for the full picture.</p></div>
+    <div class="qa"><h3>What is a Saturn or Jupiter return?</h3><p>A return is when a planet comes all the way back to the spot it held at your birth. Jupiter returns about every 12 years and opens a new chapter of growth; Saturn returns near ages 29 and 58 and marks a threshold into a more grounded phase. Both show up on this timeline when they fall in range.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>With the Swiss Ephemeris in whole-sign houses. The timeline scans the slow planets, Jupiter through Pluto, day by day for their exact major aspects to your natal points, including the extra passes a retrograde can bring, and dates each one. Your natal chart comes from the same engine as the free natal chart.</p></div>
   </section>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/saturn-return-calculator">The exact dates of your Saturn return</a></li>
+      <li><a href="/daily-horoscope">Today's transits, timed to the minute</a></li>
+      <li><a href="/natal-chart">Your free natal chart</a></li>
+      <li><a href="/mercury-retrograde">Mercury retrograde dates for 2026 and 2027</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

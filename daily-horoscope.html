@@ -26,14 +26,13 @@
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How is this different from a sun sign horoscope?","acceptedAnswer":{"@type":"Answer","text":"A sun sign horoscope gives the same twelve readings to everyone alive. This one is computed against your own birth chart: the transiting Moon and planets are measured to your natal Sun, Moon, Mercury, Venus, Mars, and, if you know your birth time, your Ascendant and Midheaven. Two people born the same day in different hours get different readings."}},
-{"@type":"Question","name":"Why do some transits have an exact time and others say in orb?","acceptedAnswer":{"@type":"Answer","text":"The Moon moves about thirteen degrees a day, so its aspects perfect at a specific minute and that minute is worth knowing. Jupiter through Pluto can hold the same aspect for weeks, so there is no honest minute to give. Those are shown as background, in orb, rather than dressed up with false precision."}},
-{"@type":"Question","name":"Do I need my exact birth time?","acceptedAnswer":{"@type":"Answer","text":"No, but it changes what you get. Without a time, your Moon is approximate and your Ascendant and Midheaven cannot be calculated at all, so no transit to your angles can be reported. With a time, the reading includes contacts to how you meet the world and to your career and public role, which are often the most useful lines of the day."}},
-{"@type":"Question","name":"Can I read a past or future date?","acceptedAnswer":{"@type":"Answer","text":"Yes, any date within five years either way. The sky is computed fresh for whatever date you pick, so a day last March and a day next autumn are both real readings rather than recycled text."}},
-{"@type":"Question","name":"Is my birth data stored?","acceptedAnswer":{"@type":"Answer","text":"No. Birth details are used in memory to compute the chart and then discarded; they are never stored or logged on the server. If you tick remember my details, they are saved only in your own browser, and you can clear them at any time."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is this different from a sun sign horoscope?", "acceptedAnswer": {"@type": "Answer", "text": "A sun sign horoscope gives the same twelve readings to everyone alive. This one is computed against your own birth chart: the transiting Moon and planets are measured to your natal Sun, Moon, Mercury, Venus, Mars, and, if you know your birth time, your Ascendant and Midheaven. Two people born the same day in different hours get different readings."}}, {"@type": "Question", "name": "Why do some transits have an exact time and others say in orb?", "acceptedAnswer": {"@type": "Answer", "text": "The Moon moves about thirteen degrees a day, so its aspects perfect at a specific minute and that minute is worth knowing. Jupiter through Pluto can hold the same aspect for weeks, so there is no honest minute to give. Those are shown as background, in orb, rather than dressed up with false precision."}}, {"@type": "Question", "name": "Do I need my exact birth time?", "acceptedAnswer": {"@type": "Answer", "text": "No, but it changes what you get. Without a time, your Moon is approximate and your Ascendant and Midheaven cannot be calculated at all, so no transit to your angles can be reported. With a time, the reading includes contacts to how you meet the world and to your career and public role, which are often the most useful lines of the day."}}, {"@type": "Question", "name": "Can I read a past or future date?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, any date within five years either way. The sky is computed fresh for whatever date you pick, so a day last March and a day next autumn are both real readings rather than recycled text. Looking back is a good way to see how a transit actually played out before you meet the next one."}}, {"@type": "Question", "name": "Where do the transits come from?", "acceptedAnswer": {"@type": "Answer", "text": "From the Swiss Ephemeris. For the day you pick, the tool computes where the Moon and planets are, finds every transit within orb of your natal planets and angles, and times the exact ones to the minute. Your natal chart comes from the same engine as the free natal chart on this site, in whole-sign houses."}}]}
 </script>
+<!-- aeo-webapp: start -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Personal Daily Horoscope", "url": "https://thetwelverooms.com/daily-horoscope", "description": "Today's transits to your own birth chart, timed to the minute, computed with the Swiss Ephemeris.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+</script>
+<!-- aeo-webapp: end -->
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -42,6 +41,9 @@
   <p class="kicker">Free · Swiss Ephemeris · No account</p>
   <h1>Your daily horoscope, timed to your own chart</h1>
   <p class="lede">Not your sun sign. Your chart. Enter your birth details once, pick any day, and see every transit that actually touches your own planets, each with the minute it perfects and what it asks of you. Then pick tomorrow, or a day last spring, and read that one too.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What is my horoscope today?</strong> Not a sun-sign paragraph: this computes today's real transits to your own birth chart, each with the minute it is exact and what it asks of you. Enter your birth details once, then read any day within five years either way.</div>
+  <!-- aeo-answer: end -->
 
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
@@ -82,10 +84,10 @@
   <section class="faq">
     <h2>Common questions</h2>
     <div class="qa"><h3>How is this different from a sun sign horoscope?</h3><p>A sun sign horoscope gives the same twelve readings to everyone alive. This one is computed against your own birth chart: the transiting Moon and planets are measured to your natal Sun, Moon, Mercury, Venus, Mars, and, if you know your birth time, your Ascendant and Midheaven. Two people born the same day in different hours get different readings.</p></div>
-    <div class="qa"><h3>Why do some transits have an exact time and others say "in orb"?</h3><p>The Moon moves about thirteen degrees a day, so its aspects perfect at a specific minute and that minute is worth knowing. Jupiter through Pluto can hold the same aspect for weeks, so there is no honest minute to give. Those are shown as background, in orb, rather than dressed up with false precision.</p></div>
+    <div class="qa"><h3>Why do some transits have an exact time and others say in orb?</h3><p>The Moon moves about thirteen degrees a day, so its aspects perfect at a specific minute and that minute is worth knowing. Jupiter through Pluto can hold the same aspect for weeks, so there is no honest minute to give. Those are shown as background, in orb, rather than dressed up with false precision.</p></div>
     <div class="qa"><h3>Do I need my exact birth time?</h3><p>No, but it changes what you get. Without a time, your Moon is approximate and your Ascendant and Midheaven cannot be calculated at all, so no transit to your angles can be reported. With a time, the reading includes contacts to how you meet the world and to your career and public role, which are often the most useful lines of the day.</p></div>
-    <div class="qa"><h3>Can I read a past or future date?</h3><p>Yes, any date within five years either way. The sky is computed fresh for whatever date you pick, so a day last March and a day next autumn are both real readings rather than recycled text.</p></div>
-    <div class="qa"><h3>Is my birth data stored?</h3><p>No. Birth details are used in memory to compute the chart and then discarded; they are never stored or logged on the server. If you tick "remember my details", they are saved only in your own browser, and you can clear them at any time.</p></div>
+    <div class="qa"><h3>Can I read a past or future date?</h3><p>Yes, any date within five years either way. The sky is computed fresh for whatever date you pick, so a day last March and a day next autumn are both real readings rather than recycled text. Looking back is a good way to see how a transit actually played out before you meet the next one.</p></div>
+    <div class="qa"><h3>Where do the transits come from?</h3><p>From the Swiss Ephemeris. For the day you pick, the tool computes where the Moon and planets are, finds every transit within orb of your natal planets and angles, and times the exact ones to the minute. Your natal chart comes from the same engine as the free natal chart on this site, in whole-sign houses.</p></div>
   </section>
 
   <div class="cta">
@@ -95,6 +97,17 @@
   </div>
 
   <div id="signup-slot"></div>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/natal-chart">Your free natal chart</a></li>
+      <li><a href="/transit-timeline">The slow transits of your next three years</a></li>
+      <li><a href="/moon">The Moon's sign and phase right now</a></li>
+      <li><a href="/planetary-hours">Which planet rules this hour</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

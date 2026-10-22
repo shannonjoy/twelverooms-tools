@@ -27,14 +27,13 @@
 <link rel="icon" href="/favicon.svg">
 <script src="/interpret.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is a natal chart?","acceptedAnswer":{"@type":"Answer","text":"A natal chart is the sky at the exact moment and place you were born, drawn as a wheel. It maps where every planet sat by sign and house. It is a map of placements to read and grow into, not a fortune."}},
-{"@type":"Question","name":"What are whole sign houses?","acceptedAnswer":{"@type":"Answer","text":"In the whole sign system your rising sign becomes the entire first house, and each sign after it becomes the next house in order. It is the oldest house system and the one this chart uses, cleaner than the Placidus method most apps default to."}},
-{"@type":"Question","name":"What if I do not know my birth time?","acceptedAnswer":{"@type":"Answer","text":"You still get a true chart of your planets in their signs. What you cannot get without an accurate time is your rising sign and houses, which move too fast to guess. Leave the time blank for an honest untimed chart rather than a wrong one."}},
-{"@type":"Question","name":"What is the difference between Sun, Moon, and rising?","acceptedAnswer":{"@type":"Answer","text":"Your Sun is your core, what you are becoming. Your Moon is your inner life, what you need and what soothes you. Your rising sign is how you meet the world, the door people come through first. The three are read together, not alone."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a natal chart?", "acceptedAnswer": {"@type": "Answer", "text": "A natal chart is the sky at the exact moment and place you were born, drawn as a wheel. It maps where every planet sat by sign and house. It is a map of placements to read and grow into, not a fortune."}}, {"@type": "Question", "name": "What are whole sign houses?", "acceptedAnswer": {"@type": "Answer", "text": "In the whole sign system your rising sign becomes the entire first house, and each sign after it becomes the next house in order. It is the oldest house system and the one this chart uses, cleaner than the Placidus method most apps default to."}}, {"@type": "Question", "name": "What if I do not know my birth time?", "acceptedAnswer": {"@type": "Answer", "text": "You still get a true chart of your planets in their signs. What you cannot get without an accurate time is your rising sign and houses, which move too fast to guess. Leave the time blank for an honest untimed chart rather than a wrong one."}}, {"@type": "Question", "name": "What is the difference between Sun, Moon, and rising?", "acceptedAnswer": {"@type": "Answer", "text": "Your Sun is your core, what you are becoming. Your Moon is your inner life, what you need and what soothes you. Your rising sign is how you meet the world, the door people come through first. The three are read together, not alone."}}, {"@type": "Question", "name": "How is this calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Every position comes from the Swiss Ephemeris, the astronomical engine professional astrology software is built on, using the coordinates and timezone of your birthplace. Houses are whole-sign, the oldest system, so your rising sign is your entire first house. Aspects are measured to the exact degree, and the chart's patterns are found from them."}}]}
 </script>
+<!-- aeo-webapp: start -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Free Natal Chart Calculator", "url": "https://thetwelverooms.com/natal-chart", "description": "A birth chart wheel with exact degrees, whole-sign houses, aspects and patterns, computed with the Swiss Ephemeris.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+</script>
+<!-- aeo-webapp: end -->
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -42,6 +41,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Free natal chart</h1>
   <p class="lede">Enter your birth details and get a precise chart wheel with exact degrees, whole-sign houses, tight aspects, and patterns. Don't know your birth time? Leave it blank: you'll get an honest untimed chart (no rising sign or houses) instead of a guessed one.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What is a natal chart?</strong> A map of the sky at the minute and place you were born: where the Sun, Moon and planets stood, in which signs and houses, and the angles they made to each other. This calculator draws yours free from your birth date, time and place, computed with the Swiss Ephemeris in whole-sign houses.</div>
+  <!-- aeo-answer: end -->
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
       <div><label>Birth date</label><input name="date" type="date" required></div>
@@ -79,7 +81,7 @@
     <div class="qa"><h3>What are whole sign houses?</h3><p>In the whole sign system your rising sign becomes the entire first house, and each sign after it becomes the next house in order. It is the oldest house system and the one this chart uses, cleaner than the Placidus method most apps default to.</p></div>
     <div class="qa"><h3>What if I do not know my birth time?</h3><p>You still get a true chart of your planets in their signs. What you cannot get without an accurate time is your rising sign and houses, which move too fast to guess. Leave the time blank for an honest untimed chart rather than a wrong one.</p></div>
     <div class="qa"><h3>What is the difference between Sun, Moon, and rising?</h3><p>Your Sun is your core, what you are becoming. Your Moon is your inner life, what you need and what soothes you. Your rising sign is how you meet the world, the door people come through first. The three are read together, not alone.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Positions are computed with the Swiss Ephemeris, the same engine professional astrologers use, in whole-sign houses.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Every position comes from the Swiss Ephemeris, the astronomical engine professional astrology software is built on, using the coordinates and timezone of your birthplace. Houses are whole-sign, the oldest system, so your rising sign is your entire first house. Aspects are measured to the exact degree, and the chart's patterns are found from them.</p></div>
   </section>
 
   <div class="cta">
@@ -87,6 +89,18 @@
     <p>The Twelve Rooms writes deep, human-written natal readings from this exact math: every claim hangs on a degree you can see. The whole chart, read together.</p>
     <a href="https://thetwelverooms.etsy.com?utm_source=tools&amp;utm_medium=cta&amp;utm_campaign=natal" rel="noopener">Get a full reading on Etsy</a>
   </div>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/big-3-calculator">Find your Sun, Moon and rising sign</a></li>
+      <li><a href="/the-twelve-houses">What each of the twelve houses holds</a></li>
+      <li><a href="/transit-timeline">Your transits for the next three years</a></li>
+      <li><a href="/synastry">Compare two birth charts in the synastry grid</a></li>
+      <li><a href="/daily-horoscope">Today's transits to your own chart</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

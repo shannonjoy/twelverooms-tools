@@ -26,14 +26,13 @@
 <link rel="stylesheet" href="/tools.css">
 <link rel="icon" href="/favicon.svg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is electional astrology?","acceptedAnswer":{"@type":"Answer","text":"Electional astrology chooses the birth chart of a beginning. Instead of reading a chart you were given, you pick the moment, so the thing you start carries a strong sky. It is how astrologers have set wedding dates, launches, and signings for centuries."}},
-{"@type":"Question","name":"What is the best time to get married astrologically?","acceptedAnswer":{"@type":"Answer","text":"A strong wedding election usually wants a waxing Moon that is not void of course, applying to a benefic like Venus or Jupiter, with the harder planets kept quiet. The finder above scans your date range for windows that fit. For a wedding, it is worth weighing against your own charts too."}},
-{"@type":"Question","name":"Can you pick a business launch date with astrology?","acceptedAnswer":{"@type":"Answer","text":"Yes. A launch election favors a waxing Moon making easy aspects, Mercury direct for anything built on words or contracts, and a benefic near the angles. Choose the intention above and the tool ranks the best windows in your range with the reasons shown."}},
-{"@type":"Question","name":"What is a void of course Moon and why avoid it?","acceptedAnswer":{"@type":"Answer","text":"The Moon is void of course after her last major aspect in a sign and before she enters the next. Beginnings started then tend to drift or come to nothing, so the finder excludes void periods from every window it offers."}},
-{"@type":"Question","name":"Does my own birth chart matter for electional timing?","acceptedAnswer":{"@type":"Answer","text":"For the strongest elections, yes. This free tool reads the sky itself, which is enough for many choices. For a wedding or a launch that truly matters, the best window is the one that also speaks well to your own natal chart, which this tool cannot see; the Year-Ahead Reading reads your next twelve months from it, with the dates worth circling."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is electional astrology?", "acceptedAnswer": {"@type": "Answer", "text": "Electional astrology chooses the birth chart of a beginning. Instead of reading a chart you were given, you pick the moment, so the thing you start carries a strong sky. It is how astrologers have set wedding dates, launches, and signings for centuries."}}, {"@type": "Question", "name": "What is the best time to get married astrologically?", "acceptedAnswer": {"@type": "Answer", "text": "A strong wedding election usually wants a waxing Moon that is not void of course, applying to a benefic like Venus or Jupiter, with the harder planets kept quiet. The finder above scans your date range for windows that fit. For a wedding, it is worth weighing against your own charts too."}}, {"@type": "Question", "name": "Can you pick a business launch date with astrology?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A launch election favors a waxing Moon making easy aspects, Mercury direct for anything built on words or contracts, and a benefic near the angles. Choose the intention above and the tool ranks the best windows in your range with the reasons shown."}}, {"@type": "Question", "name": "What is a void of course Moon and why avoid it?", "acceptedAnswer": {"@type": "Answer", "text": "The Moon is void of course after her last major aspect in a sign and before she enters the next. Beginnings started then tend to drift or come to nothing, so the finder excludes void periods from every window it offers."}}, {"@type": "Question", "name": "Does my own birth chart matter for electional timing?", "acceptedAnswer": {"@type": "Answer", "text": "For the strongest elections, yes. This free tool reads the sky itself, which is enough for many choices. For a wedding or a launch that truly matters, the best window is the one that also speaks well to your own natal chart, which this tool cannot see; the Year-Ahead Reading reads your next twelve months from it, with the dates worth circling."}}]}
 </script>
+<!-- aeo-webapp: start -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Electional Astrology Timing Finder", "url": "https://thetwelverooms.com/electional", "description": "Scores a date range for the best windows to marry, launch, sign or move, computed with the Swiss Ephemeris.", "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+</script>
+<!-- aeo-webapp: end -->
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -41,6 +40,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Pick your moment</h1>
   <p class="lede">Electional astrology chooses the birth chart of a beginning. This tool scans a date range: it drops void-of-course Moon, scores the Moon's applying aspects, and avoids the hard contacts, then hands you the best windows with receipts. Most apps don't do this at all.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>When is the best day to start something?</strong> Electional astrology picks it: a waxing Moon that is not void of course, applying to Venus or Jupiter and clear of Mars and Saturn, with the planets that rule your matter strong. Choose an intention and a date range, and the finder scores the windows and shows the best with its reasons.</div>
+  <!-- aeo-answer: end -->
   <form class="card" id="f" autocomplete="off">
     <label>What are you starting?</label>
     <select name="intention" id="intention">
@@ -81,6 +83,18 @@
     <p>The finder reads the sky, the same for everyone. Your own chart is the other half: the Year-Ahead Reading reads your next twelve months from it, with the dates worth circling.</p>
     <a href="https://www.etsy.com/listing/4539692523?utm_source=thetwelverooms&amp;utm_medium=referral&amp;utm_campaign=electional" rel="noopener">The Year-Ahead Reading on Etsy</a>
   </div>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/almanac">Every best-dates guide, by intention</a></li>
+      <li><a href="/best-wedding-dates-2027">The best wedding dates of 2027</a></li>
+      <li><a href="/best-days-to-start-a-business-2027">The best days to start a business in 2027</a></li>
+      <li><a href="/mercury-retrograde">Mercury retrograde dates to plan around</a></li>
+      <li><a href="/planetary-hours">Today's planetary hours</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">

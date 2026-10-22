@@ -29,12 +29,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"Big 3 Calculator","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is your big 3 in astrology?","acceptedAnswer":{"@type":"Answer","text":"Your big 3 are your Sun sign, Moon sign, and rising sign (Ascendant). The Sun is your core, what you are here to become. The Moon is your inner life, what you need and what settles you. The rising sign is how you meet the world, the door people come through first. Read together, they are the short version of your whole chart."}},
-{"@type":"Question","name":"Do I need my birth time to find my big 3?","acceptedAnswer":{"@type":"Answer","text":"For your Sun, no. For your rising sign, yes: the Ascendant changes sign roughly every two hours, so it cannot be computed without an accurate birth time. The Moon usually stays in one sign all day, but on some days she changes signs, so a time makes the Moon certain too. Birth certificates usually list the time."}},
-{"@type":"Question","name":"What order do you read the big 3 in?","acceptedAnswer":{"@type":"Answer","text":"Read them as one voice in three registers rather than three separate facts: the rising sign is how you arrive, the Sun is what you are becoming, and the Moon is what you need underneath it all. Most people recognize their rising sign first, because it is the version of them the world meets."}},
-{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Positions are computed with the Swiss Ephemeris, the same astronomical engine professional software uses, in whole-sign houses."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is your big 3 in astrology?", "acceptedAnswer": {"@type": "Answer", "text": "Your big 3 are your Sun sign, Moon sign, and rising sign (Ascendant). The Sun is your core, what you are here to become. The Moon is your inner life, what you need and what settles you. The rising sign is how you meet the world, the door people come through first. Read together, they are the short version of your whole chart."}}, {"@type": "Question", "name": "Do I need my birth time to find my big 3?", "acceptedAnswer": {"@type": "Answer", "text": "For your Sun, no. For your rising sign, yes: the Ascendant changes sign roughly every two hours, so it cannot be computed without an accurate birth time. The Moon usually stays in one sign all day, but on some days she changes signs, so a time makes the Moon certain too. Birth certificates usually list the time."}}, {"@type": "Question", "name": "What order do you read the big 3 in?", "acceptedAnswer": {"@type": "Answer", "text": "Read them as one voice in three registers rather than three separate facts: the rising sign is how you arrive, the Sun is what you are becoming, and the Moon is what you need underneath it all. Most people recognize their rising sign first, because it is the version of them the world meets."}}, {"@type": "Question", "name": "Why is my rising sign different from other sites?", "acceptedAnswer": {"@type": "Answer", "text": "Usually the birth time. The rising sign changes about every two hours, so near a sign change a time that is a few minutes off, or a timezone or daylight saving rule applied wrongly, moves it into the next sign. This calculator uses the Swiss Ephemeris with your exact time, place and timezone, so check the time you entered on each site."}}, {"@type": "Question", "name": "How is this calculated?", "acceptedAnswer": {"@type": "Answer", "text": "With the Swiss Ephemeris, the astronomical engine professional astrology software is built on, from your birth date, time and place. The Big 3 comes from the same calculation as the free natal chart on this site, so the Sun, Moon and rising sign here always match the full chart you get there, in whole-sign houses."}}]}
 </script>
 </head>
 <body>
@@ -43,6 +38,9 @@
 <main class="wrap" id="main-content" tabindex="-1">
   <h1>Big 3 calculator</h1>
   <p class="lede">Your Sun, your Moon, and your rising sign: the short version of your whole chart, computed precisely from your birth details. The Sun is your core, the Moon is your inner life, the rising is the door you meet the world through. No account required.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What is my Big 3?</strong> Your Sun sign, Moon sign and rising sign. The Sun comes from your birth date and the Moon almost always does too; the rising sign needs your birth time, because it changes about every two hours. Enter your details and the calculator gives all three, computed with the Swiss Ephemeris.</div>
+  <!-- aeo-answer: end -->
   <form class="card" id="f" autocomplete="off">
     <div class="grid2">
       <div><label>Birth date</label><input name="date" type="date" required></div>
@@ -95,11 +93,23 @@
 
   <section class="faq">
     <h2>Common questions</h2>
-    <div class="qa"><h3>What is your big 3?</h3><p>Your Sun sign, Moon sign, and rising sign (the Ascendant). Together they are the short version of your natal chart: the core, the inner life, and the way you meet the world.</p></div>
-    <div class="qa"><h3>Do I need my birth time?</h3><p>For the Sun, no. For the rising sign, yes: it changes about every two hours. The Moon usually holds one sign all day, but on some days she changes signs partway through, so a time makes her certain too. Your birth certificate usually has the time.</p></div>
-    <div class="qa"><h3>Why is my rising sign different from other sites?</h3><p>If a birth time is off by even a few minutes near a sign change, the rising sign can differ. We compute from the Swiss Ephemeris with your exact time, place, and timezone, so a mismatch usually traces back to the time entered elsewhere.</p></div>
-    <div class="qa"><h3>How is this calculated?</h3><p>Swiss Ephemeris, whole-sign houses, exact coordinates and timezone from your birthplace.</p></div>
+    <div class="qa"><h3>What is your big 3 in astrology?</h3><p>Your big 3 are your Sun sign, Moon sign, and rising sign (Ascendant). The Sun is your core, what you are here to become. The Moon is your inner life, what you need and what settles you. The rising sign is how you meet the world, the door people come through first. Read together, they are the short version of your whole chart.</p></div>
+    <div class="qa"><h3>Do I need my birth time to find my big 3?</h3><p>For your Sun, no. For your rising sign, yes: the Ascendant changes sign roughly every two hours, so it cannot be computed without an accurate birth time. The Moon usually stays in one sign all day, but on some days she changes signs, so a time makes the Moon certain too. Birth certificates usually list the time.</p></div>
+    <div class="qa"><h3>What order do you read the big 3 in?</h3><p>Read them as one voice in three registers rather than three separate facts: the rising sign is how you arrive, the Sun is what you are becoming, and the Moon is what you need underneath it all. Most people recognize their rising sign first, because it is the version of them the world meets.</p></div>
+    <div class="qa"><h3>Why is my rising sign different from other sites?</h3><p>Usually the birth time. The rising sign changes about every two hours, so near a sign change a time that is a few minutes off, or a timezone or daylight saving rule applied wrongly, moves it into the next sign. This calculator uses the Swiss Ephemeris with your exact time, place and timezone, so check the time you entered on each site.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>With the Swiss Ephemeris, the astronomical engine professional astrology software is built on, from your birth date, time and place. The Big 3 comes from the same calculation as the free natal chart on this site, so the Sun, Moon and rising sign here always match the full chart you get there, in whole-sign houses.</p></div>
   </section>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/natal-chart">See your full natal chart</a></li>
+      <li><a href="/the-twelve-houses">The twelve houses your rising sign sets up</a></li>
+      <li><a href="/daily-horoscope">A daily horoscope from your own chart, not your Sun sign</a></li>
+      <li><a href="/synastry">How your chart meets someone else's</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
   <div id="site-footer"><footer class="site">
     <nav class="footer-nav" aria-label="Site">
       <div class="footer-col">
