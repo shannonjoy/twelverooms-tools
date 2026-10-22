@@ -9,6 +9,7 @@
 - [Synastry grid](https://thetwelverooms.com/synastry): cross-aspects between two charts.
 - [Saturn return calculator](https://thetwelverooms.com/saturn-return-calculator): exact dates of every Saturn return pass.
 - [Saturn return dates by birth year](https://thetwelverooms.com/saturn-return/1990): the first-return passes for every birth month, 1960 to 2005.
+- [Solar return calculator](https://thetwelverooms.com/solar-return-calculator): the exact moment the Sun returns to its birth degree in a chosen year, and that year's chart.
 - [Daily horoscope](https://thetwelverooms.com/daily-horoscope): today's transits to your own chart, timed to the minute.
 - [Transit timeline](https://thetwelverooms.com/transit-timeline): the next three years of major transits on one line of time.
 - [The Moon right now](https://thetwelverooms.com/moon): sign, phase, void-of-course status, live.
@@ -24,6 +25,7 @@ All positions come from the Swiss Ephemeris. Houses are whole-sign: the rising s
 - Big 3: Sun, Moon and rising sign from the same calculation as the natal chart. The rising sign changes about every two hours, so it needs a birth time.
 - Saturn return: every exact pass of transiting Saturn over the natal Saturn degree, found by daily scan and refined to the minute, grouped into returns (first near ages 27 to 30, second near 58 to 59), with the stations between passes. Many returns make three passes over about a year.
 - Saturn return by birth year (/saturn-return/1960 to /saturn-return/2005): for each birth month of that year (born on the 15th, noon UT), natal Saturn's degree and every exact pass of the first return; the year's Saturn stations and sign changes.
+- Solar return: the instant the Sun returns to its exact natal longitude in the chosen year, found to the second, and the chart for that instant at the place the birthday is spent (birthplace by default): rising sign, Midheaven, chart ruler, every planet's sign and whole-sign house, and the closest contacts to the birth chart. Without a birth time it gives the window (about a day) and the planets' signs, with no rising sign or houses. Same engine as the Solar Return Reading.
 - Synastry: every planet of one chart measured against every planet of the other; each pair within orb of a major aspect is listed. No compatibility score.
 - Daily horoscope: transits to your own natal chart for any date within five years either way, exact ones timed to the minute. Not a sun-sign horoscope.
 - Transit timeline: exact major aspects from Jupiter, Saturn, Uranus, Neptune and Pluto to your natal points over the next three years, retrograde passes included.

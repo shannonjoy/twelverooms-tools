@@ -83,7 +83,9 @@ def compute(o):
                "place": str(o.get("place") or "")[:80], "birthplace": True}
     tz = ZoneInfo(loc["tz"])
 
-    natal_sun = natal_pos["Sun"]["lon"]
+    # The fact sheet's Sun (rounded to 0.0001 degree, a few seconds of time),
+    # the value the reading's engine reads, so the two agree to the second.
+    natal_sun = natal["planets"]["Sun"]["lon"]
     jd = _return_jd(natal_sun, birth, year)
     moment_utc = sre.jd_to_dt(jd)
     pos = cf.positions_at(jd)
