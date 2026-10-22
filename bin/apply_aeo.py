@@ -108,6 +108,7 @@ PAGES = {
         "related": [
             ("/saturn-return/1996", "Saturn return dates for 1996 births, by month"),
             ("/transit-timeline", "Every major transit in your next three years"),
+            ("/solar-return-calculator", "Your solar return chart for this birthday"),
             ("/natal-chart", "Where Saturn sits in your natal chart"),
             ("/the-twelve-houses", "The house your Saturn return lands in"),
         ],
@@ -199,6 +200,7 @@ PAGES = {
         "related": [
             ("/saturn-return-calculator", "The exact dates of your Saturn return"),
             ("/daily-horoscope", "Today's transits, timed to the minute"),
+            ("/solar-return-calculator", "Your solar return chart for the year ahead"),
             ("/natal-chart", "Your free natal chart"),
             ("/mercury-retrograde", "Mercury retrograde dates for 2026 and 2027"),
         ],

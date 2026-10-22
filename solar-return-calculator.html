@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar Return Calculator: Your Birthday Chart for the Year · The Twelve Rooms</title>
+<meta name="description" content="Free solar return calculator: the exact moment the Sun returns to its birth degree this year, and the chart for that moment, computed with the Swiss Ephemeris. Your solar return rising sign, Moon, and the house each planet works in for the year ahead.">
+<link rel="canonical" href="https://thetwelverooms.com/solar-return-calculator">
+<!-- og:begin (managed by bin/apply_og_tags.py) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Twelve Rooms">
+<meta property="og:title" content="Solar Return Calculator: Your Birthday Chart for the Year · The Twelve Rooms">
+<meta property="og:description" content="Free solar return calculator: the exact moment the Sun returns to its birth degree this year, and the chart for that moment, computed with the Swiss Ephemeris. Your solar return rising sign, Moon, and the house each planet works in for the year ahead.">
+<meta property="og:url" content="https://thetwelverooms.com/solar-return-calculator">
+<meta property="og:image" content="https://thetwelverooms.com/og/webtools.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Twelve Rooms: free astrology tools. The whole sky, written for you.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Solar Return Calculator: Your Birthday Chart for the Year · The Twelve Rooms">
+<meta name="twitter:description" content="Free solar return calculator: the exact moment the Sun returns to its birth degree this year, and the chart for that moment, computed with the Swiss Ephemeris. Your solar return rising sign, Moon, and the house each planet works in for the year ahead.">
+<meta name="twitter:image" content="https://thetwelverooms.com/og/webtools.png">
+<meta name="twitter:image:alt" content="The Twelve Rooms: free astrology tools. The whole sky, written for you.">
+<!-- og:end -->
+<link rel="stylesheet" href="/tools.css">
+<link rel="icon" href="/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Solar Return Calculator","url":"https://thetwelverooms.com/solar-return-calculator","description":"The exact moment the Sun returns to its natal degree in a chosen year, and the solar return chart for that moment: rising sign, Moon, and every planet's sign and whole-sign house, computed with the Swiss Ephemeris.","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a solar return?","acceptedAnswer":{"@type":"Answer","text":"Your solar return is the moment each year when the Sun comes back to the exact degree and minute it held when you were born. It falls on or within a day of your birthday. The chart cast for that moment is read as the chart of your year, birthday to birthday: where the year's attention goes and what it asks of you."}},{"@type":"Question","name":"Why is my solar return not exactly on my birthday?","acceptedAnswer":{"@type":"Answer","text":"The calendar year is about six hours longer than 365 days, and leap days reset it, so the Sun reaches your birth degree at a slightly different clock time every year, sometimes the day before or after your birthday. The calculator finds the exact second, then gives it in the time zone of the place you name."}},{"@type":"Question","name":"Does the location matter for a solar return?","acceptedAnswer":{"@type":"Answer","text":"Yes. The moment is the same everywhere, but the rising sign and the houses depend on where you are when it happens. Tradition casts the chart for where you spend the birthday, so if you will be away, enter that city. Leave it blank and the calculator uses your birthplace."}},{"@type":"Question","name":"Do I need my birth time for a solar return?","acceptedAnswer":{"@type":"Answer","text":"For the rising sign and houses, yes. Without a birth time your natal Sun is known only to about half a degree, so the return moment is known only to about half a day, too loose for an Ascendant. The calculator then shows the window, the planets' signs for the year, and the Moon's possible signs."}},{"@type":"Question","name":"How is this calculated?","acceptedAnswer":{"@type":"Answer","text":"Your natal Sun comes from the Swiss Ephemeris for your birth date, time and place. The calculator then iterates to the instant the Sun returns to that longitude in the year you choose, casts the chart for that instant in whole-sign houses, and checks it against the year's contacts to your birth chart. It is the same engine that writes the Solar Return Reading."}}]}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="masthead"></div>
+<main class="wrap" id="main-content" tabindex="-1">
+  <h1>Solar return calculator</h1>
+  <p class="lede">Once a year the Sun comes back to the exact degree it held the moment you were born. The chart for that moment is the chart of your year, birthday to birthday. This finds it to the second, computed with the Swiss Ephemeris.</p>
+  <!-- aeo-answer: start (bin/apply_aeo.py) -->
+  <div class="highlight"><strong>What is a solar return?</strong> The moment each year when the Sun returns to its exact birth position, on or within a day of your birthday. Its chart, cast for where you spend the birthday, shows the year ahead: the rising sign that sets its tone, the house the Sun lights up, and where the Moon and each planet work until your next birthday.</div>
+  <!-- aeo-answer: end -->
+  <form class="card" id="f" autocomplete="off">
+    <div class="grid2">
+      <div><label>Birth date</label><input name="date" type="date" required></div>
+      <div><label>Birth time (for the rising sign and houses)</label><input name="time" type="time"></div>
+    </div>
+    <div class="loc">
+      <label>Birthplace</label>
+      <input id="city" placeholder="Start typing a city, e.g. Chicago" autocomplete="off">
+      <div id="cityres" class="typeahead"></div>
+    </div>
+    <div class="picked" id="picked"></div>
+    <details id="manual">
+      <summary>Enter coordinates manually instead</summary>
+      <div class="grid2">
+        <div><label>Latitude</label><input name="lat" type="number" step="0.0001" placeholder="41.8781"></div>
+        <div><label>Longitude</label><input name="lon" type="number" step="0.0001" placeholder="-87.6298"></div>
+      </div>
+      <label>Timezone (IANA)</label><input name="tz" placeholder="America/Chicago">
+    </details>
+    <div class="grid2">
+      <div><label>Solar return year</label><select name="year" id="year"></select></div>
+      <div class="loc">
+        <label>Where you'll spend that birthday (optional)</label>
+        <input id="wcity" placeholder="Leave blank to use your birthplace" autocomplete="off">
+        <div id="wcityres" class="typeahead"></div>
+      </div>
+    </div>
+    <div class="picked" id="wpicked"></div>
+    <button class="go" type="submit">Find my solar return</button>
+  </form>
+  <div id="out" class="result"></div>
+
+  <section class="prose">
+    <h2>What a solar return is</h2>
+    <p>The Sun takes a year to travel the zodiac, so once a year it arrives back at the exact degree and minute it held when you were born. That instant is your <strong>solar return</strong>. Astrologers have cast a chart for it for centuries and read it as the chart of the year ahead, from this birthday to the next.</p>
+    <p>Your natal chart reads the seed, and the solar return reads the season: it does not replace your birth chart, it shows which rooms of it the coming year opens. The rising sign of the return sets the year's tone, the house the Sun falls in names where your attention goes, and the Moon shows what the year asks of you day to day.</p>
+    <h2>Why the place matters</h2>
+    <p>The return happens at the same instant everywhere on Earth, but its rising sign and houses depend on where you are. Tradition casts the chart for the place you spend the birthday, which is why some people travel for it. If you will be away, enter that city above; if you leave it blank, the chart is cast for your birthplace.</p>
+    <h2>Why the birth time matters</h2>
+    <p>Your birth time pins your natal Sun to the arcminute. Without it the Sun is known only to about half a degree, so the return moment can move by up to half a day, and the rising sign changes every two hours or so. With no birth time, the calculator shows the window, the planets' signs for the year, and the Moon's possible signs, and leaves the rising sign and houses out rather than guess.</p>
+  </section>
+
+  <div class="cta">
+    <h2>Your year, read from your own chart</h2>
+    <p>The Solar Return Reading reads this chart in full against your birth chart: the year's rising sign and its ruler, the house your Sun returns to, the Moon's year, and the contacts that switch on, written as one reading.</p>
+    <a href="https://www.etsy.com/listing/4539692523?utm_source=thetwelverooms&amp;utm_medium=referral&amp;utm_campaign=solar-return-calculator" rel="noopener">The Solar Return Reading on Etsy</a>
+  </div>
+
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="qa"><h3>What is a solar return?</h3><p>Your solar return is the moment each year when the Sun comes back to the exact degree and minute it held when you were born. It falls on or within a day of your birthday. The chart cast for that moment is read as the chart of your year, birthday to birthday: where the year's attention goes and what it asks of you.</p></div>
+    <div class="qa"><h3>Why is my solar return not exactly on my birthday?</h3><p>The calendar year is about six hours longer than 365 days, and leap days reset it, so the Sun reaches your birth degree at a slightly different clock time every year, sometimes the day before or after your birthday. The calculator finds the exact second, then gives it in the time zone of the place you name.</p></div>
+    <div class="qa"><h3>Does the location matter for a solar return?</h3><p>Yes. The moment is the same everywhere, but the rising sign and the houses depend on where you are when it happens. Tradition casts the chart for where you spend the birthday, so if you will be away, enter that city. Leave it blank and the calculator uses your birthplace.</p></div>
+    <div class="qa"><h3>Do I need my birth time for a solar return?</h3><p>For the rising sign and houses, yes. Without a birth time your natal Sun is known only to about half a degree, so the return moment is known only to about half a day, too loose for an Ascendant. The calculator then shows the window, the planets' signs for the year, and the Moon's possible signs.</p></div>
+    <div class="qa"><h3>How is this calculated?</h3><p>Your natal Sun comes from the Swiss Ephemeris for your birth date, time and place. The calculator then iterates to the instant the Sun returns to that longitude in the year you choose, casts the chart for that instant in whole-sign houses, and checks it against the year's contacts to your birth chart. It is the same engine that writes the Solar Return Reading.</p></div>
+  </section>
+  <!-- aeo-related: start (bin/apply_aeo.py) -->
+  <section class="prose" aria-label="Related tools">
+    <h2>Where to go next</h2>
+    <ul class="linklist">
+      <li><a href="/natal-chart">Your free natal chart, the seed this year grows from</a></li>
+      <li><a href="/transit-timeline">Every major transit in your next three years</a></li>
+      <li><a href="/the-twelve-houses">What each house your planets land in means</a></li>
+      <li><a href="/saturn-return-calculator">The exact dates of your Saturn return</a></li>
+      <li><a href="/daily-horoscope">Today's transits to your own chart</a></li>
+    </ul>
+  </section>
+  <!-- aeo-related: end -->
+  <div id="site-footer"><footer class="site">
+    <nav class="footer-nav" aria-label="Site">
+      <div class="footer-col">
+        <h2>Calculate</h2>
+        <a href="/natal-chart">Natal chart</a>
+        <a href="/big-3-calculator">Big 3 calculator</a>
+        <a href="/saturn-return-calculator">Saturn return</a>
+        <a href="/synastry">Synastry</a>
+        <a href="/transit-timeline">Transit timeline</a>
+        <a href="/daily-horoscope">Daily horoscope</a>
+      </div>
+      <div class="footer-col">
+        <h2>The sky now</h2>
+        <a href="/moon">Moon right now</a>
+        <a href="/void-of-course-moon">Void-of-course Moon</a>
+        <a href="/planetary-hours">Planetary hours</a>
+        <a href="/mercury-retrograde">Mercury retrograde</a>
+        <a href="/venus-retrograde">Venus retrograde</a>
+      </div>
+      <div class="footer-col">
+        <h2>Best dates</h2>
+        <a href="/almanac">Dates by intention</a>
+        <a href="/electional">Pick your moment</a>
+        <a href="/electional-astrology">How timing works</a>
+        <a href="/best-wedding-dates-2027">Best wedding dates 2027</a>
+        <a href="/best-days-to-start-a-business-2027">Best days to start a business</a>
+        <a href="/best-days-to-sign-a-contract-2027">Best days to sign a contract</a>
+      </div>
+      <div class="footer-col">
+        <h2>Read</h2>
+        <a href="/the-twelve-houses">The twelve houses</a>
+        <a href="/sabian-symbols">Sabian symbols</a>
+        <a href="/forecast">Monthly Sky Forecast</a>
+        <a href="/reports">Readings</a>
+        <a href="/about">About</a>
+      </div>
+    </nav>
+    <div><a href="/forecast">Monthly Sky Forecast</a> &middot; the free email</div>
+    <div class="privacy">&copy; 2026 The Twelve Rooms &middot; City data &copy; GeoNames (CC BY 4.0)</div>
+    <div class="privacy">Positions computed with the Swiss Ephemeris. Free software under the <a href="https://github.com/shannonjoy/twelverooms-tools" rel="noopener">AGPL-3.0</a>, source available. Brand and readings &copy; The Twelve Rooms.</div>
+  </footer></div>
+</main>
+<script src="/tools.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const f = document.getElementById("f");
+let PLACE = null, WHERE = null;
+(function years() {
+  const sel = document.getElementById("year"), now = new Date().getFullYear();
+  for (let y = now - 3; y <= now + 10; y++) {
+    const o = document.createElement("option"); o.value = y; o.textContent = y;
+    if (y === now) o.selected = true;
+    sel.appendChild(o);
+  }
+})();
+window.addEventListener("DOMContentLoaded", () => {
+  TR.rememberBirth({
+    form: f, city: "city", results: "cityres",
+    onPlace(r) {
+      PLACE = r; f.lat.value = r.lat; f.lon.value = r.lon; f.tz.value = r.tz;
+      document.getElementById("picked").innerHTML = `Using <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${r.lat.toFixed(3)}, ${r.lon.toFixed(3)} · ${esc(r.tz)}`;
+    }
+  });
+  TR.birthDateField(f.date);
+  const w = document.getElementById("wcity");
+  TR.attachCity(w, document.getElementById("wcityres"), r => {
+    WHERE = r;
+    document.getElementById("wpicked").innerHTML = `Return cast for <b>${esc(r.name)}, ${esc(r.admin1)}</b> · ${esc(r.tz)}`;
+  });
+  w.addEventListener("input", () => { if (!w.value.trim()) { WHERE = null; document.getElementById("wpicked").textContent = ""; } });
+});
+
+const GLYPH = { Sun:"☉", Moon:"☽", Mercury:"☿", Venus:"♀", Mars:"♂", Jupiter:"♃",
+  Saturn:"♄", Uranus:"♅", Neptune:"♆", Pluto:"♇" };
+const HOUSE_ORD = ["","first","second","third","fourth","fifth","sixth","seventh",
+  "eighth","ninth","tenth","eleventh","twelfth"];
+const ordinalHouse = h => (HOUSE_ORD[h] || h) + " house";
+const MONTHS = ["January","February","March","April","May","June","July",
+  "August","September","October","November","December"];
+
+f.addEventListener("submit", async e => {
+  e.preventDefault();
+  const out = document.getElementById("out");
+  if (!f.tz.value || !f.lat.value) { out.innerHTML = `<div class="error">Pick your birthplace from the list, or open "manually" and enter coordinates and timezone.</div>`; return; }
+  out.innerHTML = `<div class="card"><p class="hint">Following the Sun back to your birth degree…</p></div>`;
+  /* Birth data goes in the POST body only, never in a URL or an analytics event. */
+  const body = { mode: "solar_return", year: Number(f.year.value),
+                 date: f.date.value, time: f.time.value || null, tz: f.tz.value.trim(),
+                 lat: f.lat.value, lon: f.lon.value, place: PLACE ? `${PLACE.name}, ${PLACE.admin1}` : "" };
+  if (WHERE) body.where = { lat: WHERE.lat, lon: WHERE.lon, tz: WHERE.tz, place: `${WHERE.name}, ${WHERE.admin1}` };
+  try {
+    const r = await fetch("/api/natal", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const d = await r.json();
+    if (d.error) throw new Error(d.error);
+    TR.trackToolUse("solar-return");
+    render(d);
+  } catch (err) {
+    out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+  }
+});
+
+function placeName(d) {
+  return d.location.place ? esc(d.location.place) : (d.location.birthplace ? "your birthplace" : esc(d.location.tz));
+}
+
+function planetCards(rows, timed) {
+  return rows.map(p => `<div class="place">
+      <div class="place-glyph">${GLYPH[p.body] ? GLYPH[p.body] + "︎" : ""}</div>
+      <div class="place-body">
+        <div class="place-head">${esc(p.body)} in ${p.signs ? p.signs.map(esc).join(" or ") + " (it changes sign during the window)" : esc(p.sign) + " · " + esc(p.position)}${timed && p.house ? ` · ${ordinalHouse(p.house)}` : ""}${p.retrograde ? " · retrograde" : ""}</div>
+        ${timed && p.house_meaning ? `<div class="place-mean">This year ${p.body === "Sun" || p.body === "Moon" ? "the " : ""}${esc(p.body)} works in the room of ${esc(p.house_meaning)}.</div>` : ""}
+      </div>
+    </div>`).join("");
+}
+
+function render(d) {
+  const out = document.getElementById("out");
+  if (!d.timed) {
+    out.innerHTML = `
+      <div class="glance">
+        <h2>Your ${d.year} solar return</h2>
+        <p>The Sun returns to its birth degree (${esc(d.natal_sun)}) <strong>${esc(d.window_label)}</strong>. Add your birth time for the exact second.</p>
+        <p style="margin-top:10px">The Moon of your solar return is in <strong>${d.moon.signs.map(esc).join("</strong> or <strong>")}</strong>.</p>
+      </div>
+      <div class="card">
+        <h2>The planets of your year</h2>
+        <div class="places">${planetCards(d.planets, false)}</div>
+        <p class="hint" style="margin-top:12px">Computed without a birth time, so the moment is a window and the signs hold across it, except where one is marked. The <strong>rising sign</strong> and the <strong>house</strong> each planet works in need an accurate birth time, because they turn every two hours or so. Add one above for the full chart.</p>
+      </div>`;
+    out.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  const contacts = (d.contacts || []).map(c =>
+    `<li>Solar return ${esc(c.sr)} ${esc(c.aspect)} your natal ${esc(c.natal)} <span class="hint">(${c.orb}°)</span></li>`).join("");
+  out.innerHTML = `
+    <div class="glance">
+      <h2>Your ${d.year} solar return</h2>
+      <p>The Sun returns to <strong>${esc(d.natal_sun)}</strong> on <strong>${esc(d.moment_label)}</strong>, cast for ${placeName(d)}.</p>
+      <p style="margin-top:10px"><strong>${esc(d.asc.sign)}</strong> rises for the year (${esc(d.asc.position)}), so its ruler, <strong>${esc(d.chart_ruler.planet)}</strong> in ${esc(d.chart_ruler.sign)}, in your solar return ${ordinalHouse(d.chart_ruler.house)}, steers it. Your Sun returns in the <strong>${ordinalHouse(d.sun_house)}</strong>: ${esc(d.sun_house_meaning)}. The Moon is in <strong>${esc(d.moon.sign)}</strong> in the ${ordinalHouse(d.moon.house)}: ${esc(d.moon.house_meaning)}.</p>
+    </div>
+    ${d.wheel_svg ? `<div class="card"><div class="wheel-hint">Your ${d.year} solar return wheel, drawn to the exact degree for the moment the Sun comes home.</div>${d.wheel_svg}</div>` : ""}
+    <div class="card">
+      <h2>Where each planet works this year</h2>
+      <div class="places">${planetCards(d.planets, true)}</div>
+      <p class="hint" style="margin-top:12px">Midheaven ${esc(d.mc.position)}, in the ${ordinalHouse(d.mc.house)}. A ${esc(d.sect)} chart. The solar return Ascendant falls in your natal ${ordinalHouse(d.sr_asc_in_natal_house)}.</p>
+      ${contacts ? `<h3 style="font-family:var(--serif);font-weight:400;color:var(--navy);font-size:16px;margin:18px 0 8px">The year's closest contacts to your birth chart</h3><ul class="linklist">${contacts}</ul>` : ""}
+      <p class="hint" style="margin-top:14px">Want it read, not just cast? <a href="https://www.etsy.com/listing/4539692523?utm_source=thetwelverooms&amp;utm_medium=referral&amp;utm_campaign=solar-return-calculator" rel="noopener" style="color:var(--gold)">The Solar Return Reading</a> reads this chart in full against your birth chart.</p>
+    </div>`;
+  out.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+</script>
+</body>
+</html>

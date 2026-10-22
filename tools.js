@@ -94,6 +94,7 @@ window.TR = (function () {
       ["/natal-chart", "Natal chart"],
       ["/big-3-calculator", "Big 3"],
       ["/saturn-return-calculator", "Saturn return"],
+      ["/solar-return-calculator", "Solar return"],
       ["/synastry", "Synastry"],
       ["/transit-timeline", "Transit timeline"],
       ["/daily-horoscope", "Daily horoscope"],

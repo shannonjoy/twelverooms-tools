@@ -1,6 +1,12 @@
 """POST /api/natal — free natal chart wheel + positions.
 Body: {date, time?, tz, lat, lon, name?}. Birth data is processed in memory
-and never stored or logged."""
+and never stored or logged.
+
+With "mode": "solar_return" (2026-10-22) it serves the solar return
+calculator instead: {date, time?, tz, lat, lon, year, where?: {lat, lon,
+tz, place?}}. A mode on this function, not a new file: the Vercel Hobby
+plan allows 12 Python functions and api/ already has 12. Birth data stays
+in the POST body, never in a URL."""
 import json
 import sys
 from http.server import BaseHTTPRequestHandler
@@ -15,6 +21,10 @@ class handler(BaseHTTPRequestHandler):
         try:
             length = int(self.headers.get("Content-Length") or 0)
             o = json.loads(self.rfile.read(length))
+            if o.get("mode") == "solar_return":
+                import solar_return_calc
+                body, code = json.dumps(solar_return_calc.compute(o)).encode(), 200
+                return self._send(body, code)
             order = {"name": str(o.get("name") or "Your chart")[:60],
                      "date": o["date"], "time": o.get("time") or None,
                      "tz": o["tz"], "lat": float(o["lat"]), "lon": float(o["lon"]),
@@ -46,6 +56,9 @@ class handler(BaseHTTPRequestHandler):
             body, code = json.dumps(out).encode(), 200
         except Exception as e:
             body, code = json.dumps({"error": str(e)[:200]}).encode(), 400
+        self._send(body, code)
+
+    def _send(self, body, code):
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Cache-Control", "no-store")
